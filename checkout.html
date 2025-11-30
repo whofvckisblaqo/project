@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blaqo Checkout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: #f6f5f8;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Header Styles */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(246, 245, 248, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #111827;
+  text-decoration: none;
+}
+
+.logo-icon {
+  color: #1c0df2;
+  font-size: 1.875rem;
+}
+
+.logo h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+nav {
+  display: none;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+nav a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #1c0df2;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.search-wrapper {
+  display: none;
+  position: relative;
+  width: 100%;
+  max-width: 20rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4f499c;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: rgba(28, 13, 242, 0.1);
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.search-input:focus {
+  border: 2px solid rgba(28, 13, 242, 0.5);
+}
+
+.cart-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  background-color: rgba(28, 13, 242, 0.1);
+  color: #4f499c;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-badge {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  background-color: #1c0df2;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 84px;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  background-color: #1c0df2;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.login-button:hover {
+  opacity: 0.9;
+}
+
+/* Main Content */
+main {
+  padding: 2rem 0;
+}
+
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.payment-section {
+  width: 100%;
+}
+
+.page-title {
+  color: #111827;
+  font-size: 2.25rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  color: #111827;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 2px solid transparent;
+  border-radius: 0.75rem;
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.payment-option:has(input:checked) {
+  border-color: #1c0df2;
+  box-shadow: 0 0 0 2px rgba(28, 13, 242, 0.2);
+}
+
+.payment-option input[type="radio"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #d0cee8;
+  background-color: transparent;
+  appearance: none;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.payment-option input[type="radio"]:checked {
+  border-color: #1c0df2;
+  background-image: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27%231c0df2%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3ccircle cx=%278%27 cy=%278%27 r=%273%27/%3e%3c/svg%3e');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.payment-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.payment-icon {
+  color: #1c0df2;
+  font-size: 1.875rem;
+}
+
+.payment-logo {
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
+  border-radius: 0.25rem;
+}
+
+.payment-info h3 {
+  color: #111827;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.payment-info p {
+  font-size: 0.875rem;
+  color: #6B7280;
+}
+
+.pay-button {
+  width: 100%;
+  height: 3.5rem;
+  margin-top: 2rem;
+  border-radius: 0.75rem;
+  background-color: #1c0df2;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.pay-button:hover {
+  opacity: 0.9;
+}
+
+/* Order Summary */
+.summary-section {
+  width: 100%;
+}
+
+.order-summary {
+  position: sticky;
+  top: 6rem;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background-color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-image {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.product-info {
+  flex-grow: 1;
+}
+
+.product-info h4 {
+  color: #111827;
+  font-weight: 500;
+}
+
+.product-info p {
+  font-size: 0.875rem;
+  color: #6B7280;
+}
+
+.product-price {
+  color: #111827;
+  font-weight: 700;
+}
+
+.divider {
+  height: 1px;
+  background-color: #E5E7EB;
+  margin: 1.5rem 0;
+}
+
+.price-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.discount {
+  color: #10B981;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Footer */
+footer {
+  background-color: white;
+  border-top: 1px solid #E5E7EB;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  padding: 3rem 1rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.footer-column h3 {
+  color: #111827;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column a {
+  color: #374151;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-column a:hover {
+  color: #1c0df2;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: #374151;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #1c0df2;
+}
+
+.social-links svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #E5E7EB;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  background-color: #10B981;
+  color: white;
+  border: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.whatsapp-button:hover {
+  background-color: #059669;
+}
+
+.whatsapp-button svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .search-wrapper {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  nav {
+    display: flex;
+  }
+  
+  main {
+    padding: 4rem 0;
+  }
+  
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+  
+  .checkout-container {
+    flex-direction: row;
+    gap: 3rem;
+  }
+  
+  .payment-section {
+    width: 66.666%;
+  }
+  
+  .summary-section {
+    width: 33.333%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .checkout-container {
+    gap: 4rem;
+  }
+}
+</style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo-section">
+          <a href="#" class="logo">
+            <span class="material-symbols-outlined logo-icon">hub</span>
+            <h2>Di-Boss</h2>
+          </a>
+          <nav>
+            <a href="#">Categories</a>
+            <a href="#">AI Tools</a>
+            <a href="#">Scripts</a>
+          </nav>
+        </div>
+        <div class="header-actions">
+          <div class="search-wrapper">
+            <span class="material-symbols-outlined search-icon">search</span>
+            <input type="search" class="search-input" placeholder="Search for products...">
+          </div>
+          <button class="cart-button">
+            <span class="material-symbols-outlined">shopping_cart</span>
+            <span class="cart-badge">2</span>
+          </button>
+          <button class="login-button">Login</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <div class="checkout-container">
+        <!-- Payment Section -->
+        <div class="payment-section">
+          <h1 class="page-title">Checkout</h1>
+          <h2 class="section-title">Choose how you want to pay</h2>
+          
+          <div class="payment-methods">
+            <label class="payment-option">
+              <input type="radio" name="payment-method" checked>
+              <div class="payment-content">
+                <span class="material-symbols-outlined payment-icon">credit_card</span>
+                <div class="payment-info">
+                  <h3>Credit/Debit Card</h3>
+                  <p>Pay with Visa, Mastercard, and more.</p>
+                </div>
+              </div>
+            </label>
+
+            <label class="payment-option">
+              <input type="radio" name="payment-method">
+              <div class="payment-content">
+                <span class="material-symbols-outlined payment-icon">currency_bitcoin</span>
+                <div class="payment-info">
+                  <h3>Cryptocurrency</h3>
+                  <p>Pay with Bitcoin, Ethereum, and others.</p>
+                </div>
+              </div>
+            </label>
+
+            <label class="payment-option">
+              <input type="radio" name="payment-method">
+              <div class="payment-content">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9doYo4Z5Rp_BQoyq4jf1rOHVE1wBaIINNMXTX10Ksg44xDor7US-cJHWVv3T6c27EG9Emt7qHPE72-ofXJw05CtWm5RjhaC4Voxwrto0VyGIyC0_cGQDji5jY_Ac936LKAg-r8YrWWS4ZgT2dxL6FrovasrEhnWtzax6cFCdm6EdGDA0hWITzjFOFXA9Et4C1e0iMyAbOC30Ey4jXc9VTmKEH1FG3qPmD_Bo5ZORpBexvTuDYy8U2eSgGG7H5vk_YSpZHCXFuhCA" alt="Flutterwave Logo" class="payment-logo">
+                <div class="payment-info">
+                  <h3>Flutterwave</h3>
+                  <p>Secure payments for African businesses.</p>
+                </div>
+              </div>
+            </label>
+
+            <label class="payment-option">
+              <input type="radio" name="payment-method">
+              <div class="payment-content">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI_xkR9l7sDTziamKEJ--qBbOLfOgXewJCchyYcU9TAj40MIOxidTVbRCrP0Acp8ynZXTNcZjsFjjlU0Z9qygcIcV_G7F4X4w_3r93i9quTeWecEk_tZL6hRQyxbCzsJHUQu5xaAahVe384XJ0wwECzDG2uPwX7LrFWABsTuWV5C3mG8nkS4XsLYVV2oC-jZvhVO95kOisHNiIy9yOWj7cfPtCKGxjiiMZgBsI12iaY_fvf7tLYcLzGPOsTqcOWP4Fuz8VsRI5A08" alt="Paystack Logo" class="payment-logo">
+                <div class="payment-info">
+                  <h3>Paystack</h3>
+                  <p>Modern online and offline payments for Africa.</p>
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <button class="pay-button">Pay Now - $98.00</button>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="summary-section">
+          <div class="order-summary">
+            <h2 class="section-title">Order Summary</h2>
+            
+            <div class="product-list">
+              <div class="product-item">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4YEzkQrU9WWnyuvvPN0gpcEmQOf_Ji6k924s48nnZ1aLnv3iKcB0218Gx_mvDK03zzmw3tXiaXHSMtGDI7ITK3aN4VD1nXyao3eCXaTcq5ycd-qKJeOGQMVesIm8QMx7IDpJlfN9Z_NDh0Gp3g2upZVAOgwNyRfccbahJTDvHD96CKHXU1LxH-I8svlNRuKt1zPk8fBj2VWTmZtcyCKfwWH3GYBRY3wLYaKQ4oMz6qn1MCyLwvl2llLZVJ3k4qCAvYcZgdiaDArA" alt="AI Tool Thumbnail" class="product-image">
+                <div class="product-info">
+                  <h4>AI Content Generator</h4>
+                  <p>AI Tool</p>
+                </div>
+                <span class="product-price">$49.00</span>
+              </div>
+
+              <div class="product-item">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmTgTnlXuSiGs0aairXggF95lZ_ccsq2xlGDsHA0e0VvkiW16J9s9WN-XJveK7ClekM7aj6DZ7aiqK_A5Gby4r99w_3KfzaLMrKqTVUtEKwXlROFMXJp-uXE1D6LgY6vQ4uasCeu7eEKDpwRSxfDSkPUA4M3scG2Zg104qm_AkvTMIvM4CBPnK9smup72ZXLu83Bj4mLwnqZSfw9rs-Ply0U-k6PjyTUXDK9PLwjUSZo_pCDLvQ7yyyxKUQoGMN158vCUs9woANtI" alt="Script Thumbnail" class="product-image">
+                <div class="product-info">
+                  <h4>Social Media API</h4>
+                  <p>Script</p>
+                </div>
+                <span class=
