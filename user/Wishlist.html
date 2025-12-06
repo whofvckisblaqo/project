@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Blaqo - My Wishlist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <style>
+        :root {
+            /* Light Mode Variables */
+            --primary-color: #4c42ff;
+            --primary-light: #6C63FF;
+            --primary-accent: #3A86FF;
+            --background-light: #F9FAFB;
+            --text-primary: #1F2937;
+            --text-secondary: #6B7280;
+            --card-bg: #FFFFFF;
+            --border-color: #E5E7EB;
+            --hover-bg: #F3F4F6; /* approximation of gray-100 */
+        }
+
+        .dark {
+            /* Dark Mode Variables */
+            --background-light: #100f23; /* background-dark */
+            --text-primary: #F9FAFB; /* text-primary-dark */
+            --text-secondary: #9CA3AF; /* text-secondary-dark */
+            --card-bg: #1F2937; /* card-dark */
+            --border-color: #374151; /* border-dark */
+            --hover-bg: #1F2937; /* approximation of card-dark for hover */
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-primary);
+            min-height: 100vh;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Utility Classes (Replacing common Tailwind utilities) */
+        .relative { position: relative; }
+        .min-h-screen { min-height: 100vh; }
+        .container { width: 100%; margin-left: auto; margin-right: auto; max-width: 1280px; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-wrap { flex-wrap: wrap; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .flex-1 { flex: 1 1 0%; }
+        .flex-grow { flex-grow: 1; }
+        .w-full { width: 100%; }
+        .h-6 { height: 1.5rem; }
+        .w-6 { width: 1.5rem; }
+        .h-8 { height: 2rem; }
+        .w-8 { width: 2rem; }
+        .h-10 { height: 2.5rem; }
+        .h-12 { height: 3rem; }
+        .h-14 { height: 3.5rem; }
+        .w-14 { width: 3.5rem; }
+        .h-4 { height: 1rem; }
+        .w-4 { width: 1rem; }
+        .min-w-0 { min-width: 0; }
+        .min-w-84px { min-width: 84px; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-base { font-size: 1rem; line-height: 1.5rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-10px { font-size: 0.625rem; }
+        .font-bold { font-weight: 700; }
+        .font-medium { font-weight: 500; }
+        .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-xl { border-radius: 0.75rem; }
+        .rounded { border-radius: 0.5rem; }
+        .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .transition-all { transition-property: all; transition-duration: 0.15s; transition-timing-function: ease-in-out; }
+        .transition-opacity { transition-property: opacity; transition-duration: 0.15s; transition-timing-function: ease-in-out; }
+        .transition-colors { transition-property: background-color, border-color, color, fill, stroke; transition-duration: 0.15s; transition-timing-function: ease-in-out; }
+        .opacity-0 { opacity: 0; }
+        .mt-3 { margin-top: 0.75rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-12 { margin-top: 3rem; }
+        .mt-20 { margin-top: 5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .p-4 { padding: 1rem; }
+        .pl-4 { padding-left: 1rem; }
+        .pl-2 { padding-left: 0.5rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .px-2-5 { padding-left: 0.625rem; padding-right: 0.625rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .border-t { border-top: 1px solid var(--border-color); }
+        .border-b { border-bottom: 1px solid var(--border-color); }
+        .border { border: 1px solid var(--border-color); }
+        .text-center { text-align: center; }
+
+        /* Color and Background Utilities */
+        .text-primary { color: var(--primary-color); }
+        .text-primary-light { color: var(--primary-light); }
+        .text-secondary { color: var(--text-secondary); }
+        .bg-card { background-color: var(--card-bg); }
+        .bg-primary-accent { background-color: var(--primary-accent); }
+        .bg-primary-20 { background-color: rgba(76, 66, 255, 0.2); } /* primary/20 */
+        .bg-gradient-primary { background-image: linear-gradient(to right, var(--primary-light), var(--primary-accent)); }
+        .bg-white-80 { background-color: rgba(255, 255, 255, 0.8); }
+        .bg-black-50 { background-color: rgba(0, 0, 0, 0.5); }
+        .text-white { color: #ffffff; }
+        .text-red-500 { color: #ef4444; }
+        .text-green-gradient { background-image: linear-gradient(to right, #34d399, #10b981); } /* green-400 to green-600 */
+        .shadow-primary-30 { box-shadow: 0 10px 15px -3px rgba(76, 66, 255, 0.3), 0 4px 6px -2px rgba(76, 66, 255, 0.05); } /* shadow-primary/30 */
+        .hover-text-primary-light:hover { color: var(--primary-light); }
+        .hover-bg-primary-30:hover { background-color: rgba(76, 66, 255, 0.3); } /* hover:bg-primary/30 */
+        .hover-opacity-90:hover { opacity: 0.9; }
+        .group-hover-scale-105:hover { transform: scale(1.05); }
+        .group-hover-opacity-100:hover { opacity: 1; }
+
+        /* Custom Components */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(3px);
+            background-color: var(--background-light, #F9FAFB);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .dark .top-nav {
+            background-color: var(--background-light, #100f23);
+        }
+
+        /* Search Input */
+        .search-container {
+            display: none; /* hidden by default */
+            position: relative;
+            border-radius: 9999px;
+            border: 1px solid var(--border-color);
+            background-color: var(--background-light);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        .dark .search-container {
+            background-color: var(--background-light);
+        }
+        .search-input {
+            width: 100%;
+            min-width: 0;
+            flex: 1 1 0%;
+            resize: none;
+            overflow: hidden;
+            border-radius: 9999px;
+            background-color: transparent;
+            color: var(--text-primary);
+            outline: none;
+            border: none;
+            height: 2.5rem;
+            padding: 0 1rem 0 0.5rem;
+            font-size: 0.875rem;
+        }
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        /* Icon Button */
+        .icon-btn {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-hidden:var(--primary-color);
+            border-radius: 9999px;
+            height: 2.5rem;
+            background-color: transparent;
+            color: var(--text-primary);
+            min-width: 0;
+            padding: 0 0.625rem;
+            transition: background-color 0.15s ease-in-out;
+        }
+        .icon-btn:hover {
+            background-color: var(--hover-bg);
+        }
+        .icon-btn-cart .cart-badge {
+            position: absolute;
+            top: 0.25rem;
+            right: 0.25rem;
+            display: flex;
+            height: 1rem;
+            width: 1rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background-color: var(--primary-accent);
+            color: white;
+            font-size: 0.625rem;
+            font-weight: 700;
+        }
+
+        /* Primary Button */
+        .btn-primary {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-hidden:var(--primary-color);
+            border-radius: 9999px;
+            height: 3rem;
+            padding: 0 1.5rem;
+            background-image: linear-gradient(to right, var(--primary-light), var(--primary-accent));
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 700;
+            box-shadow: 0 10px 15px -3px rgba(76, 66, 255, 0.3), 0 4px 6px -2px rgba(76, 66, 255, 0.05);
+            transition: opacity 0.15s ease-in-out;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+        /* Secondary Button (Add to Cart) */
+        .btn-secondary {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            height: 2.5rem;
+            padding: 0 1rem;
+            background-color: rgba(76, 66, 255, 0.2);
+            color: var(--primary-color);
+            font-size: 0.875rem;
+            font-weight: 700;
+            transition: background-color 0.15s ease-in-out;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(76, 66, 255, 0.3);
+        }
+
+        /* Wishlist Page Specific */
+        .page-heading {
+            position: relative;
+            font-weight: 700;
+            letter-spacing: -0.025em; /* tracking-tight */
+        }
+        .page-heading-underline {
+            position: absolute;
+            bottom: -0.25rem; /* -bottom-1 */
+            left: 0;
+            height: 0.25rem; /* h-1 */
+            width: 5rem; /* w-20 */
+            background-image: linear-gradient(to right, var(--primary-light), var(--primary-accent));
+            border-radius: 9999px;
+        }
+
+        /* Product Card */
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .product-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .product-card-image {
+            position: relative;
+        }
+        .product-card-image div {
+            width: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            aspect-ratio: 16 / 9;
+            background-size: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+        .product-card:hover .product-card-image div {
+            transform: scale(1.05);
+        }
+        .remove-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2rem;
+            width: 2rem;
+            border-radius: 9999px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #ef4444;
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            transition: opacity 0.15s ease-in-out;
+        }
+        .dark .remove-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .product-card:hover .remove-btn {
+            opacity: 1;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+        }
+        .footer-link {
+            color: var(--text-secondary);
+            transition: color 0.15s ease-in-out;
+        }
+        .footer-link:hover {
+            color: var(--primary-light);
+        }
+
+        /* Floating Action Button (FAB) */
+        .fab {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 50;
+            display: flex;
+            width: 3.5rem;
+            height: 3.5rem;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 9999px;
+            background-image: linear-gradient(to right, #34d399, #10b981);
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: opacity 0.15s ease-in-out;
+        }
+
+        /* Media Queries */
+
+        /* Small screens (sm: >= 640px) */
+        @media (min-width: 640px) {
+            .search-container { display: flex; align-items: stretch; }
+        }
+
+        /* Medium screens (md: >= 768px) */
+        @media (min-width: 768px) {
+            .grid-md-4-cols > div { grid-column: span 1 / span 1; }
+            .grid-cols-2-md { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .grid-cols-4-md { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .search-input { width: auto; max-width: 18rem; }
+        }
+
+        /* Large screens (lg: >= 1024px) */
+        @media (min-width: 1024px) {
+            .hidden-lg { display: none; }
+            .lg-flex { display: flex; }
+            .grid-cols-3-lg { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+        
+        /* Extra Large screens (xl: >= 1280px) */
+        @media (min-width: 1280px) {
+            .grid-cols-4-xl { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+
+        /* Grid */
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1.5rem; /* gap-6 */
+        }
+        @media (min-width: 640px) {
+            .image-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (min-width: 1024px) {
+            .image-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+        @media (min-width: 1280px) {
+            .image-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        }
+    </style>
+</head>
+<body class="dark-mode-toggle">
+<div class="relative min-h-screen">
+    <header class="top-nav">
+        <nav class="container mx-auto px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-2 text-primary">
+                    <svg class="h-6 w-6 text-primary" fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"></path>
+                    </svg>
+                    <h1 class="text-xl font-bold">Blaqo</h1>
+                </div>
+                <div class="search-container flex items-center h-10">
+                    <span class="material-symbols-outlined text-secondary pl-4">search</span>
+                    <input class="search-input" placeholder="Search for anything..." value=""/>
+                </div>
+            </div>
+            <div class="hidden lg-flex items-center gap-6">
+                <a class="text-sm font-medium hover-text-primary-light" href="#">AI Tools</a>
+                <a class="text-sm font-medium hover-text-primary-light" href="#">Websites</a>
+                <a class="text-sm font-medium hover-text-primary-light" href="#">Scripts</a>
+                <a class="text-sm font-medium hover-text-primary-light" href="#">Apps</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="icon-btn">
+                    <span class="material-symbols-outlined text-primary-light">favorite</span>
+                </button>
+                <button class="relative icon-btn icon-btn-cart">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="cart-badge">2</span>
+                </button>
+                <button class="hidden min-w-84px sm:flex cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 bg-transparent border border-border-color text-sm font-bold leading-normal hover:bg-hover-bg">
+                    <span class="truncate">Login</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <main class="container mx-auto px-6 py-12">
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+            <div class="flex flex-col gap-2">
+                <h2 class="text-4xl page-heading">My Wishlist
+                    <span class="page-heading-underline"></span>
+                </h2>
+                <p class="text-secondary text-base">You have 4 items in your wishlist</p>
+            </div>
+            <button class="min-w-84px btn-primary">
+                <span class="truncate">Move All to Cart</span>
+            </button>
+        </div>
+        <div class="image-grid">
+            <div class="group product-card">
+                <div class="product-card-image">
+                    <div data-alt="Abstract purple and blue gradient representing an AI tool" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCUB2ZaVnrwzf5yoP_KzI78ZN3soC1jQriMidAGFqUM-s99Nc7jQwvbe-fIXoilVr_weRjjldAcHYuCUxdoB0l0tDrgqEkn_nTwUtuJHxzLlmkY2z3S625Usb5440Qzjx_SGwKCqjfYs-WRewUf8GILULA_ba6UzbgoWWu9ze753cDUf2Q0leZKyhsBx48O4ye9N_eDND-LPND5wdqPK8K7cEC_glI7XivpiPwwupwfVHWIgb-88R_PfRWKBZA_zgWYSkQU5KHPagQ");'></div>
+                    <button class="remove-btn">
+                        <span class="material-symbols-outlined text-xl">favorite</span>
+                    </button>
+                </div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <p class="text-sm font-medium text-primary-light">API</p>
+                    <p class="text-lg font-bold flex-grow text-primary">Quantum AI Chatbot API</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <p class="text-xl font-bold text-primary">$99.00</p>
+                        <button class="btn-secondary">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="group product-card">
+                <div class="product-card-image">
+                    <div data-alt="A modern e-commerce website layout displayed on a screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuApRqQ4EJmIe8n6AyhD4AzrxpRaQQjLuS4hb8pmccRYoXj3WpDePM6TXoYDMUubl1i91e_lJ-AZPHOeocqcLEs4kB_yzlnZLIrEUMGg2wRgOk0SRJCyUWhM4EGD4SO8YvkTdO9GAIjHoE3AB8lDyNBSp1wPtCGxLpLV7fNA7Z-ImyIlEWa2-VdD_lNbSTMfHDUdAEcYcWaHKAhNohD_GuE2r5-rTpEXnReEh-pf-66SNRBqz29KEHdqKShRAWzH8tZH_ZULM-RIWgo");'></div>
+                    <button class="remove-btn">
+                        <span class="material-symbols-outlined text-xl">favorite</span>
+                    </button>
+                </div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <p class="text-sm font-medium text-primary-light">Website Template</p>
+                    <p class="text-lg font-bold flex-grow text-primary">E-commerce Website Template</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <p class="text-xl font-bold text-primary">$49.00</p>
+                        <button class="btn-secondary">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="group product-card">
+                <div class="product-card-image">
+                    <div data-alt="Lines of code on a dark screen representing a script" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjA3Go4-vWz1Ixq4OHrB3m3xhJULEuE-VraJe8e7OvyDKHGlWre5rilRGpC_fC_W8vcDJ0rju1av3QDkbAvkrat7F5XaoqrlJ9d_RUtC9s8wzlNRB4njGNlctF8jZcT4Y_KEzwkLCFKDuB7Nkxn5nshrnEDI0jbmy3NPjdKGnitfZDKygBCbuJhzU_g3TG9p7LQGo9ILl1dKl0N-P9WKj7nRfvFPfh012lfILQWL3kd925lYVA2U1H-zOL2Y1Ilw42m2JaW8N9HWI");'></div>
+                    <button class="remove-btn">
+                        <span class="material-symbols-outlined text-xl">favorite</span>
+                    </button>
+                </div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <p class="text-sm font-medium text-primary-light">Script</p>
+                    <p class="text-lg font-bold flex-grow text-primary">Data Analytics Script</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <p class="text-xl font-bold text-primary">$29.00</p>
+                        <button class="btn-secondary">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="group product-card">
+                <div class="product-card-image">
+                    <div data-alt="A project management app dashboard with charts and tasks" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBFEh3NcOcPFXWi_HjSO6Dl79ay-FDhGOexRzcPZ-Xpr7ZRCkdYC-GC_i208TF00up2c_MgPK-XCQ5Lq0JR4SYej0gpzynXPo_i6Mj9MduBSX1SFZBssyXs7-QUdm85dRQwpoSVVbgXMWmabngugbIEBD7YHDmtWIVs9gwAEvYlm9i-32YPG6Invp9DdYlKyKFFGLtpVwQiNcIbFSBHIQURAWc5HS8h4q9dM-QHaX32jLOpqDdASQAa8Fl3Z9_dpriSqiCetZRGLbo");'></div>
+                    <button class="remove-btn">
+                        <span class="material-symbols-outlined text-xl">favorite</span>
+                    </button>
+                </div>
+                <div class="p-4 flex flex-col flex-grow">
+                    <p class="text-sm font-medium text-primary-light">App</p>
+                    <p class="text-lg font-bold flex-grow text-primary">Project Management App</p>
+                    <div class="flex justify-between items-center mt-4">
+                        <p class="text-xl font-bold text-primary">$129.00</p>
+                        <button class="btn-secondary">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </main>
+    <footer class="footer mt-20">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2 md-col-span-1">
+                    <div class="flex items-center gap-2 text-primary">
+                        <svg class="h-6 w-6 text-primary" fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"></path>
+                        </svg>
+                        <h1 class="text-xl font-bold">Blaqo</h1>
+                    </div>
+                    <p class="mt-4 text-sm text-secondary">The best digital marketplace for tools that power your creativity and business.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">About Us</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a class="footer-link" href="#">Our Story</a></li>
+                        <li><a class="footer-link" href="#">Careers</a></li>
+                        <li><a class="footer-link" href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Help Center</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a class="footer-link" href="#">Contact Us</a></li>
+                        <li><a class="footer-link" href="#">FAQ</a></li>
+                        <li><a class="footer-link" href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a class="footer-link" href="#">Terms of Service</a></li>
+                        <li><a class="footer-link" href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-border-color flex flex-col sm:flex-row justify-between items-center">
+                <p class="text-sm text-secondary">© 2025 Blaqo. All Rights Reserved.</p>
+                <div class="flex gap-4 mt-4 sm:mt-0">
+                    <a class="text-secondary hover-text-primary-light" data-alt="Twitter social media link" href="#">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+                    </a>
+                    <a class="text-secondary hover-text-primary-light" data-alt="GitHub social media link" href="#">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<div class="fab">
+    <svg class="w-8 h-8" fill="currentColor" viewbox="0 0 24 24"><path d="M16.75 13.96c.25.13.41.2.52.28.11.08.18.12.21.15.02.03.03.03.03.04.03.03.03.03.02.04-.01.01-.06.07-.16.19s-.21.26-.32.39a.78.78 0 01-.33.25.78.78 0 01-.42.08c-.26 0-.52-.09-.72-.28s-.34-.44-.42-.75c-.02-.09-.03-.21-.03-.36v-.32c0-.18.02-.35.05-.51.03-.16.09-.3.18-.42s.2-.22.34-.31c.13-.09.3-.16.48-.21h.12c.23.01.44.05.63.13.2.09.38.21.52.36m-5.26 2.5c.25.13.41.2.52.28.11.08.18.12.21.15.02.03.03.03.03.04.03.03.03.03.02.04-.01.01-.06.07-.16.19s-.21.26-.32.39a.78.78 0 01-.33.25.78.78 0 01-.42.08c-.26 0-.52-.09-.72-.28s-.34-.44-.42-.75c-.02-.09-.03-.21-.03-.36v-.32c0-.18.02-.35.05-.51.03-.16.09-.3.18-.42s.2-.22.34-.31c.13-.09.3-.16.48-.21h.12c.23.01.44.05.63.13.2.09.38.21.52.36m-1.74-7.23a.78.78 0 01.33-.25.78.78 0 01.42-.08c.26 0 .52.09.72.28.2.19.34.44.42.75.02.09.03.21.03.36v.32c0 .18-.02.35-.05.51-.03.16-.09.3-.18.42s-.2.22-.34.31c-.13-.09-.3.16-.48.21h-.12c-.23-.01-.44-.05-.63-.13a.98.98 0 01-.52-.36c-.25-.13-.41-.2-.52-.28a.82.82 0 01-.21-.15.35.35 0 01-.06-.08.13.13 0 01-.02-.04c-.01-.01-.01-.02 0-.03.01-.01.06-.07.16-.19s.21-.26.32-.39M12 2a10 10 0 00-10 10 10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2m0 18a8 8 0 01-8-8 8 8 0 018-8 8 8 0 018 8 8 8 0 01-8 8z"></path></svg>
+</div>
+</body>
+</html>

@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo Marketplace | Build Your Digital Empire</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+        CSS VARIABLES
+        ========================================= */
+        :root {
+            --primary-color: #2b7bff; /* Bright Blue */
+            --primary-hover: #496eff;
+            --dark-bg: #0b0b0b;
+            --mid-dark-bg: #151515;
+            --text-light: #fff;
+            --text-muted: #bdbdbd;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --blur-bg: rgba(0, 0, 0, 0.7);
+            --accent-glow: 0 0 15px rgba(43, 123, 255, 0.5);
+            --footer-primary-bg: #1c2632;
+            --footer-secondary-bg: #131a22;
+            --footer-link-hover: #ff9900;
+        }
+
+        /* =========================================
+        GLOBAL STYLES
+        ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            color: var(--text-light);
+            background: radial-gradient(1200px 600px at 20% 10%, rgba(255,255,255,0.02), transparent 8%),
+                        radial-gradient(800px 400px at 80% 90%, rgba(255,255,255,0.01), transparent 6%),
+                        linear-gradient(180deg, var(--dark-bg), var(--mid-dark-bg));
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-light);
+        }
+
+        /* UTILITY */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* =========================================
+        HEADER & NAVIGATION
+        ========================================= */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: var(--blur-bg);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+        }
+
+        header nav a {
+            color: var(--text-light);
+            margin: 0 15px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        header nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        header nav a:hover::after {
+            width: 100%;
+        }
+
+        .signup-btn {
+            /* Inherits styles from .btn and .btn-primary */
+            font-weight: 700;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            padding: 10px 15px;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            z-index: 1001;
+            cursor: pointer;
+        }
+
+        /* =========================================
+        HERO SECTION
+        ========================================= */
+        .hero {
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+
+        .hero-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeUp 0.9s ease both;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+        
+        .hero-title span {
+            color: var(--primary-color);
+        }
+
+        .hero-sub {
+            color: var(--text-muted);
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* =========================================
+        MAIN CONTENT SECTIONS
+        ========================================= */
+        main {
+            flex-grow: 1;
+        }
+
+        /* SEARCH BAR */
+        .search-bar-section {
+            padding: 20px 5%;
+            text-align: center;
+        }
+        
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-bar input {
+            padding: 15px 25px;
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            background: var(--card-bg);
+            color: var(--text-light);
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-bar button {
+            padding: 15px 25px;
+            border: none;
+            background: var(--primary-color);
+            color: var(--text-light);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background: var(--primary-hover);
+        }
+
+        /* CAROUSEL */
+        .carousel-container {
+            padding: 0 5% 40px;
+        }
+        
+        .carousel {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            display: flex;
+            gap: 20px;
+            padding-bottom: 10px; /* Space for scrollbar */
+        }
+
+        .carousel-slide {
+            display: flex;
+            gap: 20px;
+        }
+
+        .carousel-icon {
+            flex: 0 0 auto;
+            min-width: 180px;
+            height: 100px;
+            background: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            scroll-snap-align: start;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .carousel-icon i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .carousel-icon:hover {
+            background: rgba(43, 123, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+        
+        /* PRODUCTS GRID */
+        .section-header {
+            text-align: center;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700;
+            margin: 60px 0 40px;
+        }
+
+        .products-grid-container {
+            padding: 0 5% 60px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--accent-glow);
+        }
+
+        .product-img {
+            height: 200px;
+            width: 100%;
+            background: var(--mid-dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-details {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .product-details h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .product-details p {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary-color);
+            color: var(--text-light);
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+        
+        /* HOW IT WORKS */
+        .how-it-works {
+            padding: 80px 5% 60px;
+            background: rgba(255, 255, 255, 0.01);
+            margin: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .how-it-works .section-title {
+            margin-bottom: 60px;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 70px; /* Align with center of circle */
+            left: calc(50% + 70px); 
+            width: calc(100% - 140px - 60px); /* Adjust based on circle size and gap */
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .icon-circle {
+            width: 140px;
+            height: 140px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .icon-circle:hover {
+            background: rgba(43, 123, 255, 0.2);
+            box-shadow: 0 0 10px rgba(43, 123, 255, 0.5);
+        }
+
+        .icon-circle i {
+            font-size: 50px;
+            color: var(--primary-color);
+        }
+
+        .step-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+        
+        /* TESTIMONIALS */
+        .testimonials {
+            padding: 60px 5% 80px;
+        }
+        
+        .testimonials .section-title {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            color: var(--text-light);
+            font-weight: 900;
+            text-align: center;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--accent-glow);
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        .author-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .author-title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* =========================================
+        FOOTER
+        ========================================= */
+        .site-footer {
+            background-color: var(--footer-primary-bg);
+            color: var(--text-muted);
+            padding-top: 50px;
+            border-top: 5px solid var(--primary-color);
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5% 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-section {
+            padding: 15px;
+            flex: 1 1 200px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-hover);
+        }
+        
+        .footer-newsletter {
+            flex: 1 1 300px;
+            padding: 15px;
+        }
+
+        .footer-newsletter h3 {
+            color: var(--primary-color);
+        }
+
+        .footer-newsletter p {
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            background-color: var(--card-bg);
+            color: var(--text-light);
+            outline: none;
+        }
+        
+        .newsletter-form input[type="email"]::placeholder {
+            color: var(--text-muted);
+        }
+
+        .newsletter-form button {
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        .footer-bottom {
+            background-color: var(--footer-secondary-bg);
+            padding: 20px 5% 10px;
+            text-align: center;
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            color: var(--text-light);
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .footer-copyright {
+            font-size: 0.85em;
+            color: #888;
+        }
+        
+        .footer-copyright a {
+            color: var(--text-muted);
+        }
+
+        /* =========================================
+        ANIMATIONS
+        ========================================= */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =========================================
+        RESPONSIVE DESIGN
+        ========================================= */
+        @media (max-width: 992px) {
+            .steps {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .step {
+                flex: 1 1 45%; /* Allow two steps per row */
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding-right: 80px; /* Space for the toggle button */
+            }
+
+            header nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                background: var(--blur-bg);
+                padding: 10px 0;
+            }
+            
+            header nav a {
+                margin: 10px 0;
+                padding: 5px 0;
+            }
+            
+            header nav a::after {
+                display: none;
+            }
+
+            .signup-btn {
+                display: none; /* Hide button in header, show in mobile menu if needed */
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+            
+            /* Toggle menu functionality (using a checkbox/JS is better, but CSS-only via sibling selector is common) */
+            /* Assuming simple JS implementation for class toggle for brevity */
+
+            .hero {
+                padding: 60px 20px 40px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                border-radius: 8px;
+            }
+
+            .search-bar input, .search-bar button {
+                border-radius: 8px;
+            }
+            
+            .search-bar input {
+                border-radius: 8px 8px 0 0;
+            }
+            
+            .search-bar button {
+                border-radius: 0 0 8px 8px;
+            }
+            
+            .carousel-icon {
+                min-width: 150px;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                gap: 40px;
+            }
+            
+            .step {
+                flex: 1 1 100%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-section, .footer-newsletter {
+                text-align: center;
+                padding: 20px 0;
+                border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+            }
+        }
+        
+        @media (max-width: 480px) {
+             .hero-title {
+                font-size: 2.5rem;
+             }
+             .hero-sub {
+                font-size: 1rem;
+             }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Blaqo</div>
+
+        <nav id="main-nav">
+            <a href="#">Home</a>
+            <a href="#">Categories</a>
+            <a href="#">Deals</a>
+            <a href="#">Contact</a>
+   
+        </nav>
+
+        <a href="#" class="btn btn-primary signup-btn desktop-only">Signup/Login</a>
+        
+        <button class="menu-toggle" aria-label="Toggle navigation" id="nav-toggle">☰</button>
+    </header>
+
+    <div class="hero">
+        <div class="hero-inner">
+            <h1 class="hero-title">
+                Build Your Digital Empire with<br>
+                <span>Ready-to-Use Tools</span>.
+            </h1>
+
+            <p class="hero-sub">
+                Buy ready-made websites, APIs, apps, and courses to launch your business instantly and affordably.
+            </p>
+
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#" role="button">Browse Marketplace</a>
+                <a class="btn btn-secondary" href="#" role="button">Become a Seller</a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        
+        <div class="search-bar-section">
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products, APIs, themes, courses..." aria-label="Search for products">
+                <button>Search</button>
+            </div>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-slide">
+                   <div class="carousel-icon"><i class="fa-solid fa-code"></i>APIs & Scripts</div>
+                   <div class="carousel-icon"><i class="fa-solid fa-globe"></i>Ready Websites</div>
+                   <div class="carousel-icon"><i class="fa-solid fa-mobile-screen"></i>Mobile Apps</div>
+                   <div class="carousel-icon"><i class="fa-solid fa-robot"></i>AI Tools</div>
+                   <div class="carousel-icon"><i class="fa-solid fa-graduation-cap"></i>Online Courses</div>
+                   <div class="carousel-icon"><i class="fa-solid fa-chart-line"></i>Business Bots</div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-header">🔥 Featured Products</h2>
+        
+        <div class="products-grid-container">
+            <div class="products-grid">
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/400x200/2b7bff/FFFFFF?text=E-commerce+Course" alt="e-commerce course">
+                    </div>
+                    <div class="product-details">
+                        <h3>Complete E-commerce Course</h3>
+                        <p>$170</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/400x200/496eff/FFFFFF?text=Social+Automation+Tool" alt="social media automations">
+                    </div>
+                    <div class="product-details">
+                        <h3>Social Media Automation Bot</h3>
+                        <p>$150</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/400x200/2b7bff/FFFFFF?text=AI+Content+Generator" alt="AI content tool">
+                    </div>
+                    <div class="product-details">
+                        <h3>AI Content Generation Tool</h3>
+                        <p>$180</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/400x200/496eff/FFFFFF?text=SaaS+Subscription+Website" alt="SaaS Website Template">
+                    </div>
+                    <div class="product-details">
+                        <h3>SaaS Subscription Platform</h3>
+                        <p>$249</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <section class="how-it-works">
+            <h2 class="section-title">Your 4 Steps to Digital Launch</h2>
+            <div class="container">
+                <div class="steps">
+                    <div class="step">
+                        <div class="icon-circle">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="step-number">1. Browse</h3>
+                        <p class="step-description">Explore thousands of pre-built digital products in our marketplace.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="icon-circle">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h3 class="step-number">2. Buy</h3>
+                        <p class="step-description">Purchase securely and instantly download your ready-made solution.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="icon-circle">
+                            <i class="fas fa-wrench"></i>
+                        </div>
+                        <h3 class="step-number">3. Customize</h3>
+                        <p class="step-description">Easily customize the product code to fit your brand and specific needs.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="icon-circle">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="step-number">4. Launch</h3>
+                        <p class="step-description">Go live and start your new profitable digital business venture today.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2 class="section-title">Loved by Digital Innovators</h2>
+            <div class="container">
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Blaqo saved me months of development time. I found the perfect script for my project and launched in a week! Highly efficient."</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.pravatar.cc/150?img=5" alt="Sarah L." class="author-image">
+                            <div class="author-info">
+                                <h4 class="author-name">Sarah L.</h4>
+                                <p class="author-title">Startup Founder</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"The quality of the websites available is top-notch. I bought a template and had my portfolio online the same day. Incredible value!"</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.pravatar.cc/150?img=12" alt="Mike R." class="author-image">
+                            <div class="author-info">
+                                <h4 class="author-name">Mike R.</h4>
+                                <p class="author-title">Freelance Designer</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"As a seller, the platform is fantastic. It's easy to list my products, and the community is very supportive. They handle all the payment processing securely."</p>
+                        <div class="testimonial-author">
+                            <img src="https://i.pravatar.cc/150?img=9" alt="Chloe T." class="author-image">
+                            <div class="author-info">
+                                <h4 class="author-name">Chloe T.</h4>
+                                <p class="author-title">Developer & Seller</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+
+            <div class="footer-section">
+                <h3>Product</h3>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Marketplace Pricing</a></li>
+                    <li><a href="#">Seller Integrations</a></li>
+                    <li><a href="#">Partner API</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Blaqo</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Submit a Ticket</a></li>
+                    <li><a href="#">Product Documentation</a></li>
+                    <li><a href="#">Platform Status</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest deals and new digital assets.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required aria-label="Email address for newsletter">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            
+        </div>
+
+        <div class="footer-bottom">
+            
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> 
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a> 
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a> 
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> 
+            </div>
+
+            <div class="footer-copyright">
+                &copy; 2025 Blaqo Marketplace. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script>
+        document.getElementById('nav-toggle').onclick = function() {
+            var nav = document.getElementById('main-nav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>

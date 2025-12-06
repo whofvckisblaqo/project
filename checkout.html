@@ -1,639 +1,825 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blaqo Checkout</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo Checkout</title>
+    <link rel="stylesheet" href="checkout-styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <div class="header-left">
+                    <div class="logo">
+                        <span class="logo-icon">🌐</span>
+                        <h2 class="logo-text">Blaqo</h2>
+                    </div>
+                    <nav class="nav-menu">
+                        <a href="#" class="nav-link">Categories</a>
+                        <a href="#" class="nav-link">AI Tools</a>
+                        <a href="#" class="nav-link">Scripts</a>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="search" placeholder="Search for products..." class="search-input">
+                    </div>
+                    <button class="cart-button">
+                        🛒
+                        <span class="cart-badge">2</span>
+                    </button>
+                    <button class="login-button">Login</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="checkout-container">
+                <!-- Left Column: Payment Methods -->
+                <div class="payment-section">
+                    <div class="page-heading">
+                        <h1 class="page-title">Checkout</h1>
+                    </div>
+
+                    <h2 class="section-title">Choose how you want to pay</h2>
+
+                    <div class="payment-methods">
+                        <!-- Payment Method 1 -->
+                        <label class="payment-option">
+                            <input type="radio" name="payment-method" class="payment-radio" checked>
+                            <div class="payment-content">
+                                <span class="payment-icon">💳</span>
+                                <div class="payment-info">
+                                    <p class="payment-name">Credit/Debit Card</p>
+                                    <p class="payment-description">Pay with Visa, Mastercard, and more.</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Payment Method 2 -->
+                        <label class="payment-option">
+                            <input type="radio" name="payment-method" class="payment-radio">
+                            <div class="payment-content">
+                                <span class="payment-icon">₿</span>
+                                <div class="payment-info">
+                                    <p class="payment-name">Cryptocurrency</p>
+                                    <p class="payment-description">Pay with Bitcoin, Ethereum, and others.</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Payment Method 3 -->
+                        <label class="payment-option">
+                            <input type="radio" name="payment-method" class="payment-radio">
+                            <div class="payment-content">
+                                <div class="payment-logo">FW</div>
+                                <div class="payment-info">
+                                    <p class="payment-name">Flutterwave</p>
+                                    <p class="payment-description">Secure payments for African businesses.</p>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Payment Method 4 -->
+                        <label class="payment-option">
+                            <input type="radio" name="payment-method" class="payment-radio">
+                            <div class="payment-content">
+                                <div class="payment-logo">PS</div>
+                                <div class="payment-info">
+                                    <p class="payment-name">Paystack</p>
+                                    <p class="payment-description">Modern online and offline payments for Africa.</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="pay-button-wrapper">
+                        <button class="pay-button">Pay Now - $98.00</button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Order Summary -->
+                <aside class="summary-section">
+                    <div class="summary-card">
+                        <h2 class="summary-title">Order Summary</h2>
+
+                        <div class="order-items">
+                            <!-- Item 1 -->
+                            <div class="order-item">
+                                <div class="item-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)"></div>
+                                <div class="item-details">
+                                    <p class="item-name">AI Content Generator</p>
+                                    <p class="item-category">AI Tool</p>
+                                </div>
+                                <p class="item-price">$49.00</p>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="order-item">
+                                <div class="item-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"></div>
+                                <div class="item-details">
+                                    <p class="item-name">Social Media API</p>
+                                    <p class="item-category">Script</p>
+                                </div>
+                                <p class="item-price">$49.00</p>
+                            </div>
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-breakdown">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span>$98.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Discount</span>
+                                <span class="discount-amount">-$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-total">
+                            <span class="total-label">Total</span>
+                            <span class="total-amount">$98.00</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h3 class="footer-heading">About</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Blaqo</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="footer-heading">Help</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Help & FAQ</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="footer-heading">Legal</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="footer-heading">Connect</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-icon">🐦</a>
+                            <a href="#" class="social-icon">💻</a>
+                            <a href="#" class="social-icon">💼</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2025 Blaqo. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- WhatsApp Button -->
+        <button class="whatsapp-button">
+            <svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.887-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+        </button>
+    </div>
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Space Grotesk', sans-serif;
-  background-color: #f6f5f8;
-  color: #374151;
-  line-height: 1.6;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #f6f5f8;
+    color: #374151;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1rem;
+.page-container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-/* Header Styles */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background-color: rgba(246, 245, 248, 0.8);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid #E5E7EB;
+/* Header */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    background-color: rgba(246, 245, 248, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #E5E7EB;
 }
 
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 4rem;
+.header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
 }
 
-.logo-section {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+@media (min-width: 640px) {
+    .header-container {
+        padding: 0 24px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .header-container {
+        padding: 0 32px;
+    }
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #111827;
-  text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #111827;
 }
 
 .logo-icon {
-  color: #1c0df2;
-  font-size: 1.875rem;
+    font-size: 28px;
+    color: #1c0df2;
 }
 
-.logo h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
 }
 
-nav {
-  display: none;
-  align-items: center;
-  gap: 1.5rem;
+.nav-menu {
+    display: none;
 }
 
-nav a {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  text-decoration: none;
-  transition: color 0.3s;
+@media (min-width: 768px) {
+    .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
 }
 
-nav a:hover {
-  color: #1c0df2;
+.nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex: 1;
-  justify-content: flex-end;
+.nav-link:hover {
+    color: #1c0df2;
 }
 
-.search-wrapper {
-  display: none;
-  position: relative;
-  width: 100%;
-  max-width: 20rem;
+.header-right {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+}
+
+.search-box {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .search-box {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 384px;
+        position: relative;
+    }
 }
 
 .search-icon {
-  position: absolute;
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #4f499c;
+    position: absolute;
+    left: 12px;
+    font-size: 18px;
+    color: #4f499c;
 }
 
 .search-input {
-  width: 100%;
-  padding: 0.5rem 1rem 0.5rem 2.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: rgba(28, 13, 242, 0.1);
-  font-size: 0.875rem;
-  outline: none;
+    width: 100%;
+    padding: 8px 16px 8px 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(28, 13, 242, 0.1);
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s;
 }
 
 .search-input:focus {
-  border: 2px solid rgba(28, 13, 242, 0.5);
+    box-shadow: 0 0 0 2px rgba(28, 13, 242, 0.5);
+}
+
+.search-input::placeholder {
+    color: #6b7280;
 }
 
 .cart-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 0.5rem;
-  background-color: rgba(28, 13, 242, 0.1);
-  color: #4f499c;
-  border: none;
-  cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    background-color: rgba(28, 13, 242, 0.1);
+    color: #4f499c;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cart-button:hover {
+    background-color: rgba(28, 13, 242, 0.15);
 }
 
 .cart-badge {
-  position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 9999px;
-  background-color: #1c0df2;
-  color: white;
-  font-size: 0.75rem;
-  font-weight: 700;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background-color: #1c0df2;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 50%;
 }
 
 .login-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 84px;
-  height: 2.5rem;
-  padding: 0 1rem;
-  border-radius: 0.5rem;
-  background-color: #1c0df2;
-  color: white;
-  font-size: 0.875rem;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.3s;
+    min-width: 84px;
+    height: 40px;
+    padding: 0 16px;
+    background-color: #1c0df2;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s;
 }
 
 .login-button:hover {
-  opacity: 0.9;
+    opacity: 0.9;
 }
 
 /* Main Content */
-main {
-  padding: 2rem 0;
+.main-content {
+    flex-grow: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 32px 16px;
+}
+
+@media (min-width: 640px) {
+    .main-content {
+        padding: 32px 24px;
+    }
+}
+
+@media (min-width: 768px) {
+    .main-content {
+        padding: 64px 32px;
+    }
 }
 
 .checkout-container {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
 }
 
+@media (min-width: 1024px) {
+    .checkout-container {
+        flex-direction: row;
+        gap: 64px;
+    }
+}
+
+/* Payment Section */
 .payment-section {
-  width: 100%;
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .payment-section {
+        width: 66.666667%;
+    }
+}
+
+.page-heading {
+    margin-bottom: 32px;
 }
 
 .page-title {
-  color: #111827;
-  font-size: 2.25rem;
-  font-weight: 900;
-  margin-bottom: 2rem;
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -1.2px;
+    color: #111827;
 }
 
 .section-title {
-  color: #111827;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #111827;
+    margin-bottom: 16px;
 }
 
 .payment-methods {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .payment-option {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  border: 2px solid transparent;
-  border-radius: 0.75rem;
-  background-color: white;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background-color: white;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
-.payment-option:has(input:checked) {
-  border-color: #1c0df2;
-  box-shadow: 0 0 0 2px rgba(28, 13, 242, 0.2);
+.payment-option:has(.payment-radio:checked) {
+    border-color: #1c0df2;
+    box-shadow: 0 0 0 2px rgba(28, 13, 242, 0.2);
 }
 
-.payment-option input[type="radio"] {
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 2px solid #d0cee8;
-  background-color: transparent;
-  appearance: none;
-  border-radius: 50%;
-  cursor: pointer;
-  flex-shrink: 0;
+.payment-radio {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    border: 2px solid #d0cee8;
+    background-color: transparent;
+    appearance: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
 }
 
-.payment-option input[type="radio"]:checked {
-  border-color: #1c0df2;
-  background-image: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27%231c0df2%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3ccircle cx=%278%27 cy=%278%27 r=%273%27/%3e%3c/svg%3e');
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
+.payment-radio:checked {
+    border-color: #1c0df2;
+}
+
+.payment-radio:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: #1c0df2;
+    border-radius: 50%;
 }
 
 .payment-content {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-grow: 1;
 }
 
 .payment-icon {
-  color: #1c0df2;
-  font-size: 1.875rem;
+    font-size: 28px;
+    color: #1c0df2;
 }
 
 .payment-logo {
-  width: 2rem;
-  height: 2rem;
-  object-fit: contain;
-  border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #1c0df2, #764ba2);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 6px;
 }
 
-.payment-info h3 {
-  color: #111827;
-  font-weight: 500;
-  font-size: 1rem;
+.payment-info {
+    display: flex;
+    flex-direction: column;
 }
 
-.payment-info p {
-  font-size: 0.875rem;
-  color: #6B7280;
+.payment-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #111827;
+}
+
+.payment-description {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.pay-button-wrapper {
+    margin-top: 32px;
 }
 
 .pay-button {
-  width: 100%;
-  height: 3.5rem;
-  margin-top: 2rem;
-  border-radius: 0.75rem;
-  background-color: #1c0df2;
-  color: white;
-  font-size: 1.125rem;
-  font-weight: 700;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.3s;
+    width: 100%;
+    height: 56px;
+    padding: 0 20px;
+    background-color: #0df287;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: opacity 0.3s;
 }
 
 .pay-button:hover {
-  opacity: 0.9;
+    opacity: 0.9;
+    background-color: #1c0df2;
 }
 
-/* Order Summary */
+/* Summary Section */
 .summary-section {
-  width: 100%;
+    width: 100%;
 }
 
-.order-summary {
-  position: sticky;
-  top: 6rem;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  background-color: white;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+@media (min-width: 1024px) {
+    .summary-section {
+        width: 33.333333%;
+    }
 }
 
-.product-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.summary-card {
+    position: sticky;
+    top: 96px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.product-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.summary-title {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #111827;
+    margin-bottom: 24px;
 }
 
-.product-image {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 0.5rem;
-  object-fit: cover;
+.order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.product-info {
-  flex-grow: 1;
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
-.product-info h4 {
-  color: #111827;
-  font-weight: 500;
+.item-image {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
-.product-info p {
-  font-size: 0.875rem;
-  color: #6B7280;
+.item-details {
+    flex-grow: 1;
 }
 
-.product-price {
-  color: #111827;
-  font-weight: 700;
+.item-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #111827;
 }
 
-.divider {
-  height: 1px;
-  background-color: #E5E7EB;
-  margin: 1.5rem 0;
+.item-category {
+    font-size: 14px;
+    color: #6b7280;
 }
 
-.price-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.875rem;
+.item-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    flex-shrink: 0;
 }
 
-.price-row {
-  display: flex;
-  justify-content: space-between;
+.summary-divider {
+    height: 1px;
+    background-color: #E5E7EB;
+    margin: 24px 0;
 }
 
-.discount {
-  color: #10B981;
+.summary-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
 }
 
-.total-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #111827;
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.discount-amount {
+    color: #22c55e;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.total-label,
+.total-amount {
+    color: #111827;
 }
 
 /* Footer */
-footer {
-  background-color: white;
-  border-top: 1px solid #E5E7EB;
-  margin-top: 4rem;
+.footer {
+    background-color: white;
+    border-top: 1px solid #E5E7EB;
 }
 
-.footer-content {
-  padding: 3rem 1rem;
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 48px 16px;
+}
+
+@media (min-width: 640px) {
+    .footer-container {
+        padding: 48px 24px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .footer-container {
+        padding: 48px 32px;
+    }
 }
 
 .footer-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
 }
 
-.footer-column h3 {
-  color: #111827;
-  font-weight: 700;
-  margin-bottom: 1rem;
+@media (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
-.footer-column ul {
-  list-style: none;
+.footer-column {
+    display: flex;
+    flex-direction: column;
 }
 
-.footer-column ul li {
-  margin-bottom: 0.5rem;
+.footer-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 16px;
 }
 
-.footer-column a {
-  color: #374151;
-  font-size: 0.875rem;
-  text-decoration: none;
-  transition: color 0.3s;
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.footer-column a:hover {
-  color: #1c0df2;
+.footer-links a {
+    font-size: 14px;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #1c0df2;
 }
 
 .social-links {
-  display: flex;
-  gap: 1rem;
+    display: flex;
+    gap: 16px;
 }
 
-.social-links a {
-  color: #374151;
-  transition: color 0.3s;
+.social-icon {
+    font-size: 24px;
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
-.social-links a:hover {
-  color: #1c0df2;
-}
-
-.social-links svg {
-  width: 1.5rem;
-  height: 1.5rem;
+.social-icon:hover {
+    color: #1c0df2;
 }
 
 .footer-bottom {
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid #E5E7EB;
-  text-align: center;
-  font-size: 0.875rem;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid #E5E7EB;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: #6b7280;
 }
 
 /* WhatsApp Button */
 .whatsapp-button {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 9999px;
-  background-color: #10B981;
-  color: white;
-  border: none;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background-color: #22c55e;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 .whatsapp-button:hover {
-  background-color: #059669;
+    background-color: #16a34a;
 }
 
-.whatsapp-button svg {
-  width: 2rem;
-  height: 2rem;
+.whatsapp-icon {
+    width: 32px;
+    height: 32px;
 }
 
-/* Responsive Design */
-@media (min-width: 640px) {
-  .container {
-    padding: 0 1.5rem;
-  }
-  
-  .search-wrapper {
-    display: block;
-  }
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .summary-card {
+        position: relative;
+        top: 0;
+    }
 }
-
-@media (min-width: 768px) {
-  nav {
-    display: flex;
-  }
-  
-  main {
-    padding: 4rem 0;
-  }
-  
-  .footer-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    padding: 0 2rem;
-  }
-  
-  .checkout-container {
-    flex-direction: row;
-    gap: 3rem;
-  }
-  
-  .payment-section {
-    width: 66.666%;
-  }
-  
-  .summary-section {
-    width: 33.333%;
-  }
-}
-
-@media (min-width: 1280px) {
-  .checkout-container {
-    gap: 4rem;
-  }
-}
-</style>
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <div class="logo-section">
-          <a href="#" class="logo">
-            <span class="material-symbols-outlined logo-icon">hub</span>
-            <h2>Di-Boss</h2>
-          </a>
-          <nav>
-            <a href="#">Categories</a>
-            <a href="#">AI Tools</a>
-            <a href="#">Scripts</a>
-          </nav>
-        </div>
-        <div class="header-actions">
-          <div class="search-wrapper">
-            <span class="material-symbols-outlined search-icon">search</span>
-            <input type="search" class="search-input" placeholder="Search for products...">
-          </div>
-          <button class="cart-button">
-            <span class="material-symbols-outlined">shopping_cart</span>
-            <span class="cart-badge">2</span>
-          </button>
-          <button class="login-button">Login</button>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main>
-    <div class="container">
-      <div class="checkout-container">
-        <!-- Payment Section -->
-        <div class="payment-section">
-          <h1 class="page-title">Checkout</h1>
-          <h2 class="section-title">Choose how you want to pay</h2>
-          
-          <div class="payment-methods">
-            <label class="payment-option">
-              <input type="radio" name="payment-method" checked>
-              <div class="payment-content">
-                <span class="material-symbols-outlined payment-icon">credit_card</span>
-                <div class="payment-info">
-                  <h3>Credit/Debit Card</h3>
-                  <p>Pay with Visa, Mastercard, and more.</p>
-                </div>
-              </div>
-            </label>
-
-            <label class="payment-option">
-              <input type="radio" name="payment-method">
-              <div class="payment-content">
-                <span class="material-symbols-outlined payment-icon">currency_bitcoin</span>
-                <div class="payment-info">
-                  <h3>Cryptocurrency</h3>
-                  <p>Pay with Bitcoin, Ethereum, and others.</p>
-                </div>
-              </div>
-            </label>
-
-            <label class="payment-option">
-              <input type="radio" name="payment-method">
-              <div class="payment-content">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9doYo4Z5Rp_BQoyq4jf1rOHVE1wBaIINNMXTX10Ksg44xDor7US-cJHWVv3T6c27EG9Emt7qHPE72-ofXJw05CtWm5RjhaC4Voxwrto0VyGIyC0_cGQDji5jY_Ac936LKAg-r8YrWWS4ZgT2dxL6FrovasrEhnWtzax6cFCdm6EdGDA0hWITzjFOFXA9Et4C1e0iMyAbOC30Ey4jXc9VTmKEH1FG3qPmD_Bo5ZORpBexvTuDYy8U2eSgGG7H5vk_YSpZHCXFuhCA" alt="Flutterwave Logo" class="payment-logo">
-                <div class="payment-info">
-                  <h3>Flutterwave</h3>
-                  <p>Secure payments for African businesses.</p>
-                </div>
-              </div>
-            </label>
-
-            <label class="payment-option">
-              <input type="radio" name="payment-method">
-              <div class="payment-content">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI_xkR9l7sDTziamKEJ--qBbOLfOgXewJCchyYcU9TAj40MIOxidTVbRCrP0Acp8ynZXTNcZjsFjjlU0Z9qygcIcV_G7F4X4w_3r93i9quTeWecEk_tZL6hRQyxbCzsJHUQu5xaAahVe384XJ0wwECzDG2uPwX7LrFWABsTuWV5C3mG8nkS4XsLYVV2oC-jZvhVO95kOisHNiIy9yOWj7cfPtCKGxjiiMZgBsI12iaY_fvf7tLYcLzGPOsTqcOWP4Fuz8VsRI5A08" alt="Paystack Logo" class="payment-logo">
-                <div class="payment-info">
-                  <h3>Paystack</h3>
-                  <p>Modern online and offline payments for Africa.</p>
-                </div>
-              </div>
-            </label>
-          </div>
-
-          <button class="pay-button">Pay Now - $98.00</button>
-        </div>
-
-        <!-- Order Summary -->
-        <div class="summary-section">
-          <div class="order-summary">
-            <h2 class="section-title">Order Summary</h2>
-            
-            <div class="product-list">
-              <div class="product-item">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4YEzkQrU9WWnyuvvPN0gpcEmQOf_Ji6k924s48nnZ1aLnv3iKcB0218Gx_mvDK03zzmw3tXiaXHSMtGDI7ITK3aN4VD1nXyao3eCXaTcq5ycd-qKJeOGQMVesIm8QMx7IDpJlfN9Z_NDh0Gp3g2upZVAOgwNyRfccbahJTDvHD96CKHXU1LxH-I8svlNRuKt1zPk8fBj2VWTmZtcyCKfwWH3GYBRY3wLYaKQ4oMz6qn1MCyLwvl2llLZVJ3k4qCAvYcZgdiaDArA" alt="AI Tool Thumbnail" class="product-image">
-                <div class="product-info">
-                  <h4>AI Content Generator</h4>
-                  <p>AI Tool</p>
-                </div>
-                <span class="product-price">$49.00</span>
-              </div>
-
-              <div class="product-item">
-                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmTgTnlXuSiGs0aairXggF95lZ_ccsq2xlGDsHA0e0VvkiW16J9s9WN-XJveK7ClekM7aj6DZ7aiqK_A5Gby4r99w_3KfzaLMrKqTVUtEKwXlROFMXJp-uXE1D6LgY6vQ4uasCeu7eEKDpwRSxfDSkPUA4M3scG2Zg104qm_AkvTMIvM4CBPnK9smup72ZXLu83Bj4mLwnqZSfw9rs-Ply0U-k6PjyTUXDK9PLwjUSZo_pCDLvQ7yyyxKUQoGMN158vCUs9woANtI" alt="Script Thumbnail" class="product-image">
-                <div class="product-info">
-                  <h4>Social Media API</h4>
-                  <p>Script</p>
-                </div>
-                <span class=
+    </style>
+</body>
+</html>

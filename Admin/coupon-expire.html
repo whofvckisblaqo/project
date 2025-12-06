@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo Admin - Coupons & Discounts Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="coupons-styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="sidebar-top">
+                    <div class="brand-section">
+                        <div class="brand-logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBVU-zkO7ociZfBynRiK8WSsnBthuhmYRIoeFBqhZNi3N4kfQudxqzclx4Gya5If2jX1iJy3ZbBXBt4BEt6Pw0yW7Zpnl1X6ge81dveiRtqS108CdxmK-EHB3J4ruPGc4O5KiH75wARJ85diK3dHqy9j9o9vNcb7WzfNl_hBCSN9CiB0lLQ26D8Jb6tB4R0aXfwh2OGqBIxqdAAeVJx0aNnIQKT8VXs-oUioac2U-KDtMPCa9xAbTu7DTejUJcRcCRNPlwDmiu9OAk');"></div>
+                        <div class="brand-info">
+                            <h1 class="brand-name">Blaqo Admin</h1>
+                            <p class="brand-role">Administrator</p>
+                        </div>
+                    </div>
+
+                    <nav class="nav-menu">
+                        <a href="#" class="nav-link">
+                            <span class="material-symbols-outlined">dashboard</span>
+                            <p>Dashboard</p>
+                        </a>
+                        <a href="#" class="nav-link">
+                            <span class="material-symbols-outlined">inventory_2</span>
+                            <p>Products</p>
+                        </a>
+                        <a href="#" class="nav-link">
+                            <span class="material-symbols-outlined">receipt_long</span>
+                            <p>Orders</p>
+                        </a>
+                        <a href="#" class="nav-link active">
+                            <span class="material-symbols-outlined">confirmation_number</span>
+                            <p>Coupons</p>
+                        </a>
+                        <a href="#" class="nav-link">
+                            <span class="material-symbols-outlined">settings</span>
+                            <p>Settings</p>
+                        </a>
+                    </nav>
+                </div>
+
+                <div class="sidebar-bottom">
+                    <a href="#" class="nav-link">
+                        <span class="material-symbols-outlined">help_outline</span>
+                        <p>Help Center</p>
+                    </a>
+                    <button class="logout-btn">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span>Logout</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-section">
+            <div class="content-container">
+                <!-- Page Header -->
+                <header class="page-header">
+                    <div class="header-info">
+                        <h1 class="page-title">Coupons & Discounts</h1>
+                        <p class="page-subtitle">Create, manage, and track your promotional coupons.</p>
+                    </div>
+                    <button class="create-btn">
+                        <span class="material-symbols-outlined">add_circle</span>
+                        <span>Create New Coupon</span>
+                    </button>
+                </header>
+
+                <!-- Toolbar Section -->
+                <div class="toolbar-card">
+                    <div class="search-filter-grid">
+                        <!-- Search Bar -->
+                        <div class="search-section">
+                            <div class="search-bar">
+                                <div class="search-icon-wrapper">
+                                    <span class="material-symbols-outlined">search</span>
+                                </div>
+                                <input type="text" class="search-input" placeholder="Search by coupon code...">
+                            </div>
+                        </div>
+
+                        <!-- Filter Buttons -->
+                        <div class="filter-buttons">
+                            <button class="filter-btn">
+                                <span class="material-symbols-outlined">filter_list</span>
+                                <span>Filter</span>
+                            </button>
+                            <button class="filter-btn">
+                                <span class="material-symbols-outlined">swap_vert</span>
+                                <span>Sort</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter Chips -->
+                    <div class="filter-chips">
+                        <button class="chip active">All</button>
+                        <button class="chip">Active</button>
+                        <button class="chip">Inactive</button>
+                        <button class="chip">Expired</button>
+                    </div>
+                </div>
+
+                <!-- Coupons Table -->
+                <div class="table-card">
+                    <div class="table-wrapper">
+                        <table class="coupons-table">
+                            <thead>
+                                <tr>
+                                    <th>Coupon Code</th>
+                                    <th>Type</th>
+                                    <th>Value</th>
+                                    <th>Status</th>
+                                    <th>Usage Limit</th>
+                                    <th>Expires On</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="coupon-code">WINTERSALE25</td>
+                                    <td>Percentage</td>
+                                    <td>25%</td>
+                                    <td>
+                                        <span class="badge badge-active">Active</span>
+                                    </td>
+                                    <td>15 / 100</td>
+                                    <td>2024-12-31</td>
+                                    <td class="actions-cell">
+                                        <div class="action-buttons">
+                                            <button class="action-btn edit-btn" title="Edit">
+                                                <span class="material-symbols-outlined">edit</span>
+                                            </button>
+                                            <button class="action-btn toggle-btn" title="Toggle Status">
+                                                <span class="material-symbols-outlined">toggle_off</span>
+                                            </button>
+                                            <button class="action-btn delete-btn" title="Delete">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="coupon-code">NEWUSER10</td>
+                                    <td>Fixed</td>
+                                    <td>$10.00</td>
+                                    <td>
+                                        <span class="badge badge-active">Active</span>
+                                    </td>
+                                    <td>88 / 1000</td>
+                                    <td>2025-01-31</td>
+                                    <td class="actions-cell">
+                                        <div class="action-buttons">
+                                            <button class="action-btn edit-btn" title="Edit">
+                                                <span class="material-symbols-outlined">edit</span>
+                                            </button>
+                                            <button class="action-btn toggle-btn" title="Toggle Status">
+                                                <span class="material-symbols-outlined">toggle_off</span>
+                                            </button>
+                                            <button class="action-btn delete-btn" title="Delete">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="coupon-code">FLASH20</td>
+                                    <td>Percentage</td>
+                                    <td>20%</td>
+                                    <td>
+                                        <span class="badge badge-inactive">Inactive</span>
+                                    </td>
+                                    <td>50 / 50</td>
+                                    <td>2024-05-15</td>
+                                    <td class="actions-cell">
+                                        <div class="action-buttons">
+                                            <button class="action-btn edit-btn" title="Edit">
+                                                <span class="material-symbols-outlined">edit</span>
+                                            </button>
+                                            <button class="action-btn activate-btn" title="Activate">
+                                                <span class="material-symbols-outlined">toggle_on</span>
+                                            </button>
+                                            <button class="action-btn delete-btn" title="Delete">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="coupon-code">SUMMERFUN</td>
+                                    <td>Fixed</td>
+                                    <td>$5.00</td>
+                                    <td>
+                                        <span class="badge badge-expired">Expired</span>
+                                    </td>
+                                    <td>100 / 100</td>
+                                    <td>2023-08-31</td>
+                                    <td class="actions-cell">
+                                        <div class="action-buttons">
+                                            <button class="action-btn edit-btn" title="Edit">
+                                                <span class="material-symbols-outlined">edit</span>
+                                            </button>
+                                            <button class="action-btn activate-btn disabled" title="Cannot Activate" disabled>
+                                                <span class="material-symbols-outlined">toggle_on</span>
+                                            </button>
+                                            <button class="action-btn delete-btn" title="Delete">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <footer class="page-footer">
+                    <p>© 2025 Blaqo. All rights reserved. | 
+                        <a href="#">Privacy Policy</a> | 
+                        <a href="#">Terms of Service</a>
+                    </p>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <style>
+        /* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Updated Color Palette */
+    --primary: #7C3AED;
+    --primary-light: #A78BFA;
+    --primary-dark: #6D28D9;
+    --secondary: #EC4899;
+    --accent: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    
+    /* Neutrals */
+    --bg-main: #F9FAFB;
+    --bg-card: #FFFFFF;
+    --bg-hover: #F3F4F6;
+    --bg-active: #EDE9FE;
+    
+    /* Text Colors */
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    --text-light: #D1D5DB;
+    
+    /* Borders */
+    --border-light: #E5E7EB;
+    --border-medium: #D1D5DB;
+    --border-dark: #9CA3AF;
+    
+    /* Status Colors */
+    --status-active: #10B981;
+    --status-active-bg: #D1FAE5;
+    --status-inactive: #F59E0B;
+    --status-inactive-bg: #FEF3C7;
+    --status-expired: #EF4444;
+    --status-expired-bg: #FEE2E2;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-primary: 0 10px 20px rgba(124, 58, 237, 0.2);
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* App Container */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 16rem;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 100%);
+    border-right: 1px solid var(--border-light);
+    display: none;
+    position: relative;
+}
+
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 1rem;
+}
+
+.sidebar-top,
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Brand Section */
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-primary);
+}
+
+.brand-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.brand-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.brand-role {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    border-radius: 0 4px 4px 0;
+}
+
+.nav-link:hover {
+    background: linear-gradient(135deg, var(--bg-active), transparent);
+    color: var(--primary);
+    transform: translateX(4px);
+}
+
+.nav-link:hover::before {
+    transform: translateX(0);
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #FFFFFF;
+    font-weight: 700;
+    box-shadow: var(--shadow-md);
+}
+
+.nav-link.active::before {
+    display: none;
+}
+
+.nav-link .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+.nav-link p {
+    margin: 0;
+}
+
+/* Logout Button */
+.logout-btn {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #FFFFFF;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    box-shadow: var(--shadow-primary);
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(124, 58, 237, 0.3);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
+}
+
+/* Main Section */
+.main-section {
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
+    background: var(--bg-main);
+}
+
+.content-container {
+    padding: 1rem;
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    letter-spacing: -0.033em;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.create-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #FFFFFF;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    box-shadow: var(--shadow-primary);
+    transition: all 0.3s ease;
+}
+
+.create-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(124, 58, 237, 0.4);
+}
+
+.create-btn .material-symbols-outlined {
+    font-size: 1.25rem;
+}
+
+/* Toolbar Card */
+.toolbar-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-light);
+}
+
+.search-filter-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.search-section {
+    flex: 1;
+}
+
+.search-bar {
+    display: flex;
+    align-items: stretch;
+    height: 3rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.search-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    background: linear-gradient(135deg, var(--bg-hover), var(--bg-card));
+    color: var(--text-muted);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: 0 1rem;
+    font-size: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 3rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: var(--bg-hover);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Filter Chips */
+.filter-chips {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    padding: 0 1rem;
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    border: none;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.chip:hover {
+    background: var(--bg-active);
+    color: var(--primary);
+    transform: scale(1.05);
+}
+
+.chip.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #FFFFFF;
+    font-weight: 700;
+    box-shadow: var(--shadow-md);
+}
+
+/* Table Card */
+.table-card {
+    background: var(--bg-card);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.coupons-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.coupons-table thead {
+    background: linear-gradient(135deg, var(--bg-hover), var(--bg-card));
+    border-bottom: 2px solid var(--border-light);
+}
+
+.coupons-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.coupons-table th.text-center {
+    text-align: center;
+}
+
+.coupons-table tbody tr {
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.coupons-table tbody tr:hover {
+    background: linear-gradient(135deg, var(--bg-hover), transparent);
+    transform: scale(1.01);
+    box-shadow: var(--shadow-sm);
+}
+
+.coupons-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.coupons-table td {
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.coupon-code {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+}
+
+/* Status Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+.badge-active {
+    background: var(--status-active-bg);
+    color: var(--status-active);
+}
+
+.badge-inactive {
+    background: var(--status-inactive-bg);
+    color: var(--status-inactive);
+}
+
+.badge-expired {
+    background: var(--status-expired-bg);
+    color: var(--status-expired);
+}
+
+/* Action Buttons */
+.actions-cell {
+    text-align: center;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn .material-symbols-outlined {
+    font-size: 1.125rem;
+}
+
+.edit-btn:hover {
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.toggle-btn:hover,
+.activate-btn:hover {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+    transform: scale(1.1);
+}
+
+.delete-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    transform: scale(1.1);
+}
+
+.action-btn.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.action-btn.disabled:hover {
+    background: transparent;
+    color: var(--text-muted);
+    transform: none;
+}
+
+/* Footer */
+.page-footer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 1px solid var(--border-light);
+}
+
+.page-footer p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.page-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.page-footer a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .search-filter-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sidebar {
+        display: flex;
+    }
+
+    .content-container {
+        padding: 1.5rem 2rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-hover);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+    </style>
+</body>
+</html>

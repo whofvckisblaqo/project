@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo Invoice</title>
+    <link rel="stylesheet" href="invoice-styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="layout-container">
+            <!-- Top Navigation Bar -->
+            <div class="nav-wrapper">
+                <div class="nav-container">
+                    <header class="header">
+                        <div class="logo-section">
+                            <div class="logo-icon">
+                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h2 class="logo-text">Blaqo</h2>
+                        </div>
+                        <nav class="nav-links">
+                            <a href="#" class="nav-link">Back to Store</a>
+                        </nav>
+                    </header>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main class="main-wrapper">
+                <div class="main-container">
+                    <!-- Invoice Card -->
+                    <div class="invoice-card">
+                        <!-- Page Heading -->
+                        <div class="page-heading">
+                            <div class="heading-content">
+                                <h1 class="heading-title">Purchase Confirmed</h1>
+                                <p class="heading-subtitle">Thank you for your order. Here are the details of your transaction.</p>
+                            </div>
+                            <div class="action-buttons">
+                                <button class="btn btn-primary">
+                                    <span class="icon">⬇</span>
+                                    <span>Download PDF</span>
+                                </button>
+                                <button class="btn btn-secondary">
+                                    <span class="icon">🖨</span>
+                                    <span>Print</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Invoice Details Grid -->
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <p class="detail-label">Billed To:</p>
+                                <p class="detail-value">Emannuel Jones</p>
+                            </div>
+                            <div class="detail-item">
+                                <p class="detail-label">Date of Issue:</p>
+                                <p class="detail-value">August 2, 2024</p>
+                            </div>
+                            <div class="detail-item">
+                                <p class="detail-label">Invoice Number:</p>
+                                <p class="detail-value">INV-2024-1084</p>
+                            </div>
+                            <div class="detail-item">
+                                <p class="detail-label">Transaction ID:</p>
+                                <p class="detail-value">ch_3PzQx8aB9fG...</p>
+                            </div>
+                        </div>
+
+                        <!-- Products Table -->
+                        <div class="table-wrapper">
+                            <table class="invoice-table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">Product Name</th>
+                                        <th class="text-left description-col">Description</th>
+                                        <th class="text-right">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>AI Content Generator</td>
+                                        <td class="description-col">AI Tool License</td>
+                                        <td class="text-right">$149.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Payment Details & Cost Breakdown -->
+                        <div class="payment-section">
+                            <div class="payment-details">
+                                <h3 class="section-title">Payment Details</h3>
+                                <div class="payment-card">
+                                    <div class="card-icon">💳</div>
+                                    <div class="card-info">
+                                        <p class="card-number">Visa ending in 4242</p>
+                                        <p class="card-status">Status: <span class="status-completed">Completed</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cost-breakdown">
+                                <div class="cost-item">
+                                    <p class="cost-label">Subtotal</p>
+                                    <p class="cost-value">$149.00</p>
+                                </div>
+                                <div class="cost-item">
+                                    <p class="cost-label">Taxes & Fees</p>
+                                    <p class="cost-value">$12.50</p>
+                                </div>
+                                <div class="cost-item cost-total">
+                                    <p class="cost-label-total">Total</p>
+                                    <p class="cost-value-total">$161.50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="footer-wrapper">
+                <div class="footer-container">
+                    <div class="footer-content">
+                        <p class="copyright">© 2025 Blaqo. All rights reserved.</p>
+                        <div class="footer-links">
+                            <a href="#" class="footer-link">Help Center</a>
+                            <a href="#" class="footer-link">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #f6f5f8;
+    color: #1f2937;
+    line-height: 1.5;
+}
+
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    flex-direction: column;
+}
+
+.layout-container {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+/* Navigation */
+.nav-wrapper {
+    padding: 20px 160px;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 960px;
+    flex: 1;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 12px 40px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #1f2937;
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    color: #6b61ff;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+.nav-links {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    gap: 32px;
+}
+
+.nav-link {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #6b61ff;
+}
+
+/* Main Content */
+.main-wrapper {
+    padding: 20px 160px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 960px;
+    flex: 1;
+}
+
+/* Invoice Card */
+.invoice-card {
+    width: 100%;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    padding: 48px;
+}
+
+/* Page Heading */
+.page-heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.heading-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.heading-title {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.033em;
+    color: #111827;
+}
+
+.heading-subtitle {
+    font-size: 16px;
+    color: #6b7280;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #6b61ff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #5a51e6;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid #d1d5db;
+    color: #374151;
+}
+
+.btn-secondary:hover {
+    background-color: #f3f4f6;
+}
+
+.icon {
+    font-size: 16px;
+}
+
+/* Invoice Details Grid */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px 16px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 32px;
+    margin-bottom: 40px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-label {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.detail-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+/* Table */
+.table-wrapper {
+    margin-bottom: 40px;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-table thead {
+    background-color: #f9fafb;
+}
+
+.invoice-table th {
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.invoice-table tbody tr {
+    border-top: 1px solid #e5e7eb;
+}
+
+.invoice-table td {
+    padding: 16px;
+    font-size: 14px;
+}
+
+.invoice-table td:first-child {
+    color: #1f2937;
+}
+
+.invoice-table td:not(:first-child) {
+    color: #6b7280;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Payment Section */
+.payment-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.payment-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.payment-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+}
+
+.card-icon {
+    font-size: 24px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-number {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.card-status {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.status-completed {
+    font-weight: 500;
+    color: #059669;
+}
+
+/* Cost Breakdown */
+.cost-breakdown {
+    width: 100%;
+    max-width: 384px;
+}
+
+.cost-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.cost-label {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.cost-value {
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.cost-total {
+    border-top: 1px solid #e5e7eb;
+    margin-top: 8px;
+    padding-top: 16px;
+}
+
+.cost-label-total,
+.cost-value-total {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Footer */
+.footer-wrapper {
+    padding: 20px 160px;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 960px;
+    flex: 1;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid #e5e7eb;
+    padding: 24px 40px;
+}
+
+.copyright {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-link {
+    font-size: 14px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #6b61ff;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .nav-wrapper,
+    .main-wrapper,
+    .footer-wrapper {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-wrapper,
+    .main-wrapper,
+    .footer-wrapper {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .header {
+        padding: 12px 16px;
+    }
+
+    .invoice-card {
+        padding: 32px 24px;
+    }
+
+    .heading-title {
+        font-size: 28px;
+    }
+
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .description-col {
+        display: none;
+    }
+
+    .payment-section {
+        flex-direction: column;
+    }
+
+    .cost-breakdown {
+        max-width: 100%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .action-buttons {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-wrapper,
+    .main-wrapper,
+    .footer-wrapper {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .invoice-card {
+        padding: 24px 16px;
+    }
+}
+    </style>
+</body>
+</html>

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Management - Blaqo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variables and Base Styles --- */
+        :root {
+            /* Colors */
+            --color-primary: #6961ff; /* Purple */
+            --color-secondary: #3A86FF; /* Blue */
+            
+            /* Light Theme */
+            --color-background-light: #f5f5f8;
+            --color-content-light: #ffffff;
+            --color-text-light-primary: #1f2937; /* Gray-800 equivalent */
+            --color-text-light-secondary: #6b7280; /* Gray-500 equivalent */
+            --color-border-light: #e5e7eb; /* Gray-200 equivalent */
+            --color-table-header-bg-light: #f5f5f880; /* background-light/50 */
+            --color-input-bg-light: #f5f5f8;
+            --color-pill-green-bg-light: #D1FAE5; /* Green-100 */
+            --color-pill-green-text-light: #065F46; /* Green-800 */
+            --color-pill-yellow-bg-light: #FEF3C7; /* Yellow-100 */
+            --color-pill-yellow-text-light: #92400E; /* Yellow-800 */
+            --color-pill-red-bg-light: #FEE2E2; /* Red-100 */
+            --color-pill-red-text-light: #991B1B; /* Red-800 */
+
+            /* Dark Theme */
+            --color-background-dark: #100f23;
+            --color-content-dark: #181829;
+            --color-text-dark-primary: #f3f4f6; /* Gray-100 equivalent */
+            --color-text-dark-secondary: #9ca3af; /* Gray-400 equivalent */
+            --color-border-dark: #374151; /* Gray-700 equivalent */
+            --color-table-header-bg-dark: #100f2380; /* background-dark/50 */
+            --color-input-bg-dark: #100f23;
+            --color-pill-green-bg-dark: #065F4680; /* Green-900/50 */
+            --color-pill-green-text-dark: #A7F3D0; /* Green-300 */
+            --color-pill-yellow-bg-dark: #92400E80; /* Yellow-900/50 */
+            --color-pill-yellow-text-dark: #FCD34D; /* Yellow-300 */
+            --color-pill-red-bg-dark: #991B1B80; /* Red-900/50 */
+            --color-pill-red-text-dark: #FCA5A5; /* Red-300 */
+
+            /* General */
+            --radius-default: 0.5rem;
+            --radius-xl: 1rem;
+            --shadow-soft: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+
+        /* Default (Light) Theme */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            line-height: 1.5;
+            background-color: var(--color-background-light);
+            color: var(--color-text-light-primary);
+            display: flex;
+        }
+
+        /* --- Dark Mode Overrides (Selector: .dark) --- */
+        .dark {
+            background-color: var(--color-background-dark);
+            color: var(--color-text-dark-primary);
+        }
+        
+        /* Sidebar/Navigation */
+        .dark .sidebar { 
+            border-color: var(--color-border-dark); 
+            background-color: var(--color-content-dark); 
+        }
+        .dark .nav-link { color: var(--color-text-dark-secondary); }
+        .dark .nav-link:hover { color: var(--color-primary); }
+
+        /* General Text & Headings */
+        .dark .heading-primary { color: var(--color-text-dark-primary); }
+        .dark .heading-secondary { color: var(--color-text-dark-secondary); }
+        .dark .footer-text { color: var(--color-text-dark-secondary); }
+
+        /* Card/Content Area */
+        .dark .content-card { 
+            border-color: var(--color-border-dark); 
+            background-color: var(--color-content-dark);
+            box-shadow: none;
+        }
+
+        /* Search & Filters */
+        .dark .search-input {
+            border-color: var(--color-border-dark);
+            background-color: var(--color-input-bg-dark);
+            color: var(--color-text-dark-primary);
+        }
+        .dark .search-icon, .dark .search-input::placeholder { 
+            color: var(--color-text-dark-secondary); 
+        }
+        .dark .filter-button {
+            border-color: var(--color-border-dark);
+            background-color: var(--color-input-bg-dark);
+            color: var(--color-text-dark-secondary);
+        }
+        .dark .filter-button:hover { 
+            border-color: var(--color-primary); 
+            color: var(--color-primary); 
+        }
+
+        /* Table */
+        .dark .table-wrapper { border-color: var(--color-border-dark); }
+        .dark thead { background-color: var(--color-table-header-bg-dark); }
+        .dark th { color: var(--color-text-dark-primary); }
+        .dark tbody { background-color: var(--color-content-dark); }
+        .dark tbody tr { border-color: var(--color-border-dark); }
+
+        .dark .seller-name { color: var(--color-text-dark-primary); }
+        .dark .seller-meta { color: var(--color-text-dark-secondary); }
+        .dark .action-button { 
+            color: var(--color-text-dark-secondary); 
+        }
+        .dark .action-button:hover { 
+            background-color: var(--color-input-bg-dark); 
+        }
+
+        /* Status Pills (Dark) */
+        .dark .status-active { 
+            background-color: var(--color-pill-green-bg-dark); 
+            color: var(--color-pill-green-text-dark); 
+        }
+        .dark .status-pending { 
+            background-color: var(--color-pill-yellow-bg-dark); 
+            color: var(--color-pill-yellow-text-dark); 
+        }
+        .dark .status-suspended { 
+            background-color: var(--color-pill-red-bg-dark); 
+            color: var(--color-pill-red-text-dark); 
+        }
+
+        /* Pagination */
+        .dark .pagination-button {
+            border-color: var(--color-border-dark);
+            color: var(--color-text-dark-secondary);
+        }
+        .dark .pagination-button:hover:not(:disabled) { 
+            background-color: var(--color-background-dark); 
+        }
+        .dark .pagination-link-inactive {
+            color: var(--color-text-dark-secondary);
+        }
+        .dark .pagination-link-inactive:hover {
+            background-color: var(--color-background-dark);
+        }
+
+        /* --- 2. Layout and Structure --- */
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* --- 3. Sidebar Navigation --- */
+        .sidebar {
+            width: 5rem; /* w-20 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: 1px solid var(--color-border-light);
+            background-color: var(--color-content-light);
+            padding: 1.5rem 0; /* py-6 */
+        }
+        .logo-icon {
+            margin-bottom: 2rem;
+            color: var(--color-primary);
+            font-size: 2.5rem; /* text-4xl */
+        }
+        .sidebar-nav {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .nav-link {
+            padding: 0.5rem;
+            border-radius: var(--radius-default);
+            color: var(--color-text-light-secondary);
+            text-decoration: none;
+            transition: color 0.15s, background-color 0.15s;
+        }
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+        .nav-link-active {
+            background-color: #6961ff33; /* primary/20 */
+            color: var(--color-primary);
+        }
+        .sidebar-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .avatar-img { 
+            background-size: cover; 
+            border-radius: 50%; 
+            width: 2.25rem; 
+            height: 2.25rem; /* size-9 */
+        }
+
+        /* --- 4. Main Content Area --- */
+        .main-content {
+            flex: 1;
+            padding: 1.5rem; /* p-6 */
+        }
+        @media (min-width: 1024px) {
+            .main-content {
+                padding: 2.5rem; /* lg:p-10 */
+            }
+        }
+        .content-container {
+            max-width: 1280px; /* max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Page Header */
+        .page-header {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .page-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: bold;
+            letter-spacing: -0.025em;
+        }
+        .page-subtitle {
+            color: var(--color-text-light-secondary);
+        }
+
+        .btn-add {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-radius: var(--radius-default);
+            background-color: var(--color-primary);
+            padding: 0.625rem 1.25rem; /* px-5 py-2.5 */
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: white;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.15s;
+        }
+        .btn-add:hover { transform: scale(1.05); }
+
+        /* Main Card */
+        .main-card {
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-content-light);
+            box-shadow: var(--shadow-soft);
+        }
+        
+        /* Search/Filter Bar */
+        .filter-bar {
+            padding: 1rem; /* p-4 */
+            border-bottom: 1px solid var(--color-border-light);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .filter-bar {
+                padding: 1.5rem; /* sm:p-6 */
+                flex-direction: row;
+            }
+        }
+        
+        .search-container {
+            flex-grow: 1;
+        }
+        .search-label {
+            position: relative;
+            display: flex;
+            width: 100%;
+            align-items: center;
+        }
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            color: var(--color-text-light-secondary);
+        }
+        .search-input {
+            width: 100%;
+            border-radius: var(--radius-default);
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-input-bg-light);
+            padding: 0.625rem 1rem 0.625rem 3rem; /* py-2.5 pl-12 pr-4 */
+            color: var(--color-text-light-primary);
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .search-input::placeholder {
+            color: var(--color-text-light-secondary);
+        }
+        .search-input:focus {
+            border-color: var(--color-primary);
+            outline: none;
+            box-shadow: 0 0 0 1px var(--color-primary);
+        }
+        
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem; /* gap-3 */
+        }
+        .filter-button {
+            display: flex;
+            height: 2.75rem; /* h-11 */
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-radius: var(--radius-default);
+            background-color: var(--color-input-bg-light);
+            border: 1px solid var(--color-border-light);
+            padding: 0.5rem 1rem; /* px-4 py-2 */
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-light-secondary);
+            cursor: pointer;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .filter-button:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        /* --- 5. Table --- */
+        .table-wrapper { overflow-x: auto; }
+        .seller-table {
+            min-width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        .seller-table thead {
+            background-color: var(--color-table-header-bg-light);
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .seller-table th {
+            padding: 0.875rem 0.75rem; /* py-3.5 px-3 */
+            text-align: left;
+            font-weight: 600;
+        }
+        .seller-table th:first-child { padding-left: 1.5rem; }
+        .seller-table th:last-child { padding-right: 1.5rem; }
+
+        .seller-table tbody {
+            background-color: var(--color-content-light);
+        }
+        .seller-table td {
+            white-space: nowrap;
+            padding: 1rem 0.75rem; /* py-4 px-3 */
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .seller-table td:first-child { padding-left: 1.5rem; }
+        .seller-table td:last-child { padding-right: 1.5rem; }
+        .seller-table tbody tr:last-child td { border-bottom: none; }
+
+        .seller-info-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .seller-logo {
+            background-size: cover; 
+            border-radius: 50%; 
+            width: 2.25rem; 
+            height: 2.25rem; /* size-9 */
+            flex-shrink: 0;
+        }
+        .seller-name {
+            font-weight: 500;
+        }
+        .seller-meta {
+            color: var(--color-text-light-secondary);
+        }
+
+        /* Status Pills (Table) */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 9999px;
+            padding: 0.125rem 0.625rem; /* px-2.5 py-0.5 */
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 500;
+        }
+        .status-active { 
+            background-color: var(--color-pill-green-bg-light); 
+            color: var(--color-pill-green-text-light); 
+        }
+        .status-pending { 
+            background-color: var(--color-pill-yellow-bg-light); 
+            color: var(--color-pill-yellow-text-light); 
+        }
+        .status-suspended { 
+            background-color: var(--color-pill-red-bg-light); 
+            color: var(--color-pill-red-text-light); 
+        }
+
+        .action-cell {
+            position: relative;
+            text-align: right;
+        }
+        .action-button {
+            padding: 0.25rem;
+            border-radius: 50%;
+            color: var(--color-text-light-secondary);
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+        .action-button:hover {
+            background-color: var(--color-background-light);
+        }
+
+        /* --- 6. Pagination --- */
+        .pagination-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--color-border-light);
+            padding: 1rem; /* p-4 */
+        }
+        .pagination-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border-radius: var(--radius-default);
+            border: 1px solid var(--color-border-light);
+            padding: 0.5rem 1rem; /* px-4 py-2 */
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-light-secondary);
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+        .pagination-button:hover:not(:disabled) {
+            background-color: var(--color-background-light);
+        }
+        .pagination-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-links {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--color-text-light-secondary);
+        }
+        @media (min-width: 640px) {
+            .pagination-links { display: flex; }
+        }
+
+        .pagination-link {
+            display: flex;
+            height: 2rem;
+            width: 2rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.375rem; /* rounded-md */
+            text-decoration: none;
+            transition: background-color 0.15s;
+        }
+        .pagination-link-active {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        .pagination-link-inactive {
+            color: var(--color-text-light-secondary);
+        }
+        .pagination-link-inactive:hover {
+            background-color: var(--color-background-light);
+        }
+
+        /* --- 7. Footer --- */
+        .app-footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--color-text-light-secondary);
+        }
+        .footer-links {
+            margin-top: 0.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .footer-link {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.15s;
+        }
+        .footer-link:hover {
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+<body class="light">
+<div class="page-wrapper">
+    <aside class="sidebar">
+        <div class="logo-icon">
+            <span class="material-symbols-outlined">hub</span>
+        </div>
+        <nav class="sidebar-nav">
+            <a class="nav-link" href="#">
+                <span class="material-symbols-outlined">dashboard</span>
+            </a>
+            <a class="nav-link nav-link-active" href="#">
+                <span class="material-symbols-outlined">group</span>
+            </a>
+            <a class="nav-link" href="#">
+                <span class="material-symbols-outlined">storefront</span>
+            </a>
+            <a class="nav-link" href="#">
+                <span class="material-symbols-outlined">bar_chart</span>
+            </a>
+            <a class="nav-link" href="#">
+                <span class="material-symbols-outlined">settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="avatar-img" data-alt="Admin user avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAsJo5LOv27-WtV_0dfBEtnw-HMUMLHHjssuYLTPv3ZDsw-Y9in8xjlcmFrWDRmlbVqKLxaPGlzNqUUN0o6kZ2nD_lQI8pxXjdOwly_e7enpy2vcqBvNEkjNUCwqCRgOe0b7Koi9rue1UNkKQH-NUqWLEXlMUNfozfZAm5AEo14nuJa6PczObmBburOouz7Y85YsLlq4bgozlhdwIvJ90XYznL0QVHpG4YCDV-k0Jce6msXCSqkU_TFCUoZrMpOnp-KDPEoAJ3d10s");'></div>
+        </div>
+    </aside>
+    <main class="main-content">
+        <div class="content-container">
+            <header class="page-header">
+                <div class="flex flex-col">
+                    <h1 class="page-title heading-primary">Seller Management</h1>
+                    <p class="page-subtitle heading-secondary">View, manage, and onboard all vendors on the marketplace.</p>
+                </div>
+                <button class="btn-add">
+                    <span class="material-symbols-outlined">add_circle</span>
+                    <span class="truncate">Add Seller</span>
+                </button>
+            </header>
+            
+            <div class="main-card content-card">
+                <div class="filter-bar border-b">
+                    <div class="search-container">
+                        <label class="search-label">
+                            <span class="material-symbols-outlined search-icon">search</span>
+                            <input class="search-input" placeholder="Search by name or email..." type="text" value=""/>
+                        </label>
+                    </div>
+                    <div class="chip-group">
+                        <button class="filter-button">
+                            <span class="material-symbols-outlined text-xl">filter_list</span>
+                            <span>Status: All</span>
+                            <span class="material-symbols-outlined text-xl">expand_more</span>
+                        </button>
+                        <button class="filter-button">
+                            <span class="material-symbols-outlined text-xl">swap_vert</span>
+                            <span>Sort By: Date</span>
+                            <span class="material-symbols-outlined text-xl">expand_more</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="seller-table divide-y">
+                        <thead>
+                            <tr>
+                                <th scope="col">Seller</th>
+                                <th scope="col">Registration Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Active Listings</th>
+                                <th class="relative" scope="col"><span class="sr-only">Actions</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="seller-info-cell">
+                                        <div class="seller-logo" data-alt="Tech Innovators Inc. logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCRuD7XPOPhzZGhvajGt-VUOr6PdfQODI__JnIxT2yPet1NEj8LHUt1YxGjDNNuqVU1Dm2gQlbYpJeio-EYfzefJBxF1el5HTpIX4pF_dtbVvu6HGpl1n46EEPsLmNhUDjeus53i8sngRrxD0P1WOI8uypViwyL-dnGGdjeC7Ah6RzGaf51IRr8LwoEB1nwY7koVyda_r53yG6Kc5lQl85eL6TuGZJ02N25PiCJ6bl7XZht9CQtY3FhVg6eaUIbbE1VD0zjMWO1h2s");'></div>
+                                        <div class="seller-name heading-primary">Tech Innovators Inc.</div>
+                                    </div>
+                                </td>
+                                <td class="seller-meta heading-secondary">Oct 26, 2023</td>
+                                <td>
+                                    <span class="status-pill status-active">Active</span>
+                                </td>
+                                <td class="seller-meta heading-secondary">150</td>
+                                <td class="action-cell">
+                                    <button class="action-button">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="seller-info-cell">
+                                        <div class="seller-logo" data-alt="Creative Scripts Co. logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDhwMK1JcHxxISXljXoN91TSqEcyNqwjUVNyvYYS94dXxi1sZCqcMGbYpMa_sBhY-XkFTvLHmY382FnnXnYgHWTKelntYfpkmO4zFPAA1_4fW6XzqkutRYJ-icBi9e8PvsDOXFHveQbx1PPNCo71uciiACIbWubbUbkfP4QTzS7Pgo9-_QgcqG8QnoUbEv0k8nTVf-N66RGr0oCvSzZkLtVj_AwRwER3lx_ywQrLsFqKipCqYDQ85HWTEGSohuk1WAULODNPOCAJDc");'></div>
+                                        <div class="seller-name heading-primary">Creative Scripts Co.</div>
+                                    </div>
+                                </td>
+                                <td class="seller-meta heading-secondary">Oct 24, 2023</td>
+                                <td>
+                                    <span class="status-pill status-pending">Pending</span>
+                                </td>
+                                <td class="seller-meta heading-secondary">0</td>
+                                <td class="action-cell">
+                                    <button class="action-button">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="seller-info-cell">
+                                        <div class="seller-logo" data-alt="AI Solutions Hub logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAAaX8kdcdM9Gr9_iFB0U5TXbnBPfLqPk-xUCSeLoQkafdO4kYC-bHls5Z_XUemjdfLsZCDalz3e9kQ8umxxWI6jf_sasHj9y59AKJ5VNY_rxBOXzU1cTMr8lgW9swEmGeDWRmbm8xuIG6-KuoBKcoyp4oCvIBDzG9ZPW3DBbEejRxWUQx0C40dB7QRitmyKMGbTYJIXEVqedCrM6ZpnpawaxGI375OepPJacrI3TYX-I5pQtVNryxJtZIYy0cuRcWNXZrluiK_bcM");'></div>
+                                        <div class="seller-name heading-primary">AI Solutions Hub</div>
+                                    </div>
+                                </td>
+                                <td class="seller-meta heading-secondary">Sep 15, 2023</td>
+                                <td>
+                                    <span class="status-pill status-active">Active</span>
+                                </td>
+                                <td class="seller-meta heading-secondary">88</td>
+                                <td class="action-cell">
+                                    <button class="action-button">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="seller-info-cell">
+                                        <div class="seller-logo" data-alt="Web Wizards logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAY0RwUVYXjdWtISqdokQjSJJvbQbPnkDbvyV2Dmc71nWLusqBwgXLOzUOtuoumKqP_y0oEgL94NNjOWMPJBoWb7C-8oJE5OVMLX6t3OLIhgezLgzvnQK35UMgz42pOxfjISWuC_iHxTmwxIVJxN_2iDDWmFmxjiJwSpHPMAQrKCSjxF0DaRKeSTwRylrtNb7JpkEUC8EfJz06AbES21VVt8flGs2dpWEtPGgLiZ7pp5IiogwRJpTtxrox7Oj7rSaaT3Knz6H30840");'></div>
+                                        <div class="seller-name heading-primary">Web Wizards</div>
+                                    </div>
+                                </td>
+                                <td class="seller-meta heading-secondary">Aug 01, 2023</td>
+                                <td>
+                                    <span class="status-pill status-suspended">Suspended</span>
+                                </td>
+                                <td class="seller-meta heading-secondary">45</td>
+                                <td class="action-cell">
+                                    <button class="action-button">
+                                        <span class="material-symbols-outlined">more_vert</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination-bar">
+                    <button class="pagination-button" disabled="">
+                        <span class="material-symbols-outlined text-xl">arrow_back</span>
+                        <span>Previous</span>
+                    </button>
+                    <div class="pagination-links">
+                        <a class="pagination-link pagination-link-active" href="#">1</a>
+                        <a class="pagination-link pagination-link-inactive" href="#">2</a>
+                        <a class="pagination-link pagination-link-inactive" href="#">3</a>
+                        <span class="px-1">...</span>
+                        <a class="pagination-link pagination-link-inactive" href="#">8</a>
+                    </div>
+                    <button class="pagination-button">
+                        <span>Next</span>
+                        <span class="material-symbols-outlined text-xl">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+            <footer class="app-footer">
+                <p class="footer-text">© 2025 Blaqo. All rights reserved.</p>
+                <div class="footer-links">
+                    <a class="footer-link" href="#">Help Center</a>
+                    <a class="footer-link" href="#">Terms of Service</a>
+                </div>
+            </footer>
+        </div>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo - Account Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    
+    <style>
+        /* --- 1. Variables and Base Styles --- */
+        :root {
+            /* Colors */
+            --color-primary: #6961ff;
+            --color-primary-light: rgba(105, 97, 255, 0.1); /* primary/10 */
+            --color-primary-medium: rgba(105, 97, 255, 0.2); /* primary/20 */
+            --color-green: #10B981;
+            --color-red: #EF4444;
+            --color-red-light: #FEE2E2; /* red-100 */
+            --color-red-dark: rgba(127, 29, 29, 0.4); /* red-900/40 */
+            
+            /* Light Theme */
+            --color-bg-light: #f5f5f8;
+            --color-surface-light: #ffffff;
+            --color-text-dark-light: #1F2937; /* gray-900, text-[#1F2937] */
+            --color-text-medium-light: #374151; /* gray-700, gray-800 */
+            --color-text-light-light: #6B7280; /* gray-500 */
+            --color-border-light: #E5E7EB; /* gray-200 */
+            --color-header-bg-light: rgba(245, 245, 248, 0.8); /* background-light/80 */
+            --color-input-bg-light: transparent;
+            --color-input-border-light: #D1D5DB; /* gray-300 */
+            --color-hover-light: #F3F4F6; /* gray-100 */
+
+            /* Dark Theme */
+            --color-bg-dark: #100f23;
+            --color-surface-dark: #100f23; /* Same as background-dark for main sections */
+            --color-surface-secondary-dark: rgba(16, 15, 35, 0.5); /* background-dark/50 for 2FA box */
+            --color-text-dark-dark: #ffffff;
+            --color-text-medium-dark: #E5E7EB; /* gray-200 */
+            --color-text-light-dark: #9CA3AF; /* gray-400 */
+            --color-border-dark: #374151; /* gray-700 */
+            --color-header-bg-dark: rgba(16, 15, 35, 0.8); /* background-dark/80 */
+            --color-input-bg-dark: transparent;
+            --color-input-border-dark: #4B5563; /* gray-600 */
+            --color-hover-dark: rgba(255, 255, 255, 0.05); /* white/5 */
+            
+            /* Layout */
+            --header-height: 4.25rem; /* ~68px */
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+        }
+
+        /* Base Body */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            line-height: 1.5;
+            background-color: var(--color-bg-light);
+            color: var(--color-text-medium-light);
+            display: flex;
+            flex-direction: column;
+            font-size: 1rem;
+        }
+
+        /* General Utility Classes */
+        .container-main { max-width: 1280px; margin: 0 auto; padding: 2.5rem 1rem; } /* max-w-7xl, py-10, px-4 */
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-grow { flex-grow: 1; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-4 { gap: 1rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-12 { gap: 3rem; }
+        .rounded-xl { border-radius: var(--radius-xl); }
+        .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+        .size-6 { height: 1.5rem; width: 1.5rem; }
+        .size-10 { height: 2.5rem; width: 2.5rem; }
+        .size-12 { height: 3rem; width: 3rem; }
+        .size-14 { height: 3.5rem; width: 3.5rem; }
+        .size-20 { height: 5rem; width: 5rem; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+
+        @media (min-width: 640px) {
+            .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        }
+        @media (min-width: 768px) {
+            .md\:flex-row { flex-direction: row; }
+            .md\:w-64 { width: 16rem; }
+        }
+        @media (min-width: 1024px) {
+            .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+            .lg\:w-72 { width: 18rem; }
+        }
+
+        /* Dark Mode Overrides */
+        .dark {
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-medium-dark);
+        }
+        .dark .text-dark { color: var(--color-text-dark-dark); }
+        .dark .text-medium { color: var(--color-text-medium-dark); }
+        .dark .text-light { color: var(--color-text-light-dark); }
+        .dark .bg-surface { background-color: var(--color-surface-dark); }
+        .dark .border-dark { border-color: var(--color-border-dark); }
+        .dark .text-red { color: #F87171; } /* red-400 */
+
+
+        /* --- 2. Header Styling --- */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--color-border-light);
+            background-color: var(--color-header-bg-light);
+            backdrop-filter: blur(4px);
+        }
+        .dark .header {
+            border-bottom-color: var(--color-border-dark);
+            background-color: var(--color-header-bg-dark);
+        }
+        
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--color-text-dark-light);
+        }
+        .logo-icon { color: var(--color-primary); }
+        .logo-text { font-size: 1.25rem; font-weight: bold; letter-spacing: -0.015em; }
+        .dark .logo-group { color: white; }
+
+        .nav { display: none; align-items: center; gap: 1.5rem; }
+        @media (min-width: 768px) { .nav { display: flex; } }
+        
+        .nav-link {
+            color: var(--color-text-medium-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .nav-link:hover { color: var(--color-primary); }
+        .dark .nav-link { color: #D1D5DB; } /* gray-300 */
+        .dark .nav-link:hover { color: var(--color-primary); }
+
+        /* Search Bar */
+        .search-wrapper { display: none; }
+        @media (min-width: 640px) { .search-wrapper { display: flex; } }
+        .search-field {
+            display: flex;
+            align-items: stretch;
+            height: 2.5rem;
+            border-radius: var(--radius-lg);
+            background-color: rgba(229, 231, 235, 0.8); /* gray-200/80 */
+        }
+        .search-icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 0.75rem;
+            border-top-left-radius: var(--radius-lg);
+            border-bottom-left-radius: var(--radius-lg);
+            color: var(--color-text-light-light);
+            background-color: inherit;
+        }
+        .search-input {
+            flex-grow: 1;
+            min-width: 0;
+            height: 100%;
+            border: none;
+            background-color: inherit;
+            padding: 0 1rem 0 0.5rem;
+            border-radius: var(--radius-lg);
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            font-size: 0.875rem;
+            color: var(--color-text-dark-light);
+            outline: none;
+        }
+        .search-input:focus { box-shadow: 0 0 0 2px rgba(105, 97, 255, 0.5); }
+        .dark .search-field { background-color: rgba(31, 41, 55, 0.8); } /* gray-800/80 */
+        .dark .search-icon-box { color: #9CA3AF; }
+        .dark .search-input { color: white; }
+        .dark .search-input::placeholder { color: #9CA3AF; }
+
+        /* Cart/Avatar */
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.5rem;
+            min-width: 2.5rem;
+            border-radius: var(--radius-lg);
+            background-color: rgba(229, 231, 235, 0.8);
+            color: var(--color-text-medium-light);
+            padding: 0 0.625rem;
+            aspect-ratio: 1 / 1;
+            transition: background-color 0.15s;
+            border: none;
+        }
+        .icon-btn:hover { background-color: #D1D5DB; } /* gray-300 */
+        .dark .icon-btn { background-color: rgba(31, 41, 55, 0.8); color: #E5E7EB; }
+        .dark .icon-btn:hover { background-color: #4B5563; }
+
+        .avatar {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 9999px;
+            border: 2px solid var(--color-primary);
+        }
+
+        /* --- 3. Main Layout --- */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) { .main-content { flex-direction: row; gap: 3rem; } }
+        @media (min-width: 1024px) { .main-content { gap: 4rem; } }
+
+        /* SideNavBar */
+        .sidebar {
+            width: 100%;
+        }
+        .sidebar-sticky { position: sticky; top: 6rem; }
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: var(--color-surface-light);
+            padding: 1rem;
+            border-radius: var(--radius-xl);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+        }
+        .dark .sidebar-content { background-color: var(--color-surface-dark); }
+
+        .sidebar-user {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border-light);
+            padding-bottom: 1rem;
+        }
+        .dark .sidebar-user { border-bottom-color: var(--color-border-dark); }
+        .sidebar-avatar {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 9999px;
+        }
+        .user-name { font-size: 1rem; font-weight: bold; color: var(--color-text-dark-light); }
+        .user-email { font-size: 0.875rem; color: var(--color-text-light-light); }
+        .dark .user-name { color: white; }
+        .dark .user-email { color: var(--color-text-light-dark); }
+
+        .nav-list { display: flex; flex-direction: column; gap: 0.25rem; }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 0.75rem;
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            transition: background-color 0.15s;
+        }
+        .nav-item:not(.active-nav) {
+            color: #4B5563; /* gray-700 */
+        }
+        .nav-item:not(.active-nav):hover {
+            background-color: var(--color-hover-light);
+        }
+        .dark .nav-item:not(.active-nav) {
+            color: #D1D5DB; /* gray-300 */
+        }
+        .dark .nav-item:not(.active-nav):hover {
+            background-color: var(--color-hover-dark);
+        }
+
+        .active-nav {
+            background-color: var(--color-primary-light);
+            color: var(--color-primary) !important;
+        }
+        .dark .active-nav {
+            background-color: var(--color-primary-medium);
+        }
+
+        .nav-text { font-size: 0.875rem; font-weight: 500; }
+
+        /* Settings Content */
+        .settings-container { flex-grow: 1; min-width: 0; }
+        .page-heading {
+            color: var(--color-text-dark-light);
+            font-size: 2.25rem;
+            font-weight: 900;
+            letter-spacing: -0.033em;
+        }
+        .dark .page-heading { color: white; }
+
+        .settings-section {
+            background-color: var(--color-surface-light);
+            padding: 1.5rem 2rem; /* p-6 sm:p-8 */
+            border-radius: var(--radius-xl);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+        }
+        .dark .settings-section { background-color: var(--color-surface-dark); }
+
+        .section-title {
+            color: var(--color-text-dark-light);
+            font-size: 1.375rem; /* 22px */
+            font-weight: bold;
+            letter-spacing: -0.015em;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .dark .section-title { color: white; }
+
+        .setting-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .setting-row:first-child {
+            margin-top: 0;
+            border-top: none;
+        }
+        @media (min-width: 768px) {
+            .setting-row { grid-template-columns: repeat(3, 1fr); }
+            .md-col-span-1 { grid-column: span 1 / span 1; }
+            .md-col-span-2 { grid-column: span 2 / span 2; }
+        }
+        .dark .setting-row { border-top-color: var(--color-border-dark); }
+        .setting-row:first-child.dark { border-top: none; }
+
+
+        .setting-info-title { font-size: 1rem; font-weight: 500; color: var(--color-text-medium-light); }
+        .setting-info-desc { font-size: 0.875rem; color: var(--color-text-light-light); }
+        .dark .setting-info-title { color: var(--color-text-medium-dark); }
+        .dark .setting-info-desc { color: var(--color-text-light-dark); }
+
+        /* Avatar/Buttons */
+        .avatar-action-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .action-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.5rem;
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            font-weight: bold;
+            padding: 0 1rem;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        .btn-primary-action { background-color: var(--color-primary); color: white; font-weight: bold; }
+        .btn-primary-action:hover { opacity: 0.9; }
+
+        .btn-secondary-action {
+            background-color: var(--color-border-light);
+            color: var(--color-text-medium-light);
+            font-weight: 500;
+        }
+        .btn-secondary-action:hover { background-color: #D1D5DB; }
+        .dark .btn-secondary-action {
+            background-color: #374151; /* gray-700 */
+            color: var(--color-text-medium-dark);
+        }
+        .dark .btn-secondary-action:hover { background-color: #4B5563; }
+        
+        /* Form Fields */
+        .form-input-group { display: flex; flex-direction: column; gap: 1rem; }
+        .form-label { display: flex; flex-direction: column; width: 100%; }
+        .label-text { font-size: 0.875rem; font-weight: 500; padding-bottom: 0.5rem; color: #4B5563; }
+        .dark .label-text { color: #D1D5DB; }
+
+        .input-field {
+            height: 3rem;
+            padding: 0 0.75rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-input-border-light);
+            background-color: var(--color-input-bg-light);
+            color: var(--color-text-dark-light);
+            font-size: 1rem;
+            outline: none;
+        }
+        .input-field:focus { box-shadow: 0 0 0 2px rgba(105, 97, 255, 0.5); border-color: var(--color-primary); }
+        .dark .input-field {
+            border-color: var(--color-input-border-dark);
+            background-color: var(--color-input-bg-dark);
+            color: white;
+        }
+        .dark .input-field::placeholder { color: #9CA3AF; }
+
+        /* Save/Cancel Buttons */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .dark .form-actions { border-top-color: var(--color-border-dark); }
+        .btn-cancel { padding: 0 1.25rem; font-weight: 500; }
+        .btn-save { padding: 0 1.25rem; }
+
+        /* Security Section Styles */
+        .two-factor-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--color-bg-light);
+            padding: 1rem;
+            border-radius: var(--radius-lg);
+        }
+        .dark .two-factor-box { background-color: var(--color-surface-secondary-dark); }
+
+        .two-factor-status-title { font-weight: 500; color: var(--color-text-medium-light); }
+        .two-factor-status-desc { font-size: 0.875rem; color: var(--color-text-light-light); }
+        .dark .two-factor-status-title { color: var(--color-text-medium-dark); }
+        .dark .two-factor-status-desc { color: var(--color-text-light-dark); }
+
+        .btn-enable-2fa { white-space: nowrap; padding: 0 1rem; }
+
+        /* Active Sessions */
+        .session-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-lg);
+        }
+        .dark .session-item { border-color: var(--color-border-dark); }
+        
+        .session-details { display: flex; align-items: center; gap: 0.75rem; }
+        .session-icon { color: #4B5563; font-size: 1.875rem; }
+        .dark .session-icon { color: #9CA3AF; }
+
+        .session-device { font-weight: 500; color: var(--color-text-medium-light); }
+        .session-location { font-size: 0.875rem; color: var(--color-text-light-light); }
+        .session-status-active { color: #10B981; font-weight: 500; }
+        .dark .session-device { color: var(--color-text-medium-dark); }
+        .dark .session-location { color: var(--color-text-light-dark); }
+
+        .btn-logout {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Log out all button */
+        .btn-logout-all-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .dark .btn-logout-all-wrapper { border-top-color: var(--color-border-dark); }
+        
+        .btn-logout-all {
+            height: 2.5rem;
+            padding: 0 1.25rem;
+            border-radius: var(--radius-lg);
+            background-color: var(--color-red-light);
+            color: #DC2626; /* red-600 */
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+        .btn-logout-all:hover { background-color: #FECACA; } /* red-200 */
+        .dark .btn-logout-all {
+            background-color: var(--color-red-dark);
+            color: #F87171; /* red-400 */
+        }
+        .dark .btn-logout-all:hover { background-color: var(--color-red-dark); opacity: 0.9; }
+
+
+        /* --- 4. Footer Styling --- */
+        .footer {
+            width: 100%;
+            background-color: var(--color-surface-light);
+            border-top: 1px solid var(--color-border-light);
+            margin-top: 4rem; /* mt-16 */
+        }
+        .dark .footer { background-color: var(--color-bg-dark); border-top-color: var(--color-border-dark); }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .footer-col-1 { grid-column: span 2 / span 2; }
+        @media (min-width: 768px) { .footer-col-1 { grid-column: span 1 / span 1; } }
+
+        .footer-logo-text { font-size: 0.875rem; color: var(--color-text-light-light); margin-top: 0.75rem; }
+        .dark .footer-logo-text { color: var(--color-text-light-dark); }
+
+        .footer-title { font-size: 0.875rem; font-weight: 600; color: var(--color-text-dark-light); }
+        .dark .footer-title { color: white; }
+        
+        .footer-list { list-style: none; padding: 0; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+        .footer-link {
+            font-size: 0.875rem;
+            color: var(--color-text-light-light);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .footer-link:hover { color: var(--color-primary); }
+        .dark .footer-link { color: var(--color-text-light-dark); }
+
+        .copyright-row {
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .dark .copyright-row { border-top-color: var(--color-border-dark); }
+
+        .copyright-text { font-size: 0.875rem; color: var(--color-text-light-light); }
+        .dark .copyright-text { color: var(--color-text-light-dark); }
+
+        .social-links { display: flex; align-items: center; gap: 1rem; }
+        .social-link { color: #9CA3AF; transition: color 0.15s; }
+        .social-link:hover { color: var(--color-primary); }
+
+
+        /* --- 5. FAB (WhatsApp) --- */
+        .fab {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #10B981; /* green-500 */
+            color: white;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.15s;
+            border: none;
+            cursor: pointer;
+        }
+        .fab:hover { background-color: #059669; } /* green-600 */
+    </style>
+</head>
+<body class="light">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<header class="header px-4 sm:px-6 lg:px-8 py-3">
+<div class="flex items-center justify-between whitespace-nowrap max-w-7xl mx-auto w-full">
+<div class="flex items-center gap-8">
+<div class="logo-group">
+<div class="size-6 logo-icon">
+<svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"></path>
+</svg>
+</div>
+<h2 class="logo-text">Blaqo</h2>
+</div>
+<div class="nav">
+<a class="nav-link" href="#">Scripts</a>
+<a class="nav-link" href="#">APIs</a>
+<a class="nav-link" href="#">Apps</a>
+<a class="nav-link" href="#">AI Tools</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end items-center gap-4">
+<label class="search-wrapper flex-col min-w-40 !h-10 max-w-64">
+<div class="search-field">
+<div class="search-icon-box">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="search-input" placeholder="Search resources..." value=""/>
+</div>
+</label>
+<button class="icon-btn" aria-label="Shopping Cart">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<div class="avatar size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAgfMyFOsU35vpstA-EEtMRhc0HV05jk5AAs5sV9dwi5Dq8RmvAqHbNOJsmvH9iRsmDoxdCJWsE7tJqR57hVvVAWK4i2XXJny-pf5CIgLLy8phNBbCJMLb3MJtG_rE2uoomuE_hScpkyiQqptakrfhauO1vJuWpacyEWec9d23ZdPpt5fw71RyrccBF9_sacG7Y_gu1uhR6pNN9HLbMjjr-woephTiqNcB4lxT8_hJrFTD1Jn9f8ABLK0X4qKiSXv8ehlfo5wHhS_0");'></div>
+</div>
+</div>
+</header>
+<main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="main-content">
+<aside class="sidebar md:w-64 lg:w-72">
+<div class="sidebar-sticky">
+<div class="sidebar-content">
+<div class="sidebar-user">
+<div class="sidebar-avatar size-12" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTuXhq6ts9HlrDDH91TCSpUT4Hb1YvbNDmVGHnXJMFfumAE5o-VM4GfB0JmAYv1dehZMX1tBMG7GY8PvqbDB0AeUFHYeNfhkeFF9yEHjFNwQ3xIHmIsW9zbdaBdgt0kk7Ttc1Clq_z-ReKj_SAtvsrYMrWGRrU7MEq-dZ_SVK8C5498VSTdnlVd2VqzcfwFnEnKvYT95I3M5-VEtOHd8KjNOMGsQk3woPWQ_5hGNbmMP8NZ9gavR3-oFooxec2w_aFVnryI79FtvQ");'></div>
+<div class="flex flex-col">
+<h1 class="user-name">Micheal</h1>
+<p class="user-email">micheal@gmail.com</p>
+</div>
+</div>
+<div class="nav-list">
+<a class="nav-item active-nav" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="nav-text">Profile Settings</p>
+</a>
+<a class="nav-item" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<p class="nav-text">Notification Settings</p>
+</a>
+<a class="nav-item" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<p class="nav-text">Security Settings</p>
+</a>
+</div>
+</div>
+</div>
+</aside>
+<div class="settings-container">
+<div class="flex flex-col gap-8">
+<div class="flex flex-wrap justify-between gap-3 p-4">
+<h1 class="page-heading">Account Settings</h1>
+</div>
+<section class="settings-section bg-surface">
+<h2 class="section-title">Profile Settings</h2>
+<div class="setting-row">
+<div class="md-col-span-1">
+<p class="setting-info-title">Your Avatar</p>
+<p class="setting-info-desc">Update your profile picture.</p>
+</div>
+<div class="md-col-span-2 avatar-action-group">
+<div class="avatar size-20" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBkTYUFudxxmqQAmFezKWVdON7hNUnfIs7xBJE8J25pDvu1ZqrOM2-8ur1XDomH313gXFZVx06rbFbBwX8gs57W2O-OPBntusl1uwA-hPST3UL8MbjWlpsgXoxqqvDimTsh-Yg_mgUBw_SBUSkQdu6Cf_Gh8YijMBcrS-V_KraMFgO30GYtm-pi-LZkZf7y9iOoHuLW9pYEEfOvFqqA8-izrJBTVAFJIOcWyr-O6vKuHWI4hnsOzH2QbwwMKCOYyDq8uXNO-GriQN8");'></div>
+<div class="flex gap-2">
+<button class="action-button btn-primary-action">Upload</button>
+<button class="action-button btn-secondary-action">Remove</button>
+</div>
+</div>
+</div>
+<div class="setting-row">
+<div class="md-col-span-1">
+<p class="setting-info-title">Personal Information</p>
+<p class="setting-info-desc">This will be displayed on your profile.</p>
+</div>
+<div class="md-col-span-2 form-input-group">
+<label class="form-label">
+<p class="label-text">Full Name</p>
+<input class="input-field" value="Micheal"/>
+</label>
+<label class="form-label">
+<p class="label-text">Email Address</p>
+<input class="input-field" value="micheal@gmail.com"/>
+</label>
+</div>
+</div>
+<div class="setting-row">
+<div class="md-col-span-1">
+<p class="setting-info-title">Change Password</p>
+<p class="setting-info-desc">Update your password for security.</p>
+</div>
+<div class="md-col-span-2 form-input-group">
+<label class="form-label">
+<p class="label-text">Current Password</p>
+<input class="input-field" placeholder="••••••••" type="password"/>
+</label>
+<label class="form-label">
+<p class="label-text">New Password</p>
+<input class="input-field" placeholder="••••••••" type="password"/>
+</label>
+<label class="form-label">
+<p class="label-text">Confirm New Password</p>
+<input class="input-field" placeholder="••••••••" type="password"/>
+</label>
+</div>
+</div>
+<div class="form-actions">
+<button class="action-button btn-secondary-action btn-cancel">Cancel</button>
+<button class="action-button btn-primary-action btn-save">Save Changes</button>
+</div>
+</section>
+<section class="settings-section bg-surface">
+<h2 class="section-title">Security Settings</h2>
+<div class="setting-row">
+<div class="md-col-span-1">
+<p class="setting-info-title">Two-Factor Authentication</p>
+<p class="setting-info-desc">Add an extra layer of security to your account.</p>
+</div>
+<div class="md-col-span-2 two-factor-box">
+<div>
+<p class="two-factor-status-title">2FA is currently disabled.</p>
+<p class="two-factor-status-desc">Protect your account from unauthorized access.</p>
+</div>
+<button class="action-button btn-primary-action btn-enable-2fa">Enable 2FA</button>
+</div>
+</div>
+<div class="setting-row">
+<div class="md-col-span-1">
+<p class="setting-info-title">Active Sessions</p>
+<p class="setting-info-desc">Manage your logged in devices.</p>
+</div>
+<div class="md-col-span-2 form-input-group">
+<div class="session-item">
+<div class="session-details">
+<span class="material-symbols-outlined session-icon">desktop_windows</span>
+<div>
+<p class="session-device">Chrome on macOS</p>
+<p class="session-location">New York, USA - <span class="session-status-active">Active now</span></p>
+</div>
+</div>
+<button class="btn-logout">Log out</button>
+</div>
+<div class="session-item">
+<div class="session-details">
+<span class="material-symbols-outlined session-icon">phone_iphone</span>
+<div>
+<p class="session-device">Blaqo App on iOS</p>
+<p class="session-location">London, UK - 2 hours ago</p>
+</div>
+</div>
+<button class="btn-logout">Log out</button>
+</div>
+</div>
+</div>
+<div class="btn-logout-all-wrapper">
+<button class="btn-logout-all">Log Out of All Devices</button>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<footer class="footer mt-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="footer-grid">
+<div class="footer-col-1">
+<div class="logo-group">
+<div class="size-6 logo-icon">
+<svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"></path>
+</svg>
+</div>
+<h2 class="logo-text">Blaqo</h2>
+</div>
+<p class="footer-logo-text">Your marketplace for digital excellence.</p>
+</div>
+<div>
+<h3 class="footer-title">Company</h3>
+<ul class="footer-list">
+<li><a class="footer-link" href="#">About Us</a></li>
+<li><a class="footer-link" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h3 class="footer-title">Support</h3>
+<ul class="footer-list">
+<li><a class="footer-link" href="#">Help Center</a></li>
+<li><a class="footer-link" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h3 class="footer-title">Legal</h3>
+<ul class="footer-list">
+<li><a class="footer-link" href="#">Terms of Service</a></li>
+<li><a class="footer-link" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="copyright-row">
+<p class="copyright-text">© 2025 Blaqo. All rights reserved.</p>
+<div class="social-links">
+<a class="social-link" href="#" aria-label="Twitter"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+<a class="social-link" href="#" aria-label="GitHub"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12.014c0 4.438 2.865 8.225 6.839 9.542.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12.014C22 6.477 17.523 2 12 2z" fill-rule="evenodd"></path></svg></a>
+</div>
+</div>
+</div>
+</footer>
+<button class="fab size-14" aria-label="Chat on WhatsApp">
+<svg class="h-7 w-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.75 13.96c.25.13.41.2.46.3.05.1.03.21-.02.33-.05.12-.12.2-.21.28-.09.08-.18.14-.29.19-.11.05-.24.09-.39.11-.15.02-.32.02-.49-.01-.17-.03-.35-.08-.53-.13-.18-.05-.38-.13-.58-.23-.2-.1-.42-.23-.65-.38-.23-.15-.47-.32-.72-.51-.25-.19-.51-.4-.78-.63-.27-.23-.55-.49-.82-.76-.27-.27-.54-.57-.81-.88-.27-.31-.52-.64-.76-.99-.24-.35-.46-.72-.65-1.11-.19-.39-.34-.8-.45-1.22-.11-.42-.18-.86-.2-1.3-.02-.44.02-.86.12-1.25.1-.39.27-.75.5-1.05.23-.3.53-.54.89-.69.36-.15.77-.22 1.22-.22.25 0 .48.04.68.11.2.07.38.18.52.32.14.14.25.3.33.47.08.17.12.34.14.51.02.17.01.33-.02.48s-.08.28-.15.41c-.07.13-.16.24-.26.34-.1.1-.22.18-.34.25-.12.07-.25.12-.38.16-.13.04-.25.06-.35.07-.1.01-.19.01-.26.01-.13 0-.25-.01-.36-.04-.11-.03-.22-.07-.32-.12s-.2-.12-.29-.2c-.09-.08-.17-.18-.24-.29-.07-.11-.12-.23-.17-.35-.05-.12-.08-.24-.1-.36-.02-.12-.03-.23-.02-.33.01-.1.04-.2.08-.28.04-.08.1-.15.17-.21.07-.06.15-.11.23-.15.08-.04.16-.07.25-.09.09-.02.18-.03.26-.03.11 0 .22.01.33.03.11.02.21.06.31.11.1.05.19.11.27.18.08.07.15.15.22.24.07.09.13.19.18.29.05.1.09.22.13.34.04.12.06.24.08.37.02.13.03.26.02.39-.01.13-.03.26-.07.38-.04.12-.09.24-.15.35-.06.11-.13.22-.22.31-.09.09-.19.17-.3.24-.11.07-.22.13-.34.17-.12.04-.24.07-.37.09-.13.02-.25.03-.38.03-.12 0-.24-.01-.36-.03s-.23-.05-.34-.09c-.11-.04-.22-.09-.32-.15-.1-.06-.2-.13-.29-.21-.09-.08-.17-.18-.24-.28-.07-.1-.13-.21-.17-.33-.04-.12-.07-.24-.08-.37s0-.26.02-.38c.02-.12.05-.24.1-.35.05-.11.11-.22.18-.32.07-.1.15-.19.23-.27s.17-.15.26-.22c.09-.07.18-.12.28-.17.1-.05.2-.08.31-.11.11-.03.22-.05.34-.05.12 0 .24.01.35.04.11.03.22.07.33.12.11.05.21.12.31.19.1.07.19.16.27.25.08.09.15.2.21.31.06.11.11.23.15.36.04.13.06.26.07.4.01.14.01.29-.01.44s-.06.29-.11.43c-.05.14-.12.28-.19.41-.07.13-.15.26-.25.38-.1.12-.2.23-.32.34-.12.11-.24.21-.38.31-.14.1-.28.19-.42.27-.14.08-.28.15-.43.21-.15.06-.3.11-.45.15-.15.04-.3.07-.44.08-.14.01-.28.01-.41.01-.15 0-.3-.01-.44-.04-.14-.03-.28-.07-.41-.13-.13-.06-.25-.13-.37-.22-.12-.09-.23-.2-.34-.31-.11-.11-.21-.24-.3-.37-.09-.13-.16-.27-.22-.42-.06-.15-.1-.3-.13-.46-.03-.16-.05-.32-.05-.48-.01-.2 0-.4.02-.6.02-.2.06-.39.12-.58.06-.19.15-.37.26-.53.11-.16.24-.31.39-.44.15-.13.32-.24.51-.33.19-.09.39-.15.6-.19.21-.04.43-.06.65-.06.23 0 .46.03.68.08.22.05.43.13.63.23.2.1.39.22.56.37.17.15.33.31.47.49.14.18.26.38.36.59.1.21.17.43.23.66.06.23.09.46.1.7.01.24-.01.48-.04.71z"></path></svg>
+</button>
+</div>
+</body>
+</html>

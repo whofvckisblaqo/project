@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo Admin Panel - Products</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variables and Base Styles --- */
+        :root {
+            /* Colors */
+            --color-primary: #6961ff;
+            --color-primary-light: #6961ff1a; /* primary/10 */
+            --color-primary-dark: #6961ff33; /* primary/20 */
+            --color-primary-gradient-end: #3A86FF; 
+            
+            --color-text-dark: #111827; /* Gray-900 */
+            --color-text-subtle: #6b7280; /* Gray-500 */
+            
+            --color-background-light: #f5f5f8;
+            --color-surface-light: #ffffff;
+            --color-border-light: #e5e7eb; /* Gray-200 */
+
+            /* Status Colors */
+            --color-status-published-bg: #d1fae5; /* Green-100 */
+            --color-status-published-text: #065f46; /* Green-800 */
+            --color-status-draft-bg: #fffbe6; /* Yellow-100 */
+            --color-status-draft-text: #92400e; /* Yellow-800 */
+            --color-status-archived-bg: #fee2e2; /* Red-100 */
+            --color-status-archived-text: #991b1b; /* Red-800 */
+            
+            /* Dark Mode Overrides */
+            --color-background-dark: #100f23;
+            --color-dark-surface: var(--color-background-dark);
+            --color-dark-border: #374151; /* Gray-700 */
+            --color-dark-text-dark: #ffffff;
+            --color-dark-text-light: #e5e7eb; /* Gray-200 */
+            --color-dark-text-subtle: #9ca3af; /* Gray-400 */
+            --color-dark-table-header-bg: #1f293780; /* Gray-800/50 */
+
+            /* Radius */
+            --radius-default: 0.25rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(105, 97, 255, 0.3), 0 4px 6px -4px rgba(105, 97, 255, 0.3);
+            --shadow-xl: 0 20px 25px -5px rgba(105, 97, 255, 0.4), 0 10px 10px -5px rgba(105, 97, 255, 0.4);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--color-background-light);
+            color: var(--color-text-dark);
+            margin: 0;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Dark Mode */
+        .dark {
+            background-color: var(--color-background-dark);
+            color: var(--color-dark-text-light);
+        }
+        .dark .sidebar, .dark .main-content-wrapper, .dark .footer {
+            border-color: var(--color-dark-border);
+        }
+        .dark .logo-title { color: var(--color-dark-text-dark); }
+        .dark .sidebar-item, .dark .sidebar-item-logout { color: var(--color-dark-text-subtle); }
+        .dark .sidebar-item:hover, .dark .sidebar-item-logout:hover {
+            color: var(--color-primary);
+            background-color: var(--color-primary-dark);
+        }
+        .dark .sidebar-item.active { 
+            color: var(--color-primary);
+            background-color: var(--color-primary-dark);
+        }
+        .dark h1.page-title { color: var(--color-dark-text-dark); }
+        .dark .search-wrapper { border-color: var(--color-dark-border); }
+        .dark .search-input { color: var(--color-dark-text-light); }
+        .dark .search-input::placeholder { color: #6b7280; } /* gray-500 */
+        .dark .filter-button { 
+            background-color: var(--color-dark-surface);
+            border-color: var(--color-dark-border);
+        }
+        .dark .filter-button p { color: var(--color-dark-text-light); }
+        .dark .table-wrapper { 
+            background-color: var(--color-dark-surface);
+            border-color: var(--color-dark-border);
+        }
+        .dark .table-header { background-color: var(--color-dark-table-header-bg); }
+        .dark tbody tr:hover { background-color: var(--color-dark-table-header-bg); }
+        .dark .table-row-name { color: var(--color-dark-text-dark); }
+        .dark .table-row-data { color: #d1d5db; } /* gray-300 */
+        .dark .action-btn { color: var(--color-dark-text-subtle); }
+        .dark .action-btn:hover { background-color: #374151; } /* gray-700 */
+        .dark .pagination-info { color: var(--color-dark-text-subtle); }
+        .dark .pagination-btn { 
+            background-color: var(--color-dark-surface);
+            border-color: #4b5563; /* gray-600 */
+            color: var(--color-dark-text-subtle);
+        }
+        .dark .pagination-btn:hover { background-color: #374151; } /* gray-700 */
+
+        /* Dark Mode Status Overrides */
+        .dark .status-published { background-color: #064e3b80; color: #6ee7b7; } /* Green-900/50, Green-300 */
+        .dark .status-draft { background-color: #9a341280; color: #fcd34d; } /* Yellow-900/50, Yellow-300 */
+        .dark .status-archived { background-color: #991b1b80; color: #f87171; } /* Red-900/50, Red-300 */
+
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .material-symbols-outlined.small {
+            font-size: 16px;
+        }
+
+        /* --- 2. Layouts and Structure --- */
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            width: 256px; /* w-64 */
+            padding: 16px; /* p-4 */
+            background-color: var(--color-background-light);
+            border-right: 1px solid var(--color-border-light);
+        }
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-size: cover;
+        }
+        .logo-title {
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .logo-subtitle {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* gap-2 */
+        }
+        .sidebar-item, .sidebar-item-logout {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: var(--radius-lg);
+            color: var(--color-text-subtle);
+            text-decoration: none;
+            transition: background-color 0.15s, color 0.15s;
+        }
+        .sidebar-item p {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+        }
+        .sidebar-item:hover, .sidebar-item-logout:hover {
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+        .sidebar-item.active {
+            background-color: var(--color-primary-dark);
+            color: var(--color-primary);
+        }
+        .sidebar-item-logout {
+            margin-top: auto;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .main-content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content {
+            flex: 1;
+            padding: 32px; /* p-8 */
+        }
+        .content-container {
+            max-width: 1280px; /* max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Page Heading */
+        .page-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .page-title {
+            font-size: 36px;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            margin: 0;
+        }
+
+        .add-product-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 40px;
+            padding: 0 20px;
+            border-radius: var(--radius-lg);
+            background-image: linear-gradient(to right, var(--color-primary), var(--color-primary-gradient-end));
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+        .add-product-btn:hover {
+            box-shadow: var(--shadow-xl);
+            transform: scale(1.05);
+        }
+
+        /* Search and Filters */
+        .filter-row {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        @media (min-width: 768px) {
+            .filter-row {
+                flex-direction: row;
+            }
+        }
+
+        .search-wrapper {
+            flex: 1;
+            height: 48px; /* h-12 */
+            width: 100%;
+            display: flex;
+            align-items: stretch;
+            border-radius: var(--radius-lg);
+            background-color: var(--color-surface-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .dark .search-wrapper { background-color: var(--color-dark-surface); }
+        .search-icon {
+            color: var(--color-text-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 16px;
+        }
+        .search-input {
+            flex: 1;
+            width: 100%;
+            min-width: 0;
+            resize: none;
+            overflow: hidden;
+            border: none;
+            background-color: transparent;
+            height: 100%;
+            padding: 0 16px 0 8px;
+            font-size: 16px;
+            font-weight: normal;
+            outline: 0;
+        }
+        .search-input::placeholder { color: #9ca3af; } /* gray-400 */
+        
+
+        .filter-chips {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px; /* pb-2 */
+        }
+        .filter-button {
+            display: flex;
+            height: 48px;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: var(--radius-lg);
+            background-color: var(--color-surface-light);
+            box-shadow: var(--shadow-sm);
+            padding: 0 16px;
+            border: 1px solid transparent; /* To prevent movement on dark mode border */
+        }
+        .filter-button p {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+        }
+        .filter-button span {
+            color: #9ca3af; /* gray-400 */
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-surface-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .table-scroll {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            font-size: 14px;
+            border-collapse: collapse;
+        }
+        .table-header {
+            background-color: #f9fafb; /* gray-50 */
+            text-align: left;
+        }
+        .table-header th {
+            padding: 16px 24px;
+            font-weight: 500;
+            color: #6b7280; /* gray-500 */
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .table-header th:last-child { text-align: right; }
+        
+        tbody tr {
+            transition: background-color 0.15s;
+        }
+        tbody tr:hover { background-color: #f9fafb; } /* gray-50 */
+        tbody td {
+            padding: 16px 24px;
+            white-space: nowrap;
+        }
+
+        .product-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .product-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-lg);
+            background-size: cover;
+        }
+        .table-row-name {
+            font-weight: 500;
+        }
+        .table-row-data {
+            color: #4b5563; /* gray-600 */
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .status-published { background-color: var(--color-status-published-bg); color: var(--color-status-published-text); }
+        .status-draft { background-color: var(--color-status-draft-bg); color: var(--color-status-draft-text); }
+        .status-archived { background-color: var(--color-status-archived-bg); color: var(--color-status-archived-text); }
+
+        .action-cell {
+            text-align: right;
+        }
+        .action-group {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        .action-btn {
+            padding: 8px;
+            color: var(--color-text-subtle);
+            border-radius: var(--radius-default);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.15s, color 0.15s;
+        }
+        .action-btn:hover { background-color: #f3f4f6; } /* gray-100 */
+        .action-btn:hover.edit { color: var(--color-primary); }
+        .action-btn:hover.delete { color: #ef4444; } /* red-500 */
+
+        /* Pagination */
+        .pagination-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .pagination-info {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+        }
+        .pagination-info .font-medium {
+            font-weight: 500;
+        }
+
+        .pagination-buttons {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pagination-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-default);
+            border: 1px solid #d1d5db; /* gray-300 */
+            background-color: var(--color-surface-light);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-subtle);
+            transition: background-color 0.15s;
+            cursor: pointer;
+        }
+        .pagination-btn:hover { background-color: #f9fafb; } /* gray-50 */
+
+        /* Footer */
+        .footer {
+            padding: 16px;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .footer p {
+            text-align: center;
+            font-size: 14px;
+            color: var(--color-text-subtle);
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="dark">
+<div class="page-wrapper">
+<aside class="sidebar">
+<div class="logo-group">
+<div class="logo-img" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBuyJ876TMPHX3X7S4_fdM-iIu3ad8_oW742yBVWf5Dvi4DZfgEdgsdQOrozemx3uto-4XCRsysLcW8h-XAPNLdvxuueLVPboJjoUbukCTxRAQRS8o9nvW0Ko-yzythwUGiU2IcsWfE3gJwdb0V_HNP_75Vb0xDdAvsewY2SvqW4vsfyRu3zrQirOcglfwOMxV2bMVEka9aEPcbUf4kofSM8j7qmupPdSDdruy6YSfhnmsjYDzQZi-EGooy7MHDzWFo89Kx4eFnqRk");'></div>
+<div class="flex flex-col">
+<h1 class="logo-title">Blaqo</h1>
+<p class="logo-subtitle">Admin Panel</p>
+</div>
+</div>
+<nav class="nav-menu">
+<a class="sidebar-item" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p>Dashboard</p>
+</a>
+<a class="sidebar-item active" href="#">
+<span class="material-symbols-outlined">widgets</span>
+<p>Products</p>
+</a>
+<a class="sidebar-item" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<p>Orders</p>
+</a>
+<a class="sidebar-item" href="#">
+<span class="material-symbols-outlined">group</span>
+<p>Users</p>
+</a>
+<a class="sidebar-item" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p>Settings</p>
+</a>
+</nav>
+<div class="sidebar-item-logout">
+<span class="material-symbols-outlined">logout</span>
+<p>Logout</p>
+</div>
+</aside>
+<main class="main-content-wrapper">
+<div class="main-content">
+<div class="content-container">
+<div class="page-header">
+<h1 class="page-title">Products</h1>
+<button class="add-product-btn">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="truncate">Add New Product</span>
+</button>
+</div>
+<div class="filter-row">
+<div style="flex: 1;">
+<label class="flex flex-col h-12 w-full">
+<div class="search-wrapper">
+<div class="search-icon">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="search-input" placeholder="Search by product name, ID..." value=""/>
+</div>
+</label>
+</div>
+<div class="filter-chips">
+<button class="filter-button">
+<p>Category: All</p>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+<button class="filter-button">
+<p>Status: All</p>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+<div class="table-wrapper">
+<div class="table-scroll">
+<table>
+<thead class="table-header">
+<tr>
+<th>Product Name</th>
+<th>Category</th>
+<th>Price</th>
+<th>Status</th>
+<th>Date Added</th>
+<th class="action-cell">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<div class="product-cell">
+<div class="product-thumb" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAicIUaii9zf8SvxdG7hyodkhPrcI9bE_cyTjkLXSEl__B2QP-tWTDsXWm2_I0dh8uCDD7mX7KuUs93Ay-PlTKvEzgP3n70eq1t0GORBxxxKRa8_-4u9nhd_hr6v9BG3Ye5UJ19wxUfX__sKqWsd_T3Waa1m1Vt2Kc4v_2wTXlHa2qnKAKzk8fQVitD0kjNZfNsgfrdzhJJPcw_8XlpaECPOt3wTTPirNOatajb4uTfcT9yM7U_FaUuPf5qe2fykpDl5xKKvE4PJYM");'></div>
+<span class="table-row-name">AI Chatbot Pro</span>
+</div>
+</td>
+<td class="table-row-data">AI Tools</td>
+<td class="table-row-data">$99.00</td>
+<td>
+<span class="status-badge status-published">Published</span>
+</td>
+<td class="table-row-data">24/05/2024</td>
+<td class="action-cell">
+<div class="action-group">
+<button class="action-btn edit"><span class="material-symbols-outlined small">edit</span></button>
+<button class="action-btn delete"><span class="material-symbols-outlined small">delete</span></button>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="product-cell">
+<div class="product-thumb" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDRO6gQ9Lip7OBqwIlAN_Mh4k8QKlOlWsJp1nX6b8fTt1QsYGcjML4ScxxWMNrXb2JyMhce7W62OGd04QWJvDnC1dfySy3MZQNEloDtZ7tt3AH5w-8rLQ3SA_DpzmLUhKsEoGRMwlREIVv-Yyz6beB0S0Zv90vsvzPx_yNryfC8K3crLB2JA_FUMPXi8akDVyUzxQ0DR2kuXIL5EPsiIGeFo4K1ENE0JOx6CfSWKs8Fb2pnzQhTMCzFmpCeOmqLy0Kip2OY_jRo1sM");'></div>
+<span class="table-row-name">Project Management Script</span>
+</div>
+</td>
+<td class="table-row-data">Web Scripts</td>
+<td class="table-row-data">$49.99</td>
+<td>
+<span class="status-badge status-published">Published</span>
+</td>
+<td class="table-row-data">23/05/2024</td>
+<td class="action-cell">
+<div class="action-group">
+<button class="action-btn edit"><span class="material-symbols-outlined small">edit</span></button>
+<button class="action-btn delete"><span class="material-symbols-outlined small">delete</span></button>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="product-cell">
+<div class="product-thumb" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDw0z2ig6n6mrLkc6UVk-porRYS0G8GHlPazut_X9uD7Qne2GBGNrjpUGIyOgv5aEml9QGXz7IIHsvhv5vKdWI_3jyT4yp1mYO4kkvmWPD8TEf3uef2XJ6uYCiNVb20-tQzq-OhH4hfdc1Ti6WL-WB2aTCIVh0Hae0EO99NiOiSxw7zUfa8jw1DqiTXCxMJty9R9tAiU8devmEPHz31xPUu9x3l8XdSO9nJLKpIi56V-X6Mia84G7JVksaMDxdegMfQqCM4iGlss8o");'></div>
+<span class="table-row-name">Weather API</span>
+</div>
+</td>
+<td class="table-row-data">APIs</td>
+<td class="table-row-data">$19.00/mo</td>
+<td>
+<span class="status-badge status-draft">Draft</span>
+</td>
+<td class="table-row-data">22/05/2024</td>
+<td class="action-cell">
+<div class="action-group">
+<button class="action-btn edit"><span class="material-symbols-outlined small">edit</span></button>
+<button class="action-btn delete"><span class="material-symbols-outlined small">delete</span></button>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="product-cell">
+<div class="product-thumb" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD1OOT4zV-kxWU2nsOf-ARC5CLA6CzomcOV9Z1wcW-FCo07HiwDnmOjOo6DQ9rpNIgmgwlauGDJOa0UxFkdjzCnBZWEW_zRs2jZcRRoZn1ZB5ZykjtlHvS0SWwFnz4BZFbE7xkHfcCuS4IE92PT2EEwxHcutAiD2ufmaoO4xEBdj1luvbHebv5t8s0QBQwm10ZgoqtJOM5E57Q1C8FWWRIBJ_9f0FagNrgGNbllbZG0BWltTJdNgORgp0shTHWwPaRPrnzkqXa5OMc");'></div>
+<span class="table-row-name">UX Design Masterclass</span>
+</div>
+</td>
+<td class="table-row-data">E-Learning</td>
+<td class="table-row-data">$299.00</td>
+<td>
+<span class="status-badge status-archived">Archived</span>
+</td>
+<td class="table-row-data">20/05/2024</td>
+<td class="action-cell">
+<div class="action-group">
+<button class="action-btn edit"><span class="material-symbols-outlined small">edit</span></button>
+<button class="action-btn delete"><span class="material-symbols-outlined small">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pagination-controls">
+<p class="pagination-info">
+Showing <span class="font-medium">1</span> to <span class="font-medium">4</span> of <span class="font-medium">20</span> results
+</p>
+<div class="pagination-buttons">
+<button class="pagination-btn">
+<span class="material-symbols-outlined small">chevron_left</span>
+</button>
+<button class="pagination-btn">
+<span class="material-symbols-outlined small">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<p>© 2025 Blaqo. All rights reserved.</p>
+</footer>
+</main>
+</div>
+</body>
+</html>

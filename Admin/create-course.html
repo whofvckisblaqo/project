@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blaqo Admin — Courses</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="courses.css">
+
+  <meta name="description" content="Di-Boss Admin dashboard — manage courses" />
+</head>
+<body class="db-body">
+
+  <div class="container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" aria-label="Sidebar navigation">
+      <div class="sidebar-top">
+        <div class="brand">
+          <div class="brand-avatar" aria-hidden="true"></div>
+          <div class="brand-text">
+            <h2>Admin Panel</h2>
+            <p>Blaqo Marketplace</p>
+          </div>
+        </div>
+
+        <nav class="nav" role="navigation" aria-label="Main">
+          <a href="#" class="nav-link">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span>Dashboard</span>
+          </a>
+
+          <a href="#" class="nav-link active" aria-current="page">
+            <span class="material-symbols-outlined">school</span>
+            <span>Courses</span>
+          </a>
+
+          <a href="#" class="nav-link">
+            <span class="material-symbols-outlined">group</span>
+            <span>Users</span>
+          </a>
+
+          <a href="#" class="nav-link">
+            <span class="material-symbols-outlined">settings</span>
+            <span>Settings</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <button class="btn btn-primary full">View Website</button>
+        <a class="nav-link logout" href="#">
+          <span class="material-symbols-outlined">logout</span>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main" id="main">
+      <header class="page-header">
+        <div class="heading">
+          <h1>Courses</h1>
+          <p class="muted">Manage published and draft courses — edit, preview, or remove.</p>
+        </div>
+
+        <div class="header-actions">
+          <div class="search-wrap" role="search" aria-label="Search courses">
+            <span class="material-symbols-outlined search-icon">search</span>
+            <input id="search" class="search-input" type="search" placeholder="Search courses, modules or instructors" />
+          </div>
+
+          <div class="controls">
+            <select id="filter-level" class="select">
+              <option value="">All levels</option>
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+
+            <button class="btn btn-ghost" id="filter-toggle" title="Sort / Filter">
+              <span class="material-symbols-outlined">filter_list</span>
+            </button>
+
+            <a class="btn btn-primary" href="#" id="add-course">
+              <span class="material-symbols-outlined">add</span>
+              Add New Course
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Summary / Stats -->
+      <section class="stats" aria-hidden="true">
+        <div class="stat">
+          <p class="stat-number">128</p>
+          <p class="stat-label">Total Courses</p>
+        </div>
+        <div class="stat">
+          <p class="stat-number">9,412</p>
+          <p class="stat-label">Students Enrolled</p>
+        </div>
+        <div class="stat">
+          <p class="stat-number">3.9</p>
+          <p class="stat-label">Avg. Rating</p>
+        </div>
+      </section>
+
+      <!-- Courses Grid -->
+      <section class="courses" aria-label="Courses list">
+        <div class="courses-grid">
+
+          <!-- COURSE CARD (repeatable) -->
+          <article class="course-card" data-id="c-001">
+            <div class="card-media" aria-hidden="true"></div>
+
+            <div class="card-body">
+              <h3 class="course-title">Modern Web Development</h3>
+              <p class="course-meta">12 Modules • Beginner • <span class="muted">Published</span></p>
+
+              <p class="course-desc">A hands-on course covering HTML, CSS, JavaScript, and modern frontend tooling — build production-ready projects.</p>
+
+              <div class="card-row">
+                <div class="left-meta">
+                  <span class="price">$49.99</span>
+                  <span class="students"><span class="material-symbols-outlined">group</span> 421</span>
+                </div>
+
+                <div class="card-actions">
+                  <button class="icon-btn" title="Preview">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </button>
+                  <button class="icon-btn" title="Edit">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="icon-btn danger" title="Delete">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Course 2 -->
+          <article class="course-card" data-id="c-002">
+            <div class="card-media media-2" aria-hidden="true"></div>
+            <div class="card-body">
+              <h3 class="course-title">UI/UX Design Fundamentals</h3>
+              <p class="course-meta">8 Modules • Intermediate • <span class="muted">Draft</span></p>
+              <p class="course-desc">Core UX processes, wireframing, and visual design principles for digital product design.</p>
+              <div class="card-row">
+                <div class="left-meta">
+                  <span class="price">$39.00</span>
+                  <span class="students"><span class="material-symbols-outlined">group</span> 215</span>
+                </div>
+                <div class="card-actions">
+                  <button class="icon-btn" title="Preview"><span class="material-symbols-outlined">visibility</span></button>
+                  <button class="icon-btn" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+                  <button class="icon-btn danger" title="Delete"><span class="material-symbols-outlined">delete</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Course 3 -->
+          <article class="course-card" data-id="c-003">
+            <div class="card-media media-3" aria-hidden="true"></div>
+            <div class="card-body">
+              <h3 class="course-title">Data Structures & Algorithms</h3>
+              <p class="course-meta">20 Modules • Advanced • <span class="muted">Published</span></p>
+              <p class="course-desc">Master core algorithms and data structures used in interviews and high-scale systems.</p>
+              <div class="card-row">
+                <div class="left-meta">
+                  <span class="price">Free</span>
+                  <span class="students"><span class="material-symbols-outlined">group</span> 1,032</span>
+                </div>
+                <div class="card-actions">
+                  <button class="icon-btn" title="Preview"><span class="material-symbols-outlined">visibility</span></button>
+                  <button class="icon-btn" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+                  <button class="icon-btn danger" title="Delete"><span class="material-symbols-outlined">delete</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Course 4 -->
+          <article class="course-card" data-id="c-004">
+            <div class="card-media media-4" aria-hidden="true"></div>
+            <div class="card-body">
+              <h3 class="course-title">Product Management Essentials</h3>
+              <p class="course-meta">6 Modules • Intermediate • <span class="muted">Published</span></p>
+              <p class="course-desc">From discovery to delivery — frameworks & templates used by product teams at startups and enterprises.</p>
+              <div class="card-row">
+                <div class="left-meta">
+                  <span class="price">$29.00</span>
+                  <span class="students"><span class="material-symbols-outlined">group</span> 84</span>
+                </div>
+                <div class="card-actions">
+                  <button class="icon-btn" title="Preview"><span class="material-symbols-outlined">visibility</span></button>
+                  <button class="icon-btn" title="Edit"><span class="material-symbols-outlined">edit</span></button>
+                  <button class="icon-btn danger" title="Delete"><span class="material-symbols-outlined">delete</span></button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Add more cards... (duplicate structure) -->
+
+        </div>
+      </section>
+
+      <!-- Pagination (markup only) -->
+      <nav class="pagination" aria-label="Pagination">
+        <button class="page-btn" disabled>Prev</button>
+        <button class="page-btn active" aria-current="page">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">Next</button>
+      </nav>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <small>© 2024 Di-Boss Marketplace. All rights reserved.</small>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Optional: Hidden edit/confirm modal markup (no JS included) -->
+  <div id="modals" aria-hidden="true" class="modals">
+    <div class="modal confirm" role="dialog" aria-modal="true" hidden>
+      <div class="modal-card">
+        <h4>Confirm delete</h4>
+        <p>Are you sure you want to delete this course? This action cannot be undone.</p>
+        <div class="modal-actions">
+          <button class="btn">Cancel</button>
+          <button class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    /* =============================
+   Di-Boss — Courses List (External CSS)
+   Save as: courses.css
+   Uses Manrope and Material Symbols (from HTML)
+   ============================= */
+
+:root{
+  --bg: #f5f6fa;
+  --card: #ffffff;
+  --muted: #7b7f88;
+  --accent: #4238ff;
+  --accent-2: #6c63ff;
+  --shadow: 0 10px 30px rgba(33,33,66,0.07);
+  --danger: #ff5b5b;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --glass: rgba(255,255,255,0.6);
+  --text: #151522;
+  --success: #10b981;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body.db-body{
+  margin:0;
+  font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.4;
+}
+
+/* Container layout */
+.container{
+  display:flex;
+  min-height:100vh;
+  gap:28px;
+}
+
+/* Sidebar */
+.sidebar{
+  width:250px;
+  background:var(--card);
+  padding:20px;
+  border-right:1px solid #ececec;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow: 0 6px 18px rgba(22,22,50,0.03);
+}
+
+.brand{display:flex;gap:12px;align-items:center}
+.brand-avatar{
+  width:48px;height:48px;border-radius:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  box-shadow: inset 0 -6px 20px rgba(255,255,255,0.05);
+}
+.brand-text h2{margin:0;font-size:15px;font-weight:800}
+.brand-text p{margin:0;font-size:13px;color:var(--muted);margin-top:3px}
+
+/* Navigation */
+.nav{margin-top:20px;display:flex;flex-direction:column;gap:8px}
+.nav-link{
+  display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;color:#333;text-decoration:none;
+  font-weight:600;font-size:14px;transition:all .18s ease;
+}
+.nav-link .material-symbols-outlined{font-size:20px;color:#6b6b7b}
+.nav-link:hover{background:linear-gradient(90deg,rgba(66,56,255,0.06),rgba(108,99,255,0.04));transform:translateY(-1px)}
+.nav-link.active{background:linear-gradient(90deg,rgba(66,56,255,0.12),rgba(108,99,255,0.06));color:var(--accent)}
+.nav-link.active .material-symbols-outlined{color:var(--accent)}
+
+/* Sidebar bottom */
+.sidebar-bottom{display:flex;flex-direction:column;gap:12px}
+.btn{border:0;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;border:1px solid #e6e6f8;padding:9px;border-radius:10px}
+
+/* MAIN content */
+.main{
+  flex:1;padding:34px 40px 48px;max-width:1200px;margin:0 auto;width:100%;
+}
+
+/* Page header */
+.page-header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.page-header .heading h1{margin:0;font-size:28px;font-weight:800}
+.muted{color:var(--muted);font-size:13px;margin-top:6px}
+
+/* Header actions */
+.header-actions{display:flex;align-items:center;gap:16px}
+.search-wrap{
+  display:flex;align-items:center;background:#fff;padding:8px 12px;border-radius:10px;width:360px;box-shadow:var(--shadow);
+}
+.search-input{
+  border:0;outline:0;padding:8px 10px;font-size:14px;width:100%;
+}
+.search-icon{opacity:0.6;margin-right:6px;font-size:20px;color:#6b6b7b}
+
+.controls{display:flex;align-items:center;gap:10px}
+.select{padding:9px 12px;border-radius:10px;border:1px solid #eee;font-weight:600}
+.create-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:var(--accent);color:#fff;font-weight:800;border:0;cursor:pointer}
+.create-btn:hover{transform:translateY(-2px)}
+
+/* Stats */
+.stats{display:flex;gap:16px;margin:20px 0 26px}
+.stat{background:linear-gradient(180deg,#fff,#fbfbff);padding:12px 16px;border-radius:12px;box-shadow:var(--shadow);min-width:120px}
+.stat-number{font-weight:800;font-size:18px;margin:0}
+.stat-label{color:var(--muted);font-size:13px;margin:0;margin-top:6px}
+
+/* Courses grid */
+.courses-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:20px;
+}
+
+/* Course card */
+.course-card{
+  background:var(--card);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;transition:transform .22s ease, box-shadow .22s ease;
+  border:1px solid rgba(16,16,36,0.03);
+}
+.course-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(33,33,66,0.09)}
+
+.card-media{height:140px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-bottom-left-radius:var(--radius-lg);border-bottom-right-radius:var(--radius-lg)}
+.card-media.media-2{background:linear-gradient(135deg,#ff8a65,#ffca8a)}
+.card-media.media-3{background:linear-gradient(135deg,#60a5fa,#7dd3fc)}
+.card-media.media-4{background:linear-gradient(135deg,#34d399,#86efac)}
+
+.card-body{padding:16px;display:flex;flex-direction:column;gap:10px}
+.course-title{margin:0;font-size:16px;font-weight:800}
+.course-meta{margin:0;color:var(--muted);font-size:13px}
+.course-desc{margin:0;color:#444;font-size:14px;min-height:42px}
+
+/* Card row */
+.card-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.left-meta{display:flex;align-items:center;gap:10px;font-weight:700}
+.price{color:var(--accent);font-weight:800}
+.students{display:inline-flex;gap:6px;align-items:center;color:var(--muted)}
+
+/* Actions */
+.card-actions{display:flex;gap:8px}
+.icon-btn{background:#f6f7ff;border:0;padding:8px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.icon-btn:hover{transform:translateY(-3px)}
+.icon-btn .material-symbols-outlined{font-size:18px}
+.icon-btn.danger{background:#fff3f3;color:var(--danger)}
+.icon-btn.danger:hover{background:var(--danger);color:#fff}
+
+/* Pagination */
+.pagination{display:flex;gap:8px;justify-content:center;margin:28px 0}
+.page-btn{padding:8px 12px;border-radius:8px;border:1px solid #eee;background:#fff;cursor:pointer}
+.page-btn.active{background:var(--accent);color:#fff;border-color:transparent}
+.page-btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* Footer */
+.footer{text-align:center;color:var(--muted);margin-top:20px;padding-bottom:20px}
+
+/* Responsive */
+@media (max-width:1000px){
+  .sidebar{display:none}
+  .container{padding:0}
+  .main{padding:20px}
+  .search-wrap{width:100%}
+}
+@media (max-width:640px){
+  .header-actions{flex-direction:column;align-items:stretch;gap:10px}
+  .controls{justify-content:space-between}
+  .courses-grid{grid-template-columns:repeat(1,1fr)}
+}
+
+  </style>
+
+</body>
+</html>

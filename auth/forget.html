@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password - Blaqo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- TopNavBar -->
+        <header class="header">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="nav-left">
+                        <a class="logo" href="#">
+                            <div class="logo-icon">
+                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h2 class="logo-text">Blaqo</h2>
+                        </a>
+                        <nav class="nav-links">
+                            <a href="#" class="nav-link">Categories</a>
+                            <a href="#" class="nav-link">AI Tools</a>
+                            <a href="#" class="nav-link">E-Learning</a>
+                        </nav>
+                    </div>
+                    <div class="nav-right">
+                        <label class="search-container">
+                            <div class="search-wrapper">
+                                <div class="search-icon">
+                                    <span class="material-symbols-outlined">search</span>
+                                </div>
+                                <input type="text" class="search-input" placeholder="Search..." />
+                            </div>
+                        </label>
+                        <div class="button-group">
+                            <button class="cart-button">
+                                <span class="material-symbols-outlined">shopping_cart</span>
+                            </button>
+                            <button class="login-button">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="form-container">
+                <div class="form-card">
+                    <!-- Page Heading -->
+                    <div class="heading-section">
+                        <h1 class="heading-title">Reset Your Password</h1>
+                        <p class="heading-subtitle">Enter your registered email below, and we'll send you a link to reset your password.</p>
+                    </div>
+                    
+                    <form class="reset-form">
+                        <!-- Email Field -->
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <div class="input-wrapper">
+                                <span class="material-symbols-outlined input-icon">mail</span>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    class="form-input" 
+                                    placeholder="Enter your email address" 
+                                    autocomplete="email"
+                                    required 
+                                />
+                            </div>
+                        </div>
+                        
+                        <!-- Submit Button -->
+                        <div class="button-section">
+                            <button type="submit" class="submit-button">Send Reset Link</button>
+                        </div>
+                    </form>
+                    
+                    <!-- Meta Text -->
+                    <div class="meta-text">
+                        <p>
+                            Remember your password?
+                            <a href="#" class="back-link">Back to Login</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Floating WhatsApp Button -->
+        <button class="whatsapp-button">
+            <svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.195 1.687zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.296-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+        </button>
+    </div>
+
+    <style>
+        /* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #6b61ff;
+    --brand-purple: #6C63FF;
+    --brand-blue: #3A86FF;
+    --bg-light: #f6f5f8;
+    --bg-dark: #100f23;
+    --text-dark: #1e293b;
+    --text-light: #f1f5f9;
+    --text-gray: #64748b;
+    --border-light: #e2e8f0;
+    --border-dark: #1e293b;
+    --white: #ffffff;
+    --card-bg-light: #ffffff;
+    --card-bg-dark: rgba(15, 23, 42, 0.5);
+    --whatsapp-green: #25D366;
+    --whatsapp-dark: #128C7E;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.page-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(246, 245, 248, 0.8);
+    backdrop-filter: blur(8px);
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border-light);
+    padding: 0.75rem 0;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--primary);
+}
+
+.logo-text {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+}
+
+.nav-links {
+    display: none;
+    align-items: center;
+    gap: 2.25rem;
+}
+
+.nav-link {
+    color: #475569;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.nav-right {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-container {
+    display: none;
+    flex-direction: column;
+    min-width: 10rem;
+    max-width: 16rem;
+}
+
+.search-wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    border-radius: 0.5rem;
+    height: 2.5rem;
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(226, 232, 240, 0.6);
+    padding-left: 0.75rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+    color: #64748b;
+}
+
+.search-input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    border: none;
+    background-color: rgba(226, 232, 240, 0.6);
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 0 1rem 0 0.5rem;
+    font-size: 0.875rem;
+    outline: none;
+    color: var(--text-dark);
+}
+
+.search-input::placeholder {
+    color: #94a3b8;
+}
+
+.search-input:focus {
+    outline: 2px solid rgba(107, 97, 255, 0.5);
+    outline-offset: 0;
+}
+
+.button-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    height: 2.5rem;
+    background-color: rgba(226, 232, 240, 0.6);
+    color: #475569;
+    border: none;
+    padding: 0 0.625rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cart-button:hover {
+    background-color: #e2e8f0;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-button:hover {
+    background-color: rgba(107, 97, 255, 0.9);
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 28rem;
+}
+
+.form-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.heading-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.heading-title {
+    color: var(--text-dark);
+    font-size: 1.875rem;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.033em;
+}
+
+.heading-subtitle {
+    color: #64748b;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.reset-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    color: var(--text-dark);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    padding-bottom: 0.5rem;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.form-input {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    background-color: var(--bg-light);
+    border-radius: 0.5rem;
+    height: 3.5rem;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    font-size: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text-dark);
+    transition: all 0.2s;
+}
+
+.form-input::placeholder {
+    color: #94a3b8;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: rgba(107, 97, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(107, 97, 255, 0.2);
+}
+
+.button-section {
+    padding-top: 0.5rem;
+}
+
+.submit-button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    height: 3rem;
+    padding: 0 1.25rem;
+    background: linear-gradient(to right, var(--brand-purple), var(--brand-blue));
+    color: var(--white);
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.submit-button:hover {
+    opacity: 0.9;
+}
+
+.submit-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg-light), 0 0 0 4px rgba(107, 97, 255, 0.5);
+}
+
+.meta-text {
+    padding-top: 1.5rem;
+}
+
+.meta-text p {
+    color: #64748b;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.back-link {
+    font-weight: 500;
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: rgba(107, 97, 255, 0.8);
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: var(--whatsapp-green);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.whatsapp-button:hover {
+    background-color: var(--whatsapp-dark);
+}
+
+.whatsapp-icon {
+    width: 2rem;
+    height: 2rem;
+    color: var(--white);
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .search-container {
+        display: flex;
+    }
+
+    .form-card {
+        padding: 2.5rem;
+    }
+
+    .main-content {
+        padding: 6rem 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 2rem;
+    }
+}
+    </style>
+</body>
+</html>

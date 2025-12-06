@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role Management - Blaqo Admin (Standard CSS)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variables and Base Styles --- */
+        :root {
+            /* Colors */
+            --color-primary: #6b61ff; /* Blue/Violet */
+            --color-primary-light: #6b61ff1a; /* primary/10 */
+            --color-primary-dark: #6b61ff33; /* primary/20 */
+            
+            --color-background-light: #f6f5f8;
+            --color-text-dark: #0f172a; /* Slate-900 */
+            --color-text-medium: #475569; /* Slate-700 */
+            --color-text-subtle: #64748b; /* Slate-500 */
+            --color-border-light: #e2e8f0; /* Slate-200 */
+            --color-surface-light: #ffffff;
+
+            /* Status Colors */
+            --color-success-text: #16a34a; /* green-700 */
+            --color-success-bg: #f0fdf4; /* green-50 */
+            
+            /* Dark Mode Overrides */
+            --color-dark-background: #100f23;
+            --color-dark-surface: #1e293b; /* Slate-800 */
+            --color-dark-surface-alt: #100f2380; /* background-dark/50 */
+            --color-dark-text-light: #ffffff;
+            --color-dark-text-medium: #e2e8f0; /* Slate-200 */
+            --color-dark-text-subtle: #94a3b8; /* Slate-400 */
+            --color-dark-border: #334155; /* Slate-700 */
+            --color-dark-table-header: #1e293b80; /* slate-800/50 */
+
+            --color-dark-success-text: #4ade80; /* green-400 */
+            --color-dark-success-bg: #064e3b; /* green-900 */
+
+            /* Radius/Shadow */
+            --radius-default: 0.5rem;
+            --radius-lg: 1rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        /* Dark Mode Selector */
+        .dark {
+            background-color: var(--color-dark-background);
+            color: var(--color-dark-text-medium);
+        }
+        .dark .logo-title { color: var(--color-dark-text-light); }
+        .dark .nav-link { color: var(--color-dark-text-subtle); }
+        .dark .header-border { border-color: #6b61ff4d; }
+        .dark .icon-button-bg { background-color: var(--color-primary-dark); color: var(--color-dark-text-medium); }
+        .dark .header-search-input { 
+            background-color: var(--color-dark-background); 
+            color: var(--color-dark-text-light); 
+            ring-color: var(--color-dark-border);
+        }
+        .dark .header-search-icon-wrapper { background-color: var(--color-dark-background); border-color: var(--color-dark-border); }
+        .dark .search-icon { color: var(--color-dark-text-subtle); }
+        
+        .dark .page-title { color: var(--color-dark-text-light); }
+        .dark .page-subtitle { color: var(--color-dark-text-subtle); }
+
+        /* Card styles in dark mode */
+        .dark .card { 
+            background-color: var(--color-dark-surface-alt); 
+            border-color: var(--color-dark-border); 
+        }
+        .dark .card-title { color: var(--color-dark-text-light); }
+        .dark .card-subtitle { color: var(--color-dark-text-subtle); }
+        .dark .card-count-text { color: var(--color-dark-text-light); }
+        .dark .card-icon-wrapper { background-color: var(--color-primary-dark); }
+        .dark .card-action-link { color: var(--color-primary); }
+
+        /* Form/Table styles in dark mode */
+        .dark .input-label { color: var(--color-dark-text-light); }
+        .dark .form-input, .dark .form-select {
+            background-color: var(--color-dark-background);
+            color: var(--color-dark-text-light);
+            border-color: var(--color-dark-border);
+        }
+        .dark .table-container { 
+            border-color: var(--color-dark-border);
+            background-color: var(--color-dark-surface-alt);
+        }
+        .dark .table-header { background-color: var(--color-dark-table-header); }
+        .dark .table-header th { color: var(--color-dark-text-subtle); }
+        .dark .table-row { border-color: var(--color-dark-border); }
+        .dark .table-row:hover { background-color: #1e293b33; } /* slate-800/20 */
+
+        .dark .table-role-text { color: var(--color-dark-text-medium); }
+        .dark .table-members-text, .dark .table-status-text { color: var(--color-dark-text-subtle); }
+        .dark .table-action-icon { color: var(--color-dark-text-subtle); }
+        .dark .table-action-icon:hover { color: var(--color-primary); }
+        
+        .dark .status-pill-success { 
+            background-color: var(--color-dark-success-bg); 
+            color: var(--color-dark-success-text); 
+        }
+
+        .dark .footer-border { border-color: var(--color-dark-border); }
+        .dark .footer-link { color: var(--color-dark-text-subtle); }
+        .dark .footer-social-icon { color: var(--color-dark-text-subtle); }
+        .dark .footer-copyright { color: var(--color-dark-text-subtle); }
+        
+        /* --- 2. Layout and Structure --- */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--color-background-light);
+        }
+        .layout-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem;
+        }
+        @media (min-width: 640px) { .layout-container { padding-left: 2rem; padding-right: 2rem; } } /* sm:px-8 */
+        @media (min-width: 768px) { .layout-container { padding-left: 3rem; padding-right: 3rem; } } /* md:px-12 */
+        @media (min-width: 1024px) { .layout-container { padding-left: 5rem; padding-right: 5rem; } } /* lg:px-20 */
+        @media (min-width: 1280px) { .layout-container { padding-left: 10rem; padding-right: 10rem; } } /* xl:px-40 */
+
+        .layout-content-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1300px; /* max-w-7xl */
+            flex: 1;
+            width: 100%;
+        }
+
+        /* --- 3. Header/Navbar --- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            white-space: nowrap;
+            border-bottom: 1px solid #6b61ff33; /* border-primary/20 */
+            padding: 12px 24px; /* py-3 px-6 */
+        }
+        @media (min-width: 640px) { .header { padding-left: 40px; padding-right: 40px; } } /* sm:px-10 */
+        
+        .header-left { display: flex; align-items: center; gap: 32px; }
+        .logo-group { display: flex; align-items: center; gap: 16px; color: var(--color-text-dark); }
+        .logo-icon { width: 24px; height: 24px; color: var(--color-primary); }
+        .logo-title { font-size: 18px; font-weight: bold; }
+
+        .nav-links { display: none; align-items: center; gap: 36px; }
+        @media (min-width: 1024px) { .nav-links { display: flex; } }
+        .nav-link { color: var(--color-text-medium); font-size: 14px; font-weight: 500; text-decoration: none; }
+        .nav-link:hover { color: var(--color-primary); }
+
+        .header-right { display: flex; flex: 1; justify-content: flex-end; align-items: center; gap: 16px; }
+        @media (min-width: 640px) { .header-right { gap: 24px; } }
+
+        /* Header Search and Icon Buttons (Reusing styles from previous ticket) */
+        .header-search-label { display: none; flex-direction: column; min-width: 160px; height: 40px; max-width: 256px; }
+        @media (min-width: 640px) { .header-search-label { display: flex; } }
+        .header-search-group { display: flex; width: 100%; flex: 1; align-items: stretch; border-radius: var(--radius-default); height: 100%; }
+        .header-search-icon-wrapper { 
+            display: flex; align-items: center; justify-content: center; padding-left: 12px; 
+            border: 1px solid var(--color-border-light); border-right: none;
+            border-radius: var(--radius-default) 0 0 var(--radius-default);
+            background-color: var(--color-background-light); color: var(--color-text-subtle);
+        }
+        .header-search-input {
+            flex: 1; min-width: 0; resize: none; overflow: hidden; border: 1px solid var(--color-border-light);
+            border-left: none; border-radius: 0 var(--radius-default) var(--radius-default) 0; height: 100%;
+            padding: 0 16px 0 8px; font-size: 16px; outline: none;
+            background-color: var(--color-background-light); color: var(--color-text-dark);
+            transition: box-shadow 0.15s; ring-width: 1px; ring-inset: inset;
+        }
+        .header-search-input:focus { box-shadow: 0 0 0 2px #6b61ff80; border-color: var(--color-primary); }
+        .header-search-input::placeholder { color: var(--color-text-subtle); }
+
+        .icon-button {
+            display: flex; cursor: pointer; align-items: center; justify-content: center; overflow: hidden; 
+            border-radius: var(--radius-default); height: 40px; background-color: var(--color-primary-light); 
+            color: var(--color-text-medium); padding: 0 10px; font-weight: bold;
+        }
+        .icon-button:hover { background-color: var(--color-primary-dark); color: var(--color-primary); }
+
+        .avatar {
+            background-size: cover; border-radius: 50%; width: 40px; height: 40px; 
+            border: 2px solid #6b61ff80;
+        }
+
+        /* --- 4. Main Content Area --- */
+        .main-content {
+            flex: 1;
+            margin-top: 32px; /* mt-8 */
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 16px 0;
+        }
+        .page-title {
+            font-size: 30px; /* text-3xl */
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+            color: var(--color-text-dark);
+            margin: 0;
+        }
+        .page-subtitle {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+            margin-top: 8px;
+        }
+
+        /* Grid Layout */
+        .grid-container {
+            display: grid;
+            gap: 24px; /* gap-6 */
+            margin-bottom: 32px;
+        }
+        @media (min-width: 640px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Role Cards */
+        .card {
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-lg);
+            background-color: var(--color-surface-light);
+            padding: 20px; /* p-5 */
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text-dark);
+        }
+        .card-subtitle {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+        }
+        .card-count-text {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--color-text-dark);
+        }
+        .card-icon-wrapper {
+            background-color: var(--color-primary-light);
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-default);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary);
+        }
+        .card-action-link {
+            color: var(--color-primary);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.15s;
+        }
+        .card-action-link:hover { opacity: 0.8; }
+
+        .btn-add-role {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background-color: var(--color-surface-light);
+            border: 1px dashed var(--color-border-light); /* border-slate-300 */
+            color: var(--color-primary);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+        .dark .btn-add-role {
+            background-color: var(--color-dark-surface-alt);
+            border-color: var(--color-dark-border);
+        }
+        .btn-add-role:hover {
+            background-color: var(--color-primary-light);
+        }
+        .btn-add-role-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 20px;
+        }
+        .btn-add-role-icon { font-size: 32px; }
+        .btn-add-role-text { font-size: 16px; font-weight: 600; }
+
+        /* New Role Form */
+        .form-section {
+            display: grid;
+            gap: 24px; /* gap-6 */
+            margin-bottom: 32px;
+        }
+        @media (min-width: 768px) {
+            .form-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-dark);
+            margin-bottom: 8px;
+        }
+        .form-input, .form-select {
+            display: block;
+            width: 100%;
+            padding: 10px 16px; /* py-2.5 px-4 */
+            font-size: 16px;
+            border-radius: var(--radius-default);
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-surface-light);
+            color: var(--color-text-dark);
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .form-input:focus, .form-select:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px #6b61ff80;
+        }
+
+        .btn-primary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            background-color: var(--color-primary);
+            color: white;
+            border-radius: var(--radius-default);
+            font-size: 14px;
+            font-weight: bold;
+            padding: 0 16px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.15s;
+            margin-top: 8px; /* mt-2 for alignment */
+        }
+        .btn-primary:hover { opacity: 0.9; }
+
+        /* Role Table */
+        .table-wrapper {
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+        .table-container {
+            overflow: hidden;
+            border-radius: var(--radius-default);
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-surface-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .table-scroll { overflow-x: auto; }
+        .admin-table { width: 100%; border-collapse: collapse; }
+        .table-header { background-color: var(--color-table-header); }
+        .table-header th { 
+            padding: 12px 16px; 
+            text-align: left;
+            color: var(--color-text-medium);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .table-row {
+            border-top: 1px solid var(--color-border-light);
+            transition: background-color 0.15s;
+        }
+        .table-row:hover { background-color: #f8fafc80; }
+        
+        .table-row td {
+            height: 64px; /* h-16 */
+            padding: 8px 16px;
+        }
+
+        .table-role-text { 
+            color: var(--color-text-dark); 
+            font-size: 14px; 
+            font-weight: 500; 
+        }
+        .table-members-text, .table-status-text { 
+            color: var(--color-text-subtle); 
+            font-size: 14px; 
+            font-weight: normal; 
+        }
+        .table-action-group {
+            display: flex;
+            gap: 8px;
+        }
+        .table-action-icon {
+            color: var(--color-text-subtle);
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+        .table-action-icon:hover { color: var(--color-primary); }
+
+        /* Status Pill - Success */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            border-radius: var(--radius-default);
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .status-pill-success { 
+            background-color: var(--color-success-bg); 
+            color: var(--color-success-text); 
+        }
+
+        /* --- 5. Footer (Reusing styles from previous ticket) --- */
+        .footer {
+            margin-top: 48px;
+            border-top: 1px solid var(--color-border-light);
+            padding-top: 32px;
+            padding-bottom: 16px;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+        .footer-logo { display: flex; align-items: center; gap: 16px; }
+        .footer-links {
+            display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 500; color: var(--color-text-medium);
+        }
+        .footer-link { text-decoration: none; transition: color 0.15s; }
+        .footer-link:hover { color: var(--color-primary); }
+        .social-icons { display: flex; gap: 16px; }
+        .social-icon { color: var(--color-text-subtle); width: 24px; height: 24px; transition: color 0.15s; }
+        .social-icon:hover { color: var(--color-primary); }
+        .footer-copyright { text-align: center; font-size: 14px; color: var(--color-text-subtle); margin-top: 32px; width: 100%; }
+
+    </style>
+</head>
+<body class="dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container">
+<div class="layout-content-container">
+<header class="header header-border">
+<div class="header-left">
+<div class="logo-group">
+<div class="logo-icon">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="logo-title">Blaqo</h2>
+</div>
+<div class="nav-links">
+<a class="nav-link" href="#">Dashboard</a>
+<a class="nav-link" href="#">Products</a>
+<a class="nav-link" href="#">Orders</a>
+<a class="nav-link" href="#">Customers</a>
+</div>
+</div>
+<div class="header-right">
+<label class="header-search-label">
+<div class="header-search-group">
+<div class="header-search-icon-wrapper">
+<span class="material-symbols-outlined text-lg search-icon">search</span>
+</div>
+<input class="header-search-input" placeholder="Search..." value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="icon-button">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="icon-button">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+</div>
+<div class="avatar" data-alt="Admin user avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFJScA6EYcY2dkgI4q74ciCsg3X1_h8UvtFuvO-oN9zJvb3cagbnUhsOPXOGJjUNc6mvgwujxDjxQ_o-nlRlxxaphV1T_MqYjlIHg6mLUoSvumK3jfAEBHPUcQYDMp28MhBg4J0zMI8uPjS3UZOv60tjH1jeNZBDw5X0xw_9c-dYoq43b-fDQIEHj_omR6UymjA9C2wvm7KzIwRoje3HluAAcbrbtn3WRLNtVQsLmSPsqjaUbeplaVp_bpcuThYcvHbgChQnvj5Rc");'></div>
+</div>
+</header>
+<main class="main-content">
+<div class="page-header">
+<p class="page-title">Role Management</p>
+<p class="page-subtitle">Manage user roles and permissions across the platform.</p>
+</div>
+<div class="grid-container">
+<div class="card">
+<div class="card-header">
+<p class="card-title">Administrator</p>
+<div class="card-icon-wrapper">
+<span class="material-symbols-outlined text-xl">admin_panel_settings</span>
+</div>
+</div>
+<p class="card-subtitle">Full access to all modules and settings.</p>
+<p class="card-count-text">4 Users</p>
+<a class="card-action-link" href="#">Edit Permissions</a>
+</div>
+<div class="card">
+<div class="card-header">
+<p class="card-title">Manager</p>
+<div class="card-icon-wrapper">
+<span class="material-symbols-outlined text-xl">badge</span>
+</div>
+</div>
+<p class="card-subtitle">Manage products, orders, and customer support.</p>
+<p class="card-count-text">12 Users</p>
+<a class="card-action-link" href="#">Edit Permissions</a>
+</div>
+<div class="card">
+<div class="card-header">
+<p class="card-title">Support Agent</p>
+<div class="card-icon-wrapper">
+<span class="material-symbols-outlined text-xl">support_agent</span>
+</div>
+</div>
+<p class="card-subtitle">View and respond to support tickets only.</p>
+<p class="card-count-text">25 Users</p>
+<a class="card-action-link" href="#">Edit Permissions</a>
+</div>
+<div class="card">
+<div class="card-header">
+<p class="card-title">Guest/Viewer</p>
+<div class="card-icon-wrapper">
+<span class="material-symbols-outlined text-xl">visibility</span>
+</div>
+</div>
+<p class="card-subtitle">Read-only access to specific dashboards.</p>
+<p class="card-count-text">56 Users</p>
+<a class="card-action-link" href="#">Edit Permissions</a>
+</div>
+<button class="btn-add-role">
+<div class="btn-add-role-content">
+<span class="material-symbols-outlined btn-add-role-icon">add_circle</span>
+<p class="btn-add-role-text">Add New Role</p>
+</div>
+</button>
+</div>
+<form>
+<h3 class="page-title" style="font-size: 24px; margin-bottom: 24px; color: var(--color-text-dark);">Create New Role</h3>
+<div class="form-section">
+<div class="form-group">
+<label class="input-label" for="role-name">Role Name</label>
+<input class="form-input" id="role-name" placeholder="E.g., Financial Auditor" type="text"/>
+</div>
+<div class="form-group">
+<label class="input-label" for="role-department">Department</label>
+<select class="form-select" id="role-department">
+<option>Select Department</option>
+<option>Finance</option>
+<option>Operations</option>
+<option>Marketing</option>
+</select>
+</div>
+<div class="form-group">
+<label class="input-label" for="role-description">Role Description</label>
+<input class="form-input" id="role-description" placeholder="Short summary of the role's purpose" type="text"/>
+</div>
+<div class="form-group">
+<button class="btn-primary" type="submit">Create Role</button>
+</div>
+</div>
+</form>
+<div class="table-wrapper">
+<h3 class="page-title" style="font-size: 24px; margin-bottom: 24px; color: var(--color-text-dark);">All Defined Roles</h3>
+<div class="table-container">
+<div class="table-scroll">
+<table class="admin-table">
+<thead>
+<tr class="table-header">
+<th>Role Name</th>
+<th>Members</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-row">
+<td><p class="table-role-text">Administrator</p></td>
+<td><p class="table-members-text">4 users</p></td>
+<td>
+<span class="status-pill status-pill-success">Active</span>
+</td>
+<td>
+<div class="table-action-group">
+<span class="material-symbols-outlined table-action-icon" title="Edit">edit</span>
+<span class="material-symbols-outlined table-action-icon" title="Delete">delete</span>
+</div>
+</td>
+</tr>
+<tr class="table-row">
+<td><p class="table-role-text">Manager</p></td>
+<td><p class="table-members-text">12 users</p></td>
+<td>
+<span class="status-pill status-pill-success">Active</span>
+</td>
+<td>
+<div class="table-action-group">
+<span class="material-symbols-outlined table-action-icon" title="Edit">edit</span>
+<span class="material-symbols-outlined table-action-icon" title="Delete">delete</span>
+</div>
+</td>
+</tr>
+<tr class="table-row">
+<td><p class="table-role-text">Support Agent</p></td>
+<td><p class="table-members-text">25 users</p></td>
+<td>
+<span class="status-pill status-pill-success">Active</span>
+</td>
+<td>
+<div class="table-action-group">
+<span class="material-symbols-outlined table-action-icon" title="Edit">edit</span>
+<span class="material-symbols-outlined table-action-icon" title="Delete">delete</span>
+</div>
+</td>
+</tr>
+<tr class="table-row">
+<td><p class="table-role-text">Guest/Viewer</p></td>
+<td><p class="table-members-text">56 users</p></td>
+<td>
+<span class="status-pill status-pill-success">Active</span>
+</td>
+<td>
+<div class="table-action-group">
+<span class="material-symbols-outlined table-action-icon" title="Edit">edit</span>
+<span class="material-symbols-outlined table-action-icon" title="Delete">delete</span>
+</div>
+</td>
+</tr>
+<tr class="table-row">
+<td><p class="table-role-text">Financial Auditor</p></td>
+<td><p class="table-members-text">0 users</p></td>
+<td>
+<span class="status-pill status-pill-success">Active</span>
+</td>
+<td>
+<div class="table-action-group">
+<span class="material-symbols-outlined table-action-icon" title="Edit">edit</span>
+<span class="material-symbols-outlined table-action-icon" title="Delete">delete</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<footer class="footer footer-border">
+<div class="footer-content">
+<div class="footer-logo">
+<div class="logo-icon">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="logo-title">Blaqo</h2>
+</div>
+<div class="footer-links">
+<a class="footer-link" href="#">About Us</a>
+<a class="footer-link" href="#">Help Center</a>
+<a class="footer-link" href="#">Terms of Service</a>
+</div>
+<div class="social-icons">
+<a class="social-icon" data-alt="Twitter social media icon" href="#">
+<svg fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+</a>
+<a class="social-icon" data-alt="Facebook social media icon" href="#">
+<svg fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="social-icon" data-alt="GitHub social media icon" href="#">
+<svg fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+<p class="footer-copyright">© 2025 Blaqo. All rights reserved.</p>
+</footer>
+</div>
+</div>
+</div>
+</body>
+</html>

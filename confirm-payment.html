@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo - Payment Confirmation</title>
+    <link rel="stylesheet" href="payment-confirmation-styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="page-container">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-content">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h2 class="logo-text">Blaqo</h2>
+                    </div>
+                    <div class="secure-badge">
+                        <span class="lock-icon">🔒</span>
+                        <span class="secure-text">Secure Checkout</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <div class="content-wrapper">
+                    <!-- Page Title -->
+                    <div class="page-title">
+                        <h1>Final Confirmation</h1>
+                    </div>
+
+                    <!-- Confirmation Card -->
+                    <div class="confirmation-card">
+                        <div class="card-body">
+                            <!-- Payment Method Section -->
+                            <div class="section">
+                                <h3 class="section-title">Payment Method</h3>
+                                <div class="payment-method">
+                                    <div class="payment-info">
+                                        <div class="card-logo">💳</div>
+                                        <div class="card-details">
+                                            <p class="card-number">Visa ending in •••• 1234</p>
+                                            <p class="card-expiry">Expires 05/28</p>
+                                        </div>
+                                    </div>
+                                    <button class="change-button">Change</button>
+                                </div>
+                            </div>
+
+                            <hr class="divider">
+
+                            <!-- Order Summary Section -->
+                            <div class="section">
+                                <h3 class="section-title">Order Summary</h3>
+                                <div class="order-items">
+                                    <!-- Item 1 -->
+                                    <div class="order-item">
+                                        <div class="item-info">
+                                            <div class="item-icon">
+                                                <span>💻</span>
+                                            </div>
+                                            <p class="item-name">Quantum API Script</p>
+                                        </div>
+                                        <p class="item-price">$69.99</p>
+                                    </div>
+
+                                    <!-- Item 2 -->
+                                    <div class="order-item">
+                                        <div class="item-info">
+                                            <div class="item-icon">
+                                                <span>🤖</span>
+                                            </div>
+                                            <p class="item-name">AI Content Generator Tool</p>
+                                        </div>
+                                        <p class="item-price">$89.99</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="divider">
+
+                            <!-- Price Breakdown -->
+                            <div class="price-summary">
+                                <div class="price-row">
+                                    <span>Subtotal</span>
+                                    <span>$159.98</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>Taxes & Fees</span>
+                                    <span>$15.50</span>
+                                </div>
+                                <div class="price-row total">
+                                    <span>Total</span>
+                                    <span>$175.48</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="card-footer">
+                            <div class="footer-actions">
+                                <button class="confirm-button">Confirm & Pay $175.48</button>
+                                <a href="#" class="cancel-link">Cancel and return to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #f5f5f8;
+    color: #1f2937;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.page-container {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+}
+
+@media (min-width: 640px) {
+    .header {
+        padding: 20px 32px;
+    }
+}
+
+@media (min-width: 768px) {
+    .header {
+        padding: 20px 40px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .header {
+        padding: 20px 80px;
+    }
+}
+
+.header-content {
+    display: flex;
+    width: 100%;
+    max-width: 1024px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #374151;
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    color: #6961ff;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.secure-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lock-icon {
+    font-size: 16px;
+    color: #6b7280;
+}
+
+.secure-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+@media (min-width: 640px) {
+    .main-content {
+        padding: 40px 24px;
+    }
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 672px;
+}
+
+.page-title {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.page-title h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #111827;
+}
+
+@media (min-width: 640px) {
+    .page-title h1 {
+        font-size: 36px;
+    }
+}
+
+/* Confirmation Card */
+.confirmation-card {
+    border-radius: 12px;
+    border: 1px solid rgba(229, 231, 235, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+}
+
+.card-body {
+    padding: 24px;
+}
+
+@media (min-width: 640px) {
+    .card-body {
+        padding: 32px;
+    }
+}
+
+/* Section */
+.section {
+    margin-bottom: 24px;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #111827;
+    margin-bottom: 16px;
+}
+
+/* Payment Method */
+.payment-method {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f5f5f8;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.payment-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.card-logo {
+    width: 40px;
+    height: 24px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-number {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.card-expiry {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.change-button {
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #6961ff;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.change-button:hover {
+    color: #5548cc;
+}
+
+/* Divider */
+.divider {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 24px 0;
+}
+
+/* Order Items */
+.order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    min-width: 0;
+}
+
+.item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    background-color: rgba(105, 97, 255, 0.1);
+    color: #6961ff;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.item-name {
+    flex: 1;
+    font-size: 16px;
+    color: #374151;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item-price {
+    flex-shrink: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+/* Price Summary */
+.price-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.price-row.total {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Card Footer */
+.card-footer {
+    border-top: 1px solid rgba(229, 231, 235, 0.5);
+    background-color: rgba(245, 245, 248, 0.5);
+    padding: 24px;
+    border-radius: 0 0 12px 12px;
+}
+
+@media (min-width: 640px) {
+    .card-footer {
+        padding: 32px;
+    }
+}
+
+.footer-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.confirm-button {
+    display: flex;
+    width: 100%;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    background-color: #06c56c;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(105, 97, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.confirm-button:hover {
+    background-color: #ce0b6c;
+    box-shadow: 0 6px 16px rgba(105, 97, 255, 0.4);
+}
+
+.confirm-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(105, 97, 255, 0.5);
+}
+
+.cancel-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.cancel-link:hover {
+    color: #374151;
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    padding: 24px 16px;
+}
+
+@media (min-width: 640px) {
+    .footer {
+        padding: 24px 32px;
+    }
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+.footer-link {
+    font-size: 12px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #1f2937;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .page-title h1 {
+        font-size: 24px;
+    }
+
+    .payment-method {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .change-button {
+        align-self: flex-end;
+    }
+
+    .item-name {
+        font-size: 14px;
+    }
+
+    .item-price {
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 16px;
+    }
+}
+    </style>
+</body>
+</html>

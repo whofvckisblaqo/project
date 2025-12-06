@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Vendor Details - Blaqo Admin (Standard CSS)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variables and Base Styles --- */
+        :root {
+            /* Colors */
+            --color-primary: #6C63FF; /* Purple */
+            --color-secondary: #3A86FF; /* Blue */
+            
+            /* Light Theme */
+            --color-background-light: #F9FAFB;
+            --color-text-light: #1F2937; /* Gray-800 equivalent */
+            --color-text-secondary-light: #6B7280; /* Gray-500 equivalent */
+            --color-card-light: #FFFFFF;
+            --color-border-light: #E5E7EB; /* Gray-200 equivalent */
+            --color-table-header-light: #F9FAFB; /* Gray-50 equivalent */
+            --color-pill-green-bg-light: #D1FAE5; /* Green-100 */
+            --color-pill-green-text-light: #065F46; /* Green-800 */
+            --color-pill-yellow-bg-light: #FEF3C7; /* Yellow-100 */
+            --color-pill-yellow-text-light: #92400E; /* Yellow-800 */
+            --color-button-secondary-light: #F3F4F6; /* Gray-100 */
+            --color-button-secondary-hover-light: #E5E7EB; /* Gray-200 */
+            
+            /* Dark Theme */
+            --color-background-dark: #111022;
+            --color-text-dark: #F3F4F6; /* Gray-100 equivalent */
+            --color-text-secondary-dark: #9CA3AF; /* Gray-400 equivalent */
+            --color-card-dark: #1F2937; /* Gray-800 equivalent */
+            --color-border-dark: #374151; /* Gray-700 equivalent */
+            --color-table-header-dark: #FFFFFF0D; /* White/5 */
+            --color-pill-green-bg-dark: #10B98166; /* Green-900/40 */
+            --color-pill-green-text-dark: #A7F3D0; /* Green-300 */
+            --color-pill-yellow-bg-dark: #FBBF2466; /* Yellow-900/40 */
+            --color-pill-yellow-text-dark: #FCD34D; /* Yellow-300 */
+            --color-button-secondary-dark: #374151; /* Gray-700 */
+            --color-button-secondary-hover-dark: #4B5563; /* Gray-600 */
+
+            /* General */
+            --radius-default: 0.5rem;
+            --radius-lg: 0.75rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        /* Default (Light) Theme */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            line-height: 1.5;
+            min-height: 100vh;
+            background-color: var(--color-background-light);
+            color: var(--color-text-light);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Dark Mode Overrides --- */
+        .dark {
+            background-color: var(--color-background-dark);
+            color: var(--color-text-dark);
+        }
+        
+        /* Sidebar/Navigation */
+        .dark .sidebar { 
+            border-color: var(--color-border-dark); 
+            background-color: var(--color-card-dark); 
+        }
+        .dark .logo-title { color: var(--color-text-dark); }
+        .dark .logo-subtitle { color: var(--color-text-secondary-dark); }
+        .dark .nav-link { color: #D1D5DB; } /* gray-300 */
+        .dark .nav-link-active { background-color: var(--color-primary) !important; color: white !important; }
+        .dark .nav-link:hover { color: var(--color-primary); }
+
+        /* General Text & Links */
+        .dark .text-primary-color { color: var(--color-text-dark); }
+        .dark .text-secondary-color { color: var(--color-text-secondary-dark); }
+        .dark .breadcrumbs-current { color: var(--color-text-dark); }
+        .dark .page-title { color: var(--color-text-dark); }
+
+        /* Card/Surface Styles */
+        .dark .card { 
+            border-color: var(--color-border-dark); 
+            background-color: var(--color-card-dark);
+            box-shadow: none;
+        }
+
+        /* Profile Header */
+        .dark .profile-name { color: var(--color-text-dark); }
+        .dark .profile-meta { color: var(--color-text-secondary-dark); }
+        .dark .status-active { 
+            background-color: var(--color-pill-green-bg-dark); 
+            color: var(--color-pill-green-text-dark); 
+        }
+        .dark .btn-secondary-action { 
+            background-color: var(--color-button-secondary-dark); 
+            color: var(--color-text-dark); 
+        }
+        .dark .btn-secondary-action:hover { 
+            background-color: var(--color-button-secondary-hover-dark); 
+        }
+        
+        /* Tabs */
+        .dark .tab-nav-wrapper { border-color: var(--color-border-dark); }
+        .dark .tab-link-inactive { 
+            color: var(--color-text-secondary-dark); 
+        }
+        .dark .tab-link-inactive:hover { 
+            border-color: var(--color-text-secondary-dark); 
+            color: #D1D5DB; /* gray-300 */
+        }
+
+        /* Table */
+        .dark table { border-color: var(--color-border-dark); }
+        .dark thead { background-color: var(--color-table-header-dark); }
+        .dark th { color: var(--color-text-secondary-dark); }
+        .dark tbody { border-color: var(--color-border-dark); }
+        .dark td { border-color: var(--color-border-dark); }
+
+        .dark .product-name { color: var(--color-text-dark); }
+        .dark .product-category { color: var(--color-text-secondary-dark); }
+        .dark .product-price { color: var(--color-text-dark); }
+        .dark .product-date { color: var(--color-text-secondary-dark); }
+
+        /* Table Status Pills */
+        .dark .status-live { 
+            background-color: var(--color-pill-green-bg-dark); 
+            color: var(--color-pill-green-text-dark); 
+        }
+        .dark .status-pending { 
+            background-color: var(--color-pill-yellow-bg-dark); 
+            color: var(--color-pill-yellow-text-dark); 
+        }
+
+        /* --- 2. Layout and Structure --- */
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* --- 3. Sidebar Navigation --- */
+        .sidebar {
+            width: 5rem; /* w-20 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: 1px solid var(--color-border-light);
+            background-color: var(--color-card-light);
+            padding: 1rem 0; /* py-4 */
+            transition: width 0.3s, padding 0.3s;
+        }
+
+        /* Expand Sidebar on XL screens */
+        @media (min-width: 1280px) {
+            .sidebar {
+                width: 16rem; /* w-64 */
+                align-items: flex-start;
+                padding: 1rem; /* p-4 */
+            }
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0 1rem; /* px-4 */
+        }
+        @media (min-width: 1280px) {
+            .sidebar-header {
+                padding: 0 0.75rem; /* xl:px-3 */
+            }
+        }
+
+        .logo-img { 
+            background-size: cover; 
+            border-radius: 50%; 
+            width: 2.5rem; 
+            height: 2.5rem; 
+            flex-shrink: 0; 
+        }
+        
+        .logo-text-group { display: none; flex-direction: column; }
+        @media (min-width: 1280px) {
+            .logo-text-group { display: flex; }
+        }
+
+        .logo-title { 
+            font-size: 1rem; 
+            font-weight: bold; 
+            line-height: 1.5; 
+            color: var(--color-text-light);
+        }
+        .logo-subtitle { 
+            font-size: 0.875rem; 
+            font-weight: normal; 
+            line-height: 1.5; 
+            color: var(--color-text-secondary-light);
+        }
+
+        .sidebar-nav {
+            margin-top: 2rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-radius: var(--radius-default);
+            padding: 0.5rem 1rem; /* px-4 py-2 */
+            text-decoration: none;
+            color: #4B5563; /* gray-600 */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        @media (min-width: 1280px) {
+            .nav-link {
+                padding: 0.5rem 0.75rem; /* xl:px-3 */
+            }
+        }
+
+        .nav-link-text { 
+            display: none; 
+            font-size: 0.875rem; 
+            font-weight: 500; 
+            line-height: 1.5; 
+        }
+        @media (min-width: 1280px) {
+            .nav-link-text { display: block; }
+        }
+
+        .nav-link:hover {
+            background-color: var(--color-primary);
+            background-color: #6C63FF1A; /* primary/10 */
+            color: var(--color-primary);
+        }
+        .nav-link-active {
+            background-color: #6C63FF1A; /* primary/10 */
+            color: var(--color-primary);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        /* --- 4. Main Content Area --- */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem; /* p-4 */
+        }
+        @media (min-width: 768px) {
+            .main-content {
+                padding: 2rem; /* md:p-8 */
+            }
+        }
+        .content-container {
+            max-width: 1280px; /* max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumbs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .breadcrumbs-link {
+            color: var(--color-text-secondary-light);
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .breadcrumbs-link:hover { color: var(--color-primary); }
+        .breadcrumbs-current {
+            color: var(--color-text-light);
+            font-weight: 500;
+        }
+
+        /* Page Heading */
+        .page-heading {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .page-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 900; /* black */
+            line-height: 1.25;
+            letter-spacing: -0.03em;
+        }
+        @media (min-width: 768px) {
+            .page-title { font-size: 2.25rem; /* md:text-4xl */ }
+        }
+
+        /* Profile Header Card */
+        .profile-header-card {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            border-radius: var(--radius-xl); /* rounded-xl */
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-card-light);
+            padding: 1rem; /* p-4 */
+            box-shadow: var(--shadow-sm);
+        }
+        @media (min-width: 768px) {
+            .profile-header-card { padding: 1.5rem; /* md:p-6 */ }
+        }
+        
+        .profile-content {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        @container (min-width: 520px) {
+            .profile-content {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .profile-info { display: flex; align-items: center; gap: 1rem; }
+        .profile-avatar {
+            background-size: cover; 
+            border-radius: 50%; 
+            width: 6rem; /* w-24 h-24 */
+            height: 6rem;
+            flex-shrink: 0;
+        }
+        @media (min-width: 768px) {
+            .profile-avatar { width: 8rem; height: 8rem; } /* md:w-32 md:h-32 */
+        }
+        .profile-text-group { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+        }
+        .profile-name { 
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: bold; 
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+        }
+        @media (min-width: 768px) {
+            .profile-name { font-size: 1.375rem; /* md:text-[22px] */ }
+        }
+        .profile-meta { 
+            font-size: 1rem; 
+            font-weight: normal; 
+            line-height: 1.5; 
+            color: var(--color-text-secondary-light); 
+        }
+
+        /* Status Chip */
+        .status-chip-wrapper { margin-top: 0.5rem; display: flex; }
+        .status-chip {
+            display: flex;
+            height: 1.75rem; /* h-7 */
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            gap: 0.375rem; /* gap-x-1.5 */
+            border-radius: 9999px;
+            padding: 0 0.75rem; /* px-3 */
+            background-color: var(--color-pill-green-bg-light);
+            color: #059669; /* green-700 */
+        }
+        .status-chip-text { 
+            font-size: 0.875rem; 
+            font-weight: 500; 
+            line-height: 1.5; 
+        }
+        
+        /* Action Buttons */
+        .profile-actions {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        @container (min-width: 480px) {
+            .profile-actions {
+                width: auto;
+                flex-direction: row;
+            }
+        }
+        
+        .btn-action {
+            display: flex;
+            min-width: 5.25rem; /* min-w-[84px] */
+            max-width: 30rem; /* max-w-[480px] */
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: var(--radius-default);
+            height: 2.5rem;
+            padding: 0 1rem;
+            font-size: 0.875rem;
+            font-weight: bold;
+            line-height: 1.5;
+            letter-spacing: 0.015em;
+            transition: opacity 0.15s, background-color 0.15s;
+            flex: 1;
+        }
+        @container (min-width: 480px) {
+            .btn-action { flex: auto; }
+        }
+
+        .btn-secondary-action {
+            background-color: var(--color-button-secondary-light);
+            color: var(--color-text-light);
+        }
+        .btn-secondary-action:hover {
+            background-color: var(--color-button-secondary-hover-light);
+        }
+
+        .btn-primary-action {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        .btn-primary-action:hover { opacity: 0.9; }
+
+        /* --- 5. Tabs --- */
+        .tab-wrapper { margin-top: 2rem; }
+        .tab-nav-wrapper { border-bottom: 1px solid var(--color-border-light); }
+        .tab-nav {
+            display: flex;
+            space-x: 1.5rem; /* space-x-6 */
+            overflow-x: auto;
+            margin-bottom: -1px; /* Align border */
+        }
+        .tab-link {
+            white-space: nowrap;
+            padding: 0 0.25rem 0.75rem 0.25rem; /* px-1 pb-3 */
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: border-color 0.15s, color 0.15s;
+            border-bottom-width: 2px;
+        }
+        .tab-link-active {
+            border-color: var(--color-primary);
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+        .tab-link-inactive {
+            border-color: transparent;
+            font-weight: 500;
+            color: var(--color-text-secondary-light);
+        }
+        .tab-link-inactive:hover {
+            border-color: #D1D5DB; /* gray-300 */
+            color: #4B5563; /* gray-700 */
+        }
+
+        /* --- 6. Table (Tab Content) --- */
+        .tab-content {
+            margin-top: 1.5rem;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-card-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .table-container { overflow-x: auto; }
+        .product-table {
+            min-width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-color: var(--color-border-light);
+        }
+        .product-table thead { background-color: var(--color-table-header-light); }
+        .product-table th {
+            padding: 0.75rem 1.5rem; /* px-6 py-3 */
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-secondary-light);
+        }
+        .product-table tbody {
+            border-top: 1px solid var(--color-border-light);
+        }
+        .product-table td {
+            white-space: nowrap;
+            padding: 1rem 1.5rem; /* px-6 py-4 */
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .product-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .product-info-cell {
+            display: flex;
+            align-items: center;
+        }
+        .product-thumbnail {
+            width: 2.5rem; /* h-10 w-10 */
+            height: 2.5rem;
+            flex-shrink: 0;
+            border-radius: var(--radius-default);
+            object-fit: cover;
+        }
+        .product-text-group { margin-left: 1rem; }
+        .product-name { 
+            font-weight: 500; 
+            color: var(--color-text-light); 
+        }
+        .product-category { 
+            color: var(--color-text-secondary-light); 
+        }
+
+        .status-table-pill {
+            display: inline-flex;
+            border-radius: 9999px;
+            padding: 0 0.5rem; /* px-2 */
+            font-size: 0.75rem;
+            font-weight: 600;
+            line-height: 1.25rem; /* leading-5 */
+        }
+        .status-live {
+            background-color: var(--color-pill-green-bg-light);
+            color: var(--color-pill-green-text-light);
+        }
+        .status-pending {
+            background-color: var(--color-pill-yellow-bg-light);
+            color: var(--color-pill-yellow-text-light);
+        }
+
+        .product-price { 
+            font-weight: 500; 
+            color: var(--color-text-light); 
+        }
+        .product-date { 
+            color: var(--color-text-secondary-light); 
+        }
+
+        .action-links {
+            text-align: right;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .action-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .action-link:hover { color: var(--color-secondary); }
+        .action-link + .action-link { margin-left: 1rem; }
+    </style>
+</head>
+<body class="light">
+<div class="page-wrapper">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-img" data-alt="Blaqo company logo" style='background-image: url("hB6AXuDPG38eeN95pk9pbdIJP4eG2Sk3BV0J40N7BTwyTM9o9etdQiHyJaH0po32sU2pQmNqvxaZuoQ8WAmbV5V7Hz4kRoltjmpu4qrkag4aQjEiHUICkgTUMelFzyh6ubI_-4Z3fNYsqgbTdg5rnmYaQegT2JZ9_5YRdTVxKMDcdej1WtqIcv7VVL8I9vSTv11HWEuYBtZxZjkj3prDGEjEDd_lyzWqk9M7pkR93-bPhXAE8OYLFIGHIXv6iSC4XbrVtUvzVk3blN9XHyA");'></div>
+            <div class="logo-text-group">
+                <h1 class="logo-title">Blaqo</h1>
+                <p class="logo-subtitle">Admin Panel</p>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a class="nav-link" href="#">
+                <span class="material-symbols-outlined text-2xl">dashboard</span>
+                <p class="nav-link-text">Dashboard</p>
+            </a>
+            <a class="nav-link nav-link-active" href="#">
+                <span class="material-symbols-outlined text-2xl">group</span>
+                <p class="nav-link-text">Sellers</p>
+            </a>
+            <a class="nav-link" href="#">
+                <span class="material-symbols-outlined text-2xl">inventory_2</span>
+                <p class="nav-link-text">Products</p>
+            </a>
+            <a class="nav-link" href="#">
+                <span class="material-symbols-outlined text-2xl">settings</span>
+                <p class="nav-link-text">Settings</p>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a class="nav-link" href="#">
+                <span class="material-symbols-outlined text-2xl">logout</span>
+                <p class="nav-link-text">Logout</p>
+            </a>
+        </div>
+    </aside>
+    <main class="main-content">
+        <div class="content-container">
+            <div class="breadcrumbs">
+                <a class="breadcrumbs-link text-secondary-color" href="#">Admin Panel</a>
+                <span class="text-secondary-color">/</span>
+                <a class="breadcrumbs-link text-secondary-color" href="#">Sellers</a>
+                <span class="text-secondary-color">/</span>
+                <span class="breadcrumbs-current text-primary-color">Micheal</span>
+            </div>
+            <div class="page-heading">
+                <h1 class="page-title text-primary-color">Seller Details</h1>
+            </div>
+            <div class="card profile-header-card">
+                <div class="profile-content">
+                    <div class="profile-info">
+                        <div class="profile-avatar" data-alt="Profile picture of John Doe" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBOIRFyZSBBMUhDj4YYnUGePc0VJKgUQS1pVirH-Xtw-UKrE76QLwwwzteChJnGQS57xGbSGlHJHkd-BvX1xz9EcLSbdneDqpDWqJau1F7Huax8dcWYpqNzORqHJWdMHeHl2KodNTc9t2_sXHXaVRz9V8G2JLxEIbLzAkZWbTLYIYhsUP87-8m4iPpAvfV1zGazvf8D1Tc5cV8-satWaI9u6flnpIfRXtr3fV6oi7aMJz8-2SVwj8S1UFZIW4Wd_rnAJIiIUA_o6h0");'></div>
+                        <div class="profile-text-group">
+                            <p class="profile-name text-primary-color">Micheal</p>
+                            <p class="profile-meta text-secondary-color">@micheal</p>
+                            <p class="profile-meta text-secondary-color">Member Since: Jan 15, 2023</p>
+                            <div class="status-chip-wrapper">
+                                <div class="status-chip status-active">
+                                    <span class="material-symbols-outlined text-base">check_circle</span>
+                                    <p class="status-chip-text">Active</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn-action btn-secondary-action">
+                            <span class="truncate">Edit Profile</span>
+                        </button>
+                        <button class="btn-action btn-primary-action">
+                            <span class="truncate">Change Status</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-wrapper">
+                <div class="tab-nav-wrapper">
+                    <nav aria-label="Tabs" class="tab-nav">
+                        <a class="tab-link tab-link-active" href="#">Products</a>
+                        <a class="tab-link tab-link-inactive" href="#">Sales Performance</a>
+                        <a class="tab-link tab-link-inactive" href="#">Payout History</a>
+                        <a class="tab-link tab-link-inactive" href="#">Communication Log</a>
+                    </nav>
+                </div>
+                <div class="tab-content">
+                    <div class="table-container">
+                        <table class="product-table divide-y">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Date Added</th>
+                                    <th class="relative" scope="col"><span class="sr-only">Actions</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="product-info-cell">
+                                            <div class="h-10 w-10 flex-shrink-0">
+                                                <img class="product-thumbnail" data-alt="Futuristic website template thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh0QtReEUV-6Pw5QX56qcc1CKRycL5o9PFa-h3ZLq0y8FVQcTaw-Dr1ee_nzivabJs8NtWAIgcpHuKkbQwJWlTJy5VXoc1gM74CB_3ULpL6FziYg8xX8L0OCwg-YO9C-_AJzmTGrhfSW7EYppLsBe0qFYjI34pIpbLs2yCrnHVZaiudWjGdYQuYtH3UI6TMTim9nIzFYQeVo83mVvezbsUaYEY65ZNyG0Hv0VpbamMp0HhYflwxMn9VkVkHar41ZSbbuMDb1xvW2Q"/>
+                                            </div>
+                                            <div class="product-text-group">
+                                                <div class="product-name text-primary-color">Futuristic Website Template</div>
+                                                <div class="product-category text-secondary-color">UI Kits</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-table-pill status-live">Live</span>
+                                    </td>
+                                    <td class="product-price text-primary-color">$49.00</td>
+                                    <td class="product-date text-secondary-color">2023-10-26</td>
+                                    <td class="action-links">
+                                        <a class="action-link" href="#">View</a>
+                                        <a class="action-link" href="#">Delist</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-info-cell">
+                                            <div class="h-10 w-10 flex-shrink-0">
+                                                <img class="product-thumbnail" data-alt="AI Chatbot script thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPI_4SMCGCDpW03c78cxPjsFNOUrMY4f1hGkgRYAI8YO5lI69TSpZVZM0Pmtnw_wCIIPeceNSLI0tdj24Knf8eaEKqfMJWmdLfl92BlPzSXAzgIgpx1-jWfuoEO9LKQ7L3uTU2-6iZb0P9AqMHZr1NW2k290TiQIcLP-qh7LtYDL-lrX8phA7ZXqR6C8b0AbedVo5tZY78m8ofl2k1323IUYtWX6QlVPMLYK_SVF_abxAizsdaYTLQZwoRHyVA8ZSO94ujcZLjg20"/>
+                                            </div>
+                                            <div class="product-text-group">
+                                                <div class="product-name text-primary-color">AI Chatbot Script</div>
+                                                <div class="product-category text-secondary-color">Scripts</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-table-pill status-live">Live</span>
+                                    </td>
+                                    <td class="product-price text-primary-color">$99.00</td>
+                                    <td class="product-date text-secondary-color">2023-08-15</td>
+                                    <td class="action-links">
+                                        <a class="action-link" href="#">View</a>
+                                        <a class="action-link" href="#">Delist</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="product-info-cell">
+                                            <div class="h-10 w-10 flex-shrink-0">
+                                                <img class="product-thumbnail" data-alt="Mobile app design course thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-J0EXj7kO5wLsluHFyWA21vOvOc0pCD3D1kLDE3Hx8W9qYct3UYvn8PQgbKhHoSaw6LVaAJn6zgex89iJ08f2XAzT_zeMpFROPsG5O_W6NdIUAnmyPttJUbtoVgfpJBguk2YIuYBR6_FaAbeFrI67lRhHVpN-qP-b2ApZ4tzJAE77LVZeGPppo8hiopjkuT52DwRlHT6ZEws7ca7Tiq02rST-dqluj5zS-QkWmfYL8BMvDAWxWAvdsOR1VK7Z4mWslEaKBX8gAms"/>
+                                            </div>
+                                            <div class="product-text-group">
+                                                <div class="product-name text-primary-color">Mobile App Design Course</div>
+                                                <div class="product-category text-secondary-color">E-Learning</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-table-pill status-pending">Pending Review</span>
+                                    </td>
+                                    <td class="product-price text-primary-color">$129.00</td>
+                                    <td class="product-date text-secondary-color">2023-05-01</td>
+                                    <td class="action-links">
+                                        <a class="action-link" href="#">View</a>
+                                        <a class="action-link" href="#">Delist</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

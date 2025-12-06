@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Detail - Blaqo Admin (Standard CSS)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variables and Base Styles --- */
+        :root {
+            /* Colors */
+            --color-primary: #6b61ff; /* Purple */
+            --color-secondary: #3A86FF; /* Blue */
+            
+            /* Light Theme */
+            --color-background-light: #f6f5f8;
+            --color-surface-light: #ffffff;
+            --color-text-primary-light: #0d0c1d;
+            --color-text-secondary-light: #4b45a1; /* Dark blue/purple for secondary text */
+            --color-border-light: #0000001a; /* black/10 */
+            --color-chat-bg-customer-light: #0000000d; /* black/5 */
+            --color-blue-pill-bg-light: #bfdbfe; /* blue-100 */
+            --color-blue-pill-text-light: var(--color-secondary);
+            --color-yellow-note-bg-light: #fffbeb; /* yellow-50 */
+            --color-yellow-note-text-light: #b45309; /* yellow-800 */
+            
+            /* Dark Theme */
+            --color-background-dark: #100f23;
+            --color-surface-dark: #1a1932;
+            --color-text-primary-dark: #f8f8fc;
+            --color-text-secondary-dark: #a8a2f7; /* Light purple for secondary text */
+            --color-border-dark: #ffffff1a; /* white/10 */
+            --color-chat-bg-customer-dark: #ffffff0d; /* white/5 */
+            --color-blue-pill-bg-dark: #1e3a8a80; /* blue-900/50 */
+            --color-blue-pill-text-dark: #93c5fd; /* blue-300 */
+            --color-yellow-note-bg-dark: #78350f33; /* yellow-900/20 */
+            --color-yellow-note-text-dark: #fde047; /* yellow-300 */
+
+            /* General */
+            --radius-default: 0.5rem;
+            --radius-lg: 1rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        /* Default (Light) Theme */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--color-background-light);
+            color: var(--color-text-primary-light);
+        }
+        
+        /* Dark Mode Selector */
+        .dark {
+            background-color: var(--color-background-dark);
+            color: var(--color-text-primary-dark);
+        }
+
+        /* --- Global Dark Mode Overrides --- */
+        .dark .header {
+            border-color: var(--color-border-dark);
+            background-color: var(--color-background-dark);
+        }
+        .dark .logo-group { color: var(--color-text-primary-dark); }
+        .dark .nav-link-secondary { color: var(--color-text-secondary-dark); }
+        .dark .nav-link-primary { color: var(--color-text-primary-dark); }
+        
+        .dark .search-input-group { background-color: var(--color-chat-bg-customer-dark); }
+        .dark .search-icon-wrapper, .dark .search-input { 
+            background-color: transparent; 
+            color: var(--color-text-primary-dark);
+        }
+        .dark .search-input::placeholder { color: var(--color-text-secondary-dark); }
+        
+        .dark .icon-button { 
+            background-color: var(--color-chat-bg-customer-dark); 
+            color: var(--color-text-primary-dark); 
+        }
+        .dark .icon-button:hover { background-color: var(--color-border-dark); }
+
+        .dark .breadcrumbs-link, .dark .text-secondary { 
+            color: var(--color-text-secondary-dark); 
+        }
+        .dark .breadcrumbs-current, .dark .page-title { 
+            color: var(--color-text-primary-dark); 
+        }
+
+        /* Card/Surface Styles */
+        .dark .card { 
+            background-color: var(--color-surface-dark); 
+            box-shadow: none; 
+        }
+
+        /* Chat Styles */
+        .dark .chat-sender-name { color: var(--color-text-primary-dark); }
+        .dark .chat-timestamp, .dark .chat-attachment-text { color: var(--color-text-secondary-dark); }
+        .dark .chat-bubble-customer { 
+            background-color: var(--color-chat-bg-customer-dark); 
+            color: var(--color-text-primary-dark); 
+        }
+        .dark .chat-attachment-card { 
+            border-color: var(--color-border-dark); 
+        }
+        .dark .chat-attachment-download-btn:hover { background-color: var(--color-chat-bg-customer-dark); }
+
+        /* Reply Box Styles */
+        .dark .reply-box-wrapper { 
+            border-color: var(--color-border-dark); 
+            background-color: var(--color-background-dark); 
+        }
+        .dark .reply-box-textarea { 
+            background-color: transparent; 
+            color: var(--color-text-primary-dark); 
+        }
+        .dark .reply-box-toolbar { border-color: var(--color-border-dark); }
+        .dark .reply-toolbar-icon { 
+            color: var(--color-text-secondary-dark); 
+        }
+        .dark .reply-toolbar-btn:hover { background-color: var(--color-border-dark); }
+
+        /* Details Card */
+        .dark .detail-label { color: var(--color-text-secondary-dark); }
+        .dark .status-pill-blue { 
+            background-color: var(--color-blue-pill-bg-dark); 
+            color: var(--color-blue-pill-text-dark); 
+        }
+
+        /* Actions/Forms */
+        .dark .form-input, .dark .form-select, .dark .note-textarea {
+            border-color: var(--color-border-dark);
+            background-color: var(--color-surface-dark);
+            color: var(--color-text-primary-dark);
+        }
+        .dark .note-label { color: var(--color-text-secondary-dark); }
+        .dark .btn-secondary { 
+            border-color: var(--color-border-dark); 
+            color: var(--color-text-primary-dark); 
+        }
+        .dark .btn-secondary:hover { background-color: var(--color-chat-bg-customer-dark); }
+        
+        /* Internal Note */
+        .dark .internal-note-card {
+            background-color: var(--color-yellow-note-bg-dark);
+        }
+        .dark .internal-note-name { 
+            color: var(--color-yellow-note-text-dark); 
+        }
+        .dark .internal-note-text { 
+            color: var(--color-text-secondary-dark); 
+        }
+
+        /* Footer */
+        .dark .footer { border-color: var(--color-border-dark); }
+        .dark .footer-link, .dark .footer-text, .dark .footer-copyright {
+            color: var(--color-text-secondary-dark);
+        }
+        .dark .footer-social-icon { 
+            color: var(--color-text-secondary-dark); 
+        }
+        .dark .footer-social-icon:hover { color: var(--color-primary); }
+        
+        /* --- 2. Layout and Structure --- */
+        .layout-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+            max-width: 100%;
+        }
+        .content-wrapper {
+            flex: 1;
+            width: 100%;
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem;
+            padding-top: 2rem; /* py-8 */
+            padding-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        @media (min-width: 640px) { .content-wrapper { padding-left: 1.5rem; padding-right: 1.5rem; } } /* sm:px-6 */
+        @media (min-width: 1024px) { .content-wrapper { padding-left: 2rem; padding-right: 2rem; } } /* lg:px-8 */
+        
+        .max-width-7xl {
+            width: 100%;
+            max-width: 1280px; /* max-w-7xl */
+        }
+
+        /* --- 3. Header/Navbar --- */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--color-border-light);
+            background-color: var(--color-background-light);
+            padding: 12px 1rem; /* py-3 px-4 */
+            backdrop-filter: blur(4px);
+            background-color: var(--color-background-light);
+        }
+        .header-content {
+            display: flex;
+            width: 100%;
+            max-width: 1280px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header-left { display: flex; align-items: center; gap: 2rem; }
+        .logo-group { display: flex; align-items: center; gap: 0.75rem; color: var(--color-text-primary-light); }
+        .logo-icon { width: 24px; height: 24px; color: var(--color-primary); }
+        .logo-title { font-size: 1.25rem; font-weight: bold; }
+
+        .nav-links { display: none; align-items: center; gap: 1.5rem; }
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+        .nav-link { 
+            font-size: 0.875rem; 
+            font-weight: 500; 
+            text-decoration: none; 
+            transition: color 0.15s;
+        }
+        .nav-link-secondary { 
+            color: var(--color-text-secondary-light); 
+        }
+        .nav-link-primary {
+            color: var(--color-text-primary-light);
+        }
+        .nav-link:hover { color: var(--color-primary); }
+
+        .header-right { display: flex; flex: 1; justify-content: flex-end; align-items: center; gap: 0.75rem; }
+        
+        /* Search Bar */
+        .search-label { display: none; flex-direction: column; min-width: 10rem; height: 2.5rem; max-width: 16rem; }
+        @media (min-width: 1024px) { .search-label { display: flex; } }
+        .search-input-group { 
+            display: flex; width: 100%; flex: 1; align-items: stretch; border-radius: var(--radius-default); 
+            height: 100%; background-color: var(--color-chat-bg-customer-light);
+        }
+        .search-icon-wrapper { 
+            display: flex; align-items: center; justify-content: center; padding-left: 0.75rem; 
+            border-right: none; color: var(--color-text-secondary-light);
+        }
+        .search-input {
+            flex: 1; min-width: 0; resize: none; overflow: hidden; height: 100%;
+            padding: 0 1rem 0 0.5rem; font-size: 0.875rem; outline: none;
+            background-color: transparent; border: none;
+            color: var(--color-text-primary-light);
+        }
+        .search-input::placeholder { color: var(--color-text-secondary-light); }
+        
+        /* Buttons */
+        .btn-primary {
+            display: flex; align-items: center; justify-content: center; overflow: hidden; 
+            border-radius: var(--radius-default); height: 2.5rem; padding: 0 1rem;
+            background-color: var(--color-primary); color: white; 
+            font-size: 0.875rem; font-weight: bold; transition: opacity 0.15s;
+        }
+        .btn-primary:hover { opacity: 0.9; }
+
+        .icon-button {
+            display: none; /* Hide by default */
+            cursor: pointer; align-items: center; justify-content: center; overflow: hidden; 
+            border-radius: var(--radius-default); height: 2.5rem; width: 2.5rem;
+            background-color: var(--color-chat-bg-customer-light); 
+            font-size: 0.875rem; font-weight: bold; transition: background-color 0.15s;
+        }
+        @media (min-width: 640px) { .icon-button { display: flex; } }
+        .icon-button:hover { background-color: var(--color-border-light); }
+
+        .avatar {
+            background-size: cover; border-radius: 50%; width: 2.5rem; height: 2.5rem; 
+            flex-shrink: 0;
+        }
+        
+        /* --- 4. Main Content --- */
+        
+        /* Breadcrumbs */
+        .breadcrumbs { margin-bottom: 1.5rem; }
+        .breadcrumbs-list { 
+            display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; 
+            font-size: 0.875rem; color: var(--color-text-secondary-light);
+        }
+        .breadcrumbs-link { 
+            text-decoration: none; 
+            transition: color 0.15s;
+        }
+        .breadcrumbs-link:hover { color: var(--color-primary); }
+        .breadcrumbs-current { 
+            font-weight: 500; 
+            color: var(--color-text-primary-light); 
+        }
+
+        /* Page Heading */
+        .page-heading-group { 
+            margin-top: 0.5rem; 
+            display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 1rem;
+        }
+        .page-title { 
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: bold; 
+            letter-spacing: -0.025em; 
+            color: var(--color-text-primary-light);
+            margin: 0;
+        }
+        .page-subtitle { 
+            color: var(--color-text-secondary-light); 
+            font-size: 0.875rem; 
+            margin-top: 0.25rem;
+        }
+
+        /* Grid Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 1024px) {
+            .main-grid {
+                grid-template-columns: repeat(12, 1fr);
+            }
+            .chat-column { grid-column: span 8 / span 8; }
+            .details-column { grid-column: span 4 / span 4; }
+        }
+
+        /* Card styles */
+        .card {
+            border-radius: var(--radius-lg);
+            background-color: var(--color-surface-light);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Conversation Column --- */
+        .chat-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            max-height: 600px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        /* Message Styles */
+        .chat-message {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .chat-message-customer {
+            justify-content: flex-start;
+        }
+        .chat-message-admin {
+            justify-content: flex-end;
+        }
+        
+        .chat-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+            flex: 1;
+        }
+        .chat-message-admin .chat-content { align-items: flex-end; }
+
+        .chat-header { display: flex; align-items: baseline; gap: 0.5rem; }
+        .chat-sender-name { font-weight: 600; font-size: 0.875rem; }
+        .chat-timestamp { font-size: 0.75rem; color: var(--color-text-secondary-light); }
+
+        .chat-bubble {
+            max-width: 28rem; /* max-w-xl */
+            border-radius: var(--radius-lg);
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+        .chat-bubble-customer {
+            background-color: var(--color-chat-bg-customer-light);
+            border-top-left-radius: 0;
+        }
+        .chat-bubble-admin {
+            background-color: var(--color-primary);
+            color: white;
+            border-top-right-radius: 0;
+        }
+        .chat-message-customer .chat-bubble { border-top-left-radius: 0; }
+        .chat-message-admin .chat-bubble { border-top-right-radius: 0; }
+
+        /* Attachment Card */
+        .chat-attachment-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .chat-attachment-card {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-radius: var(--radius-default);
+            border: 1px solid var(--color-border-light);
+            padding: 0.625rem;
+        }
+        .chat-attachment-icon { color: var(--color-primary); font-size: 1.5rem; }
+        .chat-attachment-info { flex: 1; }
+        .chat-attachment-name { font-size: 0.875rem; font-weight: 500; }
+        .chat-attachment-text { font-size: 0.75rem; color: var(--color-text-secondary-light); }
+        .chat-attachment-download-btn {
+            border-radius: 50%;
+            padding: 0.5rem;
+            transition: background-color 0.15s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .chat-attachment-download-btn:hover { background-color: var(--color-chat-bg-customer-light); }
+
+        /* Reply Box */
+        .reply-box {
+            border-top: 1px solid var(--color-border-light);
+            padding: 1rem;
+        }
+        .reply-box-wrapper {
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-background-light);
+            transition: box-shadow 0.15s, border-color 0.15s;
+        }
+        .reply-box-wrapper:focus-within {
+            box-shadow: 0 0 0 2px var(--color-primary);
+            border-color: var(--color-primary);
+        }
+        .reply-box-textarea {
+            width: 100%;
+            resize: none;
+            border: 0;
+            background-color: transparent;
+            padding: 1rem;
+            font-size: 0.875rem;
+            outline: none;
+        }
+        .reply-box-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--color-border-light);
+            padding: 0.5rem 1rem;
+        }
+        .reply-toolbar-group { display: flex; align-items: center; gap: 0.5rem; }
+        .reply-toolbar-btn {
+            border-radius: 0.375rem;
+            padding: 0.5rem;
+            transition: background-color 0.15s;
+        }
+        .reply-toolbar-btn:hover { background-color: var(--color-border-light); }
+        .reply-toolbar-icon { 
+            font-size: 1.25rem; 
+            color: var(--color-text-secondary-light); 
+        }
+        .btn-send {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: var(--radius-default);
+            background-color: var(--color-primary);
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: bold;
+            color: white;
+            transition: opacity 0.15s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-send:hover { opacity: 0.9; }
+
+        /* --- Details Column --- */
+        .detail-card { padding: 1.5rem; }
+        .detail-title { font-size: 1.125rem; font-weight: bold; }
+        .detail-list { margin-top: 1rem; space-y: 0.75rem; }
+        .detail-item { display: flex; justify-content: space-between; font-size: 0.875rem; }
+        .detail-label { color: var(--color-text-secondary-light); }
+
+        /* Status Pill */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 9999px;
+            padding: 0.25rem 0.625rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .status-pill-blue {
+            background-color: var(--color-blue-pill-bg-light);
+            color: var(--color-blue-pill-text-light);
+        }
+
+        /* Forms/Actions */
+        .form-group { margin-top: 1rem; }
+        .form-label { 
+            display: block; 
+            font-size: 0.875rem; 
+            font-weight: 500; 
+            color: var(--color-text-secondary-light); 
+            margin-bottom: 0.25rem; 
+        }
+        .form-select, .form-input, .note-textarea {
+            display: block;
+            width: 100%;
+            margin-top: 0.25rem;
+            border-radius: var(--radius-default);
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-background-light);
+            font-size: 0.875rem;
+            padding: 0.5rem 0.75rem;
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .form-select:focus, .note-textarea:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 1px var(--color-primary);
+        }
+        .btn-update {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 0.625rem 0;
+        }
+
+        /* Customer Info */
+        .customer-info-content { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
+        .customer-name { font-weight: 600; }
+        .customer-email { font-size: 0.875rem; color: var(--color-text-secondary-light); }
+        .btn-secondary {
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            border-radius: var(--radius-default);
+            border: 1px solid var(--color-border-light);
+            padding: 0.5rem 0;
+            text-align: center;
+            font-size: 0.875rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: inherit;
+            transition: background-color 0.15s;
+        }
+        .btn-secondary:hover { background-color: var(--color-chat-bg-customer-light); }
+
+        /* Internal Notes */
+        .internal-note-card {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary-light);
+            font-style: italic;
+            background-color: var(--color-yellow-note-bg-light);
+            padding: 0.75rem;
+            border-radius: var(--radius-default);
+        }
+        .internal-note-name { 
+            font-weight: 600; 
+            color: var(--color-yellow-note-text-light); 
+            margin-bottom: 0.25rem;
+        }
+        .note-textarea { margin-top: 1rem; }
+        .btn-note { 
+            margin-top: 0.5rem; 
+            width: 100%; 
+            padding: 0.5rem 0; 
+        }
+
+        /* --- 5. Footer --- */
+        .footer {
+            margin-top: 4rem;
+            width: 100%;
+            border-top: 1px solid var(--color-border-light);
+            background-color: var(--color-background-light);
+        }
+        .footer-content {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 3rem 1rem; /* py-12 px-4 */
+        }
+        @media (min-width: 640px) { .footer-content { padding-left: 1.5rem; padding-right: 1.5rem; } }
+        @media (min-width: 1024px) { .footer-content { padding-left: 2rem; padding-right: 2rem; } }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(4, 1fr); } }
+        
+        .footer-logo-group { grid-column: span 2 / span 2; }
+        @media (min-width: 768px) { .footer-logo-group { grid-column: span 1 / span 1; } }
+
+        .footer-text { 
+            margin-top: 1rem; 
+            font-size: 0.875rem; 
+            color: var(--color-text-secondary-light); 
+        }
+        .footer-heading { font-weight: bold; }
+        .footer-list { margin-top: 1rem; space-y: 0.5rem; font-size: 0.875rem; }
+        .footer-link { 
+            color: var(--color-text-secondary-light); 
+            text-decoration: none; 
+            transition: color 0.15s;
+        }
+        .footer-link:hover { color: var(--color-primary); }
+        .footer-social-group { margin-top: 1rem; display: flex; space-x: 1rem; }
+        .footer-social-icon { 
+            width: 1.5rem; 
+            height: 1.5rem; 
+            color: var(--color-text-secondary-light); 
+            transition: color 0.15s;
+        }
+        .footer-social-icon:hover { color: var(--color-primary); }
+
+        .footer-copyright {
+            margin-top: 2rem;
+            border-top: 1px solid var(--color-border-light);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary-light);
+        }
+
+        /* --- Floating Button --- */
+        .fab {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            width: 3.5rem;
+            height: 3.5rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            background-color: #10b981; /* green-500 */
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.15s;
+        }
+        .fab:hover { background-color: #059669; /* green-600 */ }
+        .fab-icon { width: 2rem; height: 2rem; }
+
+    </style>
+</head>
+<body class="light dark">
+<div class="layout-container">
+<header class="header">
+<div class="header-content">
+<div class="header-left">
+<div class="logo-group">
+<div class="logo-icon">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="logo-title">Blaqo</h2>
+</div>
+<nav class="nav-links">
+<a class="nav-link nav-link-secondary" href="#">Dashboard</a>
+<a class="nav-link nav-link-secondary" href="#">Marketplace</a>
+<a class="nav-link nav-link-secondary" href="#">Analytics</a>
+<a class="nav-link nav-link-primary" href="#">Customers</a>
+</nav>
+</div>
+<div class="header-right">
+<label class="search-label">
+<div class="search-input-group">
+<div class="search-icon-wrapper">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="search-input" placeholder="Search..." value=""/>
+</div>
+</label>
+<button class="btn-primary">
+<span>Create Ticket</span>
+</button>
+<button class="icon-button">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+</button>
+<button class="icon-button">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="avatar" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCOGbF1lBz6_LuHEDoAR8OR8k9vxkpbvxJJ3vVynB3hWP4ne24gumpM1Gm2cS1t8k7vGVTioZDOTy_-hnjMEIzhUQ8e1tgCEXNZpdMUKTbO9zwgX1UApI3slbEVkMbf6hXZcQ_C9i63lXwBGMmA3FMuVytMXkeTlUsRSotcyran9u8uxEiXh8LUY-uJ4QN8TkOTl9H-fEcHdEhMfgN3OrGin9exuNCPry491bEOVcMQ52AH3Z_GPS_Qnt4offyAlXL6ohVpOdIWLtQ");'></div>
+</div>
+</div>
+</header>
+<main class="content-wrapper">
+<div class="max-width-7xl">
+<div class="breadcrumbs">
+<div class="breadcrumbs-list">
+<a class="breadcrumbs-link" href="#">Admin Panel</a>
+<span>/</span>
+<a class="breadcrumbs-link" href="#">Tickets</a>
+<span>/</span>
+<span class="breadcrumbs-current">Ticket #12345</span>
+</div>
+<div class="page-heading-group">
+<div class="flex flex-col gap-1">
+<h1 class="page-title">API Integration Issue</h1>
+<p class="page-subtitle text-secondary">Ticket #12345</p>
+</div>
+</div>
+</div>
+<div class="main-grid">
+<div class="chat-column">
+<div class="card chat-container">
+<div class="chat-messages">
+<div class="chat-message chat-message-customer">
+<div class="avatar shrink-0" data-alt="micheal's avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCMRTnqOAUQ8LUO08DmGWlCqEzhRZSGiWU0EJd0EEuOPpYotHpMqsByhYUsfBW_x2GH-AUyAYoBc-mIBCtS2ScTvr4uSZ22MIgVHARi8oUoHQYVGGaFj7MqxDKDz42hueaKnlcPHE_bzTOE7PrpN1VMvGZjzi9K4ru6dHG_APxsHoRUFUDHDG523TGGdiLvMb41PCHu9RoPP1v0GB_XwyG9m8Kpj4MkhsxYvzSEQPJx32eAotB0uIcO29bFU-c8nA_rAc7A5UAOU28");'></div>
+<div class="chat-content chat-content-customer">
+<div class="chat-header">
+<p class="chat-sender-name">micheal</p>
+<p class="chat-timestamp">10:32 AM</p>
+</div>
+<p class="chat-bubble chat-bubble-customer">
+Hello, I'm having an issue with the API integration for the new script I purchased. I'm getting a 403 error. Can you help me troubleshoot?
+</p>
+</div>
+</div>
+<div class="chat-message chat-message-admin">
+<div class="chat-content chat-content-admin">
+<div class="chat-header">
+<p class="chat-sender-name">Admin Support</p>
+<p class="chat-timestamp">10:35 AM</p>
+</div>
+<p class="chat-bubble chat-bubble-admin">
+Hi micheal, certainly. Could you please provide the script ID and confirm the API key you are using? We'll look into it right away.
+</p>
+</div>
+<div class="avatar shrink-0" data-alt="Admin Support avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDyJWm3MEiZBpv3M6jDmnqo2IBc0rkIZF4iZ_rXXY42i41E0PoH7GasLUdv0QCiaJxnUWhDCdIpAsOYia6MjXEPtFVNNlyxEzX6MXKLMQdVDrNF3JUVg5n22FPZvYidx8EUOVJGaku1UInpLH2aQ9oPPHLTnCm2KbrRi08nzEj5zclX7tjE6cX3DtT0q_g5-2z2qqimYbkJlfOpTvcW8_JnGiGFubVgpT5NvICgVgXqQqonoQHZokqQCuJ9b-NxQ6Nrr9sIQhhNkfo");'></div>
+</div>
+<div class="chat-message chat-message-customer">
+<div class="avatar shrink-0" data-alt="John Doe's avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAIK_-02Qrfp_z_yj1CzHexEfYSCE4Ocw-BnQ-haCLHO8VuTGUISxUGUE_uquzoj3Pgzv-0dsMzt9HEA-H0Vcoakk4oscsTV8sOkah4tTOl3Hy7U_TnY_be67JzcYrBuwzSyJW12mY_BxHQEGGsw9HvTdgH8zxoZ__qaXXC7g1Ab5yMtFdYAae7JazhnMVbMFPvH_-qT98Bzdt0xUayhpoJQIW2u8E_VtTuiQNjvpIItSHCbBBKxdxf_CbJAinjsAwvwAJev2OlKEk");'></div>
+<div class="chat-content chat-content-customer">
+<div class="chat-header">
+<p class="chat-sender-name">micheal</p>
+<p class="chat-timestamp">10:40 AM</p>
+</div>
+<div class="chat-attachment-group">
+<p class="chat-bubble chat-bubble-customer">
+Sure. The Script ID is `XYZ-12345`. The API key is `sk_...jklm`. I've attached a screenshot of the error message.
+</p>
+<div class="chat-attachment-card">
+<span class="material-symbols-outlined chat-attachment-icon">image</span>
+<div class="chat-attachment-info">
+<p class="chat-attachment-name">error_screenshot.png</p>
+<p class="chat-attachment-text">1.2 MB</p>
+</div>
+<a class="chat-attachment-download-btn" href="#"><span class="material-symbols-outlined text-xl">download</span></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="reply-box">
+<div class="reply-box-wrapper">
+<textarea class="reply-box-textarea" placeholder="Type your reply..." rows="4"></textarea>
+<div class="reply-box-toolbar">
+<div class="reply-toolbar-group">
+<button class="reply-toolbar-btn"><span class="material-symbols-outlined reply-toolbar-icon">format_bold</span></button>
+<button class="reply-toolbar-btn"><span class="material-symbols-outlined reply-toolbar-icon">format_italic</span></button>
+<button class="reply-toolbar-btn"><span class="material-symbols-outlined reply-toolbar-icon">link</span></button>
+<button class="reply-toolbar-btn"><span class="material-symbols-outlined reply-toolbar-icon">attach_file</span></button>
+</div>
+<button class="btn-send">
+<span>Send Reply</span>
+<span class="material-symbols-outlined text-base">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="details-column">
+<div class="card detail-card">
+<h3 class="detail-title">Ticket Details</h3>
+<div class="detail-list">
+<div class="detail-item">
+<span class="detail-label">Status</span>
+<span class="status-pill status-pill-blue">In Progress</span>
+</div>
+<div class="detail-item">
+<span class="detail-label">Created</span>
+<span>Mar 15, 2025</span>
+</div>
+<div class="detail-item">
+<span class="detail-label">Last Update</span>
+<span>Mar 15, 2025</span>
+</div>
+</div>
+</div>
+<div class="card detail-card">
+<h3 class="detail-title">Actions</h3>
+<div class="space-y-4">
+<div class="form-group">
+<label class="form-label" for="status">Change Status</label>
+<select class="form-select" id="status">
+<option>Open</option>
+<option selected>In Progress</option>
+<option>Resolved</option>
+<option>Closed</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label" for="agent">Assign Agent</label>
+<select class="form-select" id="agent">
+<option>Unassigned</option>
+<option selected>Alex Johnson</option>
+<option>Maria Garcia</option>
+<option>Chen Wei</option>
+</select>
+</div>
+<button class="btn-primary btn-update">Update Ticket</button>
+</div>
+</div>
+<div class="card detail-card">
+<h3 class="detail-title">Customer</h3>
+<div class="customer-info-content">
+<div class="avatar shrink-0" data-alt="micheal's avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAjdiaa7Vj3lX816q4GVPGIuGS5-fjlc5jEJorkKXAK-opLM8Ad3TEuPHwzUYjk44blX_OA9KKMLd91t1ey_mrIRUvdgEy_0Jxhk0QeoMIywqd6WY-NOudsFt3QiA5M_Jj_UYiWjZASwJiKZ8mo8ClDtyRcn5iE97AHqW7M5n8p-M06CY88s-fw6DGALUnXP4jh_vBlxl50-zx2Sxtg9qQI_ulL4TkQT4zUWTYQLhNn85Pysgucss4uQkrgrU2SBu-9MsVjp8KzL_8");'></div>
+<div>
+<p class="customer-name">micheal</p>
+<p class="customer-email">micheal@gmail.com</p>
+</div>
+</div>
+<a class="btn-secondary" href="#">View Purchase History</a>
+</div>
+<div class="card detail-card">
+<h3 class="detail-title">Internal Notes</h3>
+<div class="space-y-3">
+<div class="internal-note-card">
+<p class="internal-note-name">Alex Johnson - 10:36 AM</p>
+<p class="internal-note-text">User seems to be using a common incorrect endpoint. Check logs for API call details.</p>
+</div>
+</div>
+<textarea class="note-textarea" placeholder="Add a private note..." rows="3"></textarea>
+<button class="btn-secondary btn-note">Add Note</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="footer">
+<div class="footer-content">
+<div class="footer-grid">
+<div class="footer-logo-group">
+<div class="logo-group">
+<div class="logo-icon">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path></svg>
+</div>
+<h2 class="logo-title">Blaqo</h2>
+</div>
+<p class="footer-text">Your one-stop marketplace for digital assets.</p>
+</div>
+<div>
+<h4 class="footer-heading">Company</h4>
+<ul class="footer-list">
+<li><a class="footer-link" href="#">About Us</a></li>
+<li><a class="footer-link" href="#">Careers</a></li>
+<li><a class="footer-link" href="#">Press</a></li>
+</ul>
+</div>
+<div>
+<h4 class="footer-heading">Support</h4>
+<ul class="footer-list">
+<li><a class="footer-link" href="#">Help Center</a></li>
+<li><a class="footer-link" href="#">Terms of Service</a></li>
+<li><a class="footer-link" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="footer-heading">Connect</h4>
+<div class="footer-social-group">
+<a href="#"><svg class="footer-social-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 2.9,4.79C2.53,5.42 2.33,6.16 2.33,6.94C2.33,8.43 3.11,9.75 4.26,10.54C3.54,10.51 2.87,10.31 2.29,10.05C2.29,10.07 2.29,10.07 2.29,10.08C2.29,12.18 3.82,13.94 5.9,14.34C5.54,14.43 5.15,14.48 4.74,14.48C4.46,14.48 4.19,14.45 3.92,14.4C4.47,16.14 6.09,17.41 8.06,17.44C6.54,18.6 4.69,19.28 2.68,19.28C2.32,19.28 1.97,19.26 1.62,19.22C3.6,20.48 5.95,21.22 8.46,21.22C16,21.22 20.28,14.86 20.28,9.24C20.28,9.06 20.28,8.89 20.27,8.71C21.11,8.09 21.85,7.11 22.46,6Z"></path></svg></a>
+<a href="#"><svg class="footer-social-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.89 20.1,3 19,3M8.07,18H5.9V10H8.07V18M7,8.82C6.1,8.82 5.4,8.12 5.4,7.22C5.4,6.32 6.1,5.62 7,5.62C7.9,5.62 8.6,6.32 8.6,7.22C8.6,8.12 7.9,8.82 7,8.82M18.1,18H15.97V13.4C15.97,12.28 15.42,11.58 14.4,11.58C13.2,11.58 12.6,12.45 12.6,13.4V18H10.47V10H12.6V11.23H12.63C13,10.45 14.12,9.75 15.3,9.75C17.4,9.75 18.1,11.12 18.1,13V18Z"></path></svg></a>
+</div>
+</div>
+</div>
+<p class="footer-copyright">© 2025 Blaqo. All rights reserved.</p>
+</div>
+</footer>
+<button class="fab">
+<svg class="fab-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.099.167-.463 1.693.802.791 1.669-.438.171.104z"></path></svg>
+</button>
+</div>
+</body></html>

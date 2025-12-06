@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo Admin - Courses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="courses-list-styles.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar-nav">
+            <div class="brand-header">
+                <div class="brand-avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBrVflEAuuPi3o7Q7eSA5M3YfsA15q_sMH3hbF1jcdS10pshvcr6Dl6VO2zHMZDhIgJRU11q8y44rfMjvtAK9-6vN8lC6AdC6oJYUHV9i6nk4H9vYngENCTW23xtf2xTNgsyD-beBut-ouTiKQXf7Tpt0mjn2rJq4xcs962pVDP7aW2BbEF4AzWaiLdLewXEVLTuoSU9LP8ydObmqbrcnxtLG8kT7TMiRt7igFmw9tx_az5EdbvFb5NmaK7XpCxbKF1piuaL9LCSkk');"></div>
+                <div class="brand-text">
+                    <h1 class="brand-title">Blaqo</h1>
+                    <p class="brand-subtitle">Admin Panel</p>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <a href="#" class="nav-link">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <p>Dashboard</p>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-symbols-outlined">widgets</span>
+                    <p>Products</p>
+                </a>
+                <a href="#" class="nav-link active">
+                    <span class="material-symbols-outlined">school</span>
+                    <p>Courses</p>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-symbols-outlined">group</span>
+                    <p>Users</p>
+                </a>
+                <a href="#" class="nav-link">
+                    <span class="material-symbols-outlined">settings</span>
+                    <p>Settings</p>
+                </a>
+            </nav>
+
+            <div class="nav-footer">
+                <a href="#" class="nav-link">
+                    <span class="material-symbols-outlined">logout</span>
+                    <p>Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-area">
+            <div class="content-container">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1 class="page-title">Courses</h1>
+                    <button class="add-course-btn">
+                        <span class="material-symbols-outlined">add_circle</span>
+                        <span>Add New Course</span>
+                    </button>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-card">
+                    <div class="filters-grid">
+                        <!-- Search -->
+                        <div class="search-container">
+                            <div class="search-wrapper">
+                                <div class="search-icon">
+                                    <span class="material-symbols-outlined">search</span>
+                                </div>
+                                <input type="text" class="search-input" placeholder="Search by course title...">
+                            </div>
+                        </div>
+
+                        <!-- Filter Buttons -->
+                        <div class="filter-chips">
+                            <button class="filter-chip">
+                                <p>Status: All</p>
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </button>
+                            <button class="filter-chip">
+                                <p>Instructor</p>
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </button>
+                            <button class="filter-chip">
+                                <p>Category</p>
+                                <span class="material-symbols-outlined">expand_more</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Courses Table -->
+                <div class="table-card">
+                    <div class="table-container">
+                        <table class="courses-table">
+                            <thead>
+                                <tr>
+                                    <th>Course Title</th>
+                                    <th>Instructor</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th class="text-right">Enrolled</th>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="course-title">Modern Web Development</td>
+                                    <td class="instructor-name">John Doe</td>
+                                    <td class="price">$99.99</td>
+                                    <td>
+                                        <span class="badge badge-published">Published</span>
+                                    </td>
+                                    <td class="text-right enrolled">1250</td>
+                                    <td class="actions text-center">
+                                        <a href="#" class="action-link">Edit</a>
+                                        <a href="#" class="action-link">Details</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="course-title">AI for Beginners</td>
+                                    <td class="instructor-name">Jane Smith</td>
+                                    <td class="price">$149.00</td>
+                                    <td>
+                                        <span class="badge badge-published">Published</span>
+                                    </td>
+                                    <td class="text-right enrolled">3400</td>
+                                    <td class="actions text-center">
+                                        <a href="#" class="action-link">Edit</a>
+                                        <a href="#" class="action-link">Details</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="course-title">Advanced Python Scripting</td>
+                                    <td class="instructor-name">Peter Jones</td>
+                                    <td class="price">$79.50</td>
+                                    <td>
+                                        <span class="badge badge-draft">Draft</span>
+                                    </td>
+                                    <td class="text-right enrolled">0</td>
+                                    <td class="actions text-center">
+                                        <a href="#" class="action-link">Edit</a>
+                                        <a href="#" class="action-link">Details</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="course-title">The Art of Digital Marketing</td>
+                                    <td class="instructor-name">Emily White</td>
+                                    <td class="price">$199.99</td>
+                                    <td>
+                                        <span class="badge badge-published">Published</span>
+                                    </td>
+                                    <td class="text-right enrolled">850</td>
+                                    <td class="actions text-center">
+                                        <a href="#" class="action-link">Edit</a>
+                                        <a href="#" class="action-link">Details</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="course-title">UX/UI Design Fundamentals</td>
+                                    <td class="instructor-name">Chris Green</td>
+                                    <td class="price">$120.00</td>
+                                    <td>
+                                        <span class="badge badge-draft">Draft</span>
+                                    </td>
+                                    <td class="text-right enrolled">0</td>
+                                    <td class="actions text-center">
+                                        <a href="#" class="action-link">Edit</a>
+                                        <a href="#" class="action-link">Details</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-section">
+                    <p class="pagination-info">
+                        Showing <span class="highlight">1</span> to <span class="highlight">5</span> of <span class="highlight">20</span> results
+                    </p>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button class="pagination-btn">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <footer class="content-footer">
+                    <p>© 2024 Di-Boss. All rights reserved.</p>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <style>
+        /* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Enhanced Color Palette */
+    --primary: #6C63FF;
+    --primary-light: #9D97FF;
+    --primary-dark: #4B43D4;
+    --secondary: #3A86FF;
+    --secondary-light: #6BA3FF;
+    --accent-pink: #FF6B9D;
+    --accent-teal: #00D9C0;
+    --success: #10B981;
+    --success-bg: #D1FAE5;
+    --warning: #F59E0B;
+    --warning-bg: #FEF3C7;
+    --danger: #EF4444;
+    
+    /* Backgrounds */
+    --bg-main: #F9FAFB;
+    --bg-card: #FFFFFF;
+    --bg-subtle: #F3F4F6;
+    --bg-hover: #E5E7EB;
+    
+    /* Text */
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    --text-white: #FFFFFF;
+    
+    /* Borders */
+    --border-light: #E5E7EB;
+    --border-medium: #D1D5DB;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-primary: 0 8px 24px rgba(108, 99, 255, 0.25);
+    --shadow-glow: 0 0 20px rgba(108, 99, 255, 0.4);
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(135deg, var(--bg-main) 0%, #FEFEFE 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* App Layout */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    width: 16rem;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-subtle) 100%);
+    border-right: 1px solid var(--border-light);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.brand-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: translate(-50%, -50%); }
+    50% { transform: translate(0%, 0%); }
+}
+
+.brand-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: -0.01em;
+}
+
+.brand-subtitle {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Navigation */
+.main-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    border-radius: 0 4px 4px 0;
+}
+
+.nav-link:hover {
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(58, 134, 255, 0.05));
+    color: var(--primary);
+    transform: translateX(4px);
+}
+
+.nav-link:hover::before {
+    transform: translateX(0);
+}
+
+.nav-link.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--text-white);
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+}
+
+.nav-link.active::before {
+    display: none;
+}
+
+.nav-link p {
+    margin: 0;
+}
+
+.nav-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+}
+
+/* Main Area */
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.content-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+.add-course-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--text-white);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    box-shadow: var(--shadow-primary);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.add-course-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.add-course-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.add-course-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+/* Filters Card */
+.filters-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    margin-bottom: 1.5rem;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.search-container {
+    flex: 1;
+}
+
+.search-wrapper {
+    display: flex;
+    height: 3rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    background: linear-gradient(135deg, var(--bg-subtle), var(--bg-card));
+    color: var(--text-secondary);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    font-family: 'Space Grotesk', sans-serif;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Filter Chips */
+.filter-chips {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.filter-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding: 0 1rem;
+    background: var(--bg-subtle);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-chip:hover {
+    border-color: var(--secondary);
+    background: linear-gradient(135deg, rgba(58, 134, 255, 0.1), transparent);
+    color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-chip p {
+    margin: 0;
+}
+
+.filter-chip .material-symbols-outlined {
+    font-size: 18px;
+}
+
+/* Table Card */
+.table-card {
+    background: var(--bg-card);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.courses-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.courses-table thead {
+    background: linear-gradient(135deg, var(--bg-subtle), var(--bg-card));
+    border-bottom: 2px solid var(--border-light);
+}
+
+.courses-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.courses-table tbody tr {
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.courses-table tbody tr:hover {
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.05), transparent);
+    transform: scale(1.005);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.courses-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.courses-table td {
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.course-title {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.instructor-name {
+    color: var(--text-secondary);
+}
+
+.price {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.enrolled {
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Status Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+.badge-published {
+    background: var(--success-bg);
+    color: var(--success);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+.badge-draft {
+    background: var(--warning-bg);
+    color: var(--warning);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.action-link {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.action-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    transition: width 0.3s ease;
+}
+
+.action-link:hover {
+    color: var(--primary);
+}
+
+.action-link:hover::after {
+    width: 100%;
+}
+
+/* Pagination */
+.pagination-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.pagination-info {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.pagination-info .highlight {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.pagination-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-btn:hover {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--text-white);
+    border-color: transparent;
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+}
+
+.pagination-btn .material-symbols-outlined {
+    font-size: 20px;
+}
+
+/* Footer */
+.content-footer {
+    margin-top: auto;
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.content-footer p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* Utility Classes */
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .filters-grid {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-area {
+        padding: 2rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-subtle);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--primary-dark), var(--primary));
+}
+    </style>
+</body>
+</html>

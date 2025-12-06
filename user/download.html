@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo - My Downloads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    
+    <style>
+        /* --- 1. Variables and Base Styles --- */
+        :root {
+            /* Colors */
+            --color-primary: #6961ff;
+            --color-primary-light: rgba(105, 97, 255, 0.1); /* primary/10 */
+            --color-primary-medium: rgba(105, 97, 255, 0.2); /* primary/20 */
+            --color-primary-semi-dark: rgba(105, 97, 255, 0.3); /* primary/30 */
+            --color-primary-opacity-90: rgba(105, 97, 255, 0.9);
+            
+            /* Light Theme */
+            --color-bg-light: #f5f5f8;
+            --color-text-dark-light: #1F2937; /* gray-800, gray-900 */
+            --color-text-medium-light: #6B7280; /* gray-600 */
+            --color-text-light-light: #9CA3AF; /* gray-500 */
+            --color-border-light: rgba(105, 97, 255, 0.2); /* primary/20 */
+            --color-input-bg-light: rgba(105, 97, 255, 0.2); /* primary/20 */
+
+            /* Dark Theme */
+            --color-bg-dark: #100f23;
+            --color-card-bg-dark: rgba(16, 15, 35, 0.5); /* background-dark/50 */
+            --color-text-dark-dark: #ffffff;
+            --color-text-medium-dark: #9CA3AF; /* gray-400 */
+            --color-text-light-dark: #9CA3AF; /* gray-400 */
+            --color-border-dark: rgba(105, 97, 255, 0.3); /* primary/30 */
+            --color-input-bg-dark: rgba(105, 97, 255, 0.2); /* primary/20 */
+            
+            /* Layout */
+            --header-padding-x: 1rem;
+            --header-height: 4rem; /* approximated */
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+        }
+
+        /* Base Body */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            line-height: 1.5;
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark-light);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* General Layout */
+        .layout-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .main-content {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            padding: 1.25rem 1rem; /* py-5, px-4 */
+        }
+        @media (min-width: 640px) { .main-content { padding-left: 2.5rem; padding-right: 2.5rem; } } /* sm:px-10 */
+        @media (min-width: 1024px) { .main-content { padding-left: 5rem; padding-right: 5rem; } } /* lg:px-20 */
+        
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 80rem; /* max-w-5xl, using larger for wrapper */
+            flex-grow: 1;
+        }
+
+        /* General Utility Classes */
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .text-center { text-align: center; }
+        .w-full { width: 100%; }
+        .h-10 { height: 2.5rem; }
+        .h-9 { height: 2.25rem; }
+        .size-6 { width: 1.5rem; height: 1.5rem; }
+        .ml-auto { margin-left: auto; }
+        
+        /* Buttons and Inputs */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            font-weight: bold;
+            line-height: 1.5;
+            letter-spacing: 0.015em;
+            cursor: pointer;
+            transition: background-color 0.15s, opacity 0.15s;
+            border: none;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 0 1rem;
+        }
+        .btn-primary:hover { background-color: var(--color-primary-opacity-90); }
+        
+        .icon-btn {
+            background-color: var(--color-primary-medium);
+            color: var(--color-text-dark-light);
+            min-width: 2.5rem; /* h-10 */
+            width: 2.5rem;
+            height: 2.5rem;
+            padding: 0;
+        }
+        .icon-btn:hover { background-color: var(--color-primary-semi-dark); }
+
+        .input-group {
+            display: flex;
+            width: 100%;
+            flex-grow: 1;
+            align-items: stretch;
+            height: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        .input-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 0.75rem;
+            background-color: var(--color-input-bg-light);
+            color: rgba(105, 97, 255, 0.8); /* primary/80 */
+            border-top-left-radius: var(--radius-lg);
+            border-bottom-left-radius: var(--radius-lg);
+        }
+        .input-field {
+            flex: 1;
+            min-width: 0;
+            padding-left: 0.5rem;
+            padding-right: 1rem;
+            border: none;
+            background-color: var(--color-input-bg-light);
+            color: var(--color-text-dark-light);
+            font-size: 1rem;
+            border-top-right-radius: var(--radius-lg);
+            border-bottom-right-radius: var(--radius-lg);
+        }
+        .input-field::placeholder { color: rgba(105, 97, 255, 0.8); } /* primary/80 */
+        .input-field:focus { 
+            outline: none; 
+            box-shadow: 0 0 0 2px rgba(105, 97, 255, 0.5); /* ring-2 focus:ring-primary/50 */
+        }
+        .select-field {
+            background-color: var(--color-primary-medium);
+            border: none;
+            color: var(--color-text-dark-light);
+            border-radius: var(--radius-lg);
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .select-field:focus {
+            outline: none; 
+            box-shadow: 0 0 0 2px rgba(105, 97, 255, 0.5);
+        }
+
+        /* --- 2. Dark Mode Overrides (.dark) --- */
+        .dark {
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-dark-dark);
+        }
+        .dark .text-dark { color: var(--color-text-dark-dark); }
+        .dark .text-medium { color: var(--color-text-medium-dark); }
+        .dark .text-light { color: var(--color-text-light-dark); }
+        .dark .input-field, .dark .input-icon-wrapper { color: var(--color-text-dark-dark); }
+        .dark .input-field::placeholder, .dark .input-icon-wrapper { color: rgba(105, 97, 255, 0.8); }
+        .dark .select-field { color: var(--color-text-dark-dark); }
+        
+        /* Header (Dark) */
+        .dark .header { 
+            background-color: var(--color-bg-dark); 
+            border-bottom-color: var(--color-border-dark);
+        }
+        .dark .nav-link { color: var(--color-text-medium-dark); }
+        .dark .nav-link:hover { color: var(--color-primary); }
+        .dark .icon-btn { 
+            background-color: var(--color-primary-medium);
+            color: var(--color-text-dark-dark);
+        }
+
+        /* Table (Dark) */
+        .dark .table-wrapper { 
+            background-color: var(--color-card-bg-dark);
+            border-color: var(--color-border-dark);
+        }
+        .dark .table-header { background-color: var(--color-primary-medium); }
+        .dark .table-header th { color: var(--color-text-dark-dark); }
+        .dark .table-row { border-top-color: var(--color-border-dark); }
+        .dark .table-cell-text { color: var(--color-text-dark-dark); }
+        .dark .table-cell-subtext { color: var(--color-text-medium-dark); }
+
+        /* Footer (Dark) */
+        .dark .footer { 
+            background-color: var(--color-bg-dark);
+            border-top-color: var(--color-border-dark);
+        }
+        .dark .footer-title { color: var(--color-text-dark-dark); }
+        .dark .footer-link { color: var(--color-text-medium-dark); }
+        .dark .footer-link:hover { color: var(--color-primary); }
+
+        /* --- 3. Header Styling --- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--color-border-light);
+            padding: 0.75rem 1rem; /* py-3, px-4 */
+            background-color: var(--color-bg-light);
+            backdrop-filter: blur(4px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        @media (min-width: 640px) { .header { padding-left: 2.5rem; padding-right: 2.5rem; } } /* sm:px-10 */
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--color-primary);
+        }
+        .logo-text {
+            color: var(--color-text-dark-light);
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .nav {
+            display: none;
+            align-items: center;
+            gap: 2.25rem;
+        }
+        @media (min-width: 768px) { .nav { display: flex; } }
+        .nav-link {
+            color: #4B5563; /* gray-700 */
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+        .nav-link:hover { color: var(--color-primary); }
+        
+        .header-right {
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+        @media (min-width: 640px) { .header-right { gap: 1rem; } }
+
+        .search-container {
+            display: none;
+            flex-direction: column;
+            min-width: 10rem;
+            max-width: 16rem;
+        }
+        @media (min-width: 640px) { .search-container { display: flex; } }
+
+
+        /* --- 4. Main Content --- */
+        
+        /* Page Heading */
+        .page-heading {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.75rem;
+            padding: 1rem;
+        }
+        .page-title {
+            color: var(--color-text-dark-light);
+            font-size: 2.25rem;
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.033em;
+            min-width: 18rem;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+        }
+        @media (min-width: 640px) { .toolbar { flex-direction: row; } }
+        
+        .filter-container {
+            width: 100%;
+        }
+        @media (min-width: 640px) { .filter-container { max-width: 12rem; } }
+        
+        .sort-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .sort-text {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--color-text-medium-light);
+        }
+
+        /* Table */
+        .table-container {
+            padding: 0.75rem 1rem;
+        }
+        .table-wrapper {
+            display: flex;
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-bg-light);
+            box-shadow: 0 1px 3px 0 rgba(105, 97, 255, 0.05), 0 1px 2px -1px rgba(105, 97, 255, 0.05);
+        }
+        .data-table {
+            flex: 1;
+            width: 100%;
+            border-collapse: collapse; /* Ensure cells align properly */
+        }
+        .table-header {
+            background-color: var(--color-primary-light);
+        }
+        .table-header th {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            color: var(--color-text-dark-light);
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .th-product { width: 40%; }
+        .th-date { width: 20%; display: table-cell; }
+        .th-version { width: 15%; display: none; }
+        @media (min-width: 640px) { .th-date { display: table-cell; } } /* sm:table-cell */
+        @media (min-width: 768px) { .th-version { display: table-cell; } } /* md:table-cell */
+        .th-action { width: 25%; text-align: right; }
+
+        .table-row {
+            border-top: 1px solid var(--color-border-light);
+        }
+        .table-row td {
+            height: 4.5rem; /* 72px */
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        .table-cell-text {
+            color: var(--color-text-dark-light);
+            font-weight: 400;
+        }
+        .table-cell-subtext {
+            color: var(--color-text-light-light);
+            font-weight: 400;
+        }
+        .td-product { width: 40%; }
+        .td-date { width: 20%; display: none; }
+        .td-version { width: 15%; display: none; }
+        @media (min-width: 640px) { .td-date { display: table-cell; } } /* sm:table-cell */
+        @media (min-width: 768px) { .td-version { display: table-cell; } } /* md:table-cell */
+        .td-action { width: 25%; text-align: right; }
+        
+        .download-btn {
+            min-width: 5.25rem; /* 84px */
+            height: 2.25rem; /* h-9 */
+            padding: 0 0.75rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            padding: 4rem 1rem; /* py-16 */
+        }
+        .empty-state-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .empty-state-img {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 100%;
+            max-width: 17.5rem; /* 280px */
+            aspect-ratio: 16 / 9;
+        }
+        .empty-state-text-group {
+            display: flex;
+            max-width: 30rem; /* 480px */
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .empty-state-title {
+            color: var(--color-text-dark-light);
+            font-size: 1.125rem;
+            font-weight: bold;
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+            text-align: center;
+        }
+        .empty-state-description {
+            color: var(--color-text-medium-light);
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: center;
+        }
+        .empty-state-btn {
+            height: 2.5rem;
+            padding: 0 1rem;
+            max-width: 30rem;
+        }
+
+        /* --- 5. Footer Styling --- */
+        .footer {
+            background-color: var(--color-bg-light);
+            border-top: 1px solid var(--color-border-light);
+            margin-top: 2.5rem; /* mt-10 */
+        }
+        .footer-content {
+            max-width: 70rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem 1rem; /* py-8, px-4 */
+        }
+        @media (min-width: 640px) { .footer-content { padding-left: 1.5rem; padding-right: 1.5rem; } }
+        @media (min-width: 1024px) { .footer-content { padding-left: 2rem; padding-right: 2rem; } }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .footer-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--color-primary);
+        }
+        .footer-logo-text {
+            color: var(--color-text-dark-light);
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .footer-description {
+            color: var(--color-text-light-light);
+            font-size: 0.875rem;
+        }
+        .footer-links-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer-title {
+            color: var(--color-text-dark-light);
+            font-weight: 600;
+        }
+        .footer-link {
+            color: var(--color-text-light-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        .footer-link:hover { color: var(--color-primary); }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .social-link {
+            color: var(--color-text-light-light);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .social-link:hover { color: var(--color-primary); }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            border-top: 1px solid var(--color-border-light);
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--color-text-light-light);
+        }
+
+        /* --- 6. FAB (WhatsApp Placeholder) --- */
+        .fab {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            height: 3.5rem;
+            width: 3.5rem;
+            border-radius: 9999px;
+            background-color: #22C55E; /* green-500 */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.15s;
+            border: none;
+            cursor: pointer;
+        }
+        .fab:hover { background-color: #16A34A; } /* green-600 */
+        .fab:focus { 
+            outline: none; 
+            box-shadow: 0 0 0 2px white, 0 0 0 4px #22C55E; /* focus:ring-2 focus:ring-offset-2 focus:ring-green-500 */
+        }
+
+        /* Screen Reader Only */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+</head>
+<body class="light">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container">
+<header class="header">
+<div class="header-left">
+<div class="logo-group">
+<div class="size-6">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="logo-text text-dark">Blaqo</h2>
+</div>
+<div class="nav">
+<a class="nav-link" href="#">Categories</a>
+<a class="nav-link" href="#">Scripts</a>
+<a class="nav-link" href="#">APIs</a>
+<a class="nav-link" href="#">Apps</a>
+</div>
+</div>
+<div class="header-right">
+<label class="search-container h-10">
+<div class="input-group">
+<div class="input-icon-wrapper">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="input-field" placeholder="Search" value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="btn icon-btn h-10">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="sr-only">Shopping Cart</span>
+</button>
+<button class="btn icon-btn h-10">
+<span class="material-symbols-outlined">person</span>
+<span class="sr-only">Profile</span>
+</button>
+</div>
+</div>
+</header>
+<main class="main-content">
+<div class="content-wrapper">
+<div class="page-heading">
+<p class="page-title text-dark">My Downloads</p>
+</div>
+<div class="toolbar">
+<div class="filter-container">
+<label class="flex flex-col w-full h-10">
+<div class="input-group">
+<div class="input-icon-wrapper">
+<span class="material-symbols-outlined text-xl">filter_list</span>
+</div>
+<input class="input-field" placeholder="Filter downloads..." value=""/>
+</div>
+</label>
+</div>
+<div class="sort-group">
+<span class="sort-text text-medium">Sort by:</span>
+<select class="select-field">
+<option>Purchase Date</option>
+<option>Name</option>
+<option>Version</option>
+</select>
+</div>
+</div>
+<div class="table-container">
+<div class="table-wrapper">
+<table class="data-table">
+<thead>
+<tr class="table-header">
+<th class="th-product">Product Name</th>
+<th class="th-date">Purchase Date</th>
+<th class="th-version">Version</th>
+<th class="th-action">Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-row">
+<td class="td-product table-cell-text">AI Content Generator Script</td>
+<td class="td-date table-cell-subtext">2023-10-26</td>
+<td class="td-version table-cell-subtext">v2.1.0</td>
+<td class="td-action">
+<button class="btn btn-primary download-btn ml-auto">
+<span class="material-symbols-outlined text-base">download</span>
+<span class="truncate">Download</span>
+</button>
+</td>
+</tr>
+<tr class="table-row">
+<td class="td-product table-cell-text">E-Learning UI Kit</td>
+<td class="td-date table-cell-subtext">2023-09-15</td>
+<td class="td-version table-cell-subtext">v1.5.2</td>
+<td class="td-action">
+<button class="btn btn-primary download-btn ml-auto">
+<span class="material-symbols-outlined text-base">download</span>
+<span class="truncate">Download</span>
+</button>
+</td>
+</tr>
+<tr class="table-row">
+<td class="td-product table-cell-text">Weather Data API</td>
+<td class="td-date table-cell-subtext">2023-08-01</td>
+<td class="td-version table-cell-subtext">v3.0.0</td>
+<td class="td-action">
+<button class="btn btn-primary download-btn ml-auto">
+<span class="material-symbols-outlined text-base">download</span>
+<span class="truncate">Download</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="empty-state">
+<div class="empty-state-content">
+<div class="empty-state-img" data-alt="Illustration of a person looking at an empty box." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDPqU7fbpmKFggdozcxMEeRzXF2QMqCFY8kFX19aWuymCUWTcd72z_ymrE3u7MDEwv8bFpkgz_H7FcaqbontYlObAtSuKjlkkq-snvJsLpim9CV9zJIr2kncnjFmgdqfN3_77ezzlzPZH-RsutEa734rZveoXoiqVK_tX30mPqm7Crj7PzTrXYhDJlfLDMWHWj5QdWpHOvZHkWstTZXh5auYI9wuXxM8FQqPllgFsEGZWOLgkKqAG_RKZmgpZiGlOP5gmfBVO0JLLY");'></div>
+<div class="empty-state-text-group">
+<p class="empty-state-title text-dark">Your downloads will appear here</p>
+<p class="empty-state-description text-medium">You haven't purchased any items yet. Start exploring the marketplace to find amazing digital products.</p>
+</div>
+<button class="btn btn-primary empty-state-btn">
+<span class="truncate">Explore Marketplace</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="footer">
+<div class="footer-content">
+<div class="footer-grid">
+<div class="footer-section">
+<div class="footer-logo-group">
+<div class="size-6">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="footer-logo-text text-dark">Blaqo</h2>
+</div>
+<p class="footer-description">Your one-stop shop for digital assets.</p>
+</div>
+<div class="footer-links-group">
+<h3 class="footer-title text-dark">Company</h3>
+<ul class="flex flex-col gap-0.5">
+<li><a class="footer-link" href="#">About Us</a></li>
+<li><a class="footer-link" href="#">Help Center</a></li>
+<li><a class="footer-link" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="footer-links-group">
+<h3 class="footer-title text-dark">Categories</h3>
+<ul class="flex flex-col gap-0.5">
+<li><a class="footer-link" href="#">Scripts</a></li>
+<li><a class="footer-link" href="#">APIs</a></li>
+<li><a class="footer-link" href="#">Apps</a></li>
+</ul>
+</div>
+<div class="footer-links-group">
+<h3 class="footer-title text-dark">Follow Us</h3>
+<div class="social-links">
+<a class="social-link" href="#">X</a>
+<a class="social-link" href="#">GitHub</a>
+<a class="social-link" href="#">LinkedIn</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+                        © 2025 Blaqo. All rights reserved.
+                    </div>
+</div>
+</footer>
+</div>
+<button class="fab" aria-label="Chat on WhatsApp">
+<svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.75 13.96c.25.13.4.4.4.7v1.84c0 .3-.15.57-.4.7l-1.83 1.01c-.3.17-.67.17-.96 0l-1.83-1.01a.8.8 0 01-.4-.7v-1.84c0-.3.15-.57.4-.7l1.83-1.01c.3-.17.67-.17.96 0l1.83 1.01zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.73 0 3.36-.44 4.78-1.22l2.72 1.58c.26.15.57.14.82-.02.25-.16.39-.44.38-.72v-2.2c1.45-1.55 2.3-3.61 2.3-5.82C22 6.48 17.52 2 12 2zm3.33 13.56l-1.18.66-1.58-2.73 1.18-.66a.8.8 0 00.4-.7v-1.84a.8.8 0 00-.4-.7l-1.18-.66 1.58-2.73 1.18.66c.25.13.4.4.4.7v1.84c0 .3-.15.57-.4.7l1.18.66a.8.8 0 010 1.4zM9.42 16.22l-1.18.66c-.25.13-.56.14-.81 0l-1.18-.66a.8.8 0 01-.4-.7v-3.72c0-.3.15-.57.4-.7l1.18-.66c.25-.13.56-.14.81 0l1.18.66c.25.13.4.4.4.7v3.72c0 .3-.15.57-.4.7z"></path>
+</svg>
+<span class="sr-only">Chat on WhatsApp</span>
+</button>
+</div>
+</body>
+</html>

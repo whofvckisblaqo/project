@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Detail - Blaqo Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="course-styles.css">
+</head>
+<body>
+    <div class="layout-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-wrapper">
+                <div class="sidebar-header">
+                    <div class="admin-logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2tBeDjvDM7HhJ-EltgcWTgt9BN28R5r2qM7MpEjjTVhfka0W-CE8bGFg1LXGkDoFbzYLdcNytlMFLd37CxB52lAzUybE3IH8t_b282WZksNI-12V5Bzr2YHeWuXiMVrGmTipgwfMriZyQVMvcDP0GMhImudJ1r2gHY1zkZYq98LaZa-M8FnTyGMQcacw3e6FrtjaDouidvs4csWcoSRSR18nk2fl_Q-JqOkjrZpsrflfzjTKmQGPI3juHW1eBdfFOvP3rkeiRiCs');"></div>
+                    <div class="admin-info">
+                        <h1 class="admin-title">Admin Panel</h1>
+                        <p class="admin-subtitle">Blaqo Marketplace</p>
+                    </div>
+                </div>
+
+                <nav class="navigation">
+                    <a href="#" class="nav-item">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <p>Dashboard</p>
+                    </a>
+                    <a href="#" class="nav-item active">
+                        <span class="material-symbols-outlined filled">import_contacts</span>
+                        <p>Courses</p>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="material-symbols-outlined">group</span>
+                        <p>Students</p>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="material-symbols-outlined">settings</span>
+                        <p>Settings</p>
+                    </a>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <a href="#" class="nav-item">
+                        <span class="material-symbols-outlined">help_outline</span>
+                        <p>Help & Support</p>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <span class="material-symbols-outlined">logout</span>
+                        <p>Logout</p>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <!-- Header -->
+                <header class="page-header">
+                    <!-- Breadcrumbs -->
+                    <div class="breadcrumbs">
+                        <a href="#">All Courses</a>
+                        <span class="material-symbols-outlined">chevron_right</span>
+                        <span class="current">Course Detail</span>
+                    </div>
+
+                    <!-- Page Title -->
+                    <div class="title-section">
+                        <h1 class="main-title">Full-Stack Web Development Bootcamp</h1>
+                        <p class="main-subtitle">Edit and manage course details, modules, and enrolled students.</p>
+                    </div>
+                </header>
+
+                <!-- Main Grid Layout -->
+                <div class="course-grid">
+                    <!-- Left Column -->
+                    <div class="left-column">
+                        <!-- Course Details Card -->
+                        <div class="card">
+                            <h3 class="card-title">Course Details</h3>
+                            <div class="form-grid">
+                                <!-- Course Title -->
+                                <div class="form-group full-width">
+                                    <label class="form-label">Course Title</label>
+                                    <input type="text" class="form-control" value="Full-Stack Web Development Bootcamp">
+                                </div>
+
+                                <!-- Price -->
+                                <div class="form-group">
+                                    <label class="form-label">Price ($)</label>
+                                    <input type="number" class="form-control" value="499">
+                                </div>
+
+                                <!-- Duration -->
+                                <div class="form-group">
+                                    <label class="form-label">Duration (hours)</label>
+                                    <input type="number" class="form-control" value="120">
+                                </div>
+
+                                <!-- Level -->
+                                <div class="form-group">
+                                    <label class="form-label">Course Level</label>
+                                    <select class="form-control">
+                                        <option>Beginner</option>
+                                        <option selected>Intermediate</option>
+                                        <option>Advanced</option>
+                                    </select>
+                                </div>
+
+                                <!-- Instructor -->
+                                <div class="form-group">
+                                    <label class="form-label">Instructor</label>
+                                    <select class="form-control">
+                                        <option>John Doe</option>
+                                        <option selected>Jane Smith</option>
+                                        <option>Alex Ray</option>
+                                    </select>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="form-group full-width">
+                                    <label class="form-label">Course Description</label>
+                                    <textarea class="form-control textarea">Master front-end and back-end technologies to build complete web applications. This bootcamp covers HTML, CSS, JavaScript, React, Node.js, Express, and databases.</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Lesson Modules Card -->
+                        <div class="card">
+                            <div class="card-header-actions">
+                                <h3 class="card-title">Lesson Modules</h3>
+                                <button class="btn-secondary">
+                                    <span class="material-symbols-outlined">add</span>
+                                    Add Module
+                                </button>
+                            </div>
+
+                            <div class="modules-list">
+                                <!-- Module Item -->
+                                <div class="module-item">
+                                    <div class="module-content">
+                                        <span class="material-symbols-outlined drag-handle">drag_indicator</span>
+                                        <span class="material-symbols-outlined module-icon">play_circle</span>
+                                        <p class="module-title">1. Introduction to Web Development</p>
+                                    </div>
+                                    <div class="module-actions">
+                                        <button class="icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="icon-btn">
+                                            <span class="material-symbols-outlined">delete</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Module Item -->
+                                <div class="module-item">
+                                    <div class="module-content">
+                                        <span class="material-symbols-outlined drag-handle">drag_indicator</span>
+                                        <span class="material-symbols-outlined module-icon">description</span>
+                                        <p class="module-title">2. Front-End Foundations: HTML & CSS</p>
+                                    </div>
+                                    <div class="module-actions">
+                                        <button class="icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="icon-btn">
+                                            <span class="material-symbols-outlined">delete</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Module Item -->
+                                <div class="module-item">
+                                    <div class="module-content">
+                                        <span class="material-symbols-outlined drag-handle">drag_indicator</span>
+                                        <span class="material-symbols-outlined module-icon">quiz</span>
+                                        <p class="module-title">3. JavaScript Fundamentals Quiz</p>
+                                    </div>
+                                    <div class="module-actions">
+                                        <button class="icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="icon-btn">
+                                            <span class="material-symbols-outlined">delete</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Module Item -->
+                                <div class="module-item">
+                                    <div class="module-content">
+                                        <span class="material-symbols-outlined drag-handle">drag-indicator</span>
+                                        <span class="material-symbols-outlined module-icon">play_circle</span>
+                                        <p class="module-title">4. Building with React.js</p>
+                                    </div>
+                                    <div class="module-actions">
+                                        <button class="icon-btn">
+                                            <span class="material-symbols-outlined">edit</span>
+                                        </button>
+                                        <button class="icon-btn">
+                                            <span class="material-symbols-outlined">delete</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tabbed Section -->
+                        <div class="card">
+                            <div class="tabs-header">
+                                <nav class="tabs-nav">
+                                    <a href="#" class="tab-link active">Enrolled Students</a>
+                                    <a href="#" class="tab-link">Course Analytics</a>
+                                </nav>
+                            </div>
+
+                            <div class="tab-content">
+                                <div class="table-wrapper">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Student Name</th>
+                                                <th>Enrollment Date</th>
+                                                <th>Progress</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="font-medium">Alice Johnson</td>
+                                                <td>2023-10-26</td>
+                                                <td>75%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-medium">Bob Williams</td>
+                                                <td>2023-10-25</td>
+                                                <td>100%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-medium">Charlie Brown</td>
+                                                <td>2023-10-22</td>
+                                                <td>30%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Sidebar -->
+                    <div class="right-sidebar">
+                        <div class="card sidebar-card">
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <button class="btn-primary">Save Changes</button>
+                                <button class="btn-outline">Preview Course</button>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="form-group">
+                                <label class="form-label">Course Status</label>
+                                <select class="form-control">
+                                    <option>Draft</option>
+                                    <option selected>Published</option>
+                                    <option>Archived</option>
+                                </select>
+                            </div>
+
+                            <!-- Thumbnail -->
+                            <div class="thumbnail-section">
+                                <p class="form-label">Course Thumbnail</p>
+                                <div class="upload-area">
+                                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-xIbopvlLemvre4BCi_O4B7_NAJ8hZPhG9tYaUrWYJW4KmOzxqto75SY9VSc8TY1Jvp6FQrrJZ0hjseHhw0DOHOxS1O1UEui271r4SpUdDQpGCiShkXb8xj3zQovV8twnu19t2-UJEDc2mIiGdg8RqkAjsiQXe9snWODXKoHcnGyetiUMxg2ZvTzUP8GHIIAIBg6IX67UrvwosJTi_GUzBpQmKtRwCrwtKb2NFvikRs_Lg6aQc5nQevzwaPjV7hbqtP_K2QKgBbM" alt="Course thumbnail" class="thumbnail-img">
+                                    <div class="upload-text">
+                                        <label for="file-upload" class="upload-label">Change image</label>
+                                        <input type="file" id="file-upload" class="file-input">
+                                        <span class="upload-desc">or drag and drop</span>
+                                    </div>
+                                    <p class="upload-hint">PNG, JPG, GIF up to 10MB</p>
+                                </div>
+                            </div>
+
+                            <!-- Metadata -->
+                            <div class="metadata">
+                                <div class="metadata-item">
+                                    <span class="metadata-label">Date Created:</span>
+                                    <span class="metadata-value">Oct 20, 2023</span>
+                                </div>
+                                <div class="metadata-item">
+                                    <span class="metadata-label">Last Updated:</span>
+                                    <span class="metadata-value">Nov 05, 2023</span>
+                                </div>
+                                <div class="metadata-item">
+                                    <span class="metadata-label">Total Enrollments:</span>
+                                    <span class="metadata-value">1,245</span>
+                                </div>
+                            </div>
+
+                            <!-- Delete Button -->
+                            <div class="delete-section">
+                                <button class="btn-delete">Delete Course</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <footer class="page-footer">
+                    <p>© 2025 Blaqo Marketplace. All rights reserved.</p>
+                </footer>
+            </div>
+        </main>
+    </div>
+</body>
+
+<style>
+    /* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Enhanced Color Palette */
+    --primary: #6C63FF;
+    --primary-light: #8B84FF;
+    --primary-dark: #5449CC;
+    --secondary: #3A86FF;
+    --accent: #FF6B9D;
+    --success: #06D6A0;
+    --warning: #FFD93D;
+    --danger: #EF476F;
+    
+    /* Backgrounds */
+    --bg-main: #F9FAFB;
+    --bg-card: #FFFFFF;
+    --bg-subtle: #F3F4F6;
+    --bg-hover: #E5E7EB;
+    
+    /* Text Colors */
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    --text-light: #D1D5DB;
+    
+    /* Borders */
+    --border-light: #E5E7EB;
+    --border-medium: #D1D5DB;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --shadow-primary: 0 8px 20px rgba(108, 99, 255, 0.25);
+    --shadow-secondary: 0 8px 20px rgba(58, 134, 255, 0.25);
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-size: 20px;
+}
+
+.material-symbols-outlined.filled {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Layout Container */
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 16rem;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F9FAFB 100%);
+    border-right: 1px solid var(--border-light);
+    padding: 1rem;
+    display: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
+}
+
+.sidebar-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 1rem;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-primary);
+}
+
+.admin-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+.admin-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.admin-subtitle {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Navigation */
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    border-radius: 0 4px 4px 0;
+}
+
+.nav-item:hover {
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), transparent);
+    color: var(--primary);
+    transform: translateX(4px);
+}
+
+.nav-item:hover::before {
+    transform: translateX(0);
+}
+
+.nav-item.active {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #FFFFFF;
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+}
+
+.nav-item.active::before {
+    display: none;
+}
+
+.nav-item p {
+    margin: 0;
+}
+
+.sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Page Header */
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.breadcrumbs a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+    color: var(--primary);
+}
+
+.breadcrumbs .current {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.breadcrumbs .material-symbols-outlined {
+    font-size: 16px;
+}
+
+.title-section {
+    margin-top: 0.5rem;
+}
+
+.main-title {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -0.033em;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.main-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Course Grid */
+.course-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.right-sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card Styles */
+.card {
+    background: var(--bg-card);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.card-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    width: 100%;
+    height: 3rem;
+    padding: 0.75rem;
+    border: 1px solid var(--border-light);
+    border-radius: 0.5rem;
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+    background: var(--bg-card);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.form-control.textarea {
+    min-height: 9rem;
+    resize: vertical;
+    padding: 0.75rem;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary,
+.btn-outline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #FFFFFF;
+    box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(108, 99, 255, 0.3);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: #FFFFFF;
+    box-shadow: var(--shadow-secondary);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(58, 134, 255, 0.3);
+}
+
+.btn-outline {
+    background: var(--bg-subtle);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+}
+
+.btn-outline:hover {
+    background: var(--bg-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-delete {
+    width: 100%;
+    padding: 0.75rem;
+    background: transparent;
+    color: var(--danger);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+    background: rgba(239, 71, 111, 0.1);
+    color: #DC2626;
+}
+
+/* Modules List */
+.modules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.module-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-light);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.module-item:hover {
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    transform: translateX(4px);
+}
+
+.module-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.drag-handle {
+    cursor: grab;
+    color: var(--text-muted);
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+.module-icon {
+    color: var(--primary);
+}
+
+.module-title {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.module-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icon-btn {
+    display: flex;
+    align-items: center;
+    justify-center: center;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+    background: var(--bg-hover);
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+/* Tabs */
+.tabs-header {
+    border-bottom: 1px solid var(--border-light);
+}
+
+.tabs-nav {
+    display: flex;
+    gap: 2rem;
+    padding: 0 1.5rem;
+    margin-bottom: -1px;
+}
+
+.tab-link {
+    padding: 1rem 0.25rem;
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tab-link:hover {
+    color: var(--text-primary);
+    border-bottom-color: var(--border-medium);
+}
+
+.tab-link.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    font-weight: 600;
+}
+
+.tab-content {
+    padding: 1.5rem;
+}
+
+/* Table */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table thead {
+    background: var(--bg-subtle);
+}
+
+.data-table th {
+    padding: 0.75rem 1.5rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid var(--border-light);
+    transition: background-color 0.2s;
+}
+
+.data-table tbody tr:hover {
+    background: var(--bg-subtle);
+}
+
+.data-table td {
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.data-table td.font-medium {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Sidebar Card */
+.sidebar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Thumbnail Upload */
+.thumbnail-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border: 2px dashed var(--border-light);
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    border-color: var(--primary);
+    background: rgba(108, 99, 255, 0.05);
+}
+
+.thumbnail-img {
+    width: auto;
+    height: 6rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+
+.upload-text {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.upload-label {
+    color: var(--primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.upload-label:hover {
+    color: var(--primary-dark);
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-desc {
+    color: var(--text-secondary);
+}
+
+.upload-hint {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Metadata */
+.metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.metadata-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.metadata-label {
+    color: var(--text-secondary);
+}
+
+.metadata-value {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.delete-section {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+}
+
+/* Footer */
+.page-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-light);
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .sidebar {
+        display: flex;
+    }
+
+    .main-content {
+        padding: 2rem 2.5rem;
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr 20rem;
+    }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-subtle);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--primary-dark), var(--primary));
+}
+</style>
+</html>

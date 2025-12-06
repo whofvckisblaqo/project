@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo - Your Shopping Cart</title>
+   
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-container">
+                <div class="header-left">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h2 class="logo-text">Blaqo</h2>
+                    </div>
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Search..." class="search-input">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <nav class="nav-menu">
+                        <a href="#" class="nav-link">Categories</a>
+                        <a href="#" class="nav-link">Deals</a>
+                        <a href="#" class="nav-link">Support</a>
+                    </nav>
+                    <div class="header-actions">
+                        <button class="login-button">Login</button>
+                        <button class="cart-button">
+                            🛒
+                            <span class="cart-badge">3</span>
+                        </button>
+                        <div class="user-avatar"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-container">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1 class="page-title">Your Shopping Cart</h1>
+                    <a href="#" class="continue-shopping">
+                        <span class="back-arrow">←</span>
+                        <span>Continue Shopping</span>
+                    </a>
+                </div>
+
+                <!-- Cart Layout -->
+                <div class="cart-layout">
+                    <!-- Cart Items -->
+                    <div class="cart-items">
+                        <div class="cart-card">
+                            <!-- Item 1 -->
+                            <div class="cart-item">
+                                <div class="item-details">
+                                    <div class="item-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%236961ff%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E')"></div>
+                                    <div class="item-info">
+                                        <p class="item-name">AI Chatbot Script</p>
+                                        <p class="item-category">AI Tool</p>
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn">-</button>
+                                        <input type="number" value="1" class="qty-input">
+                                        <button class="qty-btn">+</button>
+                                    </div>
+                                    <p class="item-price">$49.00</p>
+                                    <button class="delete-btn">🗑️</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="cart-item">
+                                <div class="item-details">
+                                    <div class="item-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%233A86FF%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E')"></div>
+                                    <div class="item-info">
+                                        <p class="item-name">Modern Portfolio Website</p>
+                                        <p class="item-category">Website Template</p>
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn">-</button>
+                                        <input type="number" value="1" class="qty-input">
+                                        <button class="qty-btn">+</button>
+                                    </div>
+                                    <p class="item-price">$99.00</p>
+                                    <button class="delete-btn">🗑️</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="cart-item">
+                                <div class="item-details">
+                                    <div class="item-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23FF6B6B%22 width=%22100%22 height=%22100%22/%3E%3C/svg%3E')"></div>
+                                    <div class="item-info">
+                                        <p class="item-name">E-learning Course on Python</p>
+                                        <p class="item-category">E-learning Resource</p>
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+                                    <div class="quantity-controls">
+                                        <button class="qty-btn">-</button>
+                                        <input type="number" value="1" class="qty-input">
+                                        <button class="qty-btn">+</button>
+                                    </div>
+                                    <p class="item-price">$129.00</p>
+                                    <button class="delete-btn">🗑️</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary Sidebar -->
+                    <aside class="order-sidebar">
+                        <div class="summary-card">
+                            <h3 class="summary-title">Order Summary</h3>
+                            
+                            <div class="summary-details">
+                                <div class="summary-row">
+                                    <span>Subtotal</span>
+                                    <span class="summary-value">$277.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Taxes</span>
+                                    <span>Calculated at checkout</span>
+                                </div>
+                            </div>
+
+                            <div class="coupon-section">
+                                <p class="coupon-label">Coupon Code</p>
+                                <div class="coupon-input-group">
+                                    <input type="text" placeholder="Enter coupon code" class="coupon-input">
+                                    <button class="coupon-btn">Apply</button>
+                                </div>
+                            </div>
+
+                            <div class="summary-divider"></div>
+
+                            <div class="total-section">
+                                <span class="total-label">Estimated Total</span>
+                                <span class="total-amount">$277.00</span>
+                            </div>
+
+                            <button class="checkout-btn">Proceed to Checkout</button>
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- Recommended Products -->
+                <div class="recommendations">
+                    <h2 class="recommendations-title">You Might Also Like</h2>
+                    <div class="recommendations-grid">
+                        <!-- Product 1 -->
+                        <div class="product-card">
+                            <div class="product-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22200%22%3E%3Crect fill=%22%23667eea%22 width=%22320%22 height=%22200%22/%3E%3C/svg%3E')"></div>
+                            <div class="product-content">
+                                <h4 class="product-name">UI/UX Design Masterclass</h4>
+                                <p class="product-category">E-learning Course</p>
+                                <div class="product-footer">
+                                    <p class="product-price">$199</p>
+                                    <button class="add-btn">Add 🛒</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 2 -->
+                        <div class="product-card">
+                            <div class="product-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22200%22%3E%3Crect fill=%22%234facfe%22 width=%22320%22 height=%22200%22/%3E%3C/svg%3E')"></div>
+                            <div class="product-content">
+                                <h4 class="product-name">SaaS Boilerplate Kit</h4>
+                                <p class="product-category">Script</p>
+                                <div class="product-footer">
+                                    <p class="product-price">$249</p>
+                                    <button class="add-btn">Add 🛒</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="product-card">
+                            <div class="product-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22200%22%3E%3Crect fill=%22%23f093fb%22 width=%22320%22 height=%22200%22/%3E%3C/svg%3E')"></div>
+                            <div class="product-content">
+                                <h4 class="product-name">Mobile App UI Kit</h4>
+                                <p class="product-category">App Template</p>
+                                <div class="product-footer">
+                                    <p class="product-price">$79</p>
+                                    <button class="add-btn">Add 🛒</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="product-card">
+                            <div class="product-image" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22200%22%3E%3Crect fill=%22%2343e97b%22 width=%22320%22 height=%22200%22/%3E%3C/svg%3E')"></div>
+                            <div class="product-content">
+                                <h4 class="product-name">Weather Data API</h4>
+                                <p class="product-category">API</p>
+                                <div class="product-footer">
+                                    <p class="product-price">$15/mo</p>
+                                    <button class="add-btn">Add 🛒</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- WhatsApp Button -->
+        <button class="whatsapp-button">
+            <svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M16.75,13.96C17,14.21 17.07,14.54 16.96,14.85C16.7,15.58 15.35,16.76 13.62,17.84C13.5,17.91 13.37,17.93 13.24,17.93C13.1,17.93 12.96,17.89 12.83,17.81L11.2,16.91C10.74,16.64 10.18,16.72 9.8,17.1L8.53,18.37C8.33,18.57 8.06,18.67 7.78,18.67C7.72,18.67 7.65,18.66 7.58,18.64C7.06,18.5 6.27,17.94 5.3,16.97C4.32,16 3.75,15.21 3.6,14.69C3.46,14.17 3.63,13.62 4.04,13.21L5.3,11.95C5.69,11.56 5.77,11 5.5,10.54L4.6,8.9C4.53,8.77 4.49,8.63 4.49,8.49C4.49,8.36 4.51,8.23 4.58,8.1L5.39,6.54C5.64,6.29 5.97,6.22 6.28,6.33C6.91,6.54 8.09,7.89 8.82,8.27C8.94,8.34 9,8.47 9,8.6C9,8.74 8.96,8.88 8.88,9.01L7.98,10.63C7.94,10.7 7.92,10.78 7.92,10.86C7.92,10.95 7.96,11.03 8.02,11.09L9.27,12.34C9.88,12.95 10.83,13.43 11.6,13.43C11.72,13.43 11.85,13.41 11.97,13.34L13.58,12.44C13.71,12.37 13.85,12.33 13.99,12.33C14.13,12.33 14.27,12.37 14.4,12.44L16.05,13.25C16.3,13.37 16.5,13.66 16.75,13.96M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C10.03,22 8.2,21.43 6.65,20.45L2,22L3.55,17.35C2.57,15.8 2,13.97 2,12A10,10 0 0,1 12,2Z"/>
+            </svg>
+        </button>
+    </div>
+
+      <!-- FOOTER -->
+<footer class="site-footer">
+        <div class="footer-content">
+
+            <div class="footer-section">
+                <h3>Product</h3>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Integrations</a></li>
+                    <li><a href="#">API</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Sales</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest news and offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            
+        </div>
+
+        <div class="footer-bottom">
+            
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook">📘</a> <a href="#" aria-label="Twitter">🐦</a>  <a href="#" aria-label="Instagram">📸</a> <a href="#" aria-label="LinkedIn">🔗</a>  </div>
+
+            <div class="footer-copyright">
+                &copy; 2025 Blaqo. All rights reserved. | <a href="#" style="color: #ccc; text-decoration: none;">Privacy Policy</a> | <a href="#" style="color: #ccc; text-decoration: none;">Terms of Service</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #F9FAFB;
+    color: #6B7280;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page-container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Header */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(249, 250, 251, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
+    color: #6961ff;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #1F2937;
+}
+
+.search-box {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .search-box {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        min-width: 160px;
+        max-width: 256px;
+        background-color: #F3F4F6;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+}
+
+.search-icon {
+    padding: 0 16px;
+    font-size: 20px;
+    color: #6B7280;
+}
+
+.search-input {
+    flex: 1;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #1F2937;
+    padding-right: 16px;
+}
+
+.search-input::placeholder {
+    color: #6B7280;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-menu {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+}
+
+.nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6B7280;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #6961ff;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 84px;
+    height: 40px;
+    padding: 0 16px;
+    background-color: #6961ff;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.login-button:hover {
+    opacity: 0.9;
+}
+
+.cart-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 10px;
+    background-color: rgba(105, 97, 255, 0.2);
+    color: #6961ff;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cart-button:hover {
+    background-color: rgba(105, 97, 255, 0.3);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background-color: #3A86FF;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.user-avatar {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .user-avatar {
+        display: block;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+    }
+}
+
+/* Main Content */
+.main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 16px 64px;
+}
+
+@media (min-width: 768px) {
+    .main-content {
+        padding: 64px 16px;
+    }
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+/* Page Header */
+.page-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: #1F2937;
+}
+
+@media (min-width: 768px) {
+    .page-title {
+        font-size: 48px;
+    }
+}
+
+.continue-shopping {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6961ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+.continue-shopping:hover {
+    opacity: 0.8;
+}
+
+.back-arrow {
+    font-size: 20px;
+}
+
+/* Cart Layout */
+.cart-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+@media (min-width: 1024px) {
+    .cart-layout {
+        grid-template-columns: 2fr 1fr;
+        gap: 48px;
+    }
+}
+
+/* Cart Items */
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cart-card {
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #E5E7EB;
+    background-color: white;
+    overflow: hidden;
+}
+
+.cart-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.item-details {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.item-image {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.item-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1F2937;
+    line-height: 1.3;
+}
+
+.item-category {
+    font-size: 14px;
+    color: #6B7280;
+    margin-top: 4px;
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: auto;
+}
+
+@media (min-width: 768px) {
+    .item-actions {
+        gap: 32px;
+    }
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.qty-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: #F3F4F6;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1F2937;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.qty-btn:hover {
+    background-color: #E5E7EB;
+}
+
+.qty-input {
+    width: 16px;
+    padding: 0;
+    text-align: center;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1F2937;
+}
+
+.qty-input::-webkit-inner-spin-button,
+.qty-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.item-price {
+    width: 64px;
+    text-align: right;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1F2937;
+    flex-shrink: 0;
+}
+
+.delete-btn {
+    font-size: 20px;
+    color: #6B7280;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.delete-btn:hover {
+    color: #ef4444;
+}
+
+/* Order Sidebar */
+.order-sidebar {
+    position: relative;
+}
+
+.summary-card {
+    position: sticky;
+    top: 112px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border: 1px solid #E5E7EB;
+    background-color: white;
+}
+
+.summary-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1F2937;
+}
+
+.summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #6B7280;
+}
+
+.summary-value {
+    font-weight: 500;
+    color: #1F2937;
+}
+
+.coupon-section {
+    padding-top: 16px;
+    border-top: 1px solid #E5E7EB;
+}
+
+.coupon-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1F2937;
+    margin-bottom: 8px;
+}
+
+.coupon-input-group {
+    display: flex;
+    gap: 8px;
+}
+
+.coupon-input {
+    flex: 1;
+    height: 40px;
+    padding: 0 16px;
+    background-color: #F3F4F6;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1F2937;
+    outline: none;
+}
+
+.coupon-input:focus {
+    border-color: #6961ff;
+}
+
+.coupon-input::placeholder {
+    color: #9CA3AF;
+}
+
+.coupon-btn {
+    min-width: 84px;
+    height: 40px;
+    padding: 0 16px;
+    background-color: rgba(105, 97, 255, 0.2);
+    color: #6961ff;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.coupon-btn:hover {
+    background-color: rgba(105, 97, 255, 0.3);
+}
+
+.summary-divider {
+    border-top: 1px solid #E5E7EB;
+    margin: 8px 0;
+}
+
+.total-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1F2937;
+}
+
+.checkout-btn {
+    width: 100%;
+    height: 48px;
+    background: linear-gradient(to right, #6961ff, #3A86FF);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(105, 97, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.checkout-btn:hover {
+    box-shadow: 0 6px 16px rgba(105, 97, 255, 0.4);
+}
+
+/* Recommendations */
+.recommendations {
+    padding-top: 32px;
+}
+
+.recommendations-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1F2937;
+    margin-bottom: 24px;
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+@media (min-width: 640px) {
+    .recommendations-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .recommendations-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .recommendations-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background-size: cover;
+    background-position: center;
+}
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 16px;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1F2937;
+    line-height: 1.3;
+}
+
+.product-category {
+    font-size: 14px;
+    color: #6B7280;
+    margin-top: 4px;
+}
+
+.product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #E5E7EB;
+}
+
+.product-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #6961ff;
+}
+
+.add-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #6961ff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.add-btn:hover {
+    opacity: 0.8;
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(74, 222, 128, 0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(74, 222, 128, 0.5);
+}
+
+.whatsapp-icon {
+    width: 32px;
+    height: 32px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .item-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .summary-card {
+        position: relative;
+        top: 0;
+    }
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background: rgba(0,0,0,0.6);
+    border-radius: 20px 20px 0 0;
+    font-size: 0.9rem;
+    color: #bdbdbd;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 5%;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    .hero-sub {
+        font-size: 1rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-bar input, .search-bar button {
+        width: 100%;
+        border-radius: 50px;
+    }
+}
+
+
+.how-it-works {
+    width: 100%;
+    padding: 60px 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    align-items: start;
+}
+
+.step {
+    text-align: center;
+    color: white;
+}
+
+.icon-circle {
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.icon-circle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.icon-circle i {
+    font-size: 50px;
+    color: #4db8ff;
+}
+
+.step-number {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.step-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .icon-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .icon-circle i {
+        font-size: 40px;
+    }
+
+    .step-number {
+        font-size: 24px;
+    }
+
+    .step-description {
+        font-size: 16px;
+    }
+}
+
+
+
+ /* CSS for the Footer */
+        :root {
+            /* Define primary colors */
+            --primary-bg: #232f3e;
+            --secondary-bg: #131a22;
+            --text-color: #f0f0f0;
+            --link-hover: #ff9900;
+            --input-bg: #3c4a5a;
+        }
+
+        /* Basic Reset and Box-Sizing */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Body style for context (not part of the footer itself) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Pushes the footer to the bottom */
+        }
+
+        /* ----------------------- */
+        /* --- FOOTER STYLES --- */
+        /* ----------------------- */
+
+        .site-footer {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            padding: 40px 20px 20px;
+            border-top: 5px solid var(--link-hover);
+        }
+
+        /* Top section containing links and sign-up */
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--input-bg);
+        }
+
+        /* General style for link columns */
+        .footer-section {
+            padding: 15px;
+            min-width: 150px; /* Ensures columns don't get too narrow */
+            flex: 1 1 200px; /* Flex-grow, flex-shrink, flex-basis */
+        }
+
+        .footer-section h3 {
+            color: var(--link-hover);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+        
+        /* Newsletter Sign-up Styling */
+        .footer-newsletter {
+            flex: 1 1 300px; /* Give the newsletter more space */
+            padding: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 10px;
+            border: 1px solid var(--input-bg);
+            border-radius: 4px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .newsletter-form button {
+            padding: 10px;
+            background-color: var(--link-hover);
+            color: var(--secondary-bg);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #ffb84d; /* Lighter shade of link-hover */
+        }
+
+        /* Bottom bar for social media and copyright */
+        .footer-bottom {
+            background-color: var(--secondary-bg);
+            padding: 20px 20px 10px;
+            text-align: center;
+        }
+
+        /* Social Media Icons (using simple text/emojis as we can't use external fonts/icons) */
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            color: var(--text-color);
+            font-size: 1.8em;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            }
+
+        .social-icons a:hover {
+            color: var(--link-hover);
+        }
+
+        /* Copyright text */
+        .footer-copyright {
+            font-size: 0.8em;
+            color: #ccc;
+        }
+
+
+        /* --- RESPONSIVENESS (Media Query) --- */
+        @media (max-width: 768px) {
+            .footer-content {
+                /* Stacks content vertically on smaller screens */
+                flex-direction: column;
+            }
+            .footer-section, .footer-newsletter {
+                padding: 15px 0;
+                text-align: center;
+                border-bottom: 1px dashed var(--input-bg);
+            }
+            .footer-section:last-child {
+                border-bottom: none;
+            }
+            .newsletter-form {
+                max-width: 300px; /* Constrain width for better look */
+                margin: 0 auto;
+            }
+        }
+    </style>
+</body>
+</html>

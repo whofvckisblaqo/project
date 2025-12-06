@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo - Admin Role Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variables and Base Styles --- */
+        :root {
+            /* Colors */
+            --color-primary: #ad4fe8; /* Purple */
+            --color-primary-light: #ad4fe81a; /* primary/10 */
+            --color-primary-dark: #ad4fe833; /* primary/20 */
+            
+            --color-text-dark: #1f2937; /* Gray-900 */
+            --color-text-medium: #4b5563; /* Gray-600 */
+            --color-text-subtle: #9ca3af; /* Gray-400 */
+            
+            --color-background-light: #f7f6f8;
+            --color-surface-light: #ffffff;
+            --color-surface-sidebar: #fbfaff;
+            --color-border-light: #e5e7eb; /* Gray-200 */
+            
+            --color-red: #ef4444; /* red-500 */
+            --color-red-dark: #b91c1c; /* red-700 */
+
+            /* Dark Mode Overrides */
+            --color-background-dark: #1b1121;
+            --color-dark-text-dark: #ffffff;
+            --color-dark-text-light: #f3f4f6; /* gray-100 */
+            --color-dark-text-medium: #d1d5db; /* gray-300 */
+            --color-dark-text-subtle: #9ca3af; /* gray-400 */
+            --color-dark-text-extra-subtle: #6b7280; /* gray-500 */
+            --color-dark-border: #1f2937; /* Gray-800 */
+            --color-dark-surface: #1b112180; /* background-dark/50 */
+            --color-dark-gray-surface: #1f2937; /* gray-800 */
+
+            /* Radius/Shadow */
+            --radius-default: 0.5rem;
+            --radius-lg: 1rem;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--color-background-light);
+            color: var(--color-text-dark);
+            margin: 0;
+            line-height: 1.5;
+            height: 100vh;
+        }
+
+        /* Dark Mode */
+        .dark {
+            background-color: var(--color-background-dark);
+            color: var(--color-dark-text-light);
+        }
+        .dark .sidebar {
+            background-color: var(--color-background-dark);
+            border-color: var(--color-dark-border);
+        }
+        .dark .logo-title { color: var(--color-dark-text-light); }
+        .dark .logo-subtitle { color: #ad4fe8b3; /* primary/70 */ }
+        .dark .sidebar-item-p { color: var(--color-dark-text-subtle); }
+        .dark .sidebar-item-icon { color: var(--color-dark-text-subtle); }
+        .dark .sidebar-item:hover { 
+            background-color: var(--color-primary-light);
+            color: var(--color-primary); 
+        }
+        
+        .dark .page-title { color: var(--color-dark-text-dark); }
+        .dark .page-subtitle { color: var(--color-dark-text-subtle); }
+        
+        .dark .search-icon { color: var(--color-dark-text-extra-subtle); }
+        .dark .search-input { 
+            color: var(--color-dark-text-light); 
+            border-color: var(--color-dark-border);
+            background-color: var(--color-background-dark);
+        }
+        .dark .search-input::placeholder { color: var(--color-dark-text-extra-subtle); }
+
+        .dark .role-list-container { 
+            background-color: var(--color-dark-surface);
+            border-color: var(--color-dark-border);
+            border-bottom: 1px solid var(--color-dark-border);
+        }
+        .dark .list-divider { border-color: var(--color-dark-border); }
+        .dark .list-item-title { color: var(--color-dark-text-medium); }
+        .dark .list-item:hover { background-color: #1f293780; } /* gray-800/50 */
+        .dark .list-item-icon-wrapper { 
+            background-color: var(--color-dark-gray-surface); 
+            color: var(--color-dark-text-medium);
+        }
+        .dark .list-item-title-dark { color: var(--color-dark-text-light); }
+
+        .dark .role-details-card { 
+            background-color: var(--color-dark-surface);
+            border-color: var(--color-dark-border);
+        }
+        .dark .role-details-title { color: var(--color-dark-text-dark); }
+        .dark .permission-section-title { 
+            color: var(--color-dark-text-light); 
+            border-color: #374151; /* gray-700 */
+        }
+        .dark .permission-group-title { color: var(--color-dark-text-subtle); }
+        .dark .permission-label-text { color: var(--color-dark-text-medium); }
+        .dark .form-checkbox { 
+            background-color: #1f2937; /* gray-700 */
+            border-color: #4b5563; /* gray-600 */
+        }
+        
+        .dark .table-header th { color: var(--color-dark-text-subtle); }
+        .dark .table-row-name { color: var(--color-dark-text-dark); }
+        .dark .table-row-data { color: var(--color-dark-text-medium); }
+        .dark .table-row-hover:hover { background-color: #1f293780; } /* gray-800/50 */
+
+        .dark .footer { border-color: var(--color-dark-border); }
+        .dark .footer p { color: var(--color-dark-text-subtle); }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 24px;
+        }
+        .material-symbols-outlined.small {
+            font-size: 20px;
+        }
+
+        /* --- 2. Layouts and Structure --- */
+        .page-wrapper {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 256px; /* w-64 */
+            flex-shrink: 0;
+            background-color: var(--color-surface-sidebar);
+            border-right: 1px solid var(--color-border-light);
+            padding: 16px; /* p-4 */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px; /* gap-8 */
+        }
+        .logo-group {
+            display: flex;
+            gap: 12px; /* gap-3 */
+            align-items: center;
+            padding: 0 8px; /* px-2 */
+        }
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-size: cover;
+        }
+        .logo-title {
+            font-size: 16px;
+            font-weight: bold;
+            line-height: normal;
+            color: #160e1b;
+        }
+        .logo-subtitle {
+            font-size: 14px;
+            font-weight: normal;
+            line-height: normal;
+            color: #7b4f96;
+        }
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* gap-2 */
+        }
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            color: var(--color-text-medium);
+            text-decoration: none;
+            border-radius: var(--radius-default);
+            transition: background-color 0.15s, color 0.15s;
+        }
+        .sidebar-item-p {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: normal;
+            margin: 0;
+        }
+        .sidebar-item:hover {
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+        .sidebar-item.active {
+            background-color: var(--color-primary-dark);
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+        .sidebar-item.active .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .btn-create-role {
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: var(--radius-default);
+            height: 40px;
+            padding: 0 16px;
+            background-color: var(--color-primary);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 0.025em;
+            box-shadow: var(--shadow-md);
+            transition: opacity 0.15s;
+        }
+        .btn-create-role:hover { opacity: 0.9; }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .page-content {
+            padding: 32px; /* p-8 */
+        }
+        
+        /* Page Heading */
+        .page-header {
+            margin-bottom: 32px; /* mb-8 */
+        }
+        .page-title {
+            font-size: 36px;
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.05em;
+            margin: 0;
+        }
+        .page-subtitle {
+            color: var(--color-text-subtle);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: normal;
+            margin-top: 8px; /* mt-2 */
+        }
+
+        /* Two-Column Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px; /* gap-8 */
+        }
+        @media (min-width: 1024px) {
+            .content-grid { grid-template-columns: 1fr 2fr; }
+            .roles-list-column { grid-column: 1 / 2; }
+            .role-details-column { grid-column: 2 / 4; }
+        }
+
+        /* Left Column: Roles List */
+        .roles-list-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px; /* gap-4 */
+        }
+        .search-container {
+            position: relative;
+        }
+        .search-icon {
+            position: absolute;
+            left: 16px; /* left-4 */
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af; /* gray-400 */
+        }
+        .search-input {
+            width: 100%;
+            min-width: 0;
+            resize: none;
+            overflow: hidden;
+            border-radius: var(--radius-default);
+            border: 1px solid var(--color-border-light);
+            height: 48px; /* h-12 */
+            padding-left: 48px; /* pl-12 */
+            font-size: 16px;
+            outline: none;
+            transition: box-shadow 0.15s, border-color 0.15s;
+            background-color: var(--color-surface-light);
+        }
+        .search-input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px #ad4fe880; /* focus:ring-primary/50 */
+        }
+        .search-input::placeholder { color: var(--color-text-subtle); }
+
+        .role-list-container {
+            display: flex;
+            flex-direction: column;
+            border-radius: var(--radius-default);
+            border: 1px solid var(--color-border-light);
+            box-shadow: var(--shadow-sm);
+            background-color: var(--color-surface-light);
+        }
+        .list-divider { border-color: var(--color-border-light); }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            gap: 16px; /* gap-4 */
+            padding: 12px 16px; /* py-3 px-4 */
+            justify-content: space-between;
+            transition: background-color 0.15s;
+        }
+        .list-item:first-child { border-radius: var(--radius-default) var(--radius-default) 0 0; }
+        .list-item:last-child { border-radius: 0 0 var(--radius-default) var(--radius-default); }
+
+        .list-item-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+        }
+        .list-item-icon-wrapper {
+            color: var(--color-text-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-default);
+            background-color: #f3f4f6; /* gray-100 */
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+        }
+        .list-item-title {
+            font-size: 16px;
+            line-height: normal;
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .list-item-title-dark { color: var(--color-text-dark); }
+        .list-item-title-primary { color: var(--color-primary); font-weight: bold; }
+
+        .list-item-edit-btn {
+            color: var(--color-primary);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: normal;
+            flex-shrink: 0;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            transition: opacity 0.15s;
+        }
+        .list-item-edit-btn:hover { opacity: 0.8; }
+
+        .list-item-active {
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+        .list-item-active .list-item-icon-wrapper {
+            background-color: var(--color-primary-dark);
+            color: var(--color-primary);
+        }
+
+        /* Hover states */
+        .list-item:not(.list-item-active):hover {
+            background-color: #f9fafb; /* gray-50 */
+        }
+
+        /* Right Column: Role Details */
+        .role-details-card {
+            display: flex;
+            flex-direction: column;
+            gap: 24px; /* gap-6 */
+            padding: 24px; /* p-6 */
+            background-color: var(--color-surface-light);
+            border-radius: var(--radius-default);
+            border: 1px solid var(--color-border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .role-details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .role-details-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .btn-delete-role {
+            color: var(--color-red);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px; /* gap-2 */
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.15s;
+        }
+        .btn-delete-role:hover { color: var(--color-red-dark); }
+        .dark .btn-delete-role { color: #f87171; } /* red-400 */
+        .dark .btn-delete-role:hover { color: #ef4444; } /* red-500 */
+
+
+        /* Permissions */
+        .permission-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--color-border-light);
+            padding-bottom: 8px; /* pb-2 */
+            margin-bottom: 16px;
+        }
+        .permission-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px 32px; /* gap-x-8 gap-y-4 */
+        }
+        @media (min-width: 768px) {
+            .permission-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .permission-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px; /* gap-2 */
+        }
+        .permission-group-title {
+            font-weight: 500;
+            color: var(--color-text-medium);
+        }
+        .permission-label {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* gap-3 */
+            cursor: pointer;
+        }
+        .permission-label-text {
+            color: #4b5563; /* gray-700 */
+        }
+        .form-checkbox {
+            height: 20px;
+            width: 20px;
+            border-radius: var(--radius-default);
+            color: var(--color-primary);
+            background-color: #f3f4f6; /* gray-100 */
+            border: 1px solid #d1d5db; /* gray-300 */
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        .form-checkbox:focus {
+            box-shadow: 0 0 0 3px #ad4fe880; /* focus:ring-primary/50 */
+        }
+
+        /* Assigned Admins */
+        .assigned-admins-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border-light);
+            padding-bottom: 8px;
+        }
+        .btn-assign-user {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* gap-2 */
+            min-width: 84px;
+            cursor: pointer;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: var(--radius-default);
+            height: 36px; /* h-9 */
+            padding: 0 12px; /* px-3 */
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.15s;
+            border: none;
+        }
+        .btn-assign-user:hover { background-color: var(--color-primary-dark); }
+
+        /* Admin Table */
+        .admin-table-container {
+            overflow-x: auto;
+        }
+        .admin-table {
+            width: 100%;
+            font-size: 14px;
+            text-align: left;
+            border-collapse: collapse;
+        }
+        .admin-table-header {
+            font-size: 12px;
+            color: var(--color-text-subtle);
+            text-transform: uppercase;
+        }
+        .admin-table-header th {
+            padding: 8px 16px; /* py-2 px-4 */
+        }
+        .admin-table-header th:last-child { text-align: right; }
+
+        .admin-table tbody tr {
+            border-bottom: 1px solid var(--color-border-light);
+            transition: background-color 0.15s;
+        }
+        .admin-table tbody tr:hover { background-color: #f9fafb; } /* gray-50 */
+        
+        .admin-table td {
+            padding: 12px 16px; /* py-3 px-4 */
+        }
+        .table-row-name {
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .table-row-data {
+            color: var(--color-text-medium);
+        }
+        .table-row-actions {
+            text-align: right;
+        }
+        .btn-unassign {
+            font-weight: 500;
+            color: var(--color-red);
+            text-decoration: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            transition: text-decoration 0.15s;
+        }
+        .btn-unassign:hover { text-decoration: underline; }
+        .dark .btn-unassign { color: #f87171; } /* red-400 */
+
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 16px;
+            margin-top: auto;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .footer p {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+            margin: 0;
+        }
+    </style>
+</head>
+<body class="dark">
+<div class="page-wrapper">
+<aside class="sidebar">
+<div class="sidebar-content">
+<div class="logo-group">
+<div class="logo-img" style='background-image:/aida-public/AB6AXuBmUuVc_8dfnJmTJz6_kkTqgOXIcGsD-6oVQpN8qXrYicqSkJahHgog2JlRcXcBuu3mHoal1nN8nJoseaoXTK4U0eZjH-a_ujMAKueoL_N2TCSo9ymu-bOe7NnGIqKhL3oaCdz26DuxcEglGJoxA5gToY7C1tSx_Gc8oHpU_vvt7XIs7yCTZkDqi8Am61wdSf7paJzG7XnfDGqoPTylqTrl__8KN34LFiCglABYq0I69XGQXjQo5VefHEAWUHFpCSXfVhzcFS8b8HA");'></div>
+<div class="flex flex-col">
+<h1 class="logo-title">Blaqo</h1>
+<p class="logo-subtitle">Admin Panel</p>
+</div>
+</div>
+<nav class="nav-menu">
+<a class="sidebar-item" href="#">
+<span class="material-symbols-outlined sidebar-item-icon">dashboard</span>
+<p class="sidebar-item-p">Dashboard</p>
+</a>
+<a class="sidebar-item active" href="#">
+<span class="material-symbols-outlined">shield_person</span>
+<p class="sidebar-item-p">Role Management</p>
+</a>
+<a class="sidebar-item" href="#">
+<span class="material-symbols-outlined sidebar-item-icon">group</span>
+<p class="sidebar-item-p">Users</p>
+</a>
+<a class="sidebar-item" href="#">
+<span class="material-symbols-outlined sidebar-item-icon">settings</span>
+<p class="sidebar-item-p">Settings</p>
+</a>
+</nav>
+</div>
+<button class="btn-create-role">
+<span class="truncate">Create New Role</span>
+</button>
+</aside>
+<main class="main-content">
+<div class="page-content">
+<header class="page-header">
+<h1 class="page-title">Admin Role Management</h1>
+<p class="page-subtitle">Define roles, assign permissions, and manage administrator access.</p>
+</header>
+<div class="content-grid">
+<div class="roles-list-column">
+<div class="search-container">
+<span class="material-symbols-outlined search-icon">search</span>
+<input class="search-input" placeholder="Find a role..." value=""/>
+</div>
+<div class="role-list-container">
+<div class="list-item list-item-active">
+<div class="list-item-content">
+<div class="list-item-icon-wrapper">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<p class="list-item-title list-item-title-primary">Super Administrator</p>
+<button class="list-item-edit-btn">Edit</button>
+</div>
+</div>
+<div class="list-item list-divider">
+<div class="list-item-content">
+<div class="list-item-icon-wrapper">
+<span class="material-symbols-outlined">edit_note</span>
+</div>
+<p class="list-item-title list-item-title-dark">Editor</p>
+<button class="list-item-edit-btn">Edit</button>
+</div>
+</div>
+<div class="list-item list-divider">
+<div class="list-item-content">
+<div class="list-item-icon-wrapper">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<p class="list-item-title list-item-title-dark">Moderator</p>
+<button class="list-item-edit-btn">Edit</button>
+</div>
+</div>
+<div class="list-item list-divider">
+<div class="list-item-content">
+<div class="list-item-icon-wrapper">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<p class="list-item-title list-item-title-dark">Finance Manager</p>
+<button class="list-item-edit-btn">Edit</button>
+</div>
+</div>
+</div>
+</div>
+<div class="role-details-card role-details-column">
+<div class="role-details-header">
+<h2 class="role-details-title">Editing Role: Super Administrator</h2>
+<button class="btn-delete-role">
+<span class="material-symbols-outlined small">delete</span>
+Delete Role
+</button>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="permission-section-title">Permissions</h3>
+<div class="permission-grid">
+<div class="permission-group">
+<p class="permission-group-title">Content Management</p>
+<label class="permission-label">
+<input checked="" class="form-checkbox" type="checkbox"/>
+<span class="permission-label-text">Manage Products</span>
+</label>
+<label class="permission-label">
+<input checked="" class="form-checkbox" type="checkbox"/>
+<span class="permission-label-text">Moderate Reviews</span>
+</label>
+</div>
+<div class="permission-group">
+<p class="permission-group-title">User Management</p>
+<label class="permission-label">
+<input checked="" class="form-checkbox" type="checkbox"/>
+<span class="permission-label-text">Create, Edit, Delete Users</span>
+</label>
+<label class="permission-label">
+<input checked="" class="form-checkbox" type="checkbox"/>
+<span class="permission-label-text">Manage Roles & Permissions</span>
+</label>
+</div>
+<div class="permission-group">
+<p class="permission-group-title">Finance & Analytics</p>
+<label class="permission-label">
+<input checked="" class="form-checkbox" type="checkbox"/>
+<span class="permission-label-text">View Financial Reports</span>
+</label>
+<label class="permission-label">
+<input checked="" class="form-checkbox" type="checkbox"/>
+<span class="permission-label-text">Access Analytics Dashboard</span>
+</label>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="assigned-admins-header">
+<h3 class="permission-section-title" style="border-bottom: none; margin-bottom: 0;">Assigned Administrators</h3>
+<button class="btn-assign-user">
+<span class="material-symbols-outlined small">add</span>
+<span class="truncate">Assign User</span>
+</button>
+</div>
+<div class="admin-table-container">
+<table class="admin-table">
+<thead class="admin-table-header">
+<tr>
+<th>Admin Name</th>
+<th>Email</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="table-row-hover">
+<td class="table-row-name">Eleanor Vance</td>
+<td class="table-row-data">eleanor@di-boss.com</td>
+<td class="table-row-actions">
+<button class="btn-unassign">Un-assign</button>
+</td>
+</tr>
+<tr class="table-row-hover">
+<td class="table-row-name">Marcus Thorne</td>
+<td class="table-row-data">marcus@di-boss.com</td>
+<td class="table-row-actions">
+<button class="btn-unassign">Un-assign</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<p>© 2025 Blaqo. All rights reserved.</p>
+</footer>
+</main>
+</div>
+</body>
+</html>

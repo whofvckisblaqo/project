@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo - Finance Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variables and Base Styles --- */
+        :root {
+            /* Colors (Original Purple/Blue Scheme) */
+            --color-primary: #6C63FF;
+            --color-secondary: #3A86FF;
+            --color-text-main: #1F2937;
+            --color-text-subtle: #6B7280;
+            --color-background-light: #F9FAFB;
+            --color-border-color: #E5E7EB;
+            
+            /* Dark Mode Overrides */
+            --color-background-dark: #100f23;
+            --color-dark-surface: #1f2238; /* A darker version for cards */
+            --color-dark-text-main: #e5e7eb;
+            --color-dark-text-subtle: #9ca3af;
+            --color-dark-border-color: #374151;
+
+            --radius-lg: 1rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--color-background-light);
+            color: var(--color-text-main);
+            margin: 0;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: var(--color-background-dark);
+                color: var(--color-dark-text-main);
+            }
+            .sidebar, .header, .card, table, thead {
+                border-color: var(--color-dark-border-color) !important;
+            }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px; /* Adjusting icon size slightly */
+        }
+
+        /* --- 2. Layouts --- */
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .page-wrapper {
+            flex-grow: 1;
+            padding: 24px;
+        }
+
+        /* --- 3. Sidebar (Aside) --- */
+        .sidebar {
+            width: 256px; /* 64 * 4px = 256px */
+            flex-shrink: 0;
+            background-color: white;
+            border-right: 1px solid var(--color-border-color);
+            display: flex;
+            flex-direction: column;
+        }
+        @media (prefers-color-scheme: dark) {
+            .sidebar {
+                background-color: var(--color-background-dark);
+            }
+        }
+
+        .logo-section {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid var(--color-border-color);
+        }
+        
+        .logo-icon {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-info h1 {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .logo-info p {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+            margin: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 16px;
+            flex-grow: 1;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            color: var(--color-text-subtle);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.15s, color 0.15s;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(108, 99, 255, 0.1);
+            color: var(--color-primary);
+        }
+
+        .nav-link.active {
+            background-color: var(--color-primary);
+            color: white;
+            box-shadow: 0 4px 6px rgba(108, 99, 255, 0.2);
+        }
+
+        .logout-section {
+            padding: 16px;
+            border-top: 1px solid var(--color-border-color);
+        }
+
+        /* --- 4. Header (Top Nav) --- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--color-border-color);
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            padding: 16px 24px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .header {
+                background-color: rgba(16, 15, 35, 0.8);
+            }
+        }
+        
+        .header h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: auto;
+        }
+
+        .search-container {
+            position: relative;
+            min-width: 160px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-subtle);
+        }
+
+        .search-input {
+            width: 100%;
+            height: 40px;
+            border: 1px solid var(--color-border-color);
+            border-radius: 8px;
+            padding-left: 40px;
+            padding-right: 16px;
+            font-size: 14px;
+            background-color: var(--color-background-light);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+        @media (prefers-color-scheme: dark) {
+             .search-input {
+                background-color: rgba(55, 65, 81, 0.5);
+                color: var(--color-dark-text-main);
+                border-color: var(--color-dark-border-color);
+            }
+        }
+
+        .icon-button {
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-border-color);
+            border-radius: 8px;
+            color: var(--color-text-subtle);
+            cursor: pointer;
+            transition: background-color 0.15s, color 0.15s;
+        }
+        
+        .icon-button:hover {
+            background-color: rgba(108, 99, 255, 0.1);
+            color: var(--color-primary);
+        }
+        @media (prefers-color-scheme: dark) {
+            .icon-button {
+                border-color: var(--color-dark-border-color);
+            }
+            .icon-button:hover {
+                background-color: rgba(108, 99, 255, 0.2);
+            }
+        }
+
+        .avatar {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* --- 5. Filters --- */
+        .filters-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 24px;
+        }
+        
+        .radio-group {
+            display: flex;
+            width: 100%;
+            max-width: 400px;
+            background-color: #e5e7eb;
+            border-radius: 8px;
+            padding: 4px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .radio-group {
+                background-color: #374151;
+            }
+        }
+
+        .radio-label {
+            flex-grow: 1;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-subtle);
+            transition: background-color 0.1s;
+        }
+        
+        .radio-input {
+            display: none;
+        }
+
+        .radio-input:checked + .radio-label {
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            color: var(--color-text-main);
+        }
+        @media (prefers-color-scheme: dark) {
+            .radio-input:checked + .radio-label {
+                background-color: #374151;
+                color: var(--color-dark-text-main);
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+            }
+        }
+        
+        /* --- 6. Cards & Stats --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card {
+            background-color: white;
+            border: 1px solid var(--color-border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .card {
+                background-color: var(--color-dark-surface);
+            }
+        }
+
+        .card p:first-child {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-subtle);
+        }
+
+        .card .value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .card .change {
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .text-green { color: #10B981; } /* Tailwind green-500 */
+        .text-red { color: #EF4444; } /* Tailwind red-500 */
+        
+        /* --- 7. Charts & Budgets Grid --- */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        @media (min-width: 1024px) {
+            .charts-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .chart-container {
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 24px;
+        }
+        
+        .chart-container h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .chart-area {
+            flex-grow: 1;
+            padding: 16px 0;
+        }
+
+        .budget-item {
+            margin-bottom: 20px;
+        }
+        
+        .budget-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+        
+        .budget-item-header p:first-child {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .budget-item-header p:last-child {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #E5E7EB;
+            border-radius: 9999px;
+            height: 10px;
+        }
+        @media (prefers-color-scheme: dark) {
+            .progress-bar-container {
+                background-color: #374151;
+            }
+        }
+
+        .progress-bar {
+            height: 10px;
+            border-radius: 9999px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .progress-primary { background-color: var(--color-primary); }
+        .progress-secondary { background-color: var(--color-secondary); }
+
+        /* --- 8. Table (Transaction History) --- */
+        .table-wrapper {
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border-color);
+            overflow: hidden;
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+        }
+        @media (prefers-color-scheme: dark) {
+            .table-wrapper {
+                background-color: var(--color-dark-surface);
+            }
+        }
+        
+        .table-header {
+            padding: 24px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        thead {
+            text-transform: uppercase;
+            font-size: 12px;
+            color: var(--color-text-subtle);
+            background-color: var(--color-background-light);
+        }
+        @media (prefers-color-scheme: dark) {
+            thead {
+                background-color: #1f2937;
+            }
+        }
+
+        th {
+            padding: 12px 24px;
+            font-weight: 500;
+        }
+
+        td {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--color-border-color);
+        }
+        @media (prefers-color-scheme: dark) {
+            td {
+                border-color: var(--color-dark-border-color);
+            }
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        td:first-child {
+            color: var(--color-text-main);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .amount-green { color: #10B981; font-weight: 500;}
+        .amount-red { color: #EF4444; font-weight: 500;}
+        .amount-subtle { color: var(--color-text-subtle); font-weight: 500;}
+
+        .status-badge {
+            font-size: 12px;
+            font-weight: 500;
+            padding: 2px 10px;
+            border-radius: 9999px;
+            display: inline-block;
+        }
+
+        .badge-green { background-color: #D1FAE5; color: #065F46; } /* Completed */
+        .badge-yellow { background-color: #FEF3C7; color: #92400E; } /* Pending */
+        .badge-red { background-color: #FEE2E2; color: #991B1B; } /* Refunded */
+        @media (prefers-color-scheme: dark) {
+            .badge-green { background-color: #065F46; color: #A7F3D0; }
+            .badge-yellow { background-color: #92400E; color: #FCD34D; }
+            .badge-red { background-color: #991B1B; color: #FECACA; }
+        }
+
+        /* --- 9. Footer --- */
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            color: var(--color-text-subtle);
+            padding: 16px 0;
+        }
+        
+        .footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <span class="material-symbols-outlined">auto_awesome_mosaic</span>
+                </div>
+                <div class="logo-info">
+                    <h1 style="color: var(--color-text-main);">Blaqo</h1>
+                    <p>Admin Panel</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a class="nav-link" href="#"><span class="material-symbols-outlined">dashboard</span>Dashboard</a>
+                <a class="nav-link" href="#"><span class="material-symbols-outlined">inventory_2</span>Products</a>
+                <a class="nav-link" href="#"><span class="material-symbols-outlined">shopping_cart</span>Orders</a>
+                <a class="nav-link" href="#"><span class="material-symbols-outlined">group</span>Users</a>
+                <a class="nav-link active" href="#"><span class="material-symbols-outlined">payments</span>Finance</a>
+                <a class="nav-link" href="#"><span class="material-symbols-outlined">campaign</span>Marketing</a>
+                <a class="nav-link" href="#"><span class="material-symbols-outlined">settings</span>Settings</a>
+            </nav>
+            <div class="logout-section">
+                <a class="nav-link" href="#"><span class="material-symbols-outlined">logout</span>Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h2>Finance Dashboard</h2>
+                <div class="header-controls">
+                    <label class="search-container">
+                        <span class="material-symbols-outlined search-icon">search</span>
+                        <input class="search-input" placeholder="Search transactions, users..." type="text" value="">
+                    </label>
+                    <button class="icon-button">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </button>
+                    <div class="avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCx3VHEKjApFARMbSS6SFKyCqaN_w25r1MEkC5J0-grJfXqJtGM6WHbnDRkAt6zVmgRHzhh3jdhek4kSClY5c4nR76_w9Vy0fDKtmtpUPLn062bMkcw3gvxz55we_0b8MnBZDWU7TBa-__KGGwlj0PATr0I4pgvQYW9CBTyHvjVG0QsXopjKKv9X0P8EZHMv2zHcCGctvPi51lmy4j6Ztm0bBG1vFSKWGDi04m0V5i-XuL3d4TBa3PTw0O8L7buor5zg-O8S5nqVPA");'></div>
+                </div>
+            </header>
+            
+            <div class="page-wrapper">
+                <div class="filters-section">
+                    <div class="radio-group">
+                        <input class="radio-input" id="daily" name="period-filter" type="radio" value="Daily">
+                        <label class="radio-label" for="daily">Daily</label>
+                        
+                        <input class="radio-input" id="weekly" name="period-filter" type="radio" value="Weekly">
+                        <label class="radio-label" for="weekly">Weekly</label>
+                        
+                        <input checked class="radio-input" id="monthly" name="period-filter" type="radio" value="Monthly">
+                        <label class="radio-label" for="monthly">Monthly</label>
+                        
+                        <input class="radio-input" id="yearly" name="period-filter" type="radio" value="Yearly">
+                        <label class="radio-label" for="yearly">Yearly</label>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="card">
+                        <p>Current Income</p>
+                        <p class="value">$45,890.50</p>
+                        <p class="change text-green"><span class="material-symbols-outlined">arrow_upward</span>+5.2%</p>
+                    </div>
+                    <div class="card">
+                        <p>Total Expenses</p>
+                        <p class="value">$12,345.00</p>
+                        <p class="change text-green"><span class="material-symbols-outlined">arrow_upward</span>+2.1%</p>
+                    </div>
+                    <div class="card">
+                        <p>Net Profit</p>
+                        <p class="value">$33,545.50</p>
+                        <p class="change text-green"><span class="material-symbols-outlined">arrow_upward</span>+8.3%</p>
+                    </div>
+                    <div class="card">
+                        <p>Total Sales</p>
+                        <p class="value">1,204</p>
+                        <p class="change text-red"><span class="material-symbols-outlined">arrow_downward</span>-1.5%</p>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="card chart-container">
+                        <h3>Income vs. Expenses Overview</h3>
+                        <div class="chart-area">
+                            <svg fill="none" height="100%" preserveaspectratio="none" viewbox="0 0 475 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="var(--color-primary)" stroke-linecap="round" stroke-width="3"></path>
+                                <path d="M0 132C18.1538 132 18.1538 84 36.3077 84C54.4615 84 54.4615 104 72.6154 104C90.7692 104 90.7692 119 108.923 119C127.077 119 127.077 75 145.231 75C163.385 75 163.385 130 181.538 130C199.692 130 199.692 101 217.846 101C236 101 236 88 254.154 88C272.308 88 272.308 109 290.462 109C308.615 109 308.615 121 326.769 121C344.923 121 344.923 41 363.077 41C381.231 41 381.231 99 399.385 99C417.538 99 417.538 141 435.692 141C453.846 141 453.846 88 472 88" stroke="var(--color-secondary)" stroke-dasharray="5 5" stroke-linecap="round" stroke-width="3"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="card chart-container">
+                        <h3>Budget Overview</h3>
+                        <div style="padding-top: 8px;">
+                            <div class="budget-item">
+                                <div class="budget-item-header">
+                                    <p>Marketing Spend</p>
+                                    <p>$8,500 / $10,000</p>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar progress-primary" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <div class="budget-item-header">
+                                    <p>R&D</p>
+                                    <p>$3,200 / $5,000</p>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar progress-primary" style="width: 64%"></div>
+                                </div>
+                            </div>
+                            <div class="budget-item">
+                                <div class="budget-item-header">
+                                    <p>Operational Costs</p>
+                                    <p>$11,750 / $12,000</p>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar progress-secondary" style="width: 98%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <div class="table-header">
+                        <h3>Recent Transactions</h3>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Transaction ID</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#AB-12345</td>
+                                    <td>Oct 26, 2023</td>
+                                    <td>Sale</td>
+                                    <td class="amount-green">+$1,250.00</td>
+                                    <td><span class="status-badge badge-green">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#EXP-67890</td>
+                                    <td>Oct 25, 2023</td>
+                                    <td>Expense</td>
+                                    <td class="amount-red">-$75.50</td>
+                                    <td><span class="status-badge badge-green">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#CD-54321</td>
+                                    <td>Oct 24, 2023</td>
+                                    <td>Sale</td>
+                                    <td class="amount-green">+$499.99</td>
+                                    <td><span class="status-badge badge-yellow">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#RF-98765</td>
+                                    <td>Oct 23, 2023</td>
+                                    <td>Refund</td>
+                                    <td class="amount-subtle">-$99.00</td>
+                                    <td><span class="status-badge badge-red">Refunded</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <footer class="footer">
+                    <p>© 2023 Di-Boss. All Rights Reserved. | <a href="#">Support</a> | <a href="#">Docs</a></p>
+                </footer>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Detail - Blaqo Admin Panel (Standard CSS)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variables and Base Styles --- */
+        :root {
+            /* Colors */
+            --color-primary: #6b61ff;
+            --color-primary-light: #6b61ff1a; /* 10% opacity for primary/10 */
+            --color-primary-dark-bg: #6b61ff33; /* 20% opacity for primary/20 */
+            --color-text-dark: #0d0c1d;
+            --color-text-subtle: #4b45a1;
+            --color-background-light: #f6f5f8;
+            --color-background-dark: #100f23;
+            --color-surface-light: #ffffff;
+            --color-border-light: #e2e8f0; /* slate-200 */
+
+            /* Dark Mode Overrides */
+            --color-dark-surface: var(--color-background-dark);
+            --color-dark-border: #1e293b; /* slate-800 */
+            --color-dark-text: #ffffff;
+            --color-dark-text-subtle: #94a3b8; /* slate-400 */
+            --color-dark-input-bg: #475569; /* slate-700 */
+            
+            /* Spacing/Radius */
+            --radius-default: 0.25rem;
+            --radius-xl: 0.75rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --color-success: #10b981; /* green-500 */
+            --color-danger: #ef4444; /* red-500 */
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--color-background-light);
+            color: var(--color-text-dark);
+            margin: 0;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+        }
+        
+        /* Dark Mode */
+        .dark {
+            background-color: var(--color-background-dark);
+            color: var(--color-dark-text);
+        }
+        .dark .sidebar, 
+        .dark .card, 
+        .dark .timeline-line,
+        .dark table thead,
+        .dark table td {
+            border-color: var(--color-dark-border) !important;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* --- 2. Layouts and Structure --- */
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+        
+        .main-content {
+            flex-grow: 1;
+            padding: 32px; /* p-8 */
+        }
+        
+        .max-width-wrapper {
+            max-width: 1280px; /* max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- 3. Sidebar (Aside) --- */
+        .sidebar {
+            width: 256px; /* w-64 */
+            padding: 16px;
+            background-color: var(--color-surface-light);
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .dark .sidebar {
+            background-color: var(--color-dark-surface);
+            border-right: 1px solid var(--color-dark-border);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .logo-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+        .logo-info h1 {
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0;
+        }
+        .logo-info p {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+            margin: 0;
+        }
+        .dark .logo-info p {
+             color: var(--color-dark-text-subtle);
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.15s, color 0.15s;
+        }
+        .nav-link span {
+            color: var(--color-text-dark);
+        }
+        .nav-link p {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-dark);
+            margin: 0;
+        }
+        
+        .dark .nav-link span, .dark .nav-link p {
+            color: #ccc;
+        }
+
+        .nav-link:hover {
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+        .nav-link:hover span, .nav-link:hover p {
+            color: var(--color-primary) !important;
+        }
+
+        .nav-link.active {
+            background-color: var(--color-primary-light);
+        }
+        .dark .nav-link.active {
+            background-color: var(--color-primary-dark-bg);
+        }
+        .nav-link.active span, .nav-link.active p {
+            color: var(--color-primary) !important;
+        }
+        
+        /* --- 4. Main Header and Controls --- */
+        .breadcrumbs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .breadcrumbs a, .breadcrumbs span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-subtle);
+            text-decoration: none;
+        }
+        .breadcrumbs span:last-child {
+            color: var(--color-text-dark);
+        }
+        .dark .breadcrumbs span:last-child {
+            color: var(--color-dark-text);
+        }
+
+        .page-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .page-header h1 {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .page-header p {
+            font-size: 16px;
+            color: var(--color-text-subtle);
+            margin: 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 40px;
+            padding: 0 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 0.015em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+            border: none;
+        }
+        .dark .btn-secondary {
+            background-color: var(--color-primary-dark-bg);
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+        }
+
+        /* --- 5. Grid Layout --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        @media (min-width: 1024px) {
+            .grid-layout {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* --- 6. Cards and Widgets --- */
+        .card {
+            background-color: var(--color-surface-light);
+            padding: 24px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+        }
+        .dark .card {
+            background-color: var(--color-dark-surface);
+            border: 1px solid var(--color-dark-border);
+        }
+        .card h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        /* Table Styles (Purchased Products) */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table thead tr {
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .dark table thead tr {
+            border-color: var(--color-dark-border);
+        }
+
+        table th {
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-subtle);
+        }
+        table td {
+            padding: 16px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .dark table td {
+            border-color: var(--color-dark-border);
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-product-name {
+            color: var(--color-text-dark);
+            font-weight: normal;
+        }
+        .table-product-type, .table-quantity, .table-price {
+            color: var(--color-text-subtle);
+        }
+        .dark .table-product-name {
+            color: var(--color-dark-text);
+        }
+
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .w-2-4 { width: 50%; }
+
+        /* Totals Section */
+        .totals-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+        .totals-box {
+            width: 100%;
+            max-width: 384px; /* max-w-sm */
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .totals-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--color-text-subtle);
+        }
+        .totals-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 8px;
+            border-top: 1px solid var(--color-border-light);
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--color-text-dark);
+        }
+        .dark .totals-total {
+            border-color: var(--color-dark-border);
+            color: var(--color-dark-text);
+        }
+
+        /* Customer Details */
+        .customer-info-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .customer-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+        .customer-details p:first-child {
+            font-weight: bold;
+        }
+        .customer-details p:last-child {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+        }
+        .dark .customer-details p:first-child {
+            color: var(--color-dark-text);
+        }
+        
+        .billing-address h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 16px;
+            margin-bottom: 4px;
+        }
+        .billing-address p {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+            line-height: 1.6;
+        }
+
+        /* Payment & Status */
+        .status-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            font-size: 14px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .detail-row span:first-child, .detail-row label {
+            color: var(--color-text-subtle);
+        }
+        .detail-row span:last-child {
+            font-weight: 500;
+            color: var(--color-text-dark);
+        }
+        .dark .detail-row span:last-child {
+            color: var(--color-dark-text);
+        }
+        .detail-row span.mono {
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        select {
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1; /* slate-300 */
+            padding: 6px 10px;
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+        select:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(107, 97, 255, 0.2);
+        }
+        .dark select {
+            border-color: #475569; /* slate-600 */
+            background-color: var(--color-dark-input-bg);
+            color: var(--color-dark-text);
+        }
+
+        .btn-refund {
+            margin-top: 24px;
+            background-color: #e7e6f4;
+            color: var(--color-text-dark);
+        }
+        .dark .btn-refund {
+            background-color: rgba(239, 68, 68, 0.2); /* red-500/20 */
+            color: #fca5a5; /* red-400 */
+        }
+        
+        /* Order History Timeline */
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 16px;
+            position: relative;
+        }
+        .timeline-item + .timeline-item {
+            margin-top: 24px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 9.5px; /* 12.5px - 0.5px (center of dot) */
+            top: 10px;
+            height: 100%;
+            width: 2px;
+            background-color: #e2e8f0; /* slate-200 */
+        }
+        .dark .timeline-line {
+            background-color: #374151; /* slate-700 */
+        }
+
+        .timeline-dot {
+            z-index: 10;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            flex-shrink: 0;
+        }
+        .dot-complete { background-color: var(--color-success); }
+        .dot-primary { background-color: var(--color-primary); }
+
+        .timeline-content p:first-child {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .timeline-content p:last-child {
+            font-size: 12px;
+            color: var(--color-text-subtle);
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            margin-top: 48px;
+            font-size: 14px;
+            color: var(--color-text-subtle);
+        }
+        .dark .page-footer {
+            color: #64748b; /* slate-500 */
+        }
+    </style>
+</head>
+<body class="dark"> <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo-section">
+                <div class="logo-avatar" styl></div>
+                <div class="logo-info">
+                    <h1 class="text-white">Admin Panel</h1>
+                    <p>Blaqo Marketplace</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a class="nav-link" href="#">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <p>Dashboard</p>
+                </a>
+                <a class="nav-link active" href="#">
+                    <span class="material-symbols-outlined fill">shopping_cart</span>
+                    <p>Orders</p>
+                </a>
+                <a class="nav-link" href="#">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <p>Products</p>
+                </a>
+                <a class="nav-link" href="#">
+                    <span class="material-symbols-outlined">group</span>
+                    <p>Customers</p>
+                </a>
+            </nav>
+            <div class="nav-menu" style="margin-top: auto; flex-grow: 0;">
+                <a class="nav-link" href="#">
+                    <span class="material-symbols-outlined">settings</span>
+                    <p>Settings</p>
+                </a>
+                <a class="nav-link" href="#">
+                    <span class="material-symbols-outlined">logout</span>
+                    <p>Logout</p>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="max-width-wrapper">
+                <div class="breadcrumbs">
+                    <a href="#">Admin Panel</a>
+                    <span class="text-white">/</span>
+                    <a href="#">Orders</a>
+                    <span class="text-white">/</span>
+                    <span class="text-white">#ORD-12345</span>
+                </div>
+                <div class="page-header">
+                    <div style="display: flex; flex-direction: column; gap: 4px;">
+                        <h1 class="text-white">Order Details</h1>
+                        <p>Order ID: #ORD-12345</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary">
+                            <span class="material-symbols-outlined">print</span>
+                            <span class="truncate">Print Invoice</span>
+                        </button>
+                        <button class="btn btn-primary">
+                            <span class="material-symbols-outlined">send</span>
+                            <span class="truncate">Send Update</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid-layout">
+                    <div style="display: flex; flex-direction: column; gap: 32px;">
+                        <div class="card">
+                            <h2>Purchased Products</h2>
+                            <div style="overflow-x: auto;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="w-2-4">Product</th>
+                                            <th>Type</th>
+                                            <th class="text-center">Quantity</th>
+                                            <th class="text-right">Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="table-product-name">AI Chatbot Script</td>
+                                            <td class="table-product-type">Script</td>
+                                            <td class="table-quantity text-center">1</td>
+                                            <td class="table-price text-right">$150.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-product-name">E-commerce Website Template</td>
+                                            <td class="table-product-type">Website</td>
+                                            <td class="table-quantity text-center">1</td>
+                                            <td class="table-price text-right">$299.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="totals-container">
+                                <div class="totals-box">
+                                    <div class="totals-row">
+                                        <span>Subtotal</span>
+                                        <span>$449.00</span>
+                                    </div>
+                                    <div class="totals-row">
+                                        <span>Tax (0%)</span>
+                                        <span>$0.00</span>
+                                    </div>
+                                    <div class="totals-total">
+                                        <span>Total</span>
+                                        <span>$449.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 32px;">
+                        <div class="card">
+                            <h2>Customer</h2>
+                            <div class="customer-info-row">
+                                <div class="customer-avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRSG53vFHH4YtBAFluEWZIbqOejTLz6tYE31LGuVRDpzVOtDtW3D9zufuEMOt89bvA3pW08upXcrraEOa4K4-XuCNAcYyQnIQzjNv3s2ZYHCwZXUOO8vDeWmEpZ_X25nCY1YMursQO36nDuOsYN8sXFRBbpz_41FG1i5iaBj4oKF14L912QszuQ3hdYKTLOS9o_WVkobwZzNUyJnXOgT_un1KkOwOd1NGhgB0pB0V0EEm0Qj5YHD1IgevRFRwiMw1kWin8ETDRJpI')"></div>
+                                <div class="customer-details">
+                                    <p class="text-white">Alex Doe</p>
+                                    <p>alex.doe@example.com</p>
+                                </div>
+                            </div>
+                            <div class="billing-address" style="margin-top: 20px; font-size: 14px;">
+                                <h3 class="text-white">Billing Address</h3>
+                                <p>123 Tech Street<br/>Innovate City, CA 90210<br/>United States</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <h2>Payment & Status</h2>
+                            <div class="status-details">
+                                <div class="detail-row">
+                                    <span>Payment Method</span>
+                                    <span class="text-white">Visa ending in 1234</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span>Transaction ID</span>
+                                    <span class="mono text-white">ch_3K4...d29</span>
+                                </div>
+                                <div class="detail-row">
+                                    <label for="order-status">Order Status</label>
+                                    <select id="order-status">
+                                        <option>Processing</option>
+                                        <option selected>Completed</option>
+                                        <option>Cancelled</option>
+                                        <option>Refunded</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn btn-refund" type="button">
+                                <span class="truncate">Issue Refund</span>
+                            </button>
+                        </div>
+
+                        <div class="card">
+                            <h2>Order History</h2>
+                            <ul class="timeline">
+                                <li class="timeline-item">
+                                    <div class="timeline-line"></div>
+                                    <div class="timeline-dot dot-complete">
+                                        <span class="material-symbols-outlined" style="font-size: 12px;">check</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <p class="text-white">Order Completed</p>
+                                        <p>June 12, 2024, 10:05 AM</p>
+                                    </div>
+                                </li>
+                                <li class="timeline-item">
+                                    <div class="timeline-line"></div>
+                                    <div class="timeline-dot dot-primary">
+                                        <span class="material-symbols-outlined" style="font-size: 12px;">sync</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <p class="text-white">Order Processed</p>
+                                        <p>June 12, 2024, 09:30 AM</p>
+                                    </div>
+                                </li>
+                                <li class="timeline-item">
+                                    <div class="timeline-dot dot-primary">
+                                        <span class="material-symbols-outlined" style="font-size: 12px;">receipt_long</span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <p class="text-white">Order Placed</p>
+                                        <p>June 12, 2024, 09:28 AM</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="page-footer">
+                © 2025 Blaqo Marketplace. All Rights Reserved.
+            </footer>
+        </main>
+    </div>
+</body>
+</html>

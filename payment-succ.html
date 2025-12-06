@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Di-Boss</title>
+    <link rel="stylesheet" href="payment-success-styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="page-container">
+            <div class="content-wrapper">
+                <div class="content-container">
+                    <!-- Header -->
+                    <header class="header">
+                        <div class="logo">
+                            <div class="logo-icon">
+                                <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <h2 class="logo-text">Blaqo</h2>
+                        </div>
+                        <a href="#" class="account-button">My Account</a>
+                    </header>
+
+                    <!-- Main Content -->
+                    <main class="main-content">
+                        <div class="success-container">
+                            <div class="success-card">
+                                <!-- Success Icon -->
+                                <div class="success-icon">
+                                    <span class="checkmark">✓</span>
+                                </div>
+
+                                <!-- Success Message -->
+                                <div class="success-message">
+                                    <h1 class="success-title">Payment Successful!</h1>
+                                    <p class="success-subtitle">Thank you, micheal! Your order is complete and a receipt has been sent to your email.</p>
+                                </div>
+
+                                <!-- Order Details -->
+                                <div class="order-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Order Confirmation</span>
+                                        <span class="detail-value">#DB123456789</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Receipt Sent To</span>
+                                        <span class="detail-value">micheal@gmail.com</span>
+                                    </div>
+                                </div>
+
+                                <!-- Download Information -->
+                                <div class="download-info">
+                                    <p>Your files are now ready for download. You can access them anytime from your purchases page.</p>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="action-buttons">
+                                    <button class="btn-download">
+                                        <span class="btn-icon">⬇</span>
+                                        <span>Download Files</span>
+                                    </button>
+                                    <a href="#" class="btn-purchases">Go to My Purchases</a>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+
+                    <!-- Footer -->
+                    <footer class="footer">
+                        <div class="footer-links">
+                            <a href="#" class="footer-link">Help & Support</a>
+                            <a href="#" class="footer-link">Contact Us</a>
+                        </div>
+                        <p class="footer-copyright">© 2025 Blaqo. All rights reserved.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #F9FAFB;
+    color: #101019;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.page-container {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.content-wrapper {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    padding: 20px 16px;
+}
+
+.content-container {
+    display: flex;
+    width: 100%;
+    max-width: 960px;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 16px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    color: #ff6378;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: #101019;
+}
+
+.account-button {
+    min-width: 84px;
+    height: 40px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(108, 99, 255, 0.1);
+    color: #6C63FF;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.account-button:hover {
+    background-color: rgba(108, 99, 255, 0.2);
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    padding: 48px 0;
+}
+
+.success-container {
+    display: flex;
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.success-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 40px 24px;
+    background-color: rgb(4, 172, 74);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Success Icon */
+.success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #6C63FF 0%, #3A86FF 100%);
+    border-radius: 50%;
+    margin-bottom: 32px;
+}
+
+.checkmark {
+    font-size: 48px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Success Message */
+.success-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.success-title {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -1.2px;
+    color: #101019;
+}
+
+.success-subtitle {
+    max-width: 448px;
+    font-size: 16px;
+    color: #5a578e;
+    line-height: 1.6;
+}
+
+/* Order Details */
+.order-details {
+    width: 100%;
+    max-width: 512px;
+    padding: 24px;
+    background-color: #F9FAFB;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+}
+
+.detail-row:first-child {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.detail-label {
+    font-size: 14px;
+    color: #5a578e;
+}
+
+.detail-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: #101019;
+    text-align: right;
+}
+
+/* Download Information */
+.download-info {
+    width: 100%;
+    max-width: 512px;
+    text-align: center;
+    padding: 16px 0;
+}
+
+.download-info p {
+    font-size: 16px;
+    color: #0bca24;
+    line-height: 1.6;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    width: 100%;
+    max-width: 512px;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 16px;
+}
+
+.btn-download {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 48px;
+    padding: 0 24px;
+    background: linear-gradient(to right, #ac0808, #3A86FF);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-download:hover {
+    box-shadow: 0 4px 12px rgba(255, 99, 151, 0.671);
+    transform: translateY(-1px);
+}
+
+.btn-icon {
+    font-size: 20px;
+}
+
+.btn-purchases {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    padding: 0 24px;
+    background-color: rgba(236, 232, 235, 0.61);
+    color: #f4f3f8;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.btn-purchases:hover {
+    background-color: rgba(255, 99, 99, 0.411);
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    padding: 32px 24px;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.footer-link {
+    font-size: 14px;
+    color: #5a578e;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: #6C63FF;
+}
+
+.footer-copyright {
+    font-size: 14px;
+    color: #5a578e;
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+    .content-wrapper {
+        padding: 20px 32px;
+    }
+
+    .success-card {
+        padding: 60px 40px;
+    }
+
+    .action-buttons {
+        flex-direction: row;
+    }
+
+    .btn-download,
+    .btn-purchases {
+        width: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+    .content-wrapper {
+        padding: 20px 48px;
+    }
+
+    .header {
+        padding: 20px 24px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-content {
+        padding: 64px 0 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .success-title {
+        font-size: 28px;
+    }
+
+    .success-icon {
+        width: 64px;
+        height: 64px;
+    }
+
+    .checkmark {
+        font-size: 40px;
+    }
+
+    .order-details {
+        padding: 16px;
+    }
+
+    .detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .detail-value {
+        text-align: left;
+    }
+}
+    </style>
+</body>
+</html>

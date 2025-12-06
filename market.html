@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Di-Boss - Digital Marketplace</title>
+    <link rel="stylesheet" href="marketplace-styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Top Navigation Bar -->
+        <header class="header">
+            <div class="header-container">
+                <div class="header-left">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <h2 class="logo-text">Blaqo</h2>
+                    </div>
+                    <nav class="nav-menu">
+                        <a href="#" class="nav-link">
+                            Categories
+                            <span class="dropdown-icon">▼</span>
+                        </a>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" placeholder="Search for scripts, apps, AI tools..." class="search-input">
+                    </div>
+                    <div class="header-actions">
+                        <button class="cart-button">
+                            🛒
+                            <span class="cart-badge">2</span>
+                        </button>
+                        <button class="login-button">Login</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-grid">
+                <!-- Filters Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-content">
+                        <div class="sidebar-header">
+                            <h3 class="sidebar-title">Filters</h3>
+                            <p class="sidebar-subtitle">Refine your search</p>
+                        </div>
+                        
+                        <div class="filter-sections">
+                            <!-- Category Filter -->
+                            <details class="filter-section" open>
+                                <summary class="filter-summary">
+                                    <span>Category</span>
+                                    <span class="expand-icon">▼</span>
+                                </summary>
+                                <div class="filter-content">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checkbox">
+                                        <span>Websites</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checkbox" checked>
+                                        <span>AI Tools</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checkbox">
+                                        <span>APIs</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checkbox">
+                                        <span>Scripts</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checkbox">
+                                        <span>E-Learning</span>
+                                    </label>
+                                </div>
+                            </details>
+
+                            <!-- Price Filter -->
+                            <details class="filter-section" open>
+                                <summary class="filter-summary">
+                                    <span>Price</span>
+                                    <span class="expand-icon">▼</span>
+                                </summary>
+                                <div class="filter-content">
+                                    <div class="price-slider">
+                                        <div class="slider-track">
+                                            <div class="slider-range"></div>
+                                            <div class="slider-thumb slider-thumb-min">
+                                                <span class="slider-value">$50</span>
+                                            </div>
+                                            <div class="slider-thumb slider-thumb-max">
+                                                <span class="slider-value">$750</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </details>
+
+                            <!-- Type Filter -->
+                            <details class="filter-section">
+                                <summary class="filter-summary">
+                                    <span>Type</span>
+                                    <span class="expand-icon">▼</span>
+                                </summary>
+                                <div class="filter-content">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checkbox">
+                                        <span>WordPress Theme</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checkbox">
+                                        <span>React Component</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" class="checkbox">
+                                        <span>Python Script</span>
+                                    </label>
+                                </div>
+                            </details>
+                        </div>
+
+                        <div class="filter-actions">
+                            <button class="btn-primary">Apply Filters</button>
+                            <button class="btn-secondary">Reset</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Product Grid -->
+                <section class="products-section">
+                    <div class="products-header">
+                        <h1 class="products-title">Digital Products</h1>
+                        <div class="sort-controls">
+                            <label for="sort" class="sort-label">Sort by:</label>
+                            <select id="sort" class="sort-select">
+                                <option>Newest</option>
+                                <option>Popular</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="products-grid">
+                        <!-- Product Card 1 -->
+                        <div class="product-card">
+                            <div class="product-image" style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5)), url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect fill=%22%23667%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23fff%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2218%22%3EProduct Image%3C/text%3E%3C/svg%3E')"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">Advanced Python Scraper</h3>
+                                <p class="product-description">A powerful web scraping script.</p>
+                                <p class="product-price">$49.99</p>
+                                <div class="product-actions">
+                                    <button class="btn-preview">Preview</button>
+                                    <button class="btn-preview">Live Demo</button>
+                                </div>
+                                <button class="btn-cart">
+                                    <span>🛒</span>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div class="product-card">
+                            <div class="product-image" style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5)), url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect fill=%22%23556%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23fff%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2218%22%3EProduct Image%3C/text%3E%3C/svg%3E')"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">QuantumAI Toolkit</h3>
+                                <p class="product-description">Machine learning model library.</p>
+                                <p class="product-price">$199.00</p>
+                                <div class="product-actions">
+                                    <button class="btn-preview">Preview</button>
+                                    <button class="btn-preview">Live Demo</button>
+                                </div>
+                                <button class="btn-cart">
+                                    <span>🛒</span>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div class="product-card">
+                            <div class="product-image" style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5)), url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect fill=%22%23778%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23fff%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2218%22%3EProduct Image%3C/text%3E%3C/svg%3E')"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">SaaS Startup Website</h3>
+                                <p class="product-description">Complete landing page template.</p>
+                                <p class="product-price">$79.00</p>
+                                <div class="product-actions">
+                                    <button class="btn-preview">Preview</button>
+                                    <button class="btn-preview">Live Demo</button>
+                                </div>
+                                <button class="btn-cart">
+                                    <span>🛒</span>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 4 -->
+                        <div class="product-card">
+                            <div class="product-image" style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5)), url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect fill=%22%23445%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23fff%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2218%22%3EProduct Image%3C/text%3E%3C/svg%3E')"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">React UI Component Kit</h3>
+                                <p class="product-description">50+ accessible components.</p>
+                                <p class="product-price">$120.00</p>
+                                <div class="product-actions">
+                                    <button class="btn-preview">Preview</button>
+                                    <button class="btn-preview">Live Demo</button>
+                                </div>
+                                <button class="btn-cart">
+                                    <span>🛒</span>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 5 -->
+                        <div class="product-card">
+                            <div class="product-image" style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5)), url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect fill=%22%23567%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23fff%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2218%22%3EProduct Image%3C/text%3E%3C/svg%3E')"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">Full-Stack Developer Course</h3>
+                                <p class="product-description">20 hours of hands-on tutorials.</p>
+                                <p class="product-price">$249.00</p>
+                                <div class="product-actions">
+                                    <button class="btn-preview">Preview</button>
+                                    <button class="btn-preview">Live Demo</button>
+                                </div>
+                                <button class="btn-cart">
+                                    <span>🛒</span>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 6 -->
+                        <div class="product-card">
+                            <div class="product-image" style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5)), url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22225%22%3E%3Crect fill=%22%23334%22 width=%22400%22 height=%22225%22/%3E%3Ctext fill=%22%23fff%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2218%22%3EProduct Image%3C/text%3E%3C/svg%3E')"></div>
+                            <div class="product-info">
+                                <h3 class="product-name">REST API for Geolocation</h3>
+                                <p class="product-description">Fast and reliable IP-to-location API.</p>
+                                <p class="product-price">$15/mo</p>
+                                <div class="product-actions">
+                                    <button class="btn-preview">Preview</button>
+                                    <button class="btn-preview">Live Demo</button>
+                                </div>
+                                <button class="btn-cart">
+                                    <span>🛒</span>
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+             <!-- FOOTER -->
+<footer class="site-footer">
+        <div class="footer-content">
+
+            <div class="footer-section">
+                <h3>Product</h3>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Integrations</a></li>
+                    <li><a href="#">API</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Sales</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest news and offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            
+        </div>
+
+        <div class="footer-bottom">
+            
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook">📘</a> <a href="#" aria-label="Twitter">🐦</a>  <a href="#" aria-label="Instagram">📸</a> <a href="#" aria-label="LinkedIn">🔗</a>  </div>
+
+            <div class="footer-copyright">
+                &copy; 2025 YourProjectName. All rights reserved. | <a href="#" style="color: #ccc; text-decoration: none;">Privacy Policy</a> | <a href="#" style="color: #ccc; text-decoration: none;">Terms of Service</a>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+        
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #F9FAFB;
+    color: #1F2937;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page-container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+/* Header Styles */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    border-bottom: 1px solid #E5E7EB;
+    background-color: rgba(249, 250, 251, 0.8);
+    backdrop-filter: blur(8px);
+}
+
+.header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 32px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    color: #6C63FF;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6B7280;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #6C63FF;
+}
+
+.dropdown-icon {
+    font-size: 12px;
+}
+
+.header-right {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 384px;
+    height: 40px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.search-icon {
+    padding: 0 12px;
+    font-size: 20px;
+    color: #6B7280;
+}
+
+.search-input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding-right: 12px;
+}
+
+.search-input::placeholder {
+    color: #9CA3AF;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cart-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    background-color: white;
+    color: #6B7280;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cart-button:hover {
+    color: #6C63FF;
+    border-color: #6C63FF;
+}
+
+.cart-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background-color: #3A86FF;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.login-button {
+    min-width: 84px;
+    height: 40px;
+    padding: 0 16px;
+    background-color: #6C63FF;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.login-button:hover {
+    opacity: 0.9;
+}
+
+/* Main Content */
+.main-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    flex: 1;
+    padding: 32px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 32px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: sticky;
+    top: 96px;
+    height: fit-content;
+}
+
+.sidebar-content {
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    background-color: white;
+    padding: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.sidebar-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sidebar-subtitle {
+    font-size: 14px;
+    color: #6B7280;
+}
+
+.filter-sections {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-section {
+    border-top: 1px solid #E5E7EB;
+    padding: 8px 0;
+}
+
+.filter-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    list-style: none;
+}
+
+.filter-summary::-webkit-details-marker {
+    display: none;
+}
+
+.expand-icon {
+    font-size: 12px;
+    color: #6B7280;
+    transition: transform 0.3s;
+}
+
+.filter-section[open] .expand-icon {
+    transform: rotate(180deg);
+}
+
+.filter-content {
+    padding-top: 8px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+    cursor: pointer;
+    font-size: 14px;
+    color: #6B7280;
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #E5E7EB;
+    border-radius: 4px;
+    cursor: pointer;
+    accent-color: #6C63FF;
+}
+
+/* Price Slider */
+.price-slider {
+    padding: 24px 4px 8px;
+}
+
+.slider-track {
+    position: relative;
+    height: 6px;
+    background-color: #E5E7EB;
+    border-radius: 3px;
+}
+
+.slider-range {
+    position: absolute;
+    left: 10%;
+    right: 30%;
+    height: 6px;
+    background: linear-gradient(to right, #6C63FF, #3A86FF);
+    border-radius: 3px;
+}
+
+.slider-thumb {
+    position: absolute;
+    top: -5px;
+    width: 16px;
+    height: 16px;
+    background-color: #6C63FF;
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.slider-thumb-min {
+    left: 10%;
+    transform: translateX(-50%);
+}
+
+.slider-thumb-max {
+    left: 70%;
+    transform: translateX(-50%);
+}
+
+.slider-value {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    font-weight: 500;
+    color: #6B7280;
+    white-space: nowrap;
+}
+
+/* Filter Actions */
+.filter-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #E5E7EB;
+}
+
+.btn-primary {
+    width: 100%;
+    height: 40px;
+    background-color: #6C63FF;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-secondary {
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    color: #6B7280;
+    font-size: 14px;
+    font-weight: 700;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(108, 99, 255, 0.1);
+}
+
+/* Products Section */
+.products-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.products-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E5E7EB;
+    margin-bottom: 32px;
+}
+
+.products-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-label {
+    font-size: 14px;
+    color: #6B7280;
+}
+
+.sort-select {
+    padding: 6px 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 14px;
+    color: #1F2937;
+    cursor: pointer;
+}
+
+.sort-select:focus {
+    outline: none;
+    border-color: #6C63FF;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+/* Product Card */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-size: cover;
+    background-position: center;
+}
+
+.product-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.product-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.product-description {
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 16px;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #6C63FF;
+    margin-bottom: 16px;
+}
+
+.product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.btn-preview {
+    height: 36px;
+    background-color: rgba(108, 99, 255, 0.1);
+    color: #6C63FF;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-preview:hover {
+    background-color: rgba(108, 99, 255, 0.2);
+}
+
+.btn-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 40px;
+    background-color: #6C63FF;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.btn-cart:hover {
+    opacity: 0.9;
+}
+* ANIMATIONS */
+
+
+.how-it-works {
+    width: 100%;
+    padding: 60px 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    align-items: start;
+}
+
+.step {
+    text-align: center;
+    color: white;
+}
+
+.icon-circle {
+    width: 140px;
+    height: 140px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.icon-circle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.icon-circle i {
+    font-size: 50px;
+    color: #4db8ff;
+}
+
+.step-number {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.step-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .icon-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .icon-circle i {
+        font-size: 40px;
+    }
+
+    .step-number {
+        font-size: 24px;
+    }
+
+    .step-description {
+        font-size: 16px;
+    }
+}
+
+
+
+ /* CSS for the Footer */
+        :root {
+            /* Define primary colors */
+            --primary-bg: #232f3e;
+            --secondary-bg: #131a22;
+            --text-color: #f0f0f0;
+            --link-hover: #ff9900;
+            --input-bg: #3c4a5a;
+        }
+
+        /* Basic Reset and Box-Sizing */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Body style for context (not part of the footer itself) */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Pushes the footer to the bottom */
+        }
+
+        /* ----------------------- */
+        /* --- FOOTER STYLES --- */
+        /* ----------------------- */
+
+        .site-footer {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            padding: 40px 20px 20px;
+            border-top: 5px solid var(--link-hover);
+        }
+
+        /* Top section containing links and sign-up */
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--input-bg);
+        }
+
+        /* General style for link columns */
+        .footer-section {
+            padding: 15px;
+            min-width: 150px; /* Ensures columns don't get too narrow */
+            flex: 1 1 200px; /* Flex-grow, flex-shrink, flex-basis */
+        }
+
+        .footer-section h3 {
+            color: var(--link-hover);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+        
+        /* Newsletter Sign-up Styling */
+        .footer-newsletter {
+            flex: 1 1 300px; /* Give the newsletter more space */
+            padding: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 10px;
+            border: 1px solid var(--input-bg);
+            border-radius: 4px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .newsletter-form button {
+            padding: 10px;
+            background-color: var(--link-hover);
+            color: var(--secondary-bg);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #ffb84d; /* Lighter shade of link-hover */
+        }
+
+        /* Bottom bar for social media and copyright */
+        .footer-bottom {
+            background-color: var(--secondary-bg);
+            padding: 20px 20px 10px;
+            text-align: center;
+        }
+
+        /* Social Media Icons (using simple text/emojis as we can't use external fonts/icons) */
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            color: var(--text-color);
+            font-size: 1.8em;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            }
+
+        .social-icons a:hover {
+            color: var(--link-hover);
+        }
+
+        /* Copyright text */
+        .footer-copyright {
+            font-size: 0.8em;
+            color: #ccc;
+        }
+
+
+        /* --- RESPONSIVENESS (Media Query) --- */
+        @media (max-width: 768px) {
+            .footer-content {
+                /* Stacks content vertically on smaller screens */
+                flex-direction: column;
+            }
+            .footer-section, .footer-newsletter {
+                padding: 15px 0;
+                text-align: center;
+                border-bottom: 1px dashed var(--input-bg);
+            }
+            .footer-section:last-child {
+                border-bottom: none;
+            }
+            .newsletter-form {
+                max-width: 300px; /* Constrain width for better look */
+                margin: 0 auto;
+            }
+        }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: relative;
+        top: 0;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        padding: 12px 16px;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .search-box {
+        display: none;
+    }
+
+    .login-button {
+        display: none;
+    }
+
+    .main-content {
+        padding: 16px;
+    }
+
+    .products-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .products-title {
+        font-size: 20px;
+    }
+
+    .sidebar-content {
+        padding: 12px;
+    }
+}
+    </style>
+</body>
+</html>

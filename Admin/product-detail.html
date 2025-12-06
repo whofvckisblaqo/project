@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo Admin - Product Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variables and Base Styles (Teal Theme) --- */
+        :root {
+            /* Colors */
+            --color-primary: #14b8a6; /* Vibrant Teal */
+            --color-primary-light: #14b8a61a; /* 10% opacity for primary/10 */
+            --color-primary-dark-bg: #14b8a633; /* 20% opacity for primary/20 */
+            --color-text-dark: #1f2937; /* Default text color */
+            --color-text-subtle: #6b7280; /* Gray-500/600 */
+            --color-background-light: #f5f5f8;
+            --color-surface-light: #ffffff;
+            --color-border-light: #e5e7eb; /* Gray-200 */
+            
+            /* Status Colors */
+            --color-status-published-bg: #3A86FF1A; /* Blue/10 */
+            --color-status-published-text: #3A86FF; 
+
+            /* Dark Mode Overrides */
+            --color-background-dark: #100f23;
+            --color-dark-surface: var(--color-background-dark);
+            --color-dark-border: #374151; /* Gray-700 */
+            --color-dark-text-dark: #ffffff;
+            --color-dark-text-light: #e5e7eb; /* Gray-200 */
+            --color-dark-text-subtle: #9ca3af; /* Gray-400 */
+            --color-dark-input-bg: #1f293780; /* Gray-800/50 */
+            
+            /* Spacing/Radius */
+            --radius-default: 0.25rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--color-background-light);
+            color: var(--color-text-dark);
+            margin: 0;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Dark Mode */
+        .dark {
+            background-color: var(--color-background-dark);
+            color: var(--color-dark-text-light);
+        }
+        .dark .header, .dark .card, .dark .tab-panel, .dark .footer {
+            border-color: var(--color-dark-border) !important;
+        }
+        .dark .header {
+            background-color: #100f23cc; /* background-dark/80 */
+        }
+        .dark .card, .dark .tab-panel {
+            background-color: #100f23;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .material-symbols-outlined.small {
+             font-size: 16px !important;
+        }
+
+        /* --- 2. Layouts and Structure --- */
+        .container-main {
+            max-width: 1280px; /* mx-auto */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 16px; /* px-4 */
+        }
+        @media (min-width: 640px) { .container-main { padding: 0 24px; /* sm:px-6 */ } }
+        @media (min-width: 1024px) { .container-main { padding: 0 32px; /* lg:px-8 */ } }
+
+        .main-content {
+            flex-grow: 1;
+            padding-top: 32px;
+            padding-bottom: 32px;
+        }
+        
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        @media (min-width: 1024px) {
+            .grid-layout {
+                grid-template-columns: 2fr 1fr;
+            }
+            .grid-span-2 {
+                grid-column: span 2 / span 2;
+            }
+        }
+
+        /* --- 3. Header (Top Nav) --- */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+            background-color: #f5f5f8cc; /* background-light/80 */
+            backdrop-filter: blur(4px);
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .header-content {
+            display: flex;
+            height: 64px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--color-text-dark);
+        }
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--color-primary);
+        }
+        .logo-group h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .dark .logo-group { color: var(--color-dark-text-dark); }
+
+        .nav-menu {
+            display: none;
+            align-items: center;
+            gap: 24px;
+        }
+        @media (min-width: 768px) { .nav-menu { display: flex; } }
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-subtle);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+        .nav-link:hover { color: var(--color-primary); }
+        .nav-link.active {
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+        .dark .nav-link { color: #d1d5db; } /* gray-300 */
+        .dark .nav-link:hover, .dark .nav-link.active { color: var(--color-primary); }
+        
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .search-input-wrapper {
+            position: relative;
+            display: none;
+        }
+        @media (min-width: 640px) { .search-input-wrapper { display: block; } }
+        .search-input-wrapper span {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af; /* gray-400 */
+        }
+        .search-input {
+            width: 100%;
+            min-width: 200px;
+            height: 40px;
+            padding-left: 40px;
+            padding-right: 16px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border-light);
+            background-color: #ffffff80; /* white/50 */
+            font-size: 14px;
+            outline: none;
+        }
+        .search-input:focus {
+            outline: 0;
+            box-shadow: 0 0 0 2px var(--color-primary-dark-bg);
+            border-color: var(--color-primary);
+        }
+        .dark .search-input {
+            border-color: var(--color-dark-border);
+            background-color: #1f293780; /* gray-800/50 */
+            color: var(--color-dark-text-light);
+        }
+
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--color-primary-light);
+            color: var(--color-text-subtle);
+            transition: background-color 0.15s;
+        }
+        .icon-btn:hover { background-color: var(--color-primary-dark-bg); }
+        .dark .icon-btn {
+            background-color: var(--color-primary-dark-bg);
+            color: #d1d5db; /* gray-300 */
+        }
+        .dark .icon-btn:hover { background-color: #14b8a64d; /* primary/30 */ }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* --- 4. Content Elements --- */
+        .breadcrumbs {
+            margin-bottom: 24px;
+        }
+        .breadcrumbs a, .breadcrumbs span {
+            font-size: 14px;
+        }
+        .breadcrumbs a {
+            color: var(--color-text-subtle);
+            text-decoration: none;
+        }
+        .breadcrumbs span:last-child {
+            color: var(--color-text-dark);
+            font-weight: 500;
+        }
+        .dark .breadcrumbs span:last-child { color: var(--color-dark-text-light); }
+        .breadcrumbs a:hover { color: var(--color-primary); }
+
+        .card {
+            background-color: var(--color-surface-light);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-border-light);
+            padding: 24px;
+        }
+
+        /* Product Header */
+        .product-header-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .product-title h1 {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: -0.025em;
+            margin: 0;
+            color: var(--color-text-dark);
+        }
+        .dark .product-title h1 { color: var(--color-dark-text-dark); }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 9999px;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            background-color: var(--color-status-published-bg);
+            color: var(--color-status-published-text);
+        }
+
+        .action-buttons-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding: 0 16px;
+            border-radius: var(--radius-lg);
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.15s, opacity 0.15s;
+        }
+        .btn-secondary {
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+        .btn-secondary:hover { background-color: var(--color-primary-dark-bg); }
+        .dark .btn-secondary { background-color: var(--color-primary-dark-bg); }
+        .dark .btn-secondary:hover { background-color: #14b8a64d; /* primary/30 */ }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+        .btn-primary:hover { background-color: #14b8a6e6; /* primary/90 */ }
+
+        /* Image Carousel */
+        .carousel-wrapper {
+            overflow-x: auto;
+            /* Hide scrollbar for various browsers */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .carousel-wrapper::-webkit-scrollbar { display: none; }
+        
+        .carousel-track {
+            display: flex;
+            align-items: stretch;
+            padding: 4px;
+            gap: 16px;
+        }
+        .carousel-item {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-radius: var(--radius-lg);
+            min-width: 256px; /* min-w-64 */
+        }
+        .carousel-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--radius-lg);
+        }
+        .carousel-item p:first-child {
+            color: var(--color-text-dark);
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+        }
+        .carousel-item p:last-child {
+            color: var(--color-text-subtle);
+            font-size: 12px;
+            margin: 0;
+        }
+        .dark .carousel-item p:first-child { color: var(--color-dark-text-light); }
+
+        /* Tabbed Panel */
+        .tab-bar {
+            border-bottom: 1px solid var(--color-border-light);
+            display: flex;
+            padding: 0 24px;
+            gap: 24px;
+        }
+        .tab-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid transparent;
+            text-decoration: none;
+            color: var(--color-text-subtle);
+            transition: color 0.15s, border-color 0.15s;
+        }
+        .tab-link p {
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .tab-link:hover {
+            color: var(--color-primary);
+            border-color: #14b8a680; /* primary/50 */
+        }
+        .tab-link.active {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+        .dark .tab-link { color: var(--color-dark-text-subtle); }
+        .dark .tab-link:hover, .dark .tab-link.active { color: var(--color-primary); }
+
+        .tab-content {
+            padding: 24px;
+        }
+        .tab-content p {
+            line-height: 1.6;
+            margin-bottom: 16px;
+            color: var(--color-text-subtle);
+        }
+        .tab-content ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin-top: 16px;
+            color: var(--color-text-subtle);
+        }
+        .tab-content ul li {
+            margin-bottom: 8px;
+        }
+        .dark .tab-content p, .dark .tab-content ul { color: var(--color-dark-text-subtle); }
+
+
+        /* Right Column Cards */
+
+        /* Action Card */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-text-subtle);
+            margin-bottom: 8px;
+        }
+        .form-select {
+            width: 100%;
+            height: 40px;
+            padding: 0 12px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border-light);
+            background-color: var(--color-surface-light);
+            font-size: 14px;
+            outline: none;
+        }
+        .form-select:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px var(--color-primary-dark-bg);
+        }
+        .dark .form-select {
+            border-color: #4b5563; /* gray-600 */
+            background-color: #1f2937; /* gray-800 */
+            color: var(--color-dark-text-light);
+        }
+        .btn-save {
+            width: 100%;
+            margin-top: 16px;
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        /* Pricing Card */
+        .price-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .price-header h3 { margin: 0; }
+        .price-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--color-text-dark);
+            margin: 0;
+        }
+        .price-detail {
+            font-size: 14px;
+            color: var(--color-text-subtle);
+        }
+        .dark .price-value { color: var(--color-dark-text-dark); }
+
+        /* Categories & Tags Card */
+        .tag-badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: var(--radius-lg);
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .tag-primary {
+            background-color: #14b8a61a; /* primary/10 */
+            color: var(--color-primary);
+        }
+        .tag-secondary {
+            background-color: #f3f4f6; /* gray-100 */
+            color: #4b5563; /* gray-600 */
+        }
+        .dark .tag-secondary {
+            background-color: #374151; /* gray-700 */
+            color: #d1d5db; /* gray-300 */
+        }
+
+        /* Demo Links Card */
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            padding: 8px 0;
+        }
+        .link-item a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+        .link-item-controls button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #9ca3af; /* gray-400 */
+            transition: color 0.15s;
+        }
+        .link-item-controls button:hover.edit { color: var(--color-primary); }
+        .link-item-controls button:hover.delete { color: #ef4444; } /* red-500 */
+        .link-item-icon { color: #9ca3af; } /* gray-400 */
+
+        /* --- 5. Footer --- */
+        .footer {
+            margin-top: auto;
+            border-top: 1px solid var(--color-border-light);
+            background-color: var(--color-background-light);
+        }
+        .footer-content {
+            padding-top: 16px;
+            padding-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--color-text-subtle);
+        }
+        @media (min-width: 640px) {
+            .footer-content {
+                flex-direction: row;
+            }
+        }
+        .footer-content a {
+            color: var(--color-text-subtle);
+            text-decoration: none;
+        }
+        .footer-content a:hover { color: var(--color-primary); }
+        .dark .footer-content, .dark .footer-content a { color: var(--color-dark-text-subtle); }
+    </style>
+</head>
+<body class="dark">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<header class="header">
+<div class="container-main">
+<div class="header-content">
+<div class="flex items-center gap-8">
+<div class="logo-group">
+<div class="logo-icon">
+<svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z"></path>
+</svg>
+</div>
+<h2>Blaqo Admin</h2>
+</div>
+<nav class="nav-menu">
+<a class="nav-link" href="#">Dashboard</a>
+<a class="nav-link active" href="#">Products</a>
+<a class="nav-link" href="#">Orders</a>
+<a class="nav-link" href="#">Users</a>
+<a class="nav-link" href="#">Settings</a>
+</nav>
+</div>
+<div class="action-group">
+<div class="search-input-wrapper">
+<span class="material-symbols-outlined">search</span>
+<input class="search-input" placeholder="Search products..." type="text" value="">
+</div>
+<button class="icon-btn">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="user-avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuACHXMuDOZCDDukFTpETao0t0nEo72FuwomOApL1c80Lld3SfHAnT4-NxXNWY-0xllxHC4iOmtWLyxDzbMvg1hqNVG4T75LtZwcYVR6kPCchvz-Fttf_ou1NPQn94cJ95VwcL47VgLc4scJduR7KPcuUM4GwuDYEarI8BvXP6-gLOIZ3SHSwQkFvcTATO5m_xvkZCCcZ8c3kzquE4-lxOjY9E-N45CS7fPubaYZKZ6QpTSGTJRs3mm9oisSIhTo0Zgi5csBeboilgE");'></div>
+</div>
+</div>
+</div>
+</header>
+<main class="main-content">
+<div class="container-main">
+<div class="breadcrumbs">
+<div class="flex flex-wrap items-center gap-2">
+<a href="#">Dashboard</a>
+<span class="text-gray-400">/</span>
+<a href="#">Products</a>
+<span class="text-gray-400">/</span>
+<span class="text-white">AI-Powered E-commerce Analytics API</span>
+</div>
+</div>
+<div class="grid-layout">
+<div class="grid-span-2" style="display: flex; flex-direction: column; gap: 32px;">
+<div class="card">
+<div class="product-header-content">
+<div class="product-title" style="display: flex; flex-direction: column; gap: 8px;">
+<h1 class="text-white">AI-Powered E-commerce Analytics API</h1>
+<div class="flex items-center gap-2">
+<span class="status-badge">Published</span>
+</div>
+</div>
+<div class="action-buttons-group">
+<button class="btn btn-secondary">
+<span class="material-symbols-outlined mr-2 small">edit</span>
+<span>Edit All</span>
+</button>
+<button class="btn btn-primary">
+<span class="truncate">View Live</span>
+<span class="material-symbols-outlined ml-2 small">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+<div class="card">
+<h3 class="text-lg font-bold text-white mb-4">Screenshots</h3>
+<div class="carousel-wrapper">
+<div class="carousel-track">
+<div class="carousel-item">
+<div class="carousel-image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCbeEThXg9731eZWjQVxBebdR63zHeFi23xccX6sjiL7IE5VKoC2mryHdzHmPOXEwye-ItuUltwx31Y5R6fCSe0NFaA-XB3F1rtCJHkxhdYUgo1_4JX1GzkZPas34NGZm1L6rn9dHNqDC_WsybLwxpItRv9-V-xWHW0Ljrv6zd1blgkpUBFXKcqBFFb4aVvBZofo2wlOmbbS2pwkRHVNnADPB8suC2z5zqLlcxduHMCyCslR53DFvywr2URh9sX5lcwaGMbBAENNys");'></div>
+<div>
+<p class="text-white">Analytics Dashboard</p>
+<p>A view of the main dashboard.</p>
+</div>
+</div>
+<div class="carousel-item">
+<div class="carousel-image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDsS42-phBY0y6mnrAc0HeMRNN9zQKa4rfO6-Ax7XiWPkqyp8uzMttzvDIsWP6QKVIfE2QnSJXl3yHsbCaCvkrgsyk2tZLGXAXhybudcXyZQPBkmCM75gmUkSJyukA1byEnnENe7RtsyspRYUen9F9ki5-ZUOGks7qGQWJIKfiXnQmUKIoFgzxsSeNqLqgnYRvPxEjb2x8uJYj6raLevPr4HLqeyCrgTad4STYr0X7EOAVXaQSrfDqVw9C_NdQIJ4wLo1jt9juRDUc");'></div>
+<div>
+<p class="text-white">Easy Integration</p>
+<p>Example of API integration code.</p>
+</div>
+</div>
+<div class="carousel-item">
+<div class="carousel-image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuApXzWMp3UvLVVcgJdEioC4e2IjwXSE6zJhX2hOGTixSo7gEqzk7v250l1v3ZjbGb1YGbCqWZ2wO8inWI2SZ3plcMSca1CE9-RY8sqyXIProA38szKTJgaDCKnkORpNr6hfg-RD4j1VBITWzrm6dOJ8zSjRbW5RUAeZcgH67bVgTHLNJzFnlJFGPkU7qoQGGyHhfEBBrFKt4rZ59LggSFBw78Q72d2QpjUdLXAIAy717o5CgmRzt98bFzoqhCR4SoYyZ8euNCQpQyY");'></div>
+<div>
+<p class="text-white">User Interface</p>
+<p>The primary user settings screen.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="card tab-panel" style="padding: 0;">
+<div class="tab-bar">
+<a class="tab-link active" href="#">
+<p>Description</p>
+</a>
+<a class="tab-link" href="#">
+<p>Features</p>
+</a>
+<a class="tab-link" href="#">
+<p>Files & Versions</p>
+</a>
+</div>
+<div class="tab-content">
+<p>Unlock the power of data with our **AI-Powered E-commerce Analytics API**. Designed for online retailers, marketers, and data scientists, this powerful tool provides real-time insights into customer behavior, sales trends, and inventory management. Integrate seamlessly with your existing e-commerce platform to make smarter, data-driven decisions that boost your bottom line.</p>
+<p>Our API leverages advanced machine learning algorithms to offer predictive analytics, customer segmentation, and personalized product recommendations. The comprehensive documentation and developer-friendly endpoints ensure a smooth and quick integration process.</p>
+<ul style="list-style: disc; padding-left: 20px; margin-top: 16px; color: var(--color-dark-text-subtle);">
+<li>Real-time data processing and analytics.</li>
+<li>Advanced predictive modeling for sales forecasting.</li>
+<li>Easy-to-use RESTful API with comprehensive documentation.</li>
+<li>Secure and scalable architecture built for high-volume traffic.</li>
+</ul>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 32px;">
+<div class="card">
+<h3 class="text-lg font-bold text-white mb-4">Actions</h3>
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<div class="form-group">
+<label for="product-status">Product Status</label>
+<select class="form-select" id="product-status">
+<option>Published</option>
+<option>Draft</option>
+<option>Archived</option>
+</select>
+</div>
+<button class="btn btn-save btn-primary">
+Save Changes
+</button>
+</div>
+</div>
+<div class="card">
+<div class="price-header">
+<h3 class="text-lg font-bold text-white">Pricing</h3>
+<button class="text-primary hover:opacity-80">
+<span class="material-symbols-outlined small">edit</span>
+</button>
+</div>
+<p class="price-value text-white">$99.00</p>
+<p class="price-detail">One-time payment</p>
+</div>
+<div class="card">
+<div class="price-header mb-4">
+<h3 class="text-lg font-bold text-white">Categories & Tags</h3>
+<button class="text-primary hover:opacity-80">
+<span class="material-symbols-outlined small">edit</span>
+</button>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px;">
+<span class="tag-badge tag-primary">API</span>
+<span class="tag-badge tag-primary">AI Tools</span>
+<span class="tag-badge tag-secondary">analytics</span>
+<span class="tag-badge tag-secondary">python</span>
+<span class="tag-badge tag-secondary">ecommerce</span>
+</div>
+</div>
+<div class="card">
+<div class="price-header mb-4">
+<h3 class="text-lg font-bold text-white">Demo Links</h3>
+<button class="text-primary hover:opacity-80">
+<span class="material-symbols-outlined small">add_circle</span>
+</button>
+</div>
+<ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+<li class="link-item">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined link-item-icon">visibility</span>
+<a href="#">Live Preview</a>
+</div>
+<div class="link-item-controls">
+<button class="edit"><span class="material-symbols-outlined small">edit</span></button>
+<button class="delete"><span class="material-symbols-outlined small">delete</span></button>
+</div>
+</li>
+<li class="link-item">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined link-item-icon">admin_panel_settings</span>
+<a href="#">Backend Demo</a>
+</div>
+<div class="link-item-controls">
+<button class="edit"><span class="material-symbols-outlined small">edit</span></button>
+<button class="delete"><span class="material-symbols-outlined small">delete</span></button>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="footer">
+<div class="container-main">
+<div class="footer-content">
+<p>© 2025 Blaqo. All rights reserved.</p>
+<div class="flex items-center gap-4 mt-2 sm:mt-0">
+<a href="#">Support</a>
+<a href="#">Documentation</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body>
+</html>
