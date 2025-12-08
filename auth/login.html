@@ -275,12 +275,22 @@
 <form class="flex flex-col gap-5">
 <label class="flex flex-col">
 <p class="pb-2 text-sm font-medium text-[#0c0c1d] dark:text-slate-200">Email or Username</p>
-<input class="form-input h-12 rounded-lg border border-slate-300 bg-background-light p-3 text-base text-[#0c0c1d] placeholder:text-slate-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500" placeholder="Enter your email or username" type="text"/>
-</label>
-<label class="flex flex-col">
+<input
+  id="login-identifier"
+  class="form-input h-12 rounded-lg border border-slate-300 bg-background-light p-3 text-base text-[#0c0c1d] placeholder:text-slate-400 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
+  placeholder="Enter your email or username"
+  type="text"
+/>
+
 <p class="pb-2 text-sm font-medium text-[#0c0c1d] dark:text-slate-200">Password</p>
 <div class="relative flex w-full items-stretch">
-<input class="form-input h-12 flex-1 rounded-l-lg border border-r-0 border-slate-300 bg-background-light p-3 text-base text-[#0c0c1d] placeholder:text-slate-400 focus:z-10 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500" placeholder="Enter your password" type="password"/>
+<input
+  id="login-password"
+  class="form-input h-12 flex-1 rounded-l-lg border border-r-0 border-slate-300 bg-background-light p-3 text-base text-[#0c0c1d] placeholder:text-slate-400 focus:z-10 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:placeholder:text-slate-500"
+  placeholder="Enter your password"
+  type="password"
+/>
+
 <button class="flex items-center justify-center rounded-r-lg border border-l-0 border-slate-300 bg-slate-50 px-3 text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400" type="button">
 <span class="material-symbols-outlined text-xl">visibility_off</span>
 </button>
@@ -320,7 +330,7 @@
 </div>
 <p class="text-center text-sm text-slate-600 dark:text-slate-400">
                         Don't have an account?
-                        <a class="font-medium text-primary underline-offset-4 hover:underline" href="#">Sign Up</a>
+                        <a class="font-medium text-primary underline-offset-4 hover:underline" href="signup.html">Sign Up</a>
 </p>
 </div>
 </div>
@@ -374,5 +384,54 @@
 </svg>
 </button>
 </div>
+
+<script>
+    // ================================
+// LOGIN PAGE SCRIPT
+// ================================
+
+// Password toggle
+const passwordInput = document.querySelector('#login-password');
+const toggleBtn = document.querySelector(
+  '.material-symbols-outlined'
+);
+
+if (toggleBtn && passwordInput) {
+  toggleBtn.style.cursor = 'pointer';
+
+  toggleBtn.addEventListener('click', () => {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      toggleBtn.textContent = 'visibility';
+    } else {
+      passwordInput.type = 'password';
+      toggleBtn.textContent = 'visibility_off';
+    }
+  });
+}
+
+// Form validation
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const identifier = document
+    .querySelector('#login-identifier')
+    .value.trim();
+
+  const password = passwordInput.value.trim();
+
+  if (!identifier || !password) {
+    alert('Please enter your email/username and password.');
+    return;
+  }
+
+  // ✅ Ready for backend login
+  alert('Login successful ✅');
+  form.reset();
+});
+
+</script>
 </body>
 </html>
