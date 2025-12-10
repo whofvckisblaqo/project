@@ -16,18 +16,19 @@
         CSS VARIABLES
         ========================================= */
         :root {
-            --primary-color: #2b7bff;
-            --primary-hover: #496eff;
+            --primary-color: #ff7b2b; /* Deep Orange */
+            --primary-hover: #ff9949; /* Lighter Orange */
             --dark-bg: #0b0b0b;
             --mid-dark-bg: #151515;
             --text-light: #fff;
             --text-muted: #bdbdbd;
             --card-bg: rgba(255, 255, 255, 0.03);
             --blur-bg: rgba(0, 0, 0, 0.7);
-            --accent-glow: 0 0 15px rgba(43, 123, 255, 0.5);
+            --accent-glow: 0 0 15px rgba(255, 123, 43, 0.5); /* Orange glow */
             --footer-primary-bg: #1c2632;
             --footer-secondary-bg: #131a22;
             --footer-link-hover: #ff9900;
+            --notification-color: #2bff99; /* Teal/Lime for high contrast */
         }
 
         /* =========================================
@@ -151,8 +152,8 @@
             position: absolute;
             top: -10px;
             right: -15px;
-            background: #ff0077; /* A contrasting color */
-            color: var(--text-light);
+            background: var(--notification-color); /* Teal/Lime */
+            color: var(--dark-bg); /* Dark text on bright notification */
             border-radius: 50%;
             padding: 2px 7px;
             font-size: 0.7rem;
@@ -185,11 +186,12 @@
 
         /* Welcome Banner Styles */
         .welcome-banner {
-            background: linear-gradient(135deg, rgba(43, 123, 255, 0.1), rgba(73, 110, 255, 0.05));
+            background: linear-gradient(135deg, rgba(255, 123, 43, 0.1), rgba(255, 153, 73, 0.05)); /* Orange Tint */
             padding: 25px 5%;
             text-align: center;
-            border-bottom: 2px solid rgba(43, 123, 255, 0.3);
+            border-bottom: 2px solid rgba(255, 123, 43, 0.3);
             animation: slideDown 0.5s ease-out;
+            display: none;
         }
 
         .welcome-banner h2 {
@@ -201,7 +203,7 @@
 
         .welcome-banner h2 .user-name {
             color: var(--primary-color);
-            text-shadow: 0 0 20px rgba(43, 123, 255, 0.5);
+            text-shadow: 0 0 20px rgba(255, 123, 43, 0.5); /* Orange shadow */
         }
 
         .welcome-banner p {
@@ -358,7 +360,7 @@
         }
 
         .carousel-icon:hover {
-            background: rgba(43, 123, 255, 0.1);
+            background: rgba(255, 123, 43, 0.1); /* Orange tint on hover */
             transform: translateY(-5px);
             border-color: var(--primary-color);
         }
@@ -459,8 +461,8 @@
 
         /* Animation for added product feedback */
         .product-card.added-to-cart {
-            border: 2px solid #ff0077;
-            box-shadow: 0 0 20px rgba(255, 0, 119, 0.7);
+            border: 2px solid var(--notification-color); /* Teal/Lime border */
+            box-shadow: 0 0 20px rgba(43, 255, 153, 0.7);
         }
         
         /* HOW IT WORKS */
@@ -515,8 +517,8 @@
         }
 
         .icon-circle:hover {
-            background: rgba(43, 123, 255, 0.2);
-            box-shadow: 0 0 10px rgba(43, 123, 255, 0.5);
+            background: rgba(255, 123, 43, 0.2); /* Orange tint on hover */
+            box-shadow: 0 0 10px rgba(255, 123, 43, 0.5);
         }
 
         .icon-circle i {
@@ -912,12 +914,12 @@
     <div class="hero">
         <div class="hero-inner">
             <h1 class="hero-title">
-                Build Your Digital Empire with<br>
-                <span>Ready-to-Use Tools</span>.
+                Achieve Tech Mastery Through<br>
+                <span>Direct Access to Industry-Grade APIs.</span>
             </h1>
 
             <p class="hero-sub">
-                Buy ready-made websites, APIs, apps, and courses to launch your business instantly and affordably.
+                Stop just coding. Start launching. Discover our latest collection of premium courses, pre-built AI models, and robust tools to elevate your digital presence and accelerate your career.
             </p>
 
             <div class="hero-actions">
@@ -931,7 +933,7 @@
         
         <div class="search-bar-section">
             <div class="search-bar">
-                <input type="text" placeholder="Search for products, APIs, themes, courses..." aria-label="Search for products">
+                <input type="text" placeholder="Search for APIs, Courses, Themes, AI tools..." aria-label="Search for products">
                 <button>Search</button>
             </div>
         </div>
@@ -954,7 +956,7 @@
             <div class="products-grid">
 
                 <div class="product-card" data-aos="zoom-in" data-aos-delay="0" 
-                     data-product-id="P001" data-name="Complete E-commerce Course" data-price="170">
+                    data-product-id="P001" data-name="Complete E-commerce Course" data-price="170">
                     <div class="product-img">
                         <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=200&fit=crop" alt="e-commerce course">
                     </div>
@@ -966,7 +968,7 @@
                 </div>
 
                 <div class="product-card" data-aos="zoom-in" data-aos-delay="100" 
-                     data-product-id="P002" data-name="Social Media Automation Bot" data-price="150">
+                    data-product-id="P002" data-name="Social Media Automation Bot" data-price="150">
                     <div class="product-img">
                         <img src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=400&h=200&fit=crop" alt="social media automations">
                     </div>
@@ -978,7 +980,7 @@
                 </div>
 
                 <div class="product-card" data-aos="zoom-in" data-aos-delay="200"
-                     data-product-id="P003" data-name="AI Content Generation Tool" data-price="180">
+                    data-product-id="P003" data-name="AI Content Generation Tool" data-price="180">
                     <div class="product-img">
                         <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop" alt="AI content tool">
                     </div>
@@ -990,7 +992,7 @@
                 </div>
                 
                 <div class="product-card" data-aos="zoom-in" data-aos-delay="300"
-                     data-product-id="P004" data-name="SaaS Subscription Platform" data-price="249">
+                    data-product-id="P004" data-name="SaaS Subscription Platform" data-price="249">
                     <div class="product-img">
                         <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=200&fit=crop" alt="SaaS Website Template">
                     </div>
@@ -1048,34 +1050,34 @@
         <div class="container">
             <div class="testimonial-grid">
                 <div class="testimonial-card" data-aos="fade-up" data-aos-delay="0">
-                    <p class="testimonial-text">"Blaqo saved me months of development time. I found the perfect script for my project and launched in a week! Highly efficient."</p>
+                    <p class="testimonial-text">"Blaqo saved me months of development time. I found the perfect script for my project and launched in a week! Highly recommend the API bundles for quick integration."</p>
                     <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/150?img=5" alt="Sarah L." class="author-image">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="Author 1" class="author-image">
                         <div class="author-info">
-                            <h4 class="author-name">Sarah L.</h4>
-                            <p class="author-title">Startup Founder</p>
+                            <p class="author-name">Alex M.</p>
+                            <p class="author-title">SaaS Founder</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                    <p class="testimonial-text">"The quality of the websites available is top-notch. I bought a template and had my portfolio online the same day. Incredible value!"</p>
+                    <p class="testimonial-text">"The AI courses are practical and deeply technical. I went from knowing nothing about machine learning to deploying my first custom model in under three weeks."</p>
                     <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/150?img=12" alt="Mike R." class="author-image">
+                        <img src="https://i.pravatar.cc/150?img=2" alt="Author 2" class="author-image">
                         <div class="author-info">
-                            <h4 class="author-name">Mike R.</h4>
-                            <p class="author-title">Freelance Designer</p>
+                            <p class="author-name">Sarah L.</p>
+                            <p class="author-title">Senior Developer</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                    <p class="testimonial-text">"As a seller, the platform is fantastic. It's easy to list my products, and the community is very supportive. They handle all the payment processing securely."</p>
+                    <p class="testimonial-text">"I sold my first custom AI tool here! The seller tools are intuitive, and the marketplace gives me direct access to developers who value quality code."</p>
                     <div class="testimonial-author">
-                        <img src="https://i.pravatar.cc/150?img=9" alt="Chloe T." class="author-image">
+                        <img src="https://i.pravatar.cc/150?img=3" alt="Author 3" class="author-image">
                         <div class="author-info">
-                            <h4 class="author-name">Chloe T.</h4>
-                            <p class="author-title">Developer & Seller</p>
+                            <p class="author-name">Omar K.</p>
+                            <p class="author-title">Blaqo Seller</p>
                         </div>
                     </div>
                 </div>
@@ -1083,184 +1085,176 @@
         </div>
     </section>
 
-</main>
+    </main>
 
-<footer class="site-footer">
-    <div class="footer-content">
+    <footer class="site-footer">
+        <div class="footer-content container">
+            <div class="footer-section footer-about">
+                <h3 class="logo">Blaqo</h3>
+                <p>The marketplace for developers and innovators. Learn the future, build today.</p>
+            </div>
 
-        <div class="footer-section">
-            <h3>Product</h3>
-            <ul>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Marketplace Pricing</a></li>
-                <li><a href="#">Seller Integrations</a></li>
-                <li><a href="#">Partner API</a></li>
-            </ul>
+            <div class="footer-section">
+                <h3>Products</h3>
+                <ul>
+                    <li><a href="#">AI Tools</a></li>
+                    <li><a href="#">API Documentation</a></li>
+                    <li><a href="#">Online Courses</a></li>
+                    <li><a href="#">Web Templates</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Become a Seller</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-newsletter">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest tech releases and offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
         </div>
 
-        <div class="footer-section">
-            <h3>Company</h3>
-            <ul>
-                <li><a href="#">About Blaqo</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="#">Press Kit</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
+        <div class="footer-bottom">
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="footer-copyright">&copy; 2024 Blaqo Marketplace. All rights reserved. <a href="#">Privacy Policy</a></p>
         </div>
+    </footer>
 
-        <div class="footer-section">
-            <h3>Support</h3>
-            <ul>
-                <li><a href="#">Help Center</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Terms & Privacy</a></li>
-            </ul>
-        </div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-        <div class="footer-newsletter">
-            <h3>Stay Connected</h3>
-            <p>Get the latest updates, deals, and insights delivered to your inbox.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Your Email Address" required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        <div class="social-icons">
-            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p class="footer-copyright">&copy; 2025 Blaqo Marketplace. All Rights Reserved.</p>
-    </div>
-
-</footer>
-
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        
-        // --- 1. Initialize AOS (Animate On Scroll) ---
+    <script>
+        // --- 1. AOS Initialization ---
         AOS.init({
             duration: 800,
             once: true,
         });
 
         // --- 2. Mobile Menu Toggle ---
-        const navToggle = document.getElementById('nav-toggle');
-        const mainNav = document.getElementById('main-nav');
+        document.getElementById('nav-toggle').addEventListener('click', function() {
+            const nav = document.getElementById('main-nav');
+            const icon = this;
+            
+            nav.classList.toggle('active');
 
-        navToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            // Toggle icon text between '☰' and '✕'
-            navToggle.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+            if (nav.classList.contains('active')) {
+                icon.innerHTML = '&times;'; // Change to 'X' icon
+                icon.style.padding = '10px 18px'; // Adjust padding for 'X'
+            } else {
+                icon.innerHTML = '&#9776;'; // Change back to hamburger '☰'
+                icon.style.padding = '10px 15px';
+            }
         });
 
-        // --- 3. User & Logout Functions ---
-        const userNameElement = document.getElementById('user-name');
+
+        // --- 3. User & Authentication Simulation (using localStorage) ---
+        const USER_KEY = 'blaqo_user';
+        const userButton = document.querySelector('.signup-btn');
         const welcomeBanner = document.getElementById('welcome-banner');
+        const userNameSpan = document.getElementById('user-name');
 
-        // Check for a stored user name (Simulation for demonstration)
-        const storedUserName = localStorage.getItem('blaqo_username');
-        if (storedUserName) {
-            userNameElement.textContent = storedUserName;
-            welcomeBanner.style.display = 'block'; // Show if a user is "logged in"
-        } else {
-            welcomeBanner.style.display = 'none'; // Hide if no user is found
-        }
-        
-        // Expose logout to global scope for the button's inline onclick attribute
-        window.logout = function() {
-            localStorage.removeItem('blaqo_username');
-            // For persistence, you might set a default 'Guest' name instead of hiding the banner
-            userNameElement.textContent = 'Guest'; 
-            welcomeBanner.style.display = 'none'; // Hide the banner on logout
-            alert("Logged out successfully.");
-            // Optional: window.location.reload(); 
-        }
-
-        // --- 4. Cart Management Logic (Robust) ---
-        const cartCountElement = document.getElementById('cart-count');
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-
-        // Load cart from Local Storage, defaulting to an empty array
-        function loadCart() {
-            const cartJSON = localStorage.getItem('blaqo_cart');
-            return cartJSON ? JSON.parse(cartJSON) : [];
-        }
-
-        // Save cart to Local Storage and update the counter
-        function saveCart(cart) {
-            localStorage.setItem('blaqo_cart', JSON.stringify(cart));
-            updateCartCount(cart);
-        }
-
-        // Update the cart counter UI
-        function updateCartCount(cart) {
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCountElement.textContent = totalItems;
-            // Only show the counter if there are items
-            cartCountElement.style.display = totalItems > 0 ? 'block' : 'none';
-        }
-
-        // The main Add to Cart function
-        function handleAddToCart(event) {
-            const button = event.currentTarget;
-            const productCard = button.closest('.product-card');
-
-            // Extract data from the data attributes
-            const productId = productCard.dataset.productId;
-            const productName = productCard.dataset.name;
-            const productPrice = parseFloat(productCard.dataset.price);
-
-            if (!productId || !productName || isNaN(productPrice)) {
-                console.error("Missing or invalid product data attributes.");
-                return;
-            }
-
-            let cart = loadCart();
-
-            // Check if product is already in cart. If yes, increase quantity.
-            const existingItem = cart.find(item => item.id === productId);
-
-            if (existingItem) {
-                existingItem.quantity += 1;
+        function loadUser() {
+            const user = JSON.parse(localStorage.getItem(USER_KEY));
+            if (user && user.isLoggedIn) {
+                // User is logged in
+                userNameSpan.textContent = user.name;
+                welcomeBanner.style.display = 'block';
+                userButton.textContent = 'Logout';
+                userButton.onclick = logout;
+                userButton.classList.remove('btn-secondary');
+                userButton.classList.add('btn-primary');
             } else {
-                cart.push({
-                    id: productId,
-                    name: productName,
-                    price: productPrice,
-                    quantity: 1
-                });
+                // User is logged out (default state)
+                userNameSpan.textContent = 'Guest';
+                welcomeBanner.style.display = 'none';
+                userButton.textContent = 'Sign Up / Login';
+                userButton.onclick = login;
+                userButton.classList.remove('btn-primary');
+                userButton.classList.add('btn-secondary');
             }
+        }
 
-            saveCart(cart); // Save the updated cart
+        function login() {
+            // Simulate a login process
+            const name = prompt("Enter your name (for simulation):") || "Developer";
+            const user = { name: name, isLoggedIn: true };
+            localStorage.setItem(USER_KEY, JSON.stringify(user));
+            alert(`Welcome, ${name}! You are now logged in.`);
+            loadUser();
+        }
 
-            // --- Visual Feedback ---
-            button.textContent = 'Added! ✓';
-            button.style.backgroundColor = '#4CAF50'; 
-            productCard.classList.add('added-to-cart');
+        function logout() {
+            // Simulate a logout process
+            localStorage.removeItem(USER_KEY);
+            alert("You have been logged out.");
+            loadUser();
+        }
 
-            // Revert button state after 1 second
+        document.addEventListener('DOMContentLoaded', loadUser);
+
+
+        // --- 4. Cart Logic ---
+        const CART_KEY = 'blaqo_cart';
+        const cartCountElement = document.getElementById('cart-count');
+
+        // Load cart data from localStorage
+        let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+        function updateCartCount() {
+            const count = cart.length;
+            cartCountElement.textContent = count;
+            cartCountElement.style.display = count > 0 ? 'block' : 'none';
+        }
+
+        function addToCart(productId, name, price, button) {
+            const product = { id: productId, name: name, price: price };
+            cart.push(product);
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            updateCartCount();
+            
+            // Visual feedback
+            const card = button.closest('.product-card');
+            card.classList.add('added-to-cart');
+            button.textContent = 'Added!';
+            button.disabled = true;
+
             setTimeout(() => {
+                card.classList.remove('added-to-cart');
                 button.textContent = 'Add to Cart';
-                button.style.backgroundColor = ''; // Revert to original CSS
-                productCard.classList.remove('added-to-cart');
+                button.disabled = false;
             }, 1000);
         }
 
-        // Attach event listeners to all 'Add to Cart' buttons
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', handleAddToCart);
+        // Add event listeners to all 'Add to Cart' buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.product-card');
+                const id = card.getAttribute('data-product-id');
+                const name = card.getAttribute('data-name');
+                const price = parseFloat(card.getAttribute('data-price'));
+                
+                if (id && name && !isNaN(price)) {
+                    addToCart(id, name, price, this);
+                }
+            });
         });
 
-        // Initialize cart count on page load
-        updateCartCount(loadCart());
-    });
-</script>
+        // Initialize cart display on load
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
 </body>
 </html>
