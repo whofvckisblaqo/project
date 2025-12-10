@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Seller | Blaqo Marketplace</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        /* =========================================
+        CSS VARIABLES (Consistent across all pages)
+        ========================================= */
+        :root {
+            --primary-color: #2b7bff;
+            --primary-hover: #496eff;
+            --dark-bg: #0b0b0b;
+            --mid-dark-bg: #151515;
+            --text-light: #fff;
+            --text-muted: #bdbdbd;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --blur-bg: rgba(0, 0, 0, 0.7);
+            --footer-secondary-bg: #131a22;
+            --error-color: #ff4d4d; /* New CSS variable for error messages */
+        }
+
+        /* =========================================
+        GLOBAL & PAGE STYLES (Unchanged for brevity, see previous response for full code)
+        ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            color: var(--text-light);
+            background: linear-gradient(180deg, var(--dark-bg), var(--mid-dark-bg));
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        a { text-decoration: none; color: var(--text-light); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 5%; }
+        .btn { padding: 12px 25px; border-radius: 50px; font-weight: 600; cursor: pointer; border: none; transition: all 0.3s ease; text-align: center; display: inline-block; }
+        .btn-primary { background: var(--primary-color); color: var(--text-light); }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: var(--blur-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+        }
+        
+        .seller-hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: radial-gradient(circle at 50% 10%, rgba(43, 123, 255, 0.1), transparent);
+        }
+
+        .seller-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; margin-bottom: 20px; }
+        .seller-hero h1 span { color: var(--primary-color); }
+        .seller-hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 30px; }
+        
+        .value-prop { padding: 60px 0; }
+        .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .value-card { background: var(--card-bg); padding: 30px; border-radius: 10px; text-align: center; border-bottom: 3px solid var(--primary-color); transition: transform 0.3s ease; }
+        .value-card:hover { transform: translateY(-5px); }
+        .value-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
+        .value-card h3 { font-size: 1.5rem; margin-bottom: 10px; font-weight: 700; }
+        .value-card p { color: var(--text-muted); }
+        
+        .onboarding-steps { padding: 60px 0; background-color: var(--mid-dark-bg); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .section-header { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 40px; }
+        .step-list { display: flex; justify-content: space-between; gap: 20px; }
+        .step-item { flex: 1; padding: 20px; background: var(--card-bg); border-radius: 10px; position: relative; text-align: center; }
+        .step-item:not(:last-child)::after { content: "\f054"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary-color); position: absolute; top: 50%; right: -25px; transform: translateY(-50%); font-size: 1.2rem; opacity: 0.5; }
+        .step-number { font-size: 2rem; font-weight: 900; color: var(--primary-color); margin-bottom: 10px; }
+        .step-item h4 { font-size: 1.2rem; margin-bottom: 10px; }
+
+        .seller-form-section { padding: 60px 0 80px; }
+        .seller-form-container { max-width: 700px; margin: 0 auto; background: var(--card-bg); padding: 40px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .seller-form-container h2 { margin-bottom: 30px; text-align: center; }
+
+        .form-group { margin-bottom: 20px; position: relative; /* Needed for absolute error positioning */ }
+
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-light); }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            background-color: var(--mid-dark-bg);
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Highlight invalid fields */
+        .form-group input.invalid,
+        .form-group textarea.invalid,
+        .form-group select.invalid {
+            border-color: var(--error-color) !important;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        /* Error Message Styling */
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
+            font-weight: 500;
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: var(--footer-secondary-bg);
+            padding: 20px 5%;
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+
+        /* Responsive styles unchanged */
+        @media (max-width: 900px) { /* ... */ }
+        @media (max-width: 600px) { /* ... */ }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Blaqo</a>
+        <a href="#seller-application" class="btn btn-primary">Apply Now</a>
+    </header>
+
+    <main>
+        
+        <section class="seller-hero">
+            <div class="container">
+                <h1>Turn Your Digital Assets into a <span>Sustainable Income</span>.</h1>
+                <p>Join the fastest-growing community for developers, designers, and educators to monetize your passion projects and expertise.</p>
+                <a class="btn btn-primary" href="#seller-application" role="button">Start Selling Today</a>
+            </div>
+        </section>
+        
+        <section class="value-prop">
+            <div class="container">
+                <div class="value-grid">
+                    
+                    <div class="value-card">
+                        <i class="fas fa-coins"></i>
+                        <h3>Highest Commissions</h3>
+                        <p>Enjoy industry-leading commission rates and transparent payout structures. Keep more of what you earn.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Massive Audience</h3>
+                        <p>Access thousands of entrepreneurs and buyers actively seeking products like yours on our global platform.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Secure & Automated</h3>
+                        <p>We handle secure payment processing, licensing, and VAT, allowing you to focus purely on product development.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="onboarding-steps">
+            <div class="container">
+                <h2 class="section-header">It's Simple to Start Selling</h2>
+                <div class="step-list">
+                    
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h4>Apply & Approval</h4>
+                        <p>Submit your application and portfolio for a quick review by our quality team.</p>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h4>Create Your Listing</h4>
+                        <p>Use our intuitive Seller Dashboard to upload and describe your products or courses.</p>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h4>Go Live & Earn</h4>
+                        <p>Once approved, your product is visible to the world. Start generating passive income.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="seller-form-section" id="seller-application">
+            <div class="container">
+                <div class="seller-form-container">
+                    <h2>Seller Application Form</h2>
+                    <form id="sellerApplicationForm"> 
+                        
+                        <div class="form-group">
+                            <label for="sellerName">Full Name</label>
+                            <input type="text" id="sellerName" required>
+                            <span class="error-message" data-for="sellerName">Please enter your full name (minimum 3 characters).</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sellerEmail">Email Address</label>
+                            <input type="email" id="sellerEmail" required>
+                            <span class="error-message" data-for="sellerEmail">Please enter a valid email address.</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sellerType">What do you plan to sell?</label>
+                            <select id="sellerType" required>
+                                <option value="" disabled selected>Select Product Type</option>
+                                <option value="website-template">Website Template / Theme</option>
+                                <option value="api-script">API / Code Script</option>
+                                <option value="mobile-app">Mobile App Source Code</option>
+                                <option value="online-course">Online Course / Tutorial</option>
+                                <option value="other">Other Digital Asset</option>
+                            </select>
+                            <span class="error-message" data-for="sellerType">Please select what you plan to sell.</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sellerPortfolio">Portfolio/Website Link (Required)</label>
+                            <input type="url" id="sellerPortfolio" placeholder="e.g., https://yourportfolio.com" required>
+                            <span class="error-message" data-for="sellerPortfolio">Please enter a valid portfolio/website URL.</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sellerExperience">Describe your experience and why you want to sell with Blaqo:</label>
+                            <textarea id="sellerExperience" rows="5" required></textarea>
+                            <span class="error-message" data-for="sellerExperience">Please provide a brief description (minimum 20 characters).</span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary form-submit-btn">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+<footer>
+    <p>&copy; 2025 Blaqo Marketplace. Empowering Digital Creators.</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('sellerApplicationForm');
+        
+        // --- Input Fields ---
+        const nameInput = document.getElementById('sellerName');
+        const emailInput = document.getElementById('sellerEmail');
+        const typeInput = document.getElementById('sellerType');
+        const portfolioInput = document.getElementById('sellerPortfolio');
+        const experienceInput = document.getElementById('sellerExperience');
+
+        // --- Utility Functions ---
+
+        // Function to show/hide error message and apply invalid class
+        function toggleError(inputElement, isValid, messageKey) {
+            const errorMessageElement = document.querySelector(`.error-message[data-for="${messageKey}"]`);
+            
+            if (isValid) {
+                inputElement.classList.remove('invalid');
+                if (errorMessageElement) {
+                    errorMessageElement.style.display = 'none';
+                }
+            } else {
+                inputElement.classList.add('invalid');
+                if (errorMessageElement) {
+                    errorMessageElement.style.display = 'block';
+                }
+            }
+        }
+        
+        // Basic Email Validation Regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        // Basic URL Validation Regex
+        const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
+        // --- Validation Logic ---
+
+        function validateField(inputElement) {
+            const value = inputElement.value.trim();
+            const id = inputElement.id;
+            let isValid = true;
+            
+            switch (id) {
+                case 'sellerName':
+                    isValid = value.length >= 3;
+                    break;
+                case 'sellerEmail':
+                    isValid = emailRegex.test(value);
+                    break;
+                case 'sellerType':
+                    isValid = value !== "";
+                    break;
+                case 'sellerPortfolio':
+                    // Check if it's a non-empty string that looks like a URL
+                    isValid = urlRegex.test(value);
+                    break;
+                case 'sellerExperience':
+                    isValid = value.length >= 20;
+                    break;
+                default:
+                    isValid = true;
+            }
+            
+            toggleError(inputElement, isValid, id);
+            return isValid;
+        }
+
+        // --- Real-time Validation (on blur) ---
+
+        [nameInput, emailInput, typeInput, portfolioInput, experienceInput].forEach(input => {
+            // Validate when the user leaves the field
+            input.addEventListener('blur', () => {
+                validateField(input);
+            });
+            
+            // Re-validate on input change to clear the error visually
+            input.addEventListener('input', () => {
+                 // Only run the full validation if the invalid class is already present
+                 if (input.classList.contains('invalid')) {
+                    validateField(input);
+                 }
+            });
+        });
+
+        // --- Form Submission Handler ---
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop the default form submission
+            
+            let allValid = true;
+            
+            // Run validation on all fields
+            if (!validateField(nameInput)) allValid = false;
+            if (!validateField(emailInput)) allValid = false;
+            if (!validateField(typeInput)) allValid = false;
+            if (!validateField(portfolioInput)) allValid = false;
+            if (!validateField(experienceInput)) allValid = false;
+            
+            if (allValid) {
+                // Successful submission logic
+                alert('Application Submitted Successfully! We will review your details and contact you soon.');
+                form.reset(); // Clear the form fields
+                
+                // Optional: Redirect the user after a delay
+                // setTimeout(() => {
+                //     window.location.href = 'index.html'; 
+                // }, 1500);
+                
+            } else {
+                // Find the first invalid element and focus on it
+                const firstInvalid = document.querySelector('.invalid');
+                if (firstInvalid) {
+                    firstInvalid.focus();
+                }
+                alert('Please correct the highlighted errors before submitting.');
+            }
+        });
+    });
+</script>
+</body>
+</html>

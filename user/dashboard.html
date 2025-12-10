@@ -91,6 +91,7 @@
             cursor: pointer;
             transition: background-color 0.15s, opacity 0.15s;
             border: none;
+            text-decoration: none;
         }
         .btn-primary {
             background-color: var(--color-primary);
@@ -201,6 +202,8 @@
             align-items: center;
             gap: 0.75rem;
             color: var(--color-primary);
+            cursor: pointer;
+            text-decoration: none;
         }
         .logo-text {
             color: var(--color-text-dark-light);
@@ -275,6 +278,7 @@
             width: 2.5rem;
             height: 2.5rem;
             border: 2px solid rgba(108, 99, 255, 0.5); /* border-primary/50 */
+            cursor: pointer;
         }
 
         /* --- 4. Main Content / Dashboard Grid --- */
@@ -343,6 +347,7 @@
             color: white;
             border: 2px solid var(--color-card-bg-light);
             transition: background-color 0.15s;
+            cursor: pointer;
         }
         .profile-edit-btn:hover { background-color: rgba(108, 99, 255, 0.9); }
         .profile-name {
@@ -377,6 +382,7 @@
             text-decoration: none;
             color: var(--color-text-dark-light);
             transition: background-color 0.15s;
+            cursor: pointer;
         }
         .list-item:hover { background-color: #F3F4F6; } /* gray-100 */
         .list-icon-wrapper {
@@ -495,6 +501,7 @@
         .social-icon {
             color: var(--color-text-light-light);
             transition: color 0.15s;
+            cursor: pointer;
         }
         .social-icon:hover { color: var(--color-primary); }
 
@@ -515,6 +522,7 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
             transition: background-color 0.15s;
             border: none;
+            text-decoration: none;
         }
         .fab:hover { background-color: #128C7E; } /* Darker Green */
         .fab svg {
@@ -534,6 +542,17 @@
             white-space: nowrap;
             border-width: 0;
         }
+
+        .truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .py-8 {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
     </style>
 </head>
 <body class="light">
@@ -542,34 +561,34 @@
 <div class="container">
 <div class="header-content">
 <div class="header-left">
-<div class="logo-group">
+<a href="../home.html" class="logo-group">
 <div class="size-7">
 <svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <path d="M44 11.2727C44 14.0109 39.8386 16.3957 33.69 17.6364C39.8386 18.877 44 21.2618 44 24C44 26.7382 39.8386 29.123 33.69 30.3636C39.8386 31.6043 44 33.9891 44 36.7273C44 40.7439 35.0457 44 24 44C12.9543 44 4 40.7439 4 36.7273C4 33.9891 8.16144 31.6043 14.31 30.3636C8.16144 29.123 4 26.7382 4 24C4 21.2618 8.16144 18.877 14.31 17.6364C8.16144 16.3957 4 14.0109 4 11.2727C4 7.25611 12.9543 4 24 4C35.0457 4 44 7.25611 44 11.2727Z"></path>
 </svg>
 </div>
 <h2 class="logo-text text-dark">Blaqo</h2>
-</div>
+</a>
 <nav class="nav">
-<a class="nav-link text-dark" href="#">Marketplace</a>
-<a class="nav-link text-dark" href="#">AI Tools</a>
-<a class="nav-link text-dark" href="#">E-Learning</a>
+<a class="nav-link text-dark" href="../market.html">Marketplace</a>
+<a class="nav-link text-dark" href="../home.html#products">AI Tools</a>
+<a class="nav-link text-dark" href="course.html">E-Learning</a>
 </nav>
 </div>
 <div class="header-right">
 <label class="search-label">
 <span class="material-symbols-outlined search-icon">search</span>
-<input class="input-text w-full" placeholder="Search products..." value=""/>
+<input class="input-text w-full" placeholder="Search products..." value="" onkeypress="handleSearch(event)"/>
 </label>
 <div class="icon-buttons-group">
-<button class="header-icon-btn">
+<button class="header-icon-btn" onclick="window.location.href='cart.html'" title="Shopping Cart">
 <span class="material-symbols-outlined text-xl">shopping_cart</span>
 </button>
-<button class="header-icon-btn">
+<button class="header-icon-btn" onclick="window.location.href='notifications.html'" title="Notifications">
 <span class="material-symbols-outlined text-xl">notifications</span>
 </button>
 </div>
-<div class="avatar" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCugB1FzrUt5YaaxE-ohhTl2y4cMgviVrHq3vdUrr-gxQbw1L35HHCTr5PWvjKQGBvu_yOwxBUYXtmejDJdddWx12lD_0mxb__KRGTwjxVdWuMdUwAOwaFMOqWlJvjiyWDGPts-jPyGRDS3tvip7a7sn7zbzYW4obcgsgibGAV0QSs8eGOuCHZK-rz1OdlEMewrXnKXT1ZK-tDRCuwAD_PkluWY4fZfQFfcRhoJRjJR67q5-Pqn-lKf1H3Jg6O1BTEe7lgu70RSVf4");'></div>
+<div class="avatar" onclick="window.location.href='profile.html'" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCugB1FzrUt5YaaxE-ohhTl2y4cMgviVrHq3vdUrr-gxQbw1L35HHCTr5PWvjKQGBvu_yOwxBUYXtmejDJdddWx12lD_0mxb__KRGTwjxVdWuMdUwAOwaFMOqWlJvjiyWDGPts-jPyGRDS3tvip7a7sn7zbzYW4obcgsgibGAV0QSs8eGOuCHZK-rz1OdlEMewrXnKXT1ZK-tDRCuwAD_PkluWY4fZfQFfcRhoJRjJR67q5-Pqn-lKf1H3Jg6O1BTEe7lgu70RSVf4");' title="View Profile"></div>
 </div>
 </div>
 </div>
@@ -583,7 +602,7 @@
 <div class="profile-section">
 <div class="profile-avatar-wrapper">
 <div class="profile-avatar" data-alt="User avatar image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBk3LyvNptYtUplfYouR4uFaYoV6cg6FZWBi1kumfufS_Bkx4Ta8ZNNVC52FdgQhmo40nE5H8_5pEzkMC3mdmbCAoEKNHiIrgyLe6xZ8BNMY0hvUEria_mc1dpk3cTMlOIw5SNFZi_4mrJqrF1v7YaodeuATfIZrPz3-BuHXG-vfu4hXpNO1vzcDm53UPd35JnU_P1pgPiVpNg_Tu8s59h8EK8SO-pB70TtaGzA86v07QRaOQKPc832iXdq2LxBfrTO4fsKRGnuRpI");'></div>
-<button class="profile-edit-btn">
+<button class="profile-edit-btn" onclick="window.location.href='edit-profile.html'" title="Edit Profile">
 <span class="material-symbols-outlined text-base">edit</span>
 </button>
 </div>
@@ -591,27 +610,27 @@
 <p class="profile-name text-dark">Welcome, Alex!</p>
 <p class="profile-join-date text-medium">Joined May 2024</p>
 </div>
-<button class="btn btn-primary-ghost w-full">
+<a href="profile.html" class="btn btn-primary-ghost w-full">
 <span class="truncate">View Profile</span>
-</button>
+</a>
 </div>
 </div>
 <div class="dashboard-card">
 <h3 class="getting-started-title text-dark">Getting Started</h3>
 <p class="getting-started-desc text-medium">Follow these simple steps to get the most out of our platform.</p>
-<a class="list-item text-dark" href="#">
+<a class="list-item text-dark" href="../home.html#products">
 <div class="list-icon-wrapper">
 <span class="material-symbols-outlined text-base">person_search</span>
 </div>
 <span class="list-item-text">Find a Product</span>
 </a>
-<a class="list-item text-dark" href="#">
+<a class="list-item text-dark" href="../home.html#products">
 <div class="list-icon-wrapper">
 <span class="material-symbols-outlined text-base">add_shopping_cart</span>
 </div>
 <span class="list-item-text">Make a Purchase</span>
 </a>
-<a class="list-item text-dark" href="#">
+<a class="list-item text-dark" href="download.html">
 <div class="list-icon-wrapper">
 <span class="material-symbols-outlined text-base">system_update_alt</span>
 </div>
@@ -625,16 +644,16 @@
 <div class="dashboard-card">
 <div class="card-header">
 <span class="material-symbols-outlined card-icon">download</span>
-<h3 class="card-title text-dark"> My Downloads</h3>
+<h3 class="card-title text-dark">My Downloads</h3>
 </div>
 <div class="card-body">
 <span class="material-symbols-outlined card-body-icon">cloud_off</span>
 <p class="card-body-text text-medium">You have no downloads yet.</p>
 </div>
 <div class="card-footer">
-<button class="btn btn-primary w-full">
-<span class="truncate"><a href="download.html">Browse Marketplace</a></span>
-</button>
+<a href="download.html" class="btn btn-primary w-full">
+<span class="truncate">Browse Marketplace</span>
+</a>
 </div>
 </div>
 
@@ -648,9 +667,9 @@
 <p class="card-body-text text-medium">Your order history is empty.</p>
 </div>
 <div class="card-footer">
-<button class="btn btn-primary w-full">
-<span class="truncate"><a href="order-history.html">Start Shopping</a></span>
-</button>
+<a href="order-history.html" class="btn btn-primary w-full">
+<span class="truncate">Start Shopping</span>
+</a>
 </div>
 </div>
 

@@ -31,7 +31,7 @@
         }
 
         /* =========================================
-        GLOBAL STYLES
+        GLOBAL STYLES (Reset and Base)
         ========================================= */
         * {
             margin: 0;
@@ -140,6 +140,28 @@
         header nav a:hover::after {
             width: 100%;
         }
+        
+        /* Cart Counter Style */
+        .cart-link {
+            position: relative;
+            margin-right: 0 !important;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -15px;
+            background: #ff0077; /* A contrasting color */
+            color: var(--text-light);
+            border-radius: 50%;
+            padding: 2px 7px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            line-height: 1;
+            min-width: 20px;
+            text-align: center;
+            display: none; /* Hidden by default when empty */
+        }
 
         .signup-btn {
             font-weight: 700;
@@ -148,7 +170,7 @@
         /* Mobile Menu Toggle */
         .menu-toggle {
             display: none;
-            position: fixed;
+            position: fixed; /* Keep toggle button visible */
             top: 25px;
             right: 25px;
             background: var(--primary-color);
@@ -298,7 +320,14 @@
             display: flex;
             gap: 20px;
             padding-bottom: 10px;
+            /* Hide scrollbar for aesthetics */
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
         }
+        .carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
 
         .carousel-slide {
             display: flex;
@@ -353,6 +382,7 @@
         }
 
         .product-card {
+            /* Added data attributes here for easy JS targeting */
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
@@ -391,6 +421,9 @@
         .product-details {
             padding: 20px;
             text-align: left;
+            flex-grow: 1; /* Ensures equal height among cards */
+            display: flex;
+            flex-direction: column;
         }
 
         .product-details h3 {
@@ -404,6 +437,7 @@
             font-size: 1.5rem;
             color: var(--primary-color);
             margin-bottom: 15px;
+            margin-top: auto; /* Pushes the button to the bottom */
         }
 
         .add-to-cart {
@@ -421,6 +455,12 @@
         .add-to-cart:hover {
             background: var(--primary-hover);
             transform: translateY(-1px);
+        }
+
+        /* Animation for added product feedback */
+        .product-card.added-to-cart {
+            border: 2px solid #ff0077;
+            box-shadow: 0 0 20px rgba(255, 0, 119, 0.7);
         }
         
         /* HOW IT WORKS */
@@ -553,6 +593,10 @@
             border: 2px solid var(--primary-color);
         }
 
+        .author-info {
+            line-height: 1.2;
+        }
+        
         .author-name {
             font-size: 1.1rem;
             font-weight: 700;
@@ -708,13 +752,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive menu class for JS toggle */
-        @media (max-width: 768px) {
-            header nav.active {
-                display: flex;
-            }
-        }
-
         /* =========================================
         RESPONSIVE DESIGN
         ========================================= */
@@ -735,18 +772,26 @@
         
         @media (max-width: 768px) {
             header {
-                flex-wrap: wrap;
-                justify-content: space-between;
-                padding-right: 80px;
+                /* Remove padding-right adjustment as toggle button is fixed */
+                padding-right: 5%;
             }
 
             header nav {
-                display: none;
+                /* Initially hidden by default, shown by JS/class on toggle */
+                display: none; 
                 flex-direction: column;
                 width: 100%;
                 text-align: center;
                 background: var(--blur-bg);
                 padding: 10px 0;
+                position: absolute;
+                top: 72px; /* Position below header */
+                left: 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            header nav.active {
+                display: flex; /* Show when active */
             }
             
             header nav a {
@@ -759,7 +804,8 @@
             }
 
             .signup-btn {
-                display: none;
+                /* Hide desktop logout/signup button on mobile */
+                display: none; 
             }
 
             .menu-toggle {
@@ -817,6 +863,11 @@
                 padding: 20px 0;
                 border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
             }
+            
+            /* Remove border from last section on mobile */
+            .footer-content > div:last-child {
+                border-bottom: none;
+            }
         }
         
         @media (max-width: 480px) {
@@ -836,13 +887,16 @@
 <body>
 
     <header>
-        <div class="logo">Blaqo</div>
+        <a href="#" class="logo">Blaqo</a>
 
         <nav id="main-nav">
             <a href="#">Home</a>
-            <a href="#">Website</a>
-            <a href="#">Ai Tools</a>
-            <a href="#">Api</a>
+            <a href="/user/dashboard.html">Dashboard</a>
+            <a href="#">Become a Seller</a>
+            <a href="cart.html" class="cart-link" aria-label="Shopping Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
        </nav>
 
         <button onclick="logout()" class="btn btn-primary signup-btn desktop-only">Logout</button>
@@ -850,7 +904,6 @@
         <button class="menu-toggle" aria-label="Toggle navigation" id="nav-toggle">☰</button>
     </header>
 
-    <!-- Welcome Banner -->
     <div class="welcome-banner" id="welcome-banner">
         <h2>Welcome, <span class="user-name" id="user-name">Guest</span>! 👋</h2>
         <p>We're glad to have you back at Blaqo Marketplace</p>
@@ -868,8 +921,8 @@
             </p>
 
             <div class="hero-actions">
-                <a class="btn btn-primary" href="#" role="button">Browse Marketplace</a>
-                <a class="btn btn-secondary" href="#" role="button">Become a Seller</a>
+                <a class="btn btn-primary" href="market.html" role="button">Browse Marketplace</a>
+                <a class="btn btn-secondary" href="seller.html" role="button">Become a Seller</a>
             </div>
         </div>
     </div>
@@ -900,7 +953,8 @@
         <div class="products-grid-container">
             <div class="products-grid">
 
-                <div class="product-card" data-aos="zoom-in" data-aos-delay="0">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="0" 
+                     data-product-id="P001" data-name="Complete E-commerce Course" data-price="170">
                     <div class="product-img">
                         <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=200&fit=crop" alt="e-commerce course">
                     </div>
@@ -911,7 +965,8 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="100" 
+                     data-product-id="P002" data-name="Social Media Automation Bot" data-price="150">
                     <div class="product-img">
                         <img src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=400&h=200&fit=crop" alt="social media automations">
                     </div>
@@ -922,7 +977,8 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="200"
+                     data-product-id="P003" data-name="AI Content Generation Tool" data-price="180">
                     <div class="product-img">
                         <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop" alt="AI content tool">
                     </div>
@@ -933,7 +989,8 @@
                     </div>
                 </div>
                 
-                <div class="product-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="300"
+                     data-product-id="P004" data-name="SaaS Subscription Platform" data-price="249">
                     <div class="product-img">
                         <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=200&fit=crop" alt="SaaS Website Template">
                     </div>
@@ -948,7 +1005,7 @@
         </div>
         
         <section class="how-it-works">
-             <h2 class="section-title">Your 4 Steps to Digital Launch</h2>
+               <h2 class="section-title">Your 4 Steps to Digital Launch</h2>
             <div class="container">
                 <div class="steps">
                     <div class="step" data-aos="fade-up" data-aos-delay="0">
@@ -1046,7 +1103,7 @@
             <ul>
                 <li><a href="#">About Blaqo</a></li>
                 <li><a href="#">Careers</a></li>
-                <li><a href="#">Press</a></li>
+                <li><a href="#">Press Kit</a></li>
                 <li><a href="#">Blog</a></li>
             </ul>
         </div>
@@ -1055,81 +1112,155 @@
             <h3>Support</h3>
             <ul>
                 <li><a href="#">Help Center</a></li>
-                <li><a href="#">Submit a Ticket</a></li>
-                <li><a href="#">Product Documentation</a></li>
-                <li><a href="#">Platform Status</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Terms & Privacy</a></li>
             </ul>
         </div>
 
         <div class="footer-newsletter">
-            <h3>Stay Updated</h3>
-            <p>Subscribe to our newsletter for the latest deals and new digital assets.</p>
+            <h3>Stay Connected</h3>
+            <p>Get the latest updates, deals, and insights delivered to your inbox.</p>
             <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email address" required aria-label="Email address for newsletter">
+                <input type="email" placeholder="Your Email Address" required>
                 <button type="submit">Subscribe</button>
             </form>
         </div>
+
     </div>
-    
+
     <div class="footer-bottom">
         <div class="social-icons">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
-        <p class="footer-copyright">&copy; 2025 Blaqo Marketplace. All rights reserved. <a href="#">Privacy Policy</a></p>
+        <p class="footer-copyright">&copy; 2025 Blaqo Marketplace. All Rights Reserved.</p>
     </div>
+
 </footer>
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
 <script>
-    // Check authentication and redirect if not logged in
-    function checkAuth() {
-        const isLoggedIn = sessionStorage.getItem('isLoggedIn') || localStorage.getItem('isLoggedIn');
-        const userData = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
-        
-        // If not logged in, redirect to login page
-        if (isLoggedIn !== 'true' || !userData) {
-            window.location.href = 'auth/login.html';
-            return;
-        }
-        
-        // If logged in, display user's name
-        const user = JSON.parse(userData);
-        document.getElementById('user-name').textContent = user.fullName;
-    }
-
-    // Logout function
-    function logout() {
-        // Clear all user data
-        sessionStorage.removeItem('currentUser');
-        sessionStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('isLoggedIn');
-        
-        // Redirect to index page
-        window.location.href = 'index.html';
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
-        // Check authentication first
-        checkAuth();
         
-        // Initialize AOS
+        // --- 1. Initialize AOS (Animate On Scroll) ---
         AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-            once: false,
+            duration: 800,
+            once: true,
         });
 
-        // Mobile Menu Toggle Logic
+        // --- 2. Mobile Menu Toggle ---
         const navToggle = document.getElementById('nav-toggle');
         const mainNav = document.getElementById('main-nav');
-        
+
         navToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
+            // Toggle icon text between '☰' and '✕'
+            navToggle.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
         });
+
+        // --- 3. User & Logout Functions ---
+        const userNameElement = document.getElementById('user-name');
+        const welcomeBanner = document.getElementById('welcome-banner');
+
+        // Check for a stored user name (Simulation for demonstration)
+        const storedUserName = localStorage.getItem('blaqo_username');
+        if (storedUserName) {
+            userNameElement.textContent = storedUserName;
+            welcomeBanner.style.display = 'block'; // Show if a user is "logged in"
+        } else {
+            welcomeBanner.style.display = 'none'; // Hide if no user is found
+        }
+        
+        // Expose logout to global scope for the button's inline onclick attribute
+        window.logout = function() {
+            localStorage.removeItem('blaqo_username');
+            // For persistence, you might set a default 'Guest' name instead of hiding the banner
+            userNameElement.textContent = 'Guest'; 
+            welcomeBanner.style.display = 'none'; // Hide the banner on logout
+            alert("Logged out successfully.");
+            // Optional: window.location.reload(); 
+        }
+
+        // --- 4. Cart Management Logic (Robust) ---
+        const cartCountElement = document.getElementById('cart-count');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+        // Load cart from Local Storage, defaulting to an empty array
+        function loadCart() {
+            const cartJSON = localStorage.getItem('blaqo_cart');
+            return cartJSON ? JSON.parse(cartJSON) : [];
+        }
+
+        // Save cart to Local Storage and update the counter
+        function saveCart(cart) {
+            localStorage.setItem('blaqo_cart', JSON.stringify(cart));
+            updateCartCount(cart);
+        }
+
+        // Update the cart counter UI
+        function updateCartCount(cart) {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+            // Only show the counter if there are items
+            cartCountElement.style.display = totalItems > 0 ? 'block' : 'none';
+        }
+
+        // The main Add to Cart function
+        function handleAddToCart(event) {
+            const button = event.currentTarget;
+            const productCard = button.closest('.product-card');
+
+            // Extract data from the data attributes
+            const productId = productCard.dataset.productId;
+            const productName = productCard.dataset.name;
+            const productPrice = parseFloat(productCard.dataset.price);
+
+            if (!productId || !productName || isNaN(productPrice)) {
+                console.error("Missing or invalid product data attributes.");
+                return;
+            }
+
+            let cart = loadCart();
+
+            // Check if product is already in cart. If yes, increase quantity.
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
+                });
+            }
+
+            saveCart(cart); // Save the updated cart
+
+            // --- Visual Feedback ---
+            button.textContent = 'Added! ✓';
+            button.style.backgroundColor = '#4CAF50'; 
+            productCard.classList.add('added-to-cart');
+
+            // Revert button state after 1 second
+            setTimeout(() => {
+                button.textContent = 'Add to Cart';
+                button.style.backgroundColor = ''; // Revert to original CSS
+                productCard.classList.remove('added-to-cart');
+            }, 1000);
+        }
+
+        // Attach event listeners to all 'Add to Cart' buttons
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', handleAddToCart);
+        });
+
+        // Initialize cart count on page load
+        updateCartCount(loadCart());
     });
 </script>
+</body>
+</html>
