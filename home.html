@@ -8,13 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <style>
         /* =========================================
         CSS VARIABLES
         ========================================= */
         :root {
-            --primary-color: #2b7bff; /* Bright Blue */
+            --primary-color: #2b7bff;
             --primary-hover: #496eff;
             --dark-bg: #0b0b0b;
             --mid-dark-bg: #151515;
@@ -140,7 +142,6 @@
         }
 
         .signup-btn {
-            /* Inherits styles from .btn and .btn-primary */
             font-weight: 700;
         }
         
@@ -158,6 +159,43 @@
             border-radius: 8px;
             z-index: 1001;
             cursor: pointer;
+        }
+
+        /* Welcome Banner Styles */
+        .welcome-banner {
+            background: linear-gradient(135deg, rgba(43, 123, 255, 0.1), rgba(73, 110, 255, 0.05));
+            padding: 25px 5%;
+            text-align: center;
+            border-bottom: 2px solid rgba(43, 123, 255, 0.3);
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .welcome-banner h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .welcome-banner h2 .user-name {
+            color: var(--primary-color);
+            text-shadow: 0 0 20px rgba(43, 123, 255, 0.5);
+        }
+
+        .welcome-banner p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* =========================================
@@ -259,7 +297,7 @@
             scroll-snap-type: x mandatory;
             display: flex;
             gap: 20px;
-            padding-bottom: 10px; /* Space for scrollbar */
+            padding-bottom: 10px;
         }
 
         .carousel-slide {
@@ -413,9 +451,9 @@
         .step:not(:last-child)::after {
             content: '';
             position: absolute;
-            top: 70px; /* Align with center of circle */
+            top: 70px;
             left: calc(50% + 70px); 
-            width: calc(100% - 140px - 60px); /* Adjust based on circle size and gap */
+            width: calc(100% - 140px - 60px);
             height: 2px;
             background: rgba(255, 255, 255, 0.1);
             z-index: 1;
@@ -670,6 +708,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Responsive menu class for JS toggle */
+        @media (max-width: 768px) {
+            header nav.active {
+                display: flex;
+            }
+        }
+
         /* =========================================
         RESPONSIVE DESIGN
         ========================================= */
@@ -680,7 +725,7 @@
             }
             
             .step {
-                flex: 1 1 45%; /* Allow two steps per row */
+                flex: 1 1 45%;
             }
 
             .step:not(:last-child)::after {
@@ -692,7 +737,7 @@
             header {
                 flex-wrap: wrap;
                 justify-content: space-between;
-                padding-right: 80px; /* Space for the toggle button */
+                padding-right: 80px;
             }
 
             header nav {
@@ -714,16 +759,13 @@
             }
 
             .signup-btn {
-                display: none; /* Hide button in header, show in mobile menu if needed */
+                display: none;
             }
 
             .menu-toggle {
                 display: block;
             }
             
-            /* Toggle menu functionality (using a checkbox/JS is better, but CSS-only via sibling selector is common) */
-            /* Assuming simple JS implementation for class toggle for brevity */
-
             .hero {
                 padding: 60px 20px 40px;
             }
@@ -784,6 +826,10 @@
              .hero-sub {
                 font-size: 1rem;
              }
+             
+             .welcome-banner h2 {
+                font-size: 1.5rem;
+             }
         }
     </style>
 </head>
@@ -797,13 +843,18 @@
             <a href="#">Website</a>
             <a href="#">Ai Tools</a>
             <a href="#">Api</a>
-   
-        </nav>
+       </nav>
 
-        <a href="auth/signup.html" class="btn btn-primary signup-btn desktop-only">Signup/Login</a>
+        <button onclick="logout()" class="btn btn-primary signup-btn desktop-only">Logout</button>
         
         <button class="menu-toggle" aria-label="Toggle navigation" id="nav-toggle">☰</button>
     </header>
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner" id="welcome-banner">
+        <h2>Welcome, <span class="user-name" id="user-name">Guest</span>! 👋</h2>
+        <p>We're glad to have you back at Blaqo Marketplace</p>
+    </div>
 
     <div class="hero">
         <div class="hero-inner">
@@ -835,24 +886,23 @@
         <div class="carousel-container">
             <div class="carousel">
                 <div class="carousel-slide">
-                   <div class="carousel-icon"><i class="fa-solid fa-code"></i>APIs & Scripts</div>
-                   <div class="carousel-icon"><i class="fa-solid fa-globe"></i>Ready Websites</div>
-                   <div class="carousel-icon"><i class="fa-solid fa-mobile-screen"></i>Mobile Apps</div>
-                   <div class="carousel-icon"><i class="fa-solid fa-robot"></i>AI Tools</div>
-                   <div class="carousel-icon"><i class="fa-solid fa-graduation-cap"></i>Online Courses</div>
-                   <div class="carousel-icon"><i class="fa-solid fa-chart-line"></i>Business Bots</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-code"></i>APIs & Scripts</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-globe"></i>Ready Websites</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-mobile-screen"></i>Mobile Apps</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-robot"></i>AI Tools</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-graduation-cap"></i>Online Courses</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-chart-line"></i>Business Bots</div>
                 </div>
             </div>
         </div>
         
         <h2 class="section-header">🔥 Featured Products</h2>
-        
         <div class="products-grid-container">
             <div class="products-grid">
-                
-                <div class="product-card">
+
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="0">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x200/2b7bff/FFFFFF?text=E-commerce+Course" alt="e-commerce course">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=200&fit=crop" alt="e-commerce course">
                     </div>
                     <div class="product-details">
                         <h3>Complete E-commerce Course</h3>
@@ -861,9 +911,9 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x200/496eff/FFFFFF?text=Social+Automation+Tool" alt="social media automations">
+                        <img src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=400&h=200&fit=crop" alt="social media automations">
                     </div>
                     <div class="product-details">
                         <h3>Social Media Automation Bot</h3>
@@ -872,9 +922,9 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="200">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x200/2b7bff/FFFFFF?text=AI+Content+Generator" alt="AI content tool">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop" alt="AI content tool">
                     </div>
                     <div class="product-details">
                         <h3>AI Content Generation Tool</h3>
@@ -883,9 +933,9 @@
                     </div>
                 </div>
                 
-                <div class="product-card">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="300">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x200/496eff/FFFFFF?text=SaaS+Subscription+Website" alt="SaaS Website Template">
+                        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=200&fit=crop" alt="SaaS Website Template">
                     </div>
                     <div class="product-details">
                         <h3>SaaS Subscription Platform</h3>
@@ -893,14 +943,15 @@
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
+                
             </div>
         </div>
         
         <section class="how-it-works">
-            <h2 class="section-title">Your 4 Steps to Digital Launch</h2>
+             <h2 class="section-title">Your 4 Steps to Digital Launch</h2>
             <div class="container">
                 <div class="steps">
-                    <div class="step">
+                    <div class="step" data-aos="fade-up" data-aos-delay="0">
                         <div class="icon-circle">
                             <i class="fas fa-search"></i>
                         </div>
@@ -908,7 +959,7 @@
                         <p class="step-description">Explore thousands of pre-built digital products in our marketplace.</p>
                     </div>
 
-                    <div class="step">
+                    <div class="step" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-circle">
                             <i class="fas fa-shopping-bag"></i>
                         </div>
@@ -916,7 +967,7 @@
                         <p class="step-description">Purchase securely and instantly download your ready-made solution.</p>
                     </div>
 
-                    <div class="step">
+                    <div class="step" data-aos="fade-up" data-aos-delay="200">
                         <div class="icon-circle">
                             <i class="fas fa-wrench"></i>
                         </div>
@@ -924,7 +975,7 @@
                         <p class="step-description">Easily customize the product code to fit your brand and specific needs.</p>
                     </div>
 
-                    <div class="step">
+                    <div class="step" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon-circle">
                             <i class="fas fa-rocket"></i>
                         </div>
@@ -935,118 +986,150 @@
             </div>
         </section>
 
-        <section class="testimonials">
-            <h2 class="section-title">Loved by Digital Innovators</h2>
-            <div class="container">
-                <div class="testimonial-grid">
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"Blaqo saved me months of development time. I found the perfect script for my project and launched in a week! Highly efficient."</p>
-                        <div class="testimonial-author">
-                            <img src="https://i.pravatar.cc/150?img=5" alt="Sarah L." class="author-image">
-                            <div class="author-info">
-                                <h4 class="author-name">Sarah L.</h4>
-                                <p class="author-title">Startup Founder</p>
-                            </div>
+    <section class="testimonials">
+        <h2 class="section-title">Loved by Digital Innovators</h2>
+        <div class="container">
+            <div class="testimonial-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="0">
+                    <p class="testimonial-text">"Blaqo saved me months of development time. I found the perfect script for my project and launched in a week! Highly efficient."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=5" alt="Sarah L." class="author-image">
+                        <div class="author-info">
+                            <h4 class="author-name">Sarah L.</h4>
+                            <p class="author-title">Startup Founder</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"The quality of the websites available is top-notch. I bought a template and had my portfolio online the same day. Incredible value!"</p>
-                        <div class="testimonial-author">
-                            <img src="https://i.pravatar.cc/150?img=12" alt="Mike R." class="author-image">
-                            <div class="author-info">
-                                <h4 class="author-name">Mike R.</h4>
-                                <p class="author-title">Freelance Designer</p>
-                            </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <p class="testimonial-text">"The quality of the websites available is top-notch. I bought a template and had my portfolio online the same day. Incredible value!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="Mike R." class="author-image">
+                        <div class="author-info">
+                            <h4 class="author-name">Mike R.</h4>
+                            <p class="author-title">Freelance Designer</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">"As a seller, the platform is fantastic. It's easy to list my products, and the community is very supportive. They handle all the payment processing securely."</p>
-                        <div class="testimonial-author">
-                            <img src="https://i.pravatar.cc/150?img=9" alt="Chloe T." class="author-image">
-                            <div class="author-info">
-                                <h4 class="author-name">Chloe T.</h4>
-                                <p class="author-title">Developer & Seller</p>
-                            </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <p class="testimonial-text">"As a seller, the platform is fantastic. It's easy to list my products, and the community is very supportive. They handle all the payment processing securely."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=9" alt="Chloe T." class="author-image">
+                        <div class="author-info">
+                            <h4 class="author-name">Chloe T.</h4>
+                            <p class="author-title">Developer & Seller</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+</main>
 
-    <footer class="site-footer">
-        <div class="footer-content">
+<footer class="site-footer">
+    <div class="footer-content">
 
-            <div class="footer-section">
-                <h3>Product</h3>
-                <ul>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Marketplace Pricing</a></li>
-                    <li><a href="#">Seller Integrations</a></li>
-                    <li><a href="#">Partner API</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Company</h3>
-                <ul>
-                    <li><a href="#">About Blaqo</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Submit a Ticket</a></li>
-                    <li><a href="#">Product Documentation</a></li>
-                    <li><a href="#">Platform Status</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-newsletter">
-                <h3>Stay Updated</h3>
-                <p>Subscribe to our newsletter for the latest deals and new digital assets.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address" required aria-label="Email address for newsletter">
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-            
+        <div class="footer-section">
+            <h3>Product</h3>
+            <ul>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Marketplace Pricing</a></li>
+                <li><a href="#">Seller Integrations</a></li>
+                <li><a href="#">Partner API</a></li>
+            </ul>
         </div>
 
-        <div class="footer-bottom">
-            
-            <div class="social-icons">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> 
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a> 
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a> 
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> 
-            </div>
-
-            <div class="footer-copyright">
-                &copy; 2025 Blaqo Marketplace. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-            </div>
-
+        <div class="footer-section">
+            <h3>Company</h3>
+            <ul>
+                <li><a href="#">About Blaqo</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
         </div>
 
-    </footer>
+        <div class="footer-section">
+            <h3>Support</h3>
+            <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Submit a Ticket</a></li>
+                <li><a href="#">Product Documentation</a></li>
+                <li><a href="#">Platform Status</a></li>
+            </ul>
+        </div>
 
-    <script>
-        document.getElementById('nav-toggle').onclick = function() {
-            var nav = document.getElementById('main-nav');
-            if (nav.style.display === 'flex') {
-                nav.style.display = 'none';
-            } else {
-                nav.style.display = 'flex';
-            }
+        <div class="footer-newsletter">
+            <h3>Stay Updated</h3>
+            <p>Subscribe to our newsletter for the latest deals and new digital assets.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required aria-label="Email address for newsletter">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p class="footer-copyright">&copy; 2025 Blaqo Marketplace. All rights reserved. <a href="#">Privacy Policy</a></p>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script>
+    // Check authentication and redirect if not logged in
+    function checkAuth() {
+        const isLoggedIn = sessionStorage.getItem('isLoggedIn') || localStorage.getItem('isLoggedIn');
+        const userData = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
+        
+        // If not logged in, redirect to login page
+        if (isLoggedIn !== 'true' || !userData) {
+            window.location.href = 'auth/login.html';
+            return;
         }
-    </script>
-</body>
-</html>
+        
+        // If logged in, display user's name
+        const user = JSON.parse(userData);
+        document.getElementById('user-name').textContent = user.fullName;
+    }
+
+    // Logout function
+    function logout() {
+        // Clear all user data
+        sessionStorage.removeItem('currentUser');
+        sessionStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('isLoggedIn');
+        
+        // Redirect to index page
+        window.location.href = 'index.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check authentication first
+        checkAuth();
+        
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: false,
+        });
+
+        // Mobile Menu Toggle Logic
+        const navToggle = document.getElementById('nav-toggle');
+        const mainNav = document.getElementById('main-nav');
+        
+        navToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+    });
+</script>

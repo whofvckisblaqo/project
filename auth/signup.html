@@ -10,7 +10,6 @@
     <style>
         /* CSS Variables for Theme */
         :root {
-            /* Light Mode Defaults */
             --primary-color: #3838ff;
             --background-light: #F9FAFB;
             --background-dark: #0f0f23;
@@ -29,7 +28,6 @@
         }
 
         .dark {
-            /* Dark Mode Overrides */
             --text-color: #e5e7eb;
             --text-secondary: #9ca3af;
             --text-tertiary: #6b7280;
@@ -190,25 +188,31 @@
         .backdrop-blur-sm { backdrop-filter: blur(4px); }
         .dark .border-gray-800 { border-color: var(--border-color); }
 
-        /* FAB Button */
-        .bg-green-500 { background-color: #22c55e; }
-        .hover\:bg-green-600:hover { background-color: #16a34a; }
-        .fixed { position: fixed; }
-        .bottom-6 { bottom: 1.5rem; }
-        .right-6 { right: 1.5rem; }
-
-        /* Media Queries for Responsiveness */
-        @media (min-width: 640px) {
-            .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-            .sm\:p-10 { padding: 2.5rem; }
+        /* Error message styles */
+        .error-message {
+            color: #dc2626;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        .error-message.show {
+            display: block;
+        }
+        .input-error {
+            border-color: #dc2626 !important;
         }
 
-        @media (min-width: 768px) {
-            .md\:flex { display: flex; }
+        /* Success message */
+        .success-message {
+            background-color: #10b981;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: none;
         }
-
-        @media (min-width: 1024px) {
-            .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .success-message.show {
+            display: block;
         }
 
         /* Grid layout for footer */
@@ -216,7 +220,20 @@
         .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         @media (min-width: 768px) {
             .md\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .md\:flex { display: flex; }
         }
+
+        @media (min-width: 640px) {
+            .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .sm\:p-10 { padding: 2.5rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+        }
+
+        /* Cursor pointer */
+        .cursor-pointer { cursor: pointer; }
     </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-[#0c0c1d] dark:text-gray-200">
@@ -247,9 +264,9 @@
 <button class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-transparent text-gray-600 dark:text-gray-300 dark:hover:bg-gray-800 hover:bg-gray-100 gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-3 transition-colors">
 <span class="material-symbols-outlined text-xl">shopping_cart</span>
 </button>
-<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-gray-700 dark:text-gray-300 text-sm font-bold leading-normal tracking-[0.015em] border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<a href="login.html" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-gray-700 dark:text-gray-300 text-sm font-bold leading-normal tracking-[0.015em] border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
 <span class="truncate">Login</span>
-</button>
+</a>
 </div>
 </div>
 </div>
@@ -261,18 +278,25 @@
 <h1 class="text-[#0c0c1d] dark:text-white tracking-tight text-3xl font-bold leading-tight pb-2">Create Your Account</h1>
 <p class="text-gray-500 dark:text-gray-400 text-sm">Join Blaqo to access a world of digital assets.</p>
 </div>
-<form action="#" class="mt-8 space-y-6" method="POST">
+
+<div id="success-msg" class="success-message">
+Account created successfully! Redirecting...
+</div>
+
+<form id="signup-form" class="mt-8 space-y-6">
 <div class="space-y-4 rounded-md">
 <div>
 <label class="flex flex-col min-w-40 flex-1" for="full-name">
 <p class="text-[#0c0c1d] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Full Name</p>
 <input autocomplete="name" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0c0c1d] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-gray-800 focus:border-primary/50 h-12 placeholder:text-gray-400 p-[15px] text-sm font-normal leading-normal" id="full-name" name="full-name" placeholder="Enter your full name" required type="text"/>
+<span id="name-error" class="error-message">Please enter your full name</span>
 </label>
 </div>
 <div>
 <label class="flex flex-col min-w-40 flex-1" for="email-address">
 <p class="text-[#0c0c1d] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Email Address</p>
 <input autocomplete="email" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0c0c1d] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-gray-800 focus:border-primary/50 h-12 placeholder:text-gray-400 p-[15px] text-sm font-normal leading-normal" id="email-address" name="email" placeholder="you@example.com" required type="email"/>
+<span id="email-error" class="error-message">Please enter a valid email address</span>
 </label>
 </div>
 <div>
@@ -280,10 +304,11 @@
 <p class="text-[#0c0c1d] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Password</p>
 <div class="relative flex w-full flex-1 items-stretch">
 <input autocomplete="new-password" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg text-[#0c0c1d] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-gray-800 focus:border-primary/50 h-12 placeholder:text-gray-400 p-[15px] border-r-0 text-sm font-normal leading-normal" id="password" name="password" placeholder="8+ characters" required type="password"/>
-<div class="text-gray-400 flex border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-gray-800 items-center justify-center pr-3 rounded-r-lg border-l-0">
+<div class="text-gray-400 flex border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-gray-800 items-center justify-center pr-3 rounded-r-lg border-l-0 cursor-pointer" onclick="togglePassword('password', this)">
 <span class="material-symbols-outlined password-toggle text-xl">visibility_off</span>
 </div>
 </div>
+<span id="password-error" class="error-message">Password must be at least 8 characters</span>
 </label>
 </div>
 <div>
@@ -291,20 +316,22 @@
 <p class="text-[#0c0c1d] dark:text-gray-200 text-sm font-medium leading-normal pb-2">Confirm Password</p>
 <div class="relative flex w-full flex-1 items-stretch">
 <input autocomplete="new-password" class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg text-[#0c0c1d] dark:text-gray-200 focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-gray-800 focus:border-primary/50 h-12 placeholder:text-gray-400 p-[15px] border-r-0 text-sm font-normal leading-normal" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required type="password"/>
-<div class="text-gray-400 flex border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-gray-800 items-center justify-center pr-3 rounded-r-lg border-l-0">
+<div class="text-gray-400 flex border border-gray-300 dark:border-gray-700 bg-background-light dark:bg-gray-800 items-center justify-center pr-3 rounded-r-lg border-l-0 cursor-pointer" onclick="togglePassword('confirm-password', this)">
 <span class="material-symbols-outlined password-toggle text-xl">visibility_off</span>
 </div>
 </div>
+<span id="confirm-password-error" class="error-message">Passwords do not match</span>
 </label>
 </div>
 </div>
 <div class="flex items-center">
-<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" id="terms-and-conditions" name="terms-and-conditions" type="checkbox"/>
+<input class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary dark:bg-gray-700 dark:border-gray-600" id="terms-and-conditions" name="terms-and-conditions" type="checkbox" required/>
 <label class="ml-2 block text-xs text-gray-600 dark:text-gray-400" for="terms-and-conditions"> I agree to the <a class="font-medium text-primary hover:underline" href="#">Terms of Service</a> and <a class="font-medium text-primary hover:underline" href="#">Privacy Policy</a>. </label>
 </div>
+<span id="terms-error" class="error-message">You must agree to the terms and conditions</span>
 <div>
 <button class="group relative flex w-full justify-center rounded-lg border border-transparent bg-gradient-to-r from-[#6C63FF] to-[#3A86FF] py-3 px-4 text-sm font-bold text-white shadow-sm hover:bg-gradient-to-br focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C63FF] dark:focus:ring-offset-gray-900" type="submit">
-<a href="/user/dashboard.html">Sign Up</a>
+Sign Up
 </button>
 </div>
 <div class="text-center">
@@ -350,4 +377,104 @@ Already have an account? <a class="font-medium text-primary hover:underline" hre
 <svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" fill-rule="evenodd"></path></svg>
 </a>
 <a class="text-gray-500 dark:text-gray-400 hover:text-primary" href="#">
-<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+
+<script>
+// Password toggle function
+function togglePassword(inputId, iconElement) {
+    const input = document.getElementById(inputId);
+    const icon = iconElement.querySelector('.password-toggle');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility';
+    } else {
+        input.type = 'password';
+        icon.textContent = 'visibility_off';
+    }
+}
+
+// Form validation and submission
+document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Clear previous errors
+    document.querySelectorAll('.error-message').forEach(el => el.classList.remove('show'));
+    document.querySelectorAll('.form-input').forEach(el => el.classList.remove('input-error'));
+    
+    // Get form values
+    const fullName = document.getElementById('full-name').value.trim();
+    const email = document.getElementById('email-address').value.trim();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const termsChecked = document.getElementById('terms-and-conditions').checked;
+    
+    let isValid = true;
+    
+    // Validate full name
+    if (fullName === '') {
+        document.getElementById('name-error').classList.add('show');
+        document.getElementById('full-name').classList.add('input-error');
+        isValid = false;
+    }
+    
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        document.getElementById('email-error').classList.add('show');
+        document.getElementById('email-address').classList.add('input-error');
+        isValid = false;
+    }
+    
+    // Validate password
+    if (password.length < 8) {
+        document.getElementById('password-error').classList.add('show');
+        document.getElementById('password').classList.add('input-error');
+        isValid = false;
+    }
+    
+    // Validate confirm password
+    if (password !== confirmPassword) {
+        document.getElementById('confirm-password-error').classList.add('show');
+        document.getElementById('confirm-password').classList.add('input-error');
+        isValid = false;
+    }
+    
+    // Validate terms
+    if (!termsChecked) {
+        document.getElementById('terms-error').classList.add('show');
+        isValid = false;
+    }
+    
+    // If all validations pass
+    if (isValid) {
+        // Create user object
+        const user = {
+            fullName: fullName,
+            email: email,
+            signupDate: new Date().toISOString()
+        };
+        
+        // Store user data in sessionStorage (for this session only)
+        sessionStorage.setItem('currentUser', JSON.stringify(user));
+        sessionStorage.setItem('isLoggedIn', 'true');
+        
+        // Show success message
+        document.getElementById('success-msg').classList.add('show');
+        
+        // Redirect to home page after 1.5 seconds
+        setTimeout(function() {
+            window.location.href = '../home.html'; // Changed from ../index.html
+        }, 1500);
+    }
+});
+</script>
+</body>
+</html>

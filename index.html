@@ -9,12 +9,15 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> 
+
     <style>
         /* =========================================
         CSS VARIABLES
         ========================================= */
         :root {
-            --primary-color: #2b7bff; /* Bright Blue */
+            --primary-color: #2b7bff;
             --primary-hover: #496eff;
             --dark-bg: #0b0b0b;
             --mid-dark-bg: #151515;
@@ -140,7 +143,6 @@
         }
 
         .signup-btn {
-            /* Inherits styles from .btn and .btn-primary */
             font-weight: 700;
         }
         
@@ -259,7 +261,7 @@
             scroll-snap-type: x mandatory;
             display: flex;
             gap: 20px;
-            padding-bottom: 10px; /* Space for scrollbar */
+            padding-bottom: 10px;
         }
 
         .carousel-slide {
@@ -413,9 +415,9 @@
         .step:not(:last-child)::after {
             content: '';
             position: absolute;
-            top: 70px; /* Align with center of circle */
+            top: 70px;
             left: calc(50% + 70px); 
-            width: calc(100% - 140px - 60px); /* Adjust based on circle size and gap */
+            width: calc(100% - 140px - 60px);
             height: 2px;
             background: rgba(255, 255, 255, 0.1);
             z-index: 1;
@@ -680,7 +682,7 @@
             }
             
             .step {
-                flex: 1 1 45%; /* Allow two steps per row */
+                flex: 1 1 45%;
             }
 
             .step:not(:last-child)::after {
@@ -692,7 +694,7 @@
             header {
                 flex-wrap: wrap;
                 justify-content: space-between;
-                padding-right: 80px; /* Space for the toggle button */
+                padding-right: 80px;
             }
 
             header nav {
@@ -714,15 +716,12 @@
             }
 
             .signup-btn {
-                display: none; /* Hide button in header, show in mobile menu if needed */
+                display: none;
             }
 
             .menu-toggle {
                 display: block;
             }
-            
-            /* Toggle menu functionality (using a checkbox/JS is better, but CSS-only via sibling selector is common) */
-            /* Assuming simple JS implementation for class toggle for brevity */
 
             .hero {
                 padding: 60px 20px 40px;
@@ -797,10 +796,11 @@
             <a href="#">Website</a>
             <a href="#">Ai Tools</a>
             <a href="#">Api</a>
-   
         </nav>
 
-        <a href="auth/signup.html" class="btn btn-primary signup-btn desktop-only">Signup/Login</a>
+        <div id="auth-buttons">
+            <a href="auth/signup.html" class="btn btn-primary signup-btn desktop-only">Signup/Login</a>
+        </div>
         
         <button class="menu-toggle" aria-label="Toggle navigation" id="nav-toggle">☰</button>
     </header>
@@ -850,9 +850,9 @@
         <div class="products-grid-container">
             <div class="products-grid">
                 
-                <div class="product-card">
+                <div class="product-card" data-aos="zoom-in">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x200/2b7bff/FFFFFF?text=E-commerce+Course" alt="e-commerce course">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=200&fit=crop" alt="e-commerce course">
                     </div>
                     <div class="product-details">
                         <h3>Complete E-commerce Course</h3>
@@ -861,9 +861,9 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x200/496eff/FFFFFF?text=Social+Automation+Tool" alt="social media automations">
+                        <img src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=400&h=200&fit=crop" alt="social media automations">
                     </div>
                     <div class="product-details">
                         <h3>Social Media Automation Bot</h3>
@@ -872,9 +872,9 @@
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="200">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x200/2b7bff/FFFFFF?text=AI+Content+Generator" alt="AI content tool">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=200&fit=crop" alt="AI content tool">
                     </div>
                     <div class="product-details">
                         <h3>AI Content Generation Tool</h3>
@@ -883,9 +883,9 @@
                     </div>
                 </div>
                 
-                <div class="product-card">
+                <div class="product-card" data-aos="zoom-in" data-aos-delay="300">
                     <div class="product-img">
-                        <img src="https://via.placeholder.com/400x200/496eff/FFFFFF?text=SaaS+Subscription+Website" alt="SaaS Website Template">
+                        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=200&fit=crop" alt="SaaS Website Template">
                     </div>
                     <div class="product-details">
                         <h3>SaaS Subscription Platform</h3>
@@ -893,6 +893,7 @@
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>
+                
             </div>
         </div>
         
@@ -900,7 +901,7 @@
             <h2 class="section-title">Your 4 Steps to Digital Launch</h2>
             <div class="container">
                 <div class="steps">
-                    <div class="step">
+                    <div class="step" data-aos="fade-up" data-aos-delay="0">
                         <div class="icon-circle">
                             <i class="fas fa-search"></i>
                         </div>
@@ -908,7 +909,7 @@
                         <p class="step-description">Explore thousands of pre-built digital products in our marketplace.</p>
                     </div>
 
-                    <div class="step">
+                    <div class="step" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon-circle">
                             <i class="fas fa-shopping-bag"></i>
                         </div>
@@ -916,7 +917,7 @@
                         <p class="step-description">Purchase securely and instantly download your ready-made solution.</p>
                     </div>
 
-                    <div class="step">
+                    <div class="step" data-aos="fade-up" data-aos-delay="200">
                         <div class="icon-circle">
                             <i class="fas fa-wrench"></i>
                         </div>
@@ -924,7 +925,7 @@
                         <p class="step-description">Easily customize the product code to fit your brand and specific needs.</p>
                     </div>
 
-                    <div class="step">
+                    <div class="step" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon-circle">
                             <i class="fas fa-rocket"></i>
                         </div>
@@ -939,7 +940,7 @@
             <h2 class="section-title">Loved by Digital Innovators</h2>
             <div class="container">
                 <div class="testimonial-grid">
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-aos="fade-up">
                         <p class="testimonial-text">"Blaqo saved me months of development time. I found the perfect script for my project and launched in a week! Highly efficient."</p>
                         <div class="testimonial-author">
                             <img src="https://i.pravatar.cc/150?img=5" alt="Sarah L." class="author-image">
@@ -950,7 +951,7 @@
                         </div>
                     </div>
 
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
                         <p class="testimonial-text">"The quality of the websites available is top-notch. I bought a template and had my portfolio online the same day. Incredible value!"</p>
                         <div class="testimonial-author">
                             <img src="https://i.pravatar.cc/150?img=12" alt="Mike R." class="author-image">
@@ -961,7 +962,7 @@
                         </div>
                     </div>
 
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
                         <p class="testimonial-text">"As a seller, the platform is fantastic. It's easy to list my products, and the community is very supportive. They handle all the payment processing securely."</p>
                         <div class="testimonial-author">
                             <img src="https://i.pravatar.cc/150?img=9" alt="Chloe T." class="author-image">
@@ -1038,7 +1039,18 @@
 
     </footer>
 
+    <!-- AOS JavaScript -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
     <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: false,
+        });
+
+        // Mobile menu toggle
         document.getElementById('nav-toggle').onclick = function() {
             var nav = document.getElementById('main-nav');
             if (nav.style.display === 'flex') {
@@ -1047,6 +1059,37 @@
                 nav.style.display = 'flex';
             }
         }
+
+        // Check if user is logged in
+        function checkAuthStatus() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn') || localStorage.getItem('isLoggedIn');
+            const userData = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
+            
+            if (isLoggedIn === 'true' && userData) {
+                const user = JSON.parse(userData);
+                const authButtons = document.getElementById('auth-buttons');
+                
+                // Replace signup button with user menu
+                authButtons.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: var(--text-light); font-weight: 500;">Welcome, ${user.fullName}!</span>
+                        <button onclick="logout()" class="btn btn-secondary" style="padding: 8px 20px;">Logout</button>
+                    </div>
+                `;
+            }
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('currentUser');
+            sessionStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('isLoggedIn');
+            location.reload();
+        }
+
+        // Run auth check on page load
+        checkAuthStatus();
     </script>
 </body>
 </html>
