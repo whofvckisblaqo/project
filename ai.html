@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo AI: Next-Gen Tools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <h2 class="logo-text">Blaqo AI</h2>
+                </div>
+                <nav class="nav-menu">
+                    <a href="market.html" class="nav-link">Marketplace</a>
+                    <a href="api-docs.html" class="nav-link">API Docs</a>
+                    <a href="cart.html" class="nav-link">🛒 Cart</a>
+                    <a href="#" class="nav-link btn-secondary">My Studio</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            
+            <section class="hero-section">
+                <div class="hero-text">
+                    <h1>Unlock Limitless Creation with **Synapse AI**</h1>
+                    <p class="subtitle">The engine powering the best digital tools on Di-Boss. Generate code, write content, and automate tasks instantly.</p>
+                    <a href="#ai-demo" class="btn-primary">Try Synapse Demo Now</a>
+                    <a href="market.html?category=ai-tools" class="btn-secondary">View AI Products</a>
+                </div>
+                <div class="hero-image">
+                    <svg viewBox="0 0 100 100" class="ai-graphic">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-dasharray="1 10"/>
+                        <circle cx="30" cy="30" r="5" fill="var(--color-primary)"/>
+                        <circle cx="70" cy="30" r="5" fill="var(--color-primary)"/>
+                        <circle cx="50" cy="70" r="5" fill="var(--color-primary)"/>
+                        <path d="M30 30 L70 30 L50 70 Z" fill="none" stroke="var(--color-primary)" stroke-width="1"/>
+                        <text x="50" y="52" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">AI</text>
+                    </svg>
+                </div>
+            </section>
+            
+            <section id="ai-demo" class="demo-section">
+                <h2>Experience the Power of Synapse</h2>
+                <p class="demo-subtitle">See how fast and accurate our core AI model is. Try a prompt like "Write a Python script for web scraping."</p>
+                <div class="ai-chat-box">
+                    <div class="ai-response">
+                        <p class="ai-message">Hello! I'm Synapse, Di-Boss's flagship generative model. What can I create for you today?</p>
+                    </div>
+                    
+                    <div class="user-prompt-box">
+                        <input type="text" placeholder="Enter your prompt here (e.g., Generate a landing page headline)" class="prompt-input">
+                        <button class="send-button">
+                            <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 00.183.183L8 14.586V19a1 1 0 102 0v-4.414l5.605 2.597a1 1 0 00.183-.183l-7-14z"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <button class="btn-primary start-building-btn" onclick="location.href='market.html?category=ai-tools'">Start Building with AI Tools</button>
+            </section>
+
+            <section class="features-section">
+                <h2>Designed for Digital Entrepreneurs</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">⚡️</span>
+                        <h3>Blazing Fast Performance</h3>
+                        <p>Generate complex assets in seconds, not hours. Our models are optimized for speed and low latency.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">💡</span>
+                        <h3>Creative Code Generation</h3>
+                        <p>Create full scripts, components (React, Vue), and API wrappers from simple natural language prompts.</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🔒</span>
+                        <h3>Enterprise-Grade Security</h3>
+                        <p>Your data and generations are secure, encrypted, and never used for training models without consent.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2025 Blaqo AI. | <a href="#">Privacy</a> | <a href="#">Terms</a></p>
+        </footer>
+    </div>
+
+    <style>
+        /* --- CSS Variables (Consistent) --- */
+        :root {
+            --color-primary: #0077B6; /* Deep Blue (Main Accent) */
+            --color-secondary: #00B4D8; /* Lighter Blue / Teal */
+            --color-text: #1F2937; /* Dark Grey for body text */
+            --color-subtle: #6B7280; /* Muted Grey */
+            --color-background: #F9FAFB; /* Light page background */
+            --color-white: #FFFFFF;
+            --color-border: #E5E7EB;
+            --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.05);
+            /* AI Specific Styles */
+            --ai-bg: #1F2937; /* Dark background for chat box */
+            --ai-text: #F9FAFB;
+            --ai-message-bg: rgba(0, 119, 182, 0.15); /* Light primary tint */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .page-container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* --- Global Components (Reused) --- */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            width: 100%;
+            border-bottom: 1px solid var(--color-border);
+            background-color: rgba(249, 250, 251, 0.95);
+            backdrop-filter: blur(8px);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-subtle);
+            padding: 8px 12px;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+        
+        .btn-primary, .btn-secondary {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-white) !important;
+            border-color: var(--color-primary);
+            margin-right: 15px;
+        }
+        
+        .btn-primary:hover {
+            background-color: #005A93;
+            border-color: #005A93;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary) !important;
+            border-color: var(--color-primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(0, 119, 182, 0.1);
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            flex: 1;
+            padding: 40px 24px;
+        }
+
+        /* --- 1. AI Hero Section --- */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 0;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--color-text);
+        }
+        
+        .hero-text h1 strong {
+            color: var(--color-primary);
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--color-subtle);
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            width: 350px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-graphic {
+            width: 100%;
+            height: 100%;
+            animation: rotate 60s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- 2. Interactive Demo Section --- */
+        .demo-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .demo-section h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .demo-subtitle {
+            font-size: 18px;
+            color: var(--color-subtle);
+            margin-bottom: 30px;
+        }
+
+        .ai-chat-box {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            background-color: var(--ai-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .ai-response {
+            text-align: left;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .ai-message {
+            background-color: var(--ai-message-bg);
+            color: var(--ai-text);
+            padding: 15px 20px;
+            border-radius: 10px 10px 10px 0;
+            display: inline-block;
+            max-width: 80%;
+            font-size: 15px;
+        }
+
+        .user-prompt-box {
+            display: flex;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            padding: 8px;
+        }
+
+        .prompt-input {
+            flex-grow: 1;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .send-button {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .send-button:hover {
+            background-color: #005A93;
+        }
+        
+        .send-button svg {
+            width: 20px;
+            height: 20px;
+            transform: rotate(45deg); /* To make it look like a paper plane */
+        }
+        
+        .start-building-btn {
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 18px;
+        }
+
+        /* --- 3. Feature Grid Section --- */
+        .features-section h2 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow-subtle);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-secondary);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+        
+        .feature-card p {
+            color: var(--color-subtle);
+        }
+
+        /* --- Footer (Minimalist) --- */
+        .site-footer {
+            padding: 20px 24px;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-subtle);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        .site-footer a {
+            color: var(--color-subtle);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .site-footer a:hover {
+            color: var(--color-primary);
+        }
+        
+        /* --- Responsiveness --- */
+        @media (max-width: 900px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+            
+            .hero-text h1 {
+                font-size: 40px;
+            }
+            
+            .hero-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .header-container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-menu {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</body>
+</html>

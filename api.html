@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blaqo API Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+        <header class="header">
+            <div class="header-container">
+                <div class="logo">
+                    <h2 class="logo-text">Blaqo API</h2>
+                </div>
+                <nav class="nav-menu">
+                    <a href="market.html" class="nav-link">← Back to Marketplace</a>
+                    <a href="#" class="nav-link btn-primary">Get API Key</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="api-grid">
+                
+                <aside class="sidebar">
+                    <h3 class="sidebar-title">Endpoints</h3>
+                    <nav class="api-nav">
+                        <div class="nav-group">
+                            <details open>
+                                <summary class="nav-summary">Products (V1)</summary>
+                                <ul>
+                                    <li class="active"><a href="#get-products">GET /products</a></li>
+                                    <li><a href="#get-product-id">GET /products/{id}</a></li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary class="nav-summary">Users (V1)</summary>
+                                <ul>
+                                    <li><a href="#post-register">POST /register</a></li>
+                                    <li><a href="#get-user-id">GET /users/{id}</a></li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary class="nav-summary">Purchases (V1)</summary>
+                                <ul>
+                                    <li><a href="#post-purchase">POST /purchase</a></li>
+                                </ul>
+                            </details>
+                        </div>
+                    </nav>
+                </aside>
+
+                <section class="docs-section">
+                    <h1 class="docs-title">API Reference</h1>
+                    <p class="docs-description">
+                        Welcome to the Di-Boss API documentation. All requests should be made to the base URL: 
+                        <code class="endpoint-code">https://api.diboss.com/v1</code>
+                    </p>
+                    
+                    <article id="get-products" class="endpoint-article">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <h2 class="endpoint-route">/products</h2>
+                        </div>
+                        <p class="endpoint-summary">
+                            Retrieves a paginated list of all available digital products on the marketplace. Use query parameters for filtering and searching.
+                        </p>
+
+                        <h3 class="section-heading">Query Parameters</h3>
+                        <table class="params-table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Type</th>
+                                    <th>Required</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="param-name">limit</code></td>
+                                    <td>integer</td>
+                                    <td>No</td>
+                                    <td>Maximum number of products to return. Default is 20. Max is 100.</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="param-name">category</code></td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Filter by product category (e.g., <code>'AI Tools'</code>, <code>'Scripts'</code>).</td>
+                                </tr>
+                                <tr>
+                                    <td><code class="param-name">sort_by</code></td>
+                                    <td>string</td>
+                                    <td>No</td>
+                                    <td>Field to sort by (<code>'price'</code>, <code>'date'</code>, <code>'popularity'</code>).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3 class="section-heading">Example Response (200 OK)</h3>
+                        <pre class="code-block">
+<code class="json">
+{
+  "status": "success",
+  "total_results": 124,
+  "page": 1,
+  "data": [
+    {
+      "id": "prod_a1b2c3d4",
+      "name": "Advanced Python Scraper",
+      "category": "Scripts",
+      "price": 49.99,
+      "currency": "USD",
+      "description": "A powerful web scraping script for data extraction.",
+      "link": "https://api.diboss.com/v1/products/prod_a1b2c3d4"
+    },
+    {
+      "id": "prod_x4y5z6a7",
+      "name": "QuantumAI Toolkit",
+      "category": "AI Tools",
+      "price": 199.00,
+      "currency": "USD",
+      "description": "Machine learning model library for rapid prototyping.",
+      "link": "https://api.diboss.com/v1/products/prod_x4y5z6a7"
+    }
+  ]
+}
+</code>
+</pre>
+
+                        <h3 class="section-heading">Error Codes</h3>
+                        <p>
+                            Standard HTTP status codes are used for responses.
+                        </p>
+                        <ul class="error-list">
+                            <li><span class="code-status error">400 Bad Request</span>: Invalid or missing parameter in the request.</li>
+                            <li><span class="code-status error">401 Unauthorized</span>: Missing or invalid API key.</li>
+                            <li><span class="code-status error">404 Not Found</span>: The requested resource does not exist.</li>
+                            <li><span class="code-status error">500 Internal Server Error</span>: Something went wrong on the server.</li>
+                        </ul>
+                    </article>
+
+                    <article id="get-product-id" class="endpoint-article">
+                        <div class="endpoint-header">
+                            <span class="method get">GET</span>
+                            <h2 class="endpoint-route">/products/{id}</h2>
+                        </div>
+                        <p class="endpoint-summary">Retrieves details for a single product using its unique ID.</p>
+                        <h3 class="section-heading">Path Parameters</h3>
+                        <table class="params-table">
+                            <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td><code class="param-name">id</code></td>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>The unique ID of the product (e.g., <code>prod_a1b2c3d4</code>).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </article>
+
+                </section>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2025 Blaqo API. | <a href="#">Terms of Use</a> | <a href="#">Service Status</a></p>
+        </footer>
+    </div>
+
+    <style>
+        /* --- Base Setup & Variables --- */
+        :root {
+            /* Branding Colors (Consistent with Market/Home) */
+            --color-primary: #0077B6; /* Deep Blue (Main Accent) */
+            --color-secondary: #00B4D8; /* Lighter Blue */
+            --color-text: #1F2937; /* Dark Grey for text */
+            --color-subtle: #6B7280; /* Muted Grey */
+            --color-background: #F9FAFB; /* Light page background */
+            --color-white: #FFFFFF;
+            /* Documentation Specific */
+            --color-border: #E5E7EB;
+            --code-bg: #282C34; /* Dark code block background */
+            --code-text: #abb2bf; /* Light text for code */
+            --method-get: #00B4D8; /* Teal/light blue for GET */
+            --method-post: #6C63FF; /* Purple for POST */
+            --shadow-subtle: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .page-container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* --- Header Styles --- */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            width: 100%;
+            border-bottom: 1px solid var(--color-border);
+            background-color: rgba(249, 250, 251, 0.95);
+            backdrop-filter: blur(8px);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 32px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-subtle);
+            padding: 8px 12px;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-white) !important;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-weight: 600;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #005A93;
+            color: var(--color-white) !important;
+        }
+
+        /* --- Main Content Grid --- */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            flex: 1;
+            padding: 0 32px;
+        }
+
+        .api-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr; /* Fixed sidebar width, flexible content */
+            gap: 40px;
+        }
+
+        /* --- Sidebar (Endpoint Navigation) --- */
+        .sidebar {
+            position: sticky;
+            top: 80px; /* Below the sticky header */
+            height: calc(100vh - 100px); /* Fill remaining viewport height */
+            overflow-y: auto;
+            padding-top: 30px;
+        }
+
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--color-text);
+        }
+
+        .api-nav {
+            list-style: none;
+        }
+
+        .nav-group {
+            margin-bottom: 20px;
+        }
+
+        .nav-summary {
+            font-weight: 600;
+            color: var(--color-text);
+            padding: 8px 0;
+            cursor: pointer;
+        }
+        
+        .api-nav ul {
+            list-style: none;
+            padding-left: 15px;
+            margin-top: 5px;
+        }
+
+        .api-nav li {
+            padding: 4px 0;
+        }
+
+        .api-nav a {
+            text-decoration: none;
+            color: var(--color-subtle);
+            font-size: 14px;
+            transition: color 0.3s, font-weight 0.3s;
+            display: block;
+            padding: 4px 0;
+        }
+
+        .api-nav a:hover, .api-nav li.active a {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        /* --- Documentation Section --- */
+        .docs-section {
+            padding-top: 30px;
+            padding-bottom: 80px;
+        }
+
+        .docs-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+        
+        .docs-description {
+            color: var(--color-subtle);
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .endpoint-article {
+            margin-bottom: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .method {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 15px;
+            color: var(--color-white);
+        }
+
+        .method.get { background-color: var(--method-get); }
+        .method.post { background-color: var(--method-post); }
+
+        .endpoint-route {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .endpoint-summary {
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .endpoint-code {
+            background-color: var(--color-border);
+            color: var(--color-text);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        /* Code Blocks */
+        .section-heading {
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--color-primary);
+            padding-left: 10px;
+        }
+
+        .code-block {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .json {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            white-space: pre-wrap;
+        }
+
+        /* Tables */
+        .params-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .params-table th, .params-table td {
+            border: 1px solid var(--color-border);
+            padding: 12px;
+            text-align: left;
+        }
+
+        .params-table th {
+            background-color: var(--color-white);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .params-table tbody tr:nth-child(even) {
+            background-color: #F3F4F6;
+        }
+
+        .param-name {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        /* Error List */
+        .error-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .error-list li {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .code-status.error {
+            background-color: #FEE2E2; /* Light Red */
+            color: #EF4444; /* Red */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        /* --- Footer Styles --- */
+        .site-footer {
+            padding: 20px 32px;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-subtle);
+            font-size: 14px;
+            margin-top: 40px;
+        }
+
+        .site-footer a {
+            color: var(--color-subtle);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .site-footer a:hover {
+            color: var(--color-primary);
+        }
+
+        /* --- Responsiveness --- */
+        @media (max-width: 1024px) {
+            .api-grid {
+                grid-template-columns: 1fr; /* Stack sidebar and content */
+                gap: 20px;
+            }
+
+            .sidebar {
+                position: static;
+                height: auto;
+                padding-top: 0;
+            }
+
+            .sidebar-title {
+                border-bottom: 1px solid var(--color-border);
+                padding-bottom: 10px;
+            }
+
+            .docs-section {
+                padding-top: 0;
+            }
+        }
+    </style>
+</body>
+</html>
