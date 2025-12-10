@@ -9,7 +9,6 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- AOS CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> 
 
     <style>
@@ -148,7 +147,7 @@
         
         /* Mobile Menu Toggle */
         .menu-toggle {
-            display: none;
+            display: none; /* Hide by default for desktop */
             position: fixed;
             top: 25px;
             right: 25px;
@@ -446,6 +445,7 @@
         .icon-circle i {
             font-size: 50px;
             color: var(--primary-color);
+            margin-bottom: 5px;
         }
 
         .step-number {
@@ -706,6 +706,21 @@
                 padding: 10px 0;
             }
             
+            /* >>> ADDED: Class to make the mobile menu visible when JS toggles it */
+            header nav.nav-open {
+                display: flex;
+                position: absolute;
+                top: 61px; /* To sit right below the header */
+                left: 0;
+                right: 0;
+                background: var(--dark-bg); 
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                padding-bottom: 20px;
+                /* NOTE: The z-index on header (1000) keeps it above main content */
+            }
+            /* <<< END ADDED CSS */
+            
             header nav a {
                 margin: 10px 0;
                 padding: 5px 0;
@@ -835,12 +850,12 @@
         <div class="carousel-container">
             <div class="carousel">
                 <div class="carousel-slide">
-                   <div class="carousel-icon"><i class="fa-solid fa-code"></i>APIs & Scripts</div>
-                   <div class="carousel-icon"><i class="fa-solid fa-globe"></i>Ready Websites</div>
-                   <div class="carousel-icon"><i class="fa-solid fa-mobile-screen"></i>Mobile Apps</div>
-                   <div class="carousel-icon"><i class="fa-solid fa-robot"></i>AI Tools</div>
-                   <div class="carousel-icon"><i class="fa-solid fa-graduation-cap"></i>Online Courses</div>
-                   <div class="carousel-icon"><i class="fa-solid fa-chart-line"></i>Business Bots</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-code"></i>APIs & Scripts</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-globe"></i>Ready Websites</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-mobile-screen"></i>Mobile Apps</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-robot"></i>AI Tools</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-graduation-cap"></i>Online Courses</div>
+                    <div class="carousel-icon"><i class="fa-solid fa-chart-line"></i>Business Bots</div>
                 </div>
             </div>
         </div>
@@ -1027,69 +1042,47 @@
             <div class="social-icons">
                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a> 
                 <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a> 
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a> 
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> 
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
-
+            
             <div class="footer-copyright">
-                &copy; 2025 Blaqo Marketplace. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                &copy; 2024 Blaqo Marketplace. All rights reserved. | <a href="#">Privacy Policy</a>
             </div>
-
         </div>
-
     </footer>
 
-    <!-- AOS JavaScript -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            disable: 'mobile'
+        });
+    </script>
     
     <script>
-        // Initialize AOS (Animate On Scroll)
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-            once: false,
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.getElementById('nav-toggle');
+            const mainNav = document.getElementById('main-nav');
+
+            if (navToggle && mainNav) {
+                navToggle.addEventListener('click', () => {
+                    // Toggles the 'nav-open' class on the navigation element
+                    mainNav.classList.toggle('nav-open');
+
+                    // OPTIONAL: Change icon from '☰' to '✕' when menu is open
+                    navToggle.innerHTML = mainNav.classList.contains('nav-open') ? '✕' : '☰';
+                });
+
+                // Close the menu if a link is clicked inside it
+                mainNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mainNav.classList.remove('nav-open');
+                        navToggle.innerHTML = '☰';
+                    });
+                });
+            }
         });
-
-        // Mobile menu toggle
-        document.getElementById('nav-toggle').onclick = function() {
-            var nav = document.getElementById('main-nav');
-            if (nav.style.display === 'flex') {
-                nav.style.display = 'none';
-            } else {
-                nav.style.display = 'flex';
-            }
-        }
-
-        // Check if user is logged in
-        function checkAuthStatus() {
-            const isLoggedIn = sessionStorage.getItem('isLoggedIn') || localStorage.getItem('isLoggedIn');
-            const userData = sessionStorage.getItem('currentUser') || localStorage.getItem('currentUser');
-            
-            if (isLoggedIn === 'true' && userData) {
-                const user = JSON.parse(userData);
-                const authButtons = document.getElementById('auth-buttons');
-                
-                // Replace signup button with user menu
-                authButtons.innerHTML = `
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <span style="color: var(--text-light); font-weight: 500;">Welcome, ${user.fullName}!</span>
-                        <button onclick="logout()" class="btn btn-secondary" style="padding: 8px 20px;">Logout</button>
-                    </div>
-                `;
-            }
-        }
-
-        // Logout function
-        function logout() {
-            sessionStorage.removeItem('currentUser');
-            sessionStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('currentUser');
-            localStorage.removeItem('isLoggedIn');
-            location.reload();
-        }
-
-        // Run auth check on page load
-        checkAuthStatus();
     </script>
-</body>
+    </body>
 </html>
